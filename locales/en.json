@@ -1,0 +1,69 @@
+{
+  "layout": {
+    "theme": {
+      "search_input_placeholder": "Search...",
+      "search_tags_label": "Popular Tags",
+      "search_keywords_label": "Popular Searches"
+    }
+  },
+  "snippets": {
+    "header": {
+      "light_mode": "light color",
+      "dark_mode": "dark color",
+      "auto_mode": "automatic"
+    },
+    "footer": {
+      "copyright": "All Rights Reserved"
+    },
+    "feedback_form": {
+      "title": "Submit Feedback",
+      "message_label": "Message",
+      "message_placeholder": "Please enter your feedback",
+      "message_required": "Feedback message cannot be empty",
+      "submit": "Submit",
+      "cancel": "Cancel"
+    },
+    "feedback_button": {
+      "title_posted": "Thank you for your feedback",
+      "title_unposted": "Submit Feedback"
+    },
+    "page": {
+      "prev_page": "Previous",
+      "next_page": "Next"
+    }
+  },
+  "templates": {
+    "search": {
+      "placeholder": "Search...",
+      "no_results": "No results found"
+    },
+    "page": {
+      "copy_success": "Link copied",
+      "page_toc": "Table of Contents",
+      "llm_prompt_template": "Read from %{url} so I can ask questions about it.",
+      "llm_copying": "Copying...",
+      "llm_copied": "Copied"
+    }
+  },
+  "ai": {
+    "title": "AI Search",
+    "thinking": "Thinking...",
+    "completed": "AI response completed.",
+    "canceled": "Canceled"
+  },
+  "generic": {
+    "published_at": "Published at",
+    "feedback_created_at": "Last feedback at",
+    "buttons": {
+      "signout": "Sign Out"
+    },
+    "read_more": "View more",
+    "menu": ""
+  },
+  "search": {
+    "placeholder": "Search .."
+  },
+  "placeholders": {
+    "search": ""
+  }
+}

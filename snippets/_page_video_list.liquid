@@ -1,0 +1,86 @@
+<article class="flex flex-col h-full">
+  {% # 作者和发布时间 %}
+  {% if site.settings.show_author or site.settings.show_published_at %}
+    <section class="mb-4 mt-2">
+      {% if site.settings.show_author and site.settings.show_published_at %}
+        <div class="flex items-center space-y-2">
+          <div class="flex items-center space-x-2">
+            {% render 'avatar', url: page.author.avatar_url, name: page.author.name %}
+            <div class="flex flex-col space-y-0.5">
+              <span class="text-xs">{{ page.author.name }}</span>
+              <span class="text-xs text-slate-400">{{ 'generic.published_at' | t }}: {{ page.published_at | date: "%Y-%m-%d" }}</span>
+            </div>
+          </div>
+        </div>
+      {% elsif site.settings.show_author %}
+        {% render 'avatar_with_name', url: page.author.avatar_url, name: page.author.name %}
+      {% elsif site.settings.show_published_at %}
+        <p class="text-sm text-gray-500 text-md">{{ 'generic.published_at' | t }}: {{ page.published_at | date: "%Y-%m-%d" }}</p>
+      {% endif %}
+    </section>
+  {% endif %}
+
+  {% # 标题 %}
+  {% assign title = page.link_text | presence %}
+  {% if title %}
+    <header class="mb-4 py-1">
+      <h1 class="text-xl font-bold md:text-3xl lg:text-4xl">
+        {{ title }}
+      </h1>
+    </header>
+  {% endif %}
+
+  {% # 标签 %}
+  {% if page.settings.tags and page.settings.tags.size > 0 %}
+    <section class="flex flex-wrap items-center gap-2 mb-4 px-4">
+      {% for tag in page.settings.tags %}
+        {% render 'tag', tag: tag %}
+      {% endfor %}
+    </section>
+  {% endif %}
+
+  {% # 摘要 %}
+  {% assign description = page.settings.description | presence %}
+  {% if description %}
+    <section class="mb-4">
+      <blockquote class="italic rounded-lg p-4 bg-base-200 text-base-content/50">
+        <p>{{ description }}</p>
+      </blockquote>
+    </section>
+  {% endif %}
+
+  {% # 内容 %}
+  <section id="page-content" class="ProseMirror flex-1" data-controller="link-target images-viewer" data-toc-target="content">
+    {{ page.settings.content }}
+  </section>
+
+  {% query video_pages from page.children_in_list %}
+    {
+      "where": {
+        "template_name_eq": "page",
+        "template_style_eq": "video"
+      }
+    }
+  {% endquery %}
+  {% paginate_tag video_pages, as: 'items', per: 20 %}
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      {% for item in items %}
+        <div class="">
+          <div class="bg-white shadow-lg rounded-lg overflow-hidden flex flex-col h-full">
+            <div class="relative aspect-video ">
+              <video preload='metadata' width='100%' height='100%' loop playsinline controls>
+                <source src="item.settings.video_url"  type="video/mp4"/>
+                Your browser does not support the video tag.
+              </video>
+            </div>
+            <div class="p-4 flex-1">
+              <a data-turbo-frame="_top" class="text-lg text-gray-800 hover:underline hover:text-primary" href="{{ item.path }}">{{ item.link_text }}</a>
+              <p class="text-gray-600 text-sm line-clamp-2">{{ item.settings.description }}</p>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+    {% render 'paginate', paginate: paginate %}
+  {% endpaginate_tag %}
+</article>

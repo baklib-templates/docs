@@ -1,0 +1,19 @@
+{% assign default_logo = 'images/logo.png' | asset_url %}
+<div class="flex items-center max-w-[var(--left-sidebar-width)]">
+	<a href="{{site.index_path}}" class="flex items-center gap-2">
+		{% assign logo_url = site.settings.logo_url | presence %}
+		{% if logo_url %}
+			<div class='avatar1 h-8'>
+				<img src="{{ logo_url }}" class="h-full w-auto rounded-md !object-contain" alt="{{ site.name | escape_once }}">
+			</div>
+		{% else %}
+			{% assign favicon_url = site.favicon_url | presence | default: default_logo %}
+			{% if favicon_url %}
+				<div class='avatar h-8 w-8'>
+					<img src="{{ favicon_url }}" class="rounded-md !object-contain" alt="{{ site.name | escape_once }}" />
+				</div>
+			{% endif %}
+			<span class="hidden md:block text-xl font-bold">{{ site.name }}</span>
+		{% endif %}
+	</a>
+</div>

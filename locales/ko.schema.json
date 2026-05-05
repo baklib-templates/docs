@@ -1,0 +1,319 @@
+{
+  "theme_label": "지식 콘텐츠 포털",
+  "theme_description": "조직 내부 지식베이스를 CMS 시스템을 통해 독립적인 표시 웹사이트로 변환하는 것을 지원하는 전문적인 지식 콘텐츠 표시 테마. 기업 지식베이스, 제품 도움말 센터, 기술 문서 등 다양한 콘텐츠 표시 시나리오에 적합하며, 지식 관리와 콘텐츠 표시를 더욱 효율적으로 만듭니다.",
+  "templates": {
+    "index": {
+      "docs": {
+        "name": "문서 센터",
+        "description": "이상적인 제품 사용자 매뉴얼",
+        "settings": {
+          "hero_bg_type": {
+            "label": "히어로 배경 스타일",
+            "info": "배경 스타일을 선택하면 배경색과 이미지가 선택한 내용에 따라 표시됩니다",
+            "choices": {
+              "none": "배경 없음",
+              "color": "색상 배경",
+              "image": "이미지 배경"
+            }
+          },
+          "hero_height": {
+            "label": "배경 높이",
+            "info": "권장 높이: 360px"
+          },
+          "hero_image_url": {
+            "label": "배경 이미지",
+            "info": "배경 이미지는 페이지 너비와 배경 높이에 따라 자동으로 잘립니다"
+          },
+          "hero_bg_color": {
+            "label": "배경색",
+            "info": "히어로 배경 스타일의 색상은 선택한 색상 값에 따라 처리됩니다（색상 배경）"
+          },
+          "hero_slogan": {
+            "label": "슬로건",
+            "info": "슬로건은 배경 이미지 위에 표시됩니다",
+            "default": "👋 What Can We Help?"
+          },
+          "search_hot_tags": {
+            "label": "인기 태그",
+            "info": "설정하면 태그 목록이 홈페이지 검색창 아래에 표시됩니다"
+          },
+          "search_hot_keywords": {
+            "label": "인기 검색어",
+            "info": "설정하면 검색창 아래에 인기 검색어가 표시됩니다. 줄바꿈으로 여러 키워드를 설정합니다"
+          },
+          "show_channels_section": {
+            "label": "첫 번째 섹션",
+            "info": "체크를 해제하면 이 섹션은 홈페이지에 표시되지 않습니다"
+          },
+          "channels_section_title": {
+            "label": "첫 번째 섹션 제목",
+            "default": "시작하기"
+          },
+          "show_topic_channel": {
+            "label": "주제 추천 섹션",
+            "info": "체크를 해제하면 이 섹션은 홈페이지에 표시되지 않습니다; 페이지 설정에서 '주제 채널 여부' 옵션을 체크하여 홈페이지에 표시되도록 합니다"
+          },
+          "topic_channel_title": {
+            "label": "주제 추천 섹션 제목",
+            "default": "주제 추천"
+          },
+          "show_newest_section": {
+            "label": "최신 글 섹션",
+            "info": "체크를 해제하면 이 섹션은 홈페이지에 표시되지 않습니다"
+          },
+          "newest_section_title": {
+            "label": "최신 글 섹션 제목",
+            "default": "최신 글"
+          },
+          "show_hottest_section": {
+            "label": "인기 주제 섹션",
+            "info": "체크를 해제하면 이 섹션은 홈페이지에 표시되지 않습니다"
+          },
+          "hottest_section_title": {
+            "label": "인기 주제 섹션 제목",
+            "default": "인기 주제"
+          }
+        }
+      },
+      "help_center": {
+        "name": "도움말 센터",
+        "description": "기능이 풍부한 제품 지식베이스 스타일",
+        "settings": {
+          "hero_bg_type": {
+            "label": "히어로 배경 스타일",
+            "info": "배경 스타일을 선택하면 배경색과 이미지가 선택한 내용에 따라 표시됩니다",
+            "choices": {
+              "none": "배경 없음",
+              "color": "색상 배경",
+              "image": "이미지 배경"
+            }
+          },
+          "hero_height": {
+            "label": "배경 높이",
+            "info": "권장 높이: 360px"
+          },
+          "hero_image_url": {
+            "label": "배경 이미지",
+            "info": "배경 이미지는 페이지 너비와 배경 높이에 따라 자동으로 잘립니다"
+          },
+          "hero_bg_color": {
+            "label": "배경색",
+            "info": "히어로 배경 스타일의 색상은 선택한 색상 값에 따라 처리됩니다（색상 배경）"
+          },
+          "hero_slogan": {
+            "label": "슬로건",
+            "info": "슬로건은 배경 이미지 위에 표시됩니다",
+            "default": "👋 What Can We Help?"
+          },
+          "search_hot_tags": {
+            "label": "인기 태그",
+            "info": "설정하면 태그 목록이 홈페이지 검색창 아래에 표시됩니다"
+          },
+          "search_hot_keywords": {
+            "label": "인기 검색어",
+            "info": "설정하면 검색창 아래에 인기 검색어가 표시됩니다. 줄바꿈으로 여러 키워드를 설정합니다"
+          },
+          "show_channels_section": {
+            "label": "네비게이션 섹션",
+            "info": "체크를 해제하면 이 섹션은 홈페이지에 표시되지 않습니다"
+          },
+          "channels_section_title": {
+            "label": "네비게이션 섹션 제목",
+            "default": "네비게이션"
+          },
+          "show_newest_section": {
+            "label": "최신 글 섹션",
+            "info": "체크를 해제하면 이 섹션은 홈페이지에 표시되지 않습니다"
+          },
+          "newest_section_title": {
+            "label": "최신 글 섹션 제목",
+            "default": "최신 글"
+          },
+          "show_topic_channel": {
+            "label": "주제 추천 섹션",
+            "info": "체크를 해제하면 이 섹션은 홈페이지에 표시되지 않습니다"
+          },
+          "topic_channel_title": {
+            "label": "주제 추천 섹션 제목",
+            "default": "주제 추천"
+          },
+          "show_hottest_section": {
+            "label": "인기 글 섹션",
+            "info": "체크를 해제하면 이 섹션은 홈페이지에 표시되지 않습니다"
+          },
+          "hottest_section_title": {
+            "label": "인기 글 섹션 제목",
+            "default": "인기 글"
+          }
+        }
+      },
+      "list": {
+        "name": "제품 매뉴얼",
+        "description": "홈페이지 디렉토리 목록 스타일"
+      }
+    },
+    "page": {
+      "name": "기본 페이지 템플릿",
+      "description": "콘텐츠 페이지 템플릿",
+      "settings": {
+        "show_list": {
+          "label": "목록 페이지 여부",
+          "info": "목록 페이지는 하위 페이지의 콘텐츠를 표시하는 데 사용됩니다; 하위 페이지가 목록 템플릿을 사용하는지 확인하세요"
+        },
+        "is_topic_channel": {
+          "label": "주제 채널 여부",
+          "info": "주제 채널인 경우 페이지는 홈페이지의 주제 채널 목록에 표시됩니다"
+        },
+        "title": {
+          "label": "페이지 제목",
+          "info": "지식베이스에서 동기화, 편집 불가"
+        },
+        "tags": {
+          "label": "페이지 태그"
+        },
+        "description": {
+          "label": "페이지 설명"
+        },
+        "icon": {
+          "label": "페이지 아이콘",
+          "info": "페이지 아이콘 표시에 사용, 권장 비율 1:1"
+        },
+        "content": {
+          "label": "페이지 콘텐츠",
+          "info": "데이터 소스에서 동기화, 편집 불가"
+        }
+      },
+      "video": {
+        "name": "비디오 템플릿",
+        "description": "비디오 페이지 템플릿, 비디오 콘텐츠 표시에 사용",
+        "settings": {
+          "is_video_list": {
+            "label": "비디오 목록 여부",
+            "info": "비디오 목록 페이지, 비디오 템플릿의 하위 페이지만 가져옴; 하위 페이지가 비디오 템플릿을 사용하는지 확인하세요"
+          },
+          "video_url": {
+            "label": "비디오 URL",
+            "info": "비디오 목록 페이지에서 표시에 사용, 목록 페이지에서는 불필요"
+          }
+        }
+      },
+      "export": {
+        "name": "내보내기 페이지 템플릿",
+        "description": "브라우저에서 현재 섹션과 하위 페이지의 콘텐츠를 직접 내보내는 데 사용"
+      }
+    }
+  },
+  "generic": {
+    "name": "일반 설정",
+    "settings": {
+      "logo_url": {
+        "label": "로고 이미지",
+        "info": "로고가 설정된 경우 헤더에 로고가 표시됩니다. 그렇지 않은 경우: 웹사이트 아이콘+사이트 이름"
+      },
+      "company_name": {
+        "label": "회사명",
+        "default": "Baklib.cn",
+        "info": "페이지 하단의 푸터 위치에 표시"
+      },
+      "copyright_info": {
+        "label": "ICP/저작권 정보",
+        "default": "ICP xxxxxx"
+      },
+      "screen_width": {
+        "label": "페이지 너비",
+        "choices": {
+          "narrow": "좁음（1024픽셀）",
+          "medium": "중간（1280픽셀）",
+          "wide": "넓음（1536픽셀）",
+          "full": "전체 화면"
+        }
+      },
+      "left_sidebar_width": {
+        "label": "좌측 사이드바 너비(상세 페이지)",
+        "info": "권장: 240px"
+      },
+      "right_sidebar_width": {
+        "label": "우측 사이드바 너비(상세 페이지)",
+        "info": "권장: 240px"
+      },
+      "show_published_at": {
+        "label": "게시일 표시"
+      },
+      "show_author": {
+        "label": "작성자 표시"
+      },
+      "show_card_icon": {
+        "label": "홈페이지에 섹션 아이콘 표시",
+        "info": "페이지 설정에서 아이콘을 설정하는 것을 권장"
+      },
+      "ai_search_completed_text": {
+        "label": "AI 답변 종료 문구",
+        "info": "AI 답변이 끝난 후 문장을 추가합니다."
+      }
+    }
+  },
+  "page_config": {
+    "name": "페이지 설정",
+    "settings": {
+      "show_page_tools_dropdown": {
+        "label": "페이지 도구 드롭다운 표시"
+      }
+    }
+  },
+  "custom_html": {
+    "name": "사용자 정의 HTML 코드",
+    "settings": {
+      "head_html": {
+        "label": "<head></head> 태그 내의 사용자 정의 HTML",
+        "info": "HTML 태그와 제한된 TailwindCSS 스타일 코드 지원",
+        "placeholder": "일반적으로 분석, 고객 서비스 봇 등을 삽입하는 데 사용"
+      },
+      "header_menu_html": {
+        "label": "상단 네비게이션 영역에 HTML 코드 삽입",
+        "info": "HTML 태그와 제한된 TailwindCSS 스타일 코드 지원",
+        "placeholder": "일반적으로 회사의 다른 웹사이트로의 네비게이션 링크를 삽입하는 데 사용"
+      },
+      "footer_html": {
+        "label": "푸터 영역에 HTML 코드 삽입",
+        "info": "HTML 태그와 제한된 TailwindCSS 스타일 코드 지원; 기본 푸터 내용을 완전히 대체합니다",
+        "placeholder": "기본 푸터 내용을 유지하려면 footer_menu_html에 HTML 코드를 삽입하세요"
+      },
+      "footer_menu_html": {
+        "label": "하단 영역에 HTML 코드 삽입(footer 내, footer_menu_html)",
+        "info": "HTML 태그와 제한된 TailwindCSS 스타일 코드 지원",
+        "placeholder": "일반적으로 회사의 다른 웹사이트로의 외부 네비게이션 링크, 친구 링크, SEO 최적화 링크 등을 삽입하는 데 사용"
+      },
+      "features_one_html": {
+        "label": "첫 번째 기능 섹션에 HTML 코드 삽입",
+        "info": "HTML 태그와 제한된 TailwindCSS 스타일 코드 지원",
+        "placeholder": "일반적으로 회사의 첫 번째 기능 섹션에 대한 HTML 코드를 삽입하는 데 사용"
+      },
+      "features_two_html": {
+        "label": "두 번째 기능 섹션에 HTML 코드 삽입",
+        "info": "HTML 태그와 제한된 TailwindCSS 스타일 코드 지원",
+        "placeholder": "일반적으로 회사의 두 번째 기능 섹션에 대한 HTML 코드를 삽입하는 데 사용"
+      }
+    }
+  },
+  "settings": {
+    "weixin_share": {
+      "title": "위챗 설정",
+      "weixin_app_id": {
+        "label": "개발자 ID(AppID)",
+        "info": "<a href='https://mp.weixin.qq.com/cgi-bin/frame'> 위챗 대중번호/설정 및 개발/개발 인터페이스 관리 </a> 에서 획득"
+      },
+      "weixin_app_secret": {
+        "label": "개발자 암호(AppSecret)",
+        "info": ""
+      },
+      "weixin_enabled": {
+        "label": "위챗 공유 사용 여부",
+        "info": "사이트 페이지 위챗 공유 능력 제공 </br>위챗 대중번호에 ip 화이트리스트 (ip: ${service_ip}) 를 설정하십시오. 설정 후 일정 기간 효력이 지연됩니다.</br>2.위챗 공유 권한 설정 여부, 위챗 대중번호/설정 및 개발/개발 인터페이스 관리: <a href='https://mp.weixin.qq.com/cgi-bin/frame'> 웹 서비스 / 공유 인터페이스 </a>. </br>공유 링크가 카드인지 여부: 카드 형식에서 공유 카드 형식으로, 링크 형식에서 공유 링크 형식으로,웹 페이지의 초기 링크 공유는 회사의 서비스 번호나 소장 후에 카드 공유를 진행할 수 있습니다 (이 규칙은 위챗 공유 제한입니다)."
+      },
+      "weixin_debug": {
+        "label": "debug 프롬프트 설정 여부",
+        "info": "구성 단계에서만 이 옵션을 켜십시오.오픈 후 프런트엔드 사이트에 액세스할 때 위챗 공유를 제대로 구성하지 않으면 오류 메시지가 자동으로 표시됩니다."
+      }
+    }
+  }
+}

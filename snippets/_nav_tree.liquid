@@ -1,0 +1,27 @@
+{%# locals:(nav_tree:, depth: 0, class: '') %}
+{% unless depth %}
+  {% assign depth = 0 %}
+{% endunless %}
+{% if depth == 0 %}
+  <ul class="menu w-full {{ class }}" id="nav-tree" data-controller="nav-tree" data-nav-tree-active-class="menu-active">
+{% else %}
+  <ul>
+{% endif %}
+  {% for tree in nav_tree %}
+    {% if tree.children %}
+      <li class='mt-1 w-full min-w-0'>
+        <details class='w-full'>
+          <summary data-nav-tree-target="item" class="w-full hover:text-white">
+            <a data-turbo-frame="main-content-frame" data-turbo-action='advance' href="{{ tree.path }}" class='w-full inner-block line-clamp-2'>{{ tree.link_text }}</a>
+          </summary>
+          {% assign newDepth = depth | plus: 1 %}
+          {% render 'nav_tree', nav_tree: tree.children, depth: newDepth %}
+        </details>
+      </li>
+    {% else %}
+      <li class='mt-1 w-full min-w-0'>
+        <a data-turbo-frame="main-content-frame" data-turbo-action='advance' class='w-full inner-block whitespace-pre-wrap break-words [line-break:loose] line-clamp-2 hover:text-white' data-nav-tree-target="item" href="{{ tree.path }}">{{ tree.link_text }}</a>
+      </li>
+    {% endif %}
+  {% endfor %}
+</ul>

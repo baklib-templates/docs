@@ -1,0 +1,54 @@
+<main class="px-4">
+  <div class="w-full max-w-[var(--max-content-width)] mx-auto pt-4">
+    <!-- tag name -->
+    <div class="rounded-lg shadow mb-4" style="--bg-color: hsl({{ tag.color_hls[0] }}, {{ tag.color_hls[1] }}%, 95%); --color: {{ tag.color }}">
+      <div class="h-5 rounded-t-lg bg-[var(--color)]"></div>
+      <div class="px-3 py-6 text-xl rounded-b-lg bg-[var(--bg-color)]">
+        <span class="flex-grow w-0 break-words font-semibold text-[--color]"> # {{ tag.name }}</span>
+      </div>
+    </div>
+
+    <!-- filters by tag name -->
+    {% assign total_size = tag.pages | size %}
+    {% if total_size > 0 %}
+      {% paginate_tag tag.pages, as: 'items' %}
+        <ul role="list" class="space-y-2">
+          {% for item in items %}
+            <li class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100">
+              <div class="flex gap-1">
+                <div>
+                  <div class="flex space-x-2 items-start">
+                    <div class="shrink-0 pt-[1px]">
+                      <span class="inline-flex justify-center items-center w-5 h-5 text-xs rounded-full bg-primary-100">{{ forloop.index }}</span>
+                    </div>
+                    <div class='flex-1'>
+                      <a class="block text-lg text-slate-800 search-highlight-block hover:underline" href="{{ item.url }}" data-turbo-frame="_top">
+                        {{ item.link_text }}
+                      </a>
+                      <a href="{{ item.url }}" data-turbo-frame="_top" class="block text-xs text-gray-500 font-inter">{{ item.url }}</a>
+                      {% if item.settings.description | presence %}
+                        <p class="my-3 text-sm line-clamp-3 text-slate-400 search-highlight-block">{{ item.settings.description }}</p>
+                      {% endif %}
+                      <div class="flex justify-between items-center text-gray-600">
+                        <div class="hidden overflow-x-auto text-sm md:block">
+                          {% render 'breadcrumb', breadcrumb: item.breadcrumb %}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+          {% endfor %}
+          {% render 'paginate', paginate: paginate %}
+        </ul>
+      {% endpaginate_tag %}
+    {% else %}
+      <div class='flex items-center justify-center p-4'>
+        {% assign message = "templates.search.no_results" | t: '没有搜索到内容' %}
+        {% render 'empty', message: message %}
+      </div>
+    {% endif %}
+
+  </div>
+</main>

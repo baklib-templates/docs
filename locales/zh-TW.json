@@ -1,0 +1,69 @@
+{
+  "layout": {
+    "theme": {
+      "search_input_placeholder": "搜尋...",
+      "search_tags_label": "熱門標籤",
+      "search_keywords_label": "熱門搜尋"
+    }
+  },
+  "snippets": {
+    "header": {
+      "light_mode": "亮色",
+      "dark_mode": "暗色",
+      "auto_mode": "自動"
+    },
+    "footer": {
+      "copyright": "版權所有"
+    },
+    "feedback_form": {
+      "title": "提交反饋",
+      "message_label": "留言",
+      "message_placeholder": "請輸入反饋內容",
+      "message_required": "反饋內容不能為空",
+      "submit": "提交",
+      "cancel": "取消"
+    },
+    "feedback_button": {
+      "title_posted": "感謝您的反饋",
+      "title_unposted": "提交反饋"
+    },
+    "page": {
+      "prev_page": "上一頁",
+      "next_page": "下一頁"
+    }
+  },
+  "templates": {
+    "search": {
+      "placeholder": "搜尋...",
+      "no_results": "沒有找到相關結果"
+    },
+    "page": {
+      "copy_success": "連結已複製",
+      "page_toc": "頁內目錄",
+      "llm_prompt_template": "讀取 %{url} 的內容，以便我可以詢問關於它的問題。",
+      "llm_copying": "複製中...",
+      "llm_copied": "已複製"
+    }
+  },
+  "ai": {
+    "title": "AI 搜尋",
+    "thinking": "正在思考...",
+    "completed": "AI 回答完畢.",
+    "canceled": "已取消回答"
+  },
+  "generic": {
+    "published_at": "發布時間",
+    "feedback_created_at": "上次反饋於",
+    "buttons": {
+      "signout": "登出"
+    },
+    "read_more": "查看更多",
+    "menu": ""
+  },
+  "search": {
+    "placeholder": "搜尋 .."
+  },
+  "placeholders": {
+    "search": ""
+  }
+}

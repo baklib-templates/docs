@@ -1,0 +1,102 @@
+<article class="flex flex-col h-full">
+  {% # 作者和发布时间 %}
+  {% if site.settings.show_author or site.settings.show_published_at %}
+    <section class="mb-4 mt-2">
+      {% if site.settings.show_author and site.settings.show_published_at %}
+        <div class="flex items-center space-y-2">
+          <div class="flex items-center space-x-2">
+            {% render 'avatar', url: page.author.avatar_url, name: page.author.name %}
+            <div class="flex flex-col space-y-0.5">
+              <span class="text-xs">{{ page.author.name }}</span>
+              <span class="text-xs text-slate-400">{{ 'generic.published_at' | t }}: {{ page.published_at | date: "%Y-%m-%d" }}</span>
+            </div>
+          </div>
+        </div>
+      {% elsif site.settings.show_author %}
+        {% render 'avatar_with_name', url: page.author.avatar_url, name: page.author.name %}
+      {% elsif site.settings.show_published_at %}
+        <p class="text-sm text-gray-500 text-md">{{ 'generic.published_at' | t }}: {{ page.published_at | date: "%Y-%m-%d" }}</p>
+      {% endif %}
+    </section>
+  {% endif %}
+
+  {% # 标题 %}
+  {% assign title = page.link_text | presence %}
+  <header
+    class="mb-4 py-1 flex items-start justify-between gap-3"
+  >
+    <h1 class="text-xl font-bold md:text-3xl lg:text-4xl">
+      {{ title }}
+    </h1>
+    {% if site.settings.show_page_tools_dropdown %}
+      {% render 'page_tools_dropdown', page: page %}
+    {% endif %}
+  </header>
+
+  {% # 标签 %}
+  {% if page.settings.tags and page.settings.tags.size > 0 %}
+    <section class="flex flex-wrap items-center gap-2 mb-4 px-4">
+      {% for tag in page.settings.tags %}
+        {% render 'tag', tag: tag %}
+      {% endfor %}
+    </section>
+  {% endif %}
+
+  {% # 摘要 %}
+  {% assign description = page.settings.description | presence %}
+  {% if description %}
+    <section class="mb-4">
+      <blockquote class="italic rounded-lg p-4 bg-base-200 text-base-content/50">
+        <p>{{ description }}</p>
+      </blockquote>
+    </section>
+  {% endif %}
+
+  <hr class='text-base-content/10 mb-4'/>
+
+  {% # 内容 %}
+  <section id="page-content" class="ProseMirror flex-1 min-h-[20vh]" data-controller="link-target images-viewer" data-toc-target="content">
+    {{ page.settings.content }}
+  </section>
+
+  {% # 反馈 %}
+  <section class="my-8">
+    {% render 'feedback_button', page: page %}
+  </section>
+
+  {% # 页内目录导航 %}
+  <section class="my-8">
+    {% assign prev_page = page.prev_page %}
+    {% assign next_page = page.next_page %}
+
+    <div class="items-center justify-between space-y-3 lg:flex lg:space-y-0 lg:space-x-6 print:hidden" data-controller="link-target">
+      {% if prev_page %}
+        <a href="{{ prev_page.path }}" class="block flex-1 rounded-lg bg-base-200 p-3 hover:bg-base-300">
+          <div class="mb-2 text-base-content/40 text-sm">{{ 'snippets.page.prev_page' | t }}</div>
+          <div class="text-base text-primary dark:text-primary-200">
+            <div class="flex items-center space-x-1 line-clamp-1">
+              <svg class="size-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M10.8284 12.0007L15.7782 16.9504L14.364 18.3646L8 12.0007L14.364 5.63672L15.7782 7.05093L10.8284 12.0007Z"></path></svg>
+              <span class="line-clamp-1">{{ prev_page.link_text }}</span>
+            </div>
+          </div>
+        </a>
+      {% else %}
+        <div class="flex-1"></div>
+      {% endif %}
+      <!-- Next link -->
+      {% if next_page %}
+        <a href="{{ next_page.path }}" class="block flex-1 rounded-lg bg-base-200 p-3 hover:bg-base-300">
+          <div class="mb-2 text-base-content/40 md:text-right text-sm">{{ 'snippets.page.next_page' | t}}</div>
+          <div class="text-base text-primary dark:text-primary-200">
+            <div class="flex items-center space-x-1 lg:justify-end line-clamp-1">
+              <span class="line-clamp-1">{{ next_page.link_text }}</span>
+              <svg class="size-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.1717 12.0007L8.22192 7.05093L9.63614 5.63672L16.0001 12.0007L9.63614 18.3646L8.22192 16.9504L13.1717 12.0007Z"></path></svg>
+            </div>
+          </div>
+        </a>
+      {%  else %}
+        <div class="flex-1"></div>
+      {% endif %}
+    </div>
+  </section>
+</article>

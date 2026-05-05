@@ -1,0 +1,69 @@
+{
+  "layout": {
+    "theme": {
+      "search_input_placeholder": "검색...",
+      "search_tags_label": "인기 태그",
+      "search_keywords_label": "인기 검색어"
+    }
+  },
+  "snippets": {
+    "header": {
+      "light_mode": "밝은 색",
+      "dark_mode": "어두운 색",
+      "auto_mode": "자동"
+    },
+    "footer": {
+      "copyright": "All Rights Reserved"
+    },
+    "feedback_form": {
+      "title": "피드백 제출",
+      "message_label": "메시지",
+      "message_placeholder": "피드백을 입력하세요",
+      "message_required": "피드백 메시지는 필수입니다",
+      "submit": "제출",
+      "cancel": "취소"
+    },
+    "feedback_button": {
+      "title_posted": "피드백 감사합니다",
+      "title_unposted": "피드백 제출"
+    },
+    "page": {
+      "prev_page": "이전",
+      "next_page": "다음"
+    }
+  },
+  "templates": {
+    "search": {
+      "placeholder": "검색...",
+      "no_results": "검색 결과가 없습니다"
+    },
+    "page": {
+      "copy_success": "링크가 복사되었습니다",
+      "page_toc": "목차",
+      "llm_prompt_template": "읽기 %{url} 의 내용, 나는 그것에 대해 질문할 수 있습니다.",
+      "llm_copying": "복사 중...",
+      "llm_copied": "복사되었습니다"
+    }
+  },
+  "ai": {
+    "title": "AI 검색",
+    "thinking": "생각 중...",
+    "completed": "AI 응답 완료.",
+    "canceled": "취소됨"
+  },
+  "generic": {
+    "published_at": "게시일",
+    "feedback_created_at": "마지막 피드백",
+    "buttons": {
+      "signout": "로그아웃"
+    },
+    "read_more": "자세히 보기",
+    "menu": ""
+  },
+  "search": {
+    "placeholder": "검색..."
+  },
+  "placeholders": {
+    "search": ""
+  }
+}

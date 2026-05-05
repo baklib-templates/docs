@@ -1,0 +1,37 @@
+{% assign footer_html = site.settings.footer_html | presence %}
+{% assign footer_menu_html = site.settings.footer_menu_html | presence %}
+{% assign company_name = site.settings.company_name | presence %}
+{% assign copyright_info = site.settings.copyright_info | presence %}
+
+{% if footer_html %}
+  <footer>
+    {{ footer_html }}
+  </footer>
+{% else %}
+  {% if footer_menu_html or company_name or copyright_info %}
+    <footer
+      id="footer"
+      class="footer footer-center"
+    >
+      <div class="mx-auto items-center justify-between sm:flex-row">
+        {% # 自定义导航菜单 %}
+        {% if footer_menu_html %}
+          {{ footer_menu_html }}
+        {% endif %}
+        {% # 底部备案和链接 %}
+        <div class="p-6">
+          <div class="flex justify-center space-x-3">
+            {% if company_name %}
+              <span>© {{ company_name }} {{ 'snippets.footer.copyright' | t }}</span>
+            {% endif %}
+            {% if copyright_info %}
+              <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer" class="hover:underline">{{ copyright_info }}</a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </footer>
+  {% endif %}
+{% endif %}
+
+

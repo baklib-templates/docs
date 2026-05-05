@@ -1,0 +1,272 @@
+{% assign search_placeholder = "templates.search.placeholder" | t: "搜索内容" | presence %}
+{% unless search_placeholder %}{% assign search_placeholder = "search.placeholder" | t: "搜索..." %}{% endunless %}
+
+{% assign empty_message = "templates.search.no_results" | t: '没有搜索到内容' %}
+
+{% assign ai_search_title = "ai.title" | t: "AI智能助理" | presence %}
+{% assign ai_search_thinking_text = "ai.thinking" | t: "正在思考..." | presence %}
+{% assign ai_search_canceled_text = "ai.canceled" | t: "已取消回答" | presence %}
+{% assign ai_search_completed_text = site.settings.ai_search_completed_text | presence %}
+{% unless ai_search_completed_text %}
+  {% assign ai_search_completed_text = "ai.completed" | t: "AI 回答完毕." | presence %}
+{% endunless %}
+
+<main class="px-4">
+  <div class="w-full max-w-[var(--max-content-width)] mx-auto pt-4">
+    <section class="mx-auto w-full md:max-w-[60%]">
+      {% form_tag 'search', data-turbo-frame: 'frame--search-results', data-turbo-action: 'advance' %}
+        <div class="relative text-gray-400 rounded-md group focus:text-gray-900 hover:text-gray-500">
+          <button type="submit" class="flex absolute inset-y-0 right-0 items-center pr-3 pl-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 group:text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+            </svg>
+          </button>
+          <input type="text" autofocus name="{{form.keywords_field_name}}" value="{{ search.keywords | truncate: 10 | escape }}" placeholder="{{ search_placeholder }}" class="block pr-10 pl-3 w-full h-12 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 placeholder:text-gray-400 dark:placeholder:text-gray-500
+          bg-opacity-25 rounded-md transition duration-300 ease-in-out outline-1 focus-visible:outline-primary hover:outline-2 hover:outline-primary-300 sm:text-md focus:bg-opacity-60 ">
+        </div>
+      {% endform_tag %}
+
+      <div class='space-y-1 w-full mt-2'>
+        {% # 自定义标签搜索 %}
+        {% assign index_page = site.pages['/'] %}
+        {% assign search_hot_tags = index_page.settings.search_hot_tags %}
+        {% if search_hot_tags.size > 0 %}
+          <div class="items-center justify-start w-full md:flex flex-wrap md:px-3">
+            <div class="inline-block text-sm text-gray-500 dark:text-gray-100">
+              <span class="mr-2">{{ 'layout.theme.search_tags_label' | t }}:</span>
+              {% for tag in search_hot_tags %}
+                <a
+                  href="{{ tag.path }}"
+                  data-turbo-frame="_top"
+                  class="mr-2 hover:text-primary focus:ring hover:-translate-y-[2px] min-w-12"
+                >
+                  {{ tag.name }}
+                </a>
+              {% endfor %}
+            </div>
+          </div>
+        {% endif %}
+
+        {% # 热门搜索 %}
+        {% assign hot_keywords = index_page.settings.search_hot_keywords | reg_split: "/\n/" %}
+        {% if hot_keywords.size > 0 %}
+          <div class="items-center justify-start w-full md:flex flex-wrap md:px-3">
+            <div class="inline-block text-sm text-gray-500 dark:text-gray-100">
+              <span class="mr-2">{{ 'layout.theme.search_keywords_label' | t: '热门搜索' }}:</span>
+              {% for hot_keyword in hot_keywords %}
+                <a
+                  href="{{site.index_path}}-/search?q={{ hot_keyword }}"
+                  class="mr-2 hover:text-primary focus:ring hover:-translate-y-[2px] underline"
+                >
+                  {{ hot_keyword }}
+                </a>
+              {% endfor %}
+            </div>
+          </div>
+        {% endif %}
+      </div>
+    </section>
+
+    {% comment %} 使用turbo-frame，可以使光标一直在输入框中 {% endcomment %}
+    <turbo-frame id="frame--search-results">
+      {% if search.tag %}
+        <section>
+          <i class="px-2 py-1 rounded" style="background-color: {{ search.tag.color }}">{{ search.tag.name }}</i>
+        </section>
+      {% endif %}
+
+      {% if search.keywords or search.tag %}
+        {% paginate_tag search.pages, as: 'items', per: 20 %}
+          {% assign extends_size = search.extends | size %}
+          {% assign items_size = items | size %}
+          {% assign total_size = extends_size | plus: items_size %}
+          <section
+            class="flex flex-col flex-1 gap-6 items-start mx-auto w-full md:flex-row sm:mt-8"
+            data-controller="responsive-attr"
+            data-responsive-attr-breakpoints-value='{"sm": 640, "md": 768, "lg": 1024, "xl": 1280, "2xl": 1536}'
+          >
+            <div class="flex-1 order-2 md:order-1 overflow-hidden">
+              <turbo-frame id="frame--search-results-list">
+                {% if total_size > 0 %}
+                  <ul class="space-y-3">
+                    {% if search.page_number == 1 and extends_size > 0 %}
+                      {% for link in search.extends %}
+                        <li class="p-3 rounded-lg bg-primary-50 hover:bg-primary-100 dark:bg-primary-800 dark:hover:bg-primary-700">
+                          <div>
+                            <a class="text-lg text-slate-800 search-highlight-block" href="{{ link.url }}" data-turbo-frame="_top">{{ link.link_text }}</a>
+                          </div>
+                          <div class="-mt-2">
+                            <a href="{{ link.url }}" data-turbo-frame="_top" class="text-xs text-gray-500 font-inter">{{ link.url }}</a>
+                          </div>
+                        </li>
+                      {% endfor %}
+                    {% endif %}
+                    {% for page in items %}
+                      <li class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 dark:bg-slate-800 dark:hover:bg-slate-700">
+                        <div class="flex items-start space-x-2 ">
+                          <div class="flex-0 pt-[1px]">
+                            <span class="inline-flex justify-center items-center w-5 h-5 text-xs rounded-full bg-primary-100">{{ forloop.index }}</span>
+                          </div>
+                          <div class='flex-1 group overflow-hidden min-w-0'>
+                            <a class="block text-lg text-slate-800 search-highlight-block group-hover:underline dark:text-slate-100 break-all" href="{{ page.path }}" data-turbo-frame="_top">
+                              {{ page.highlighted_search_title }}
+                            </a>
+                            <a
+                              href="{{ page.path }}"
+                              data-turbo-frame="_top"
+                              class="block text-xs text-gray-500 font-inter break-all"
+                              x-data
+                              x-text="window.location.origin + '{{ page.path | escape }}'"
+                            ></a>
+                            {% unless page.highlighted_search_content == empty %}
+                              <p class="my-3 text-sm line-clamp-3 text-slate-400 search-highlight-block break-all" x-cloak>{{ page.highlighted_search_content }}
+                              </p>
+                            {% endunless %}
+                            <div class="w-full min-w-0 text-gray-600 overflow-x-auto">
+                              <div class="hidden text-sm md:block">
+                                {% render 'breadcrumb', breadcrumb: page.breadcrumb %}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+                    {% endfor %}
+                  </ul>
+                  <div class="flex justify-center px-3 my-8">
+                    {% render 'paginate', paginate: paginate %}
+                  </div>
+                  <script>
+                    (function(){
+                      setTimeout(function(){
+                        const aiSearchContainer = document.getElementById('js--ai-search-container');
+                        const aiSearch = document.getElementById('js--ai-search');
+                        if(aiSearchContainer && aiSearch){
+                          aiSearchContainer.classList.remove('hidden');
+                          aiSearch.dataset.aiSearchMessageValue = "{{ search.keywords | escape_once }}";
+                        }else if (aiSearchContainer) {
+                          aiSearchContainer.classList.add('hidden');
+                        }
+                      }, 10);
+                    })()
+                  </script>
+                {% else %}
+                  <div class="flex flex-col justify-center items-center h-full my-5">
+                    {% render 'empty', message: empty_message %}
+                    <script>
+                      (function(){
+                        setTimeout(function(){
+                          const aiSearchContainer = document.getElementById('js--ai-search-container');
+                          if (aiSearchContainer) aiSearchContainer.classList.add('hidden');
+                        }, 10);
+                      })()
+                    </script>
+                  </div>
+                {% endif %}
+              </turbo-frame>
+            </div>
+
+            {% comment %} AI 搜索结果区域 {% endcomment %}
+            {% if site.ai_search_enabled? %}
+              <div class="hidden flex-grow-0 order-1 w-full md:order-2 md:w-96" id="js--ai-search-container">
+                <div
+                  class="py-4 rounded bg-primary-50 space-y-2 chat-container"
+                  id="js--ai-search"
+                  data-controller="ai-search"
+                  md:data-controller="ai-search"
+                  data-ai-search-hidden-class="hidden opacity-0"
+                  data-ai-search-messages-value='{"thinking":"{{ ai_search_thinking_text }}","completed":"{{ ai_search_completed_text }}","canceled":"{{ ai_search_canceled_text }}"}'
+                  data-ai-search-url-value="/-/ai-search-completion"
+                  data-ai-search-auto-submit-value="true"
+                >
+                  <div class="flex gap-1 items-center px-4 text-sm">
+                    <div class="overflow-hidden w-5 h-5 bg-gradient bg-gradient-to-r rounded-full from-secondary-500 to-primary-600">
+                      <img src="{{ "images/ai-search-icon.png" | asset_url }}">
+                    </div>
+                    <span>{{ ai_search_title }}</span>
+                  </div>
+                  <div data-ai-search-target="messages" class="ai-response prose p-4 gap-2 max-h-[50vh] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100">
+                    <!-- 多轮消息将在这里显示 -->
+                  </div>
+                  <template data-ai-search-target="userMessageTemplate">
+                    <div class="flex justify-end items-end mb-2">
+                      <div class="flex flex-col items-end flex-1">
+                        <div class="bg-primary text-gray-50 px-3 py-2 rounded-2xl max-w-full break-words shadow">
+                          <span class="text-sm ai-user-message"></span>
+                        </div>
+                      </div>
+                      <span class="w-8 h-8 ml-2 rounded-full shadow flex items-center justify-center bg-primary text-secondary">
+                        <!-- 用户 SVG 头像 -->
+                        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <circle cx="14" cy="14" r="14" fill="currentColor"/>
+                          <circle cx="14" cy="11" r="5" fill="white"/>
+                          <ellipse cx="14" cy="21" rx="7" ry="4" fill="white"/>
+                        </svg>
+                      </span>
+                    </div>
+                  </template>
+                  <template data-ai-search-target="assistantMessageTemplate">
+                    <div class="flex justify-start items-end mb-2">
+                      <span class="w-8 h-8 mr-2 rounded-full shadow flex items-center justify-center bg-gradient-to-r from-secondary-500 to-primary-600">
+                        <!-- AI SVG 头像 -->
+                        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <circle cx="14" cy="14" r="14" fill="currentColor"/>
+                          <rect x="8" y="8" width="12" height="12" rx="6" fill="white"/>
+                          <circle cx="14" cy="14" r="3" fill="currentColor"/>
+                        </svg>
+                      </span>
+                      <div class="flex flex-col items-start flex-1">
+                        <div class="bg-gray-100 text-gray-800 px-3 py-2 rounded-2xl max-w-full break-words shadow">
+                          <span class="text-sm ai-assistant-message"></span>
+                        </div>
+                      </div>
+                    </div>
+                  </template>
+                  <div class="mt-4 flex gap-2 px-4">
+                    <input
+                      type="text"
+                      class="flex-1 p-2 border border-gray-100 rounded focus-visible:outline-primary"
+                      placeholder="请输入你的问题…"
+                      id="js--ai-chat-input"
+                      data-ai-search-target="input"
+                      autocomplete="off"
+                    >
+                    <div class="flex items-center justify-center">
+                      <button
+                        class="rounded-full w-8 h-8 text-primary"
+                        id="js--ai-chat-send"
+                        data-ai-search-target="send"
+                        type="button"
+                      >
+                      <svg xmlns="http://www.w3.org/2000/svg" class="size-full" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C17.52 2 22 6.48 22 12C22 17.52 17.52 22 12 22C6.48 22 2 17.52 2 12C2 6.48 6.48 2 12 2ZM13 12H16L12 8L8 12H11V16H13V12Z"></path></svg>
+                      </button>
+                    </div>
+                  </div>
+                  <div data-ai-search-target="error" class="hidden text-red-500 opacity-100 transition-opacity duration-300"></div>
+                </div>
+                <script>
+                  (function(){
+                    setTimeout(function(){
+                      const aiSearchContainer = document.getElementById('js--ai-search-container');
+                      const aiSearch = document.getElementById('js--ai-search');
+                      aiSearch.dataset.aiSearchMessageValue = "{{ search.keywords | escape_once }}";
+                    }, 1000);
+                  })()
+                </script>
+              </div>
+            {% endif %}
+          </section>
+        {% endpaginate_tag %}
+        <script>
+          document.querySelector('main').classList.add('flex-1');
+        </script>
+      {% else %}
+        <div class='mt-10'>
+          {% render 'empty', message: empty_message %}
+          <script>
+            document.querySelector('main').classList.remove('flex-1');
+          </script>
+        </div>
+      {% endif %}
+    </turbo-frame>
+  </div>
+</main>

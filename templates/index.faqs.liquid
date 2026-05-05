@@ -1,0 +1,226 @@
+{% assign channel_pages = site.pages['/'].children_in_list %}
+{% assign p = params.p | presence | default: '/' %}
+{% assign current_channel = site.pages[p] %}
+{% assign hero_title = page.settings.hero_title | presence | default: '常见问题' %}
+{% assign hero_description = page.settings.hero_description | presence | default: '帮助您快速了解与解决常见问题' %}
+{% assign hero_height = page.settings.hero_height | default: 360 | plus: 0 %}
+
+{% if p == '/' %}
+  {% assign faqs = site.pages['/'].pages_in_list %}
+{% else %}
+  {% assign faqs = current_channel.children_in_list %}
+{% endif %}
+
+<div class="relative">
+  <style>
+    .index-faqs-hero-bg {
+      height: clamp(220px, var(--hero-height), 600px);
+      background-image: var(--hero-bg-image-mobile);
+      background-position: center;
+      background-size: cover;
+    }
+    @media (min-width: 768px) {
+      .index-faqs-hero-bg {
+        height: clamp(260px, var(--hero-height), 600px);
+        background-image: var(--hero-bg-image-pc);
+      }
+    }
+  </style>
+
+  {% assign default_hero_image = 'images/hero.jpg' | asset_url %}
+  {% assign hero_pc_image_url = page.settings.hero_pc_image_url | escape_once | default: default_hero_image %}
+  {% assign hero_mobile_image_url = page.settings.hero_mobile_image_url | escape_once | default: hero_pc_image_url %}
+  <div
+    class="index-faqs-hero-bg absolute inset-x-0 top-0 -z-10 bg-center bg-cover"
+    style="
+      --hero-height: {{ hero_height }}px;
+      --hero-bg-image-pc: url('{{ hero_pc_image_url }}');
+      --hero-bg-image-mobile: url('{{ hero_mobile_image_url }}');
+    "
+  ></div>
+
+  <div class="px-4" data-controller="link-target">
+    <section class="mx-auto max-w-[var(--max-content-width)]">
+      <div class="relative pt-10 md:pt-24 ">
+        <h1 class="text-2xl md:text-4xl font-bold text-center text-[color:var(--hero-title-color)] dark:text-[color:var(--hero-title-color-dark)]"
+          style="
+            --hero-title-color: {{ page.settings.hero_title_color | default: '#111827' }};
+            --hero-title-color-dark: {{ page.settings.hero_title_color_dark | default: '#F8FAFC' }};
+          "
+        >
+          {{ hero_title }}
+        </h1>
+        <p
+          class="mt-3 text-sm md:text-base leading-6 text-center text-[color:var(--hero-desc-color)] dark:text-[color:var(--hero-desc-color-dark)]"
+          style="
+            --hero-desc-color: {{ page.settings.hero_description_color | default: '#64748B' }};
+            --hero-desc-color-dark: {{ page.settings.hero_description_color_dark | default: '#E2E8F0' }};
+          "
+        >
+          {{ hero_description }}
+        </p>
+      </div>
+
+      <div class="relative -mt-12 pt-10 md:pt-12 pb-10">
+        <div class="my-8 flex justify-center">
+          <div class="w-full md:w-1/2">
+            {% form_tag 'search', class: 'w-full' %}
+              <div class="relative bg-white/95 dark:bg-slate-800/90 backdrop-blur rounded-full shadow-lg border border-slate-200/80 dark:border-slate-700/70">
+                <button type="button" class="pointer-events-none absolute inset-y-0 right-0 flex items-center pl-5 pr-3 sm:right-auto">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" >
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                  </svg>
+                </button>
+                <input
+                  type="search"
+                  name="{{form.keywords_field_name}}" value="{{ search.keywords | escape_once }}"
+                  placeholder="{{ 'layout.theme.search_input_placeholder' | t }}"
+                  autocomplete="off"
+                  class="block w-full h-12 md:h-12 pr-4 md:pr-6 pl-11 md:pl-12 text-base md:text-base transition duration-300 ease-in-out bg-transparent focus:bg-transparent placeholder:text-gray-300 rounded-full outline-none hover:ring-4 hover:ring-primary hover:bg-primary/5 dark:hover:ring-slate-500 dark:hover:bg-slate-700/40"
+                >
+              </div>
+            {% endform_tag %}
+          </div>
+        </div>
+        <div class="bg-white/70 dark:bg-slate-900/40 backdrop-blur rounded-xl">
+          <div class="px-4 md:px-6 pt-4 md:pt-6">
+            <div class="index-faqs-tabs flex items-center gap-2 overflow-x-auto whitespace-nowrap no-scrollbar pb-2">
+              <a
+                href="{{ site.index_path }}?p=/"
+                class="index-faqs-tab {% if p == '/' %} is-active{% endif %}"
+              >
+                全部
+              </a>
+              {% for channel in channel_pages %}
+                <a
+                  href="{{ site.index_path }}?p={{ channel.path | url_encode }}"
+                  class="index-faqs-tab {% if channel.path == p %} is-active{% endif %}"
+                >
+                  {{ channel.link_text }}
+                </a>
+              {% endfor %}
+            </div>
+          </div>
+
+          <div class="px-4 md:px-6 pb-4 md:pb-6">
+            <div class="space-y-3 md:space-y-4 mt-2">
+              {% for faq_page in faqs %}
+                {% assign answer = faq_page.settings.description | presence %}
+                {% if answer == blank %}
+                  {% assign answer = faq_page.settings.content %}
+                {% endif %}
+
+                <details class="group bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm overflow-hidden">
+                  <summary class="cursor-pointer list-none px-4 md:px-6 py-4 flex items-start justify-between gap-3">
+                    <div class="min-w-0">
+                      <div class="flex items-start gap-3">
+                        <div class="w-1 h-6 mt-1 bg-primary rounded"></div>
+                        <div class="min-w-0">
+                          <div class="text-base md:text-lg font-semibold text-slate-900 dark:text-slate-50 line-clamp-2">
+                            {{ faq_page.link_text }}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="shrink-0 mt-1 text-slate-400 group-open:rotate-180 transition-transform duration-200">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </div>
+                  </summary>
+
+                  <div class="px-4 md:px-6 pb-4 md:pb-6 pt-0">
+                    <div class="text-sm md:text-base leading-7 text-slate-600 dark:text-slate-200">
+                      {% if answer | present? %}
+                        <div class="ProseMirror">
+                          {{ answer }}
+                        </div>
+                      {% endif %}
+                    </div>
+                  </div>
+                </details>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "t:schema.templates.index.faqs.name",
+    "description": "t:schema.templates.index.faqs.description",
+    "thumb_url": "images/schema/index-faqs.png",
+    "preview_image_urls": [
+      "images/schema/index-faqs.png"
+    ],
+    "sub_page_templates": ["page"],
+    "settings": [
+      {
+        "id": "hero_height",
+        "type": "range",
+        "label": "Hero 高度",
+        "min": 160,
+        "max": 600,
+        "step": 10,
+        "unit": "px",
+        "default": 360
+      },
+      {
+        "id": "hero_pc_image_url",
+        "type": "image_picker",
+        "ratio": "4:1",
+        "width": 400,
+        "label": "PC 背景图片",
+        "info": "建议尺寸：1600×400（或更大，同 4:1 比例），用于桌面端。"
+      },
+      {
+        "id": "hero_mobile_image_url",
+        "type": "image_picker",
+        "ratio": "3:2",
+        "width": 200,
+        "label": "移动端背景图片",
+        "info": "建议尺寸：1080×360（或更大，同 3:1 比例），用于手机端。留足上下安全区以避免文字遮挡。"
+      },
+      {
+        "id": "hero_title",
+        "type": "text",
+        "label": "Hero 标题",
+        "default": "常见问题"
+      },
+      {
+        "id": "hero_description",
+        "type": "text",
+        "label": "Hero 描述",
+        "default": "帮助您快速了解与解决常见问题"
+      },
+      {
+        "id": "hero_title_color",
+        "type": "color",
+        "label": "标题字体颜色（亮色模式）",
+        "default": "#111827"
+      },
+      {
+        "id": "hero_title_color_dark",
+        "type": "color",
+        "label": "标题字体颜色（暗色模式）",
+        "default": "#F8FAFC"
+      },
+      {
+        "id": "hero_description_color",
+        "type": "color",
+        "label": "描述字体颜色（亮色模式）",
+        "default": "#64748B"
+      },
+      {
+        "id": "hero_description_color_dark",
+        "type": "color",
+        "label": "描述字体颜色（暗色模式）",
+        "default": "#E2E8F0"
+      }
+    ]
+  }
+{% endschema %}
+

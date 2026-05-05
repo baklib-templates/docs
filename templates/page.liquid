@@ -1,0 +1,116 @@
+<div class="px-4">
+	<div class="w-full max-w-[var(--max-content-width)] mx-auto grid grid-cols-1 lg:grid-cols-[var(--left-sidebar-width)_1fr] gap-6 group">
+		<!-- 左侧导航树 -->
+		<aside class="hidden lg:block h-full border-r border-gray-200">
+			<div class="sticky top-[calc(var(--header-height)_+_1rem)] max-h-[calc(100vh-var(--header-height)-4rem)] max-w-full w-full overflow-auto custom-menu px-2">
+				<turbo-frame id="page_nav_tree_frame__" src="{{ statics['page/nav_tree'] }}" loading="lazy">
+					<div class="flex items-center justify-center h-20 text-base-content/60">
+						<span class="loading loading-spinner loading-md"></span>
+					</div>
+				</turbo-frame>
+			</div>
+		</aside>
+
+		<turbo-frame id="main-content-frame" class='w-full' x-init="
+               $el.addEventListener('turbo:before-fetch-request', () => {
+                 $el.scrollTop = 0
+                 window.scrollTo({ top: 0, behavior: 'instant' })
+               })
+             ">
+			<div
+				data-controller="toc"
+				data-toc-header-selector-value=".js--header"
+				data-toc-offset-value="10"
+				data-toc-clipboard-success-value="{{ 'templates.page.copy_success' | t: '链接已复制' }}"
+				class='w-full group'
+			>
+				<div class='grid grid-cols-1 gap-6 group-[.has-toc]:lg:grid-cols-[1fr_var(--right-sidebar-width)] pt-4'>
+					<!-- 中间内容 -->
+					<div class="px-0 lg:px-4 overflow-hidden">
+						{% render 'breadcrumb', breadcrumb: page.breadcrumb  %}
+						{% if page.settings.show_list %}
+							{% assign sub_pages = page.children_in_list %}
+							{% render 'page_list', page: page, pages: sub_pages %}
+						{% else %}
+							{% render 'page', page: page %}
+						{% endif %}
+					</div>
+
+					<!-- 右侧 TOC -->
+					<aside class="print:hidden hidden lg:block">
+						<div class="sticky top-[calc(var(--header-height)_+_1rem)] max-h-[calc(100vh-var(--header-height)-4rem)] max-w-full w-full overflow-auto rounded-box" data-toc-target="menu">
+							<div class="menu w-full">
+								<div class="menu-title">{{ 'templates.page.page_toc' | t }}</div>
+								<div data-toc-target="links"></div>
+							</div>
+						</div>
+					</aside>
+				</div>
+			</div>
+		</turbo-frame>
+	</div>
+</div>
+
+{% schema %}
+{
+	"name": "t:schema.templates.page.name",
+	"description": "t:schema.templates.page.description",
+	"thumb_url": "images/schema/page.png",
+	"sub_page_templates": ["page"],
+	"settings": [
+		{
+			"id": "show_list",
+			"type": "checkbox",
+			"default": false,
+			"label": "t:schema.templates.page.settings.show_list.label",
+			"info": "t:schema.templates.page.settings.show_list.info"
+		},
+		{
+			"id": "is_topic_channel",
+			"type": "checkbox",
+			"default": false,
+			"label": "t:schema.templates.page.settings.is_topic_channel.label",
+			"info": "t:schema.templates.page.settings.is_topic_channel.info",
+			"queryable": true
+		},
+		{
+			"id": "tags",
+			"type": "tag_picker",
+			"multiple": true,
+			"label": "t:schema.templates.page.settings.tags.label",
+			"queryable": true,
+			"to_markdown": true
+		},
+		{
+			"id": "icon",
+			"type": "image_picker",
+			"ratio": "1:1",
+			"width": 100,
+			"label": "t:schema.templates.page.settings.icon.label",
+			"info": "t:schema.templates.page.settings.icon.info"
+		},
+		{
+			"id": "title",
+			"type": "text",
+			"readonly": true,
+			"label": "t:schema.templates.page.settings.title.label",
+			"info": "t:schema.templates.page.settings.title.info",
+			"to_markdown": true
+		},
+		{
+			"id": "description",
+			"type": "textarea",
+			"label": "t:schema.templates.page.settings.description.label",
+			"to_markdown": true
+		},
+		{
+			"id": "content",
+			"type": "richtext",
+			"label": "t:schema.templates.page.settings.content.label",
+			"readonly": true,
+			"info": "t:schema.templates.page.settings.content.info",
+			"to_markdown": true
+		}
+	]
+}
+{% endschema %}

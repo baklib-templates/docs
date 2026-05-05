@@ -1,0 +1,49 @@
+{%- assign header_menu_html = site.settings.header_menu_html -%}
+  <div class="drawer md:hidden">
+    <input id="header-drawer-left" type="checkbox" class="drawer-toggle" x-init="$el.checked = false;" />
+    <div class="drawer-content">
+      <label for="header-drawer-left" class="drawer-button btn btn-ghost px-2">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          class="size-6 h-6 w-6"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M3 6.75A.75.75 0 0 1 3.75 6h16.5a.75.75 0 0 1 0 1.5H3.75A.75.75 0 0 1 3 6.75ZM3 12a.75.75 0 0 1 .75-.75h16.5a.75.75 0 0 1 0 1.5H3.75A.75.75 0 0 1 3 12Zm0 5.25a.75.75 0 0 1 .75-.75h16.5a.75.75 0 0 1 0 1.5H3.75a.75.75 0 0 1-.75-.75Z"
+            clip-rule="evenodd"
+          />
+        </svg>
+      </label>
+    </div>
+    <div class="drawer-side z-[999]">
+      <label
+        for="header-drawer-left"
+        aria-label="close sidebar"
+        class="drawer-overlay"
+      ></label>
+      <div class="bg-base-200 text-base-content min-h-full w-90">
+        <div class='card flex flex-col bg-white py-4 h-dvh rounded-l-none dark:bg-slate-800 dark:text-slate-200'>
+          <div class="px-4 flex-0 flex justify-center items-center space-x-2">
+            {% render 'header_logo' %}
+		        <span class="md:hidden text-xl font-bold">{{ site.name }}</span>
+          </div>
+
+          {% if header_menu_html %}
+            <div class="space-y-2 flex flex-col px-4 pt-4 underline border-t border-slate-200 dark:border-slate-700">
+              {{ header_menu_html }}
+            </div>
+          {% endif %}
+
+          <div class='flex-1 overflow-y-auto min-h-0 border-t border-slate-200 dark:border-slate-700 mt-4 pt-2 custom-menu' @click="if($event.target.closest('a')) $event.target.closest('.drawer').querySelector('#header-drawer-left').checked = false">
+            <turbo-frame id="page_nav_tree_frame__" src="{{ statics['page/nav_tree'] }}" loading="lazy" class='w-full'>
+              <div class="flex items-center justify-center h-20 text-base-content/60 w-full">
+                <span class="loading loading-spinner loading-md"></span>
+              </div>
+            </turbo-frame>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

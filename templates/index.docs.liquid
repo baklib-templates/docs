@@ -1,0 +1,437 @@
+<script>
+  function gradientGenerator(initialColor) {
+    return {
+      baseColor: initialColor,
+      isDark: document.documentElement.classList.contains('dark'),
+      init() {
+        // 监听 <html> class属性变化
+        const observer = new MutationObserver(() => {
+          this.isDark = document.documentElement.classList.contains('dark');
+        });
+        observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+      },
+      get lighterColor() {
+        return this.isDark
+          ? this.adjustColor(this.baseColor, -10)
+          : this.adjustColor(this.baseColor, 30);
+      },
+      get darkerColor() {
+        return this.isDark
+          ? this.adjustColor(this.baseColor, -40)
+          : this.adjustColor(this.baseColor, -20);
+      },
+      adjustColor(color, amt) {
+        let hex = color.replace('#', '');
+        let alpha = '';
+
+        if (hex.length === 8) {
+          alpha = hex.slice(6);
+          hex = hex.slice(0, 6);
+        }
+
+        let r = parseInt(hex.slice(0, 2), 16);
+        let g = parseInt(hex.slice(2, 4), 16);
+        let b = parseInt(hex.slice(4, 6), 16);
+
+        r = Math.min(255, Math.max(0, r + amt));
+        g = Math.min(255, Math.max(0, g + amt));
+        b = Math.min(255, Math.max(0, b + amt));
+
+        const toHex = (n) => n.toString(16).padStart(2, '0');
+        return `#${toHex(r)}${toHex(g)}${toHex(b)}${alpha}`;
+      }
+    };
+  }
+</script>
+
+<div class="relative" style="background-color: rgb(245 245 245 / 39%)" x-data="gradientGenerator('{{ page.settings.hero_bg_color }}')">
+  {% if page.settings.hero_bg_type.value == '1' %}
+    <div class="left-0 right-0 top-0 bottom-0 absolute inset-x-0 overflow-hidden h-full -z-10 transform-gpu blur-3xl sm:-top-80 opacity-70" aria-hidden="true"
+    :style="isDark
+      ? `background: linear-gradient(to bottom, ${lighterColor} 45%, rgba(0, 0, 0, 0.5) 30%`
+      : `background: linear-gradient(to bottom, ${lighterColor} 45%, white 20%)`
+    ">
+    </div>
+  {% elsif page.settings.hero_bg_type.value == '2' %}
+    {% assign default_hero_image = 'images/hero.jpg' | asset_url %}
+    {% assign bg_image_url = page.settings.hero_image_url | escape_once | default: default_hero_image %}
+
+    <div class="absolute w-full bg-center bg-cover -z-10" style="height: {{ page.settings.hero_height }}px; background-image: url('{{ bg_image_url }}')"></div>
+  {% endif %}
+
+  <div class='px-4' data-controller="link-target">
+    <section class="mx-auto max-w-[var(--max-content-width)]">
+      <!-- 顶部自定义输入板块 -->
+      {% assign features_one_html = site.settings.features_one_html | strip %}
+      {% if features_one_html | present? %}
+        <section>
+          {{ features_one_html }}
+        </section>
+      {% endif %}
+
+      <!-- 搜索区域 -->
+      <div class="container flex flex-col h-full m-auto mb-10" style="height: {{ page.settings.hero_height }}px;">
+        <div class="flex flex-col items-center justify-center flex-grow">
+          {% assign hero_slogan = page.settings.hero_slogan | presence %}
+          {% if hero_slogan %}
+            <h1 class="py-2 my-4 leading-8 text-2xl md:text-4xl font-bold transition duration-500 md:mt-0 text-shadow">
+              {{ hero_slogan }}
+            </h1>
+          {% endif %}
+          <div class="z-0 flex flex-col items-center justify-center w-full md:w-2/3 {% if page.settings.hero_bg_type.value == '2' %} backdrop-blur-xl p-5 shadow rounded-md {% endif %}">
+            {% form_tag 'search', class: 'w-full' %}
+              <div class="relative">
+                <button type="button" class="pointer-events-none absolute inset-y-0 right-0 flex items-center pl-5 pr-3 sm:right-auto">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" > <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /> </svg>
+                </button>
+                <input
+                  type="search"
+                  name="{{form.keywords_field_name}}" value="{{ search.keywords | escape_once }}"
+                  placeholder="{{ "layout.theme.search_input_placeholder" | t }}"
+                  autocomplete="off"
+                  class="block w-full h-14 pr-6 pl-12 text-lg transition duration-300 ease-in-out bg-white dark:bg-gray-600 bg-opacity-75 focus:bg-opacity-90 placeholder:text-gray-300 rounded-full outline-none
+                    {% if page.settings.hero_bg_type.value == '0' %}
+                      border border-gray-200 dark:border-slate-700 hover:ring-4 hover:ring-primary hover:bg-primary/10 dark:hover:ring-slate-500 dark:hover:bg-slate-600
+                    {% elsif page.settings.hero_bg_type.value == '2' %}
+                      border border-gray-200 dark:border-slate-700  bg-white
+                    {% else %}
+                      border-none hover:ring-4 hover:ring-primary
+                    {% endif %}
+                  "
+                >
+              </div>
+            {% endform_tag %}
+
+            <div class='space-y-1 w-full mt-2'>
+              {% # 自定义标签搜索 %}
+              {% assign search_hot_tags = page.settings.search_hot_tags %}
+              {% if search_hot_tags.size > 0 %}
+                <div class="items-center justify-start w-full md:flex flex-wrap md:px-5">
+                  <div class="inline-block text-sm {% if page.settings.hero_bg_type.value == '2' %} text-white {% else %} text-gray-500 {% endif %} text-gray-500 dark:text-gray-100">
+                    <span class="mr-2">{{ 'layout.theme.search_tags_label' | t }}:</span>
+                    {% for tag in search_hot_tags %}
+                      <a
+                        href="{{ tag.path }}"
+                        data-turbo-frame="_top"
+                        class="mr-2 hover:text-primary focus:ring hover:-translate-y-[2px] min-w-12"
+                      >
+                        {{ tag.name }}
+                      </a>
+                    {% endfor %}
+                  </div>
+                </div>
+              {% endif %}
+
+              {% # 热门搜索 %}
+              {% assign hot_keywords = page.settings.search_hot_keywords | reg_split: "/\n/" %}
+              {% if hot_keywords.size > 0 %}
+                <div class="items-center justify-start w-full md:flex flex-wrap md:px-5">
+                  <div class="inline-block text-sm {% if page.settings.hero_bg_type.value == '2' %} text-white {% else %} text-gray-500 {% endif %} dark:text-gray-100">
+                    <span class="mr-2">{{ 'layout.theme.search_keywords_label' | t: '热门搜索' }}:</span>
+                    {% for hot_keyword in hot_keywords %}
+                      <a
+                        href="{{site.index_path}}-/search?q={{ hot_keyword }}"
+                        class="mr-2 hover:text-primary focus:ring hover:-translate-y-[2px] underline"
+                      >
+                        {{ hot_keyword }}
+                      </a>
+                    {% endfor %}
+                  </div>
+                </div>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class='space-y-10'>
+        <!-- 新手入门 Card -->
+        {% if page.settings.show_channels_section %}
+          <section class="">
+            {% assign channels_section_title = page.settings.channels_section_title | presence %}
+            {% if channels_section_title %}
+              <div class="items-center text-center my-4 md:mb-8">
+                <h2 class="text-xl md:text-2xl font-semibold">{{ channels_section_title }}</h2>
+              </div>
+            {% endif %}
+            <div class="items-start lg:max-w-none grid grid-cols-1 gap-2 md:gap-8 md:grid-cols-3">
+              {% assign card_pages = site.pages['/'].children_in_nav_menu  | limit: 3 %}
+              {% for card_page in card_pages %}
+                <!-- Card -->
+                <a href="{{ card_page.path }}" class="flex flex-col h-full bg-white shadow-xs rounded overflow-hidden bg-gradient-to-b from-secondary-100 from-5% to-primary-50/80 to-80% hover:from-secondary-100 hover:to-primary-100">
+                  <!-- Card Content -->
+                  <div class="flex-1 flex flex-col p-4 md:p-6 relative">
+                    <!-- Card body -->
+                    <div class="flex-1">
+                      <!-- Header -->
+                      <header class="mb-2 md:p-0 z-10">
+                        <div class="flex items-center justify-start">
+                          <h3 class="line-clamp-2 text-md md:text-xl md:font-semibold">{{ card_page.link_text }}</h3>
+                        </div>
+                      </header>
+                      <!-- Content -->
+                      <div class="h-22 md:h-44">
+                        <span class="text-gray-500 line-clamp-2">{{ card_page.settings.description }}</span>
+                        <div class="absolute -bottom-0 -right-0 opacity-60"><img src="{{ card_page.settings.icon }}" class="object-cover h-10 md:h-35"/></div>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              {% endfor %}
+            </div>
+          </section>
+        {% endif %}
+
+        <!-- 专题推荐 -->
+        {% if page.settings.show_topic_channel %}
+          <section class="">
+            {% assign topic_channel_title = page.settings.topic_channel_title | presence %}
+            {% if topic_channel_title %}
+              <div class="items-center text-center my-4 md:mb-8">
+                <h2 class="text-xl md:text-2xl font-semibold">{{ topic_channel_title }}</h2>
+              </div>
+            {% endif %}
+            <div class="items-start lg:max-w-none grid grid-cols-2 gap-2 md:gap-4 md:grid-cols-3">
+              {% query topic_channels from site.pages %}
+                {
+                  "where": {
+                    "settings.is_topic_channel_eq": true
+                  }
+                }
+              {% endquery %}
+              {% for card_page in topic_channels %}
+                <a href="{{ card_page.path }}" class="flex flex-col h-full bg-white dark:bg-slate-800 hover:bg-opacity-50 rounded-md overflow-hidden">
+                  <!-- Card Content -->
+                  <div class="flex-1 flex flex-col p-2 md:p-6">
+                      <!-- Card body -->
+                      <div class="flex-1">
+                          <!-- Header -->
+                          <header class="my-2 md:mb-2">
+                            <div class="flex flex-col text-center md:text-left items-center md:items-start">
+                              {% if site.settings.show_card_icon %}
+                                {% if card_page.settings.icon %}
+                                  <span class="mb-2"><img src="{{ card_page.settings.icon }}" class="h-10"/> </span>
+                                {% else %}
+                                  <span class="mb-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-10 w-10 h-10 text-primary dark:text-white">
+                                      <path stroke-linecap="round" stroke-linejoin="round" d="M6 6.878V6a2.25 2.25 0 0 1 2.25-2.25h7.5A2.25 2.25 0 0 1 18 6v.878m-12 0c.235-.083.487-.128.75-.128h10.5c.263 0 .515.045.75.128m-12 0A2.25 2.25 0 0 0 4.5 9v.878m13.5-3A2.25 2.25 0 0 1 19.5 9v.878m0 0a2.246 2.246 0 0 0-.75-.128H5.25c-.263 0-.515.045-.75.128m15 0A2.25 2.25 0 0 1 21 12v6a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 18v-6c0-.98.626-1.813 1.5-2.122" />
+                                    </svg>
+                                  </span>
+                                {% endif %}
+                              {% endif %}
+                              <h3 class="line-clamp-1 text-md md:text-xl md:font-semibold">{{ card_page.link_text }}</h3>
+                            </div>
+                          </header>
+                          <!-- Content -->
+                          <div class="my-4 relative">
+                            <span class="hidden md:flex text-sm text-gray-500 dark:text-gray-300">{{ card_page.settings.description }}</span>
+                          </div>
+                      </div>
+                  </div>
+                </a>
+              {% endfor %}
+            </div>
+          </section>
+        {% endif %}
+
+        <!-- 最新文章 -->
+        {% if page.settings.show_newest_section %}
+          {% assign newest_pages = site.pages['/'].pages_in_list | order_by: '-created_at' | limit: 10 %}
+          <section class="">
+            {% assign newest_section_title = page.settings.newest_section_title | presence %}
+            {% if newest_section_title %}
+              <div class="flex items-center text-xl md:text-2xl h-8 mb-4 font-bold text-slate-800 dark:text-slate-200">
+                <div class="w-1 h-full mr-3 bg-primary"></div>
+                <span>{{ newest_section_title }}</span>
+              </div>
+            {% endif %}
+            <div class="grid grid-cols-1 gap-4 md:grid-cols-2 p-4 gap-y-4 bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-200 rounded-md overflow-hidden">
+              {% for sub_page in newest_pages %}
+                <a class="flex items-center justify-between transition transform group"
+                  href="{{ sub_page.path }}">
+                  <div class="flex">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-gray-400 transition group-hover:text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                    </svg>
+                    <h6 class="ml-2 transition text-gray-550 group-hover:text-primary">
+                      {{ sub_page.link_text }}
+                    </h6>
+                  </div>
+
+                  <svg xmlns="http://www.w3.org/2000/svg" class="flex-shrink-0 w-5 h-5 mr-4 text-gray-500 dark:text-gray-300 transition group-hover:text-primary group-hover:translate-x-3 md:transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </a>
+              {% endfor %}
+            </div>
+          </section>
+        {% endif %}
+
+        <!-- 热门话题 -->
+        {% if page.settings.show_hottest_section %}
+          {% assign hottest_pages = site.pages['/'].pages_in_list | order_by: '-visits_count' | limit: 10 %}
+          <section class="bg-transparent">
+            {% assign hottest_section_title = page.settings.hottest_section_title | presence %}
+            {% if hottest_section_title %}
+              <div class="flex items-center h-8 mb-4 text-2xl font-bold text-slate-800 dark:text-slate-200">
+                <div class="w-1 h-full mr-3 bg-primary"></div>
+                <span>{{ hottest_section_title }}</span>
+              </div>
+            {% endif %}
+            <div class="grid grid-cols-1 gap-4 md:grid-cols-2 p-4 gap-y-4 bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-200 rounded-md overflow-hidden">
+              {% for page in hottest_pages %}
+                <a class="flex items-center justify-between transition transform group"
+                  href="{{ page.path }}">
+                  <div class="flex">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-gray-400 transition group-hover:text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                    </svg>
+                    <h6 class="ml-2 transition text-gray-550 group-hover:text-primary">
+                      {{ page.link_text }}
+                    </h6>
+                  </div>
+
+                  <svg xmlns="http://www.w3.org/2000/svg" class="flex-shrink-0 w-5 h-5 mr-4 text-gray-500 transition group-hover:text-primary group-hover:translate-x-3 md:transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </a>
+              {% endfor %}
+            </div>
+          </section>
+        {% endif %}
+
+        <!-- 底部自定义输入板块 -->
+        {% assign features_two_html = site.settings.features_two_html | strip %}
+        {% if features_two_html | present? %}
+          <section>
+            {{ features_two_html }}
+          </section>
+        {% endif %}
+      </div>
+    </section>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "t:schema.templates.index.docs.name",
+    "description": "t:schema.templates.index.docs.description",
+    "thumb_url": "images/schema/index-docs.png",
+    "preview_image_urls": [
+      "images/schema/index-docs.png"
+    ],
+    "sub_page_templates": ["page"],
+    "settings": [
+      {
+        "id": "hero_bg_type",
+        "type": "radio",
+        "label": "t:schema.templates.index.docs.settings.hero_bg_type.label",
+        "choices": [
+          {"label": "t:schema.templates.index.docs.settings.hero_bg_type.choices.none", "value": "0" },
+          {"label": "t:schema.templates.index.docs.settings.hero_bg_type.choices.color", "value": "1" },
+          {"label": "t:schema.templates.index.docs.settings.hero_bg_type.choices.image", "value": "2" }
+        ],
+        "default": "1",
+        "info": "t:schema.templates.index.docs.settings.hero_bg_type.info"
+      },
+      {
+        "id": "hero_height",
+        "type": "range",
+        "label": "t:schema.templates.index.docs.settings.hero_height.label",
+        "info": "t:schema.templates.index.docs.settings.hero_height.info",
+        "min": 100,
+        "max": 600,
+        "step": 10,
+        "unit": "px",
+        "default": 360
+      },
+      {
+        "id": "hero_image_url",
+        "type": "image_picker",
+        "ratio": "4:1",
+        "width": 900,
+        "label": "t:schema.templates.index.docs.settings.hero_image_url.label",
+        "info": "t:schema.templates.index.docs.settings.hero_image_url.info"
+      },
+      {
+        "id": "hero_bg_color",
+        "type": "color",
+        "label": "t:schema.templates.index.docs.settings.hero_bg_color.label",
+        "info": "t:schema.templates.index.docs.settings.hero_bg_color.info",
+        "default": "#20466D"
+      },
+      {
+        "id": "hero_slogan",
+        "type": "text",
+        "default": "t:schema.templates.index.docs.settings.hero_slogan.default",
+        "label": "t:schema.templates.index.docs.settings.hero_slogan.label",
+        "info": "t:schema.templates.index.docs.settings.hero_slogan.info"
+      },
+      {
+        "id": "search_hot_tags",
+        "type": "tag_picker",
+        "multiple": true,
+        "label": "t:schema.templates.index.docs.settings.search_hot_tags.label",
+        "info": "t:schema.templates.index.docs.settings.search_hot_tags.info"
+      },
+      {
+        "id": "search_hot_keywords",
+        "type": "textarea",
+        "label": "t:schema.templates.index.docs.settings.search_hot_keywords.label",
+        "info": "t:schema.templates.index.docs.settings.search_hot_keywords.info"
+      },
+      {
+        "id": "show_channels_section",
+        "label": "t:schema.templates.index.docs.settings.show_channels_section.label",
+        "type": "checkbox",
+        "default": true,
+        "info": "t:schema.templates.index.docs.settings.show_channels_section.info"
+      },
+      {
+        "id": "channels_section_title",
+        "label": "t:schema.templates.index.docs.settings.channels_section_title.label",
+        "type": "text",
+        "default": "t:schema.templates.index.docs.settings.channels_section_title.default"
+      },
+      {
+        "id": "show_topic_channel",
+        "label": "t:schema.templates.index.docs.settings.show_topic_channel.label",
+        "type": "checkbox",
+        "default": false,
+        "info": "t:schema.templates.index.docs.settings.show_topic_channel.info"
+      },
+      {
+        "id": "topic_channel_title",
+        "label": "t:schema.templates.index.docs.settings.topic_channel_title.label",
+        "type": "text",
+        "default": "t:schema.templates.index.docs.settings.topic_channel_title.default"
+      },
+      {
+        "id": "show_newest_section",
+        "label": "t:schema.templates.index.docs.settings.show_newest_section.label",
+        "type": "checkbox",
+        "default": true,
+        "info": "t:schema.templates.index.docs.settings.show_newest_section.info"
+      },
+      {
+        "id": "newest_section_title",
+        "label": "t:schema.templates.index.docs.settings.newest_section_title.label",
+        "type": "text",
+        "default": "t:schema.templates.index.docs.settings.newest_section_title.default"
+      },
+      {
+        "id": "show_hottest_section",
+        "label": "t:schema.templates.index.docs.settings.show_hottest_section.label",
+        "type": "checkbox",
+        "default": true,
+        "info": "t:schema.templates.index.docs.settings.show_hottest_section.info"
+      },
+      {
+        "id": "hottest_section_title",
+        "label": "t:schema.templates.index.docs.settings.hottest_section_title.label",
+        "type": "text",
+        "default": "t:schema.templates.index.docs.settings.hottest_section_title.default"
+      }
+    ]
+  }
+{% endschema %}

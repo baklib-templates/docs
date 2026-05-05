@@ -1,0 +1,319 @@
+{
+  "theme_label": "知识内容展示门户",
+  "theme_description": "专业的知识内容展示主题，支持将组织内部知识库通过 CMS 系统转化为独立的展示网站。适用于企业知识库、产品帮助中心、技术文档等多种内容展示场景，让知识管理和内容展示更加高效。",
+  "templates": {
+    "index": {
+      "docs": {
+        "name": "文档中心",
+        "description": "理想的产品用户手册",
+        "settings": {
+          "hero_bg_type": {
+            "label": "首屏背景样式",
+            "info": "选择背景样式后，背景色和背景图会根据选择的内容进行展示",
+            "choices": {
+              "none": "无背景",
+              "color": "颜色背景",
+              "image": "图片背景"
+            }
+          },
+          "hero_height": {
+            "label": "背景高度",
+            "info": "建议高度：360px"
+          },
+          "hero_image_url": {
+            "label": "背景图",
+            "info": "背景图会根据页面宽度和背景高度自动裁剪"
+          },
+          "hero_bg_color": {
+            "label": "背景色",
+            "info": "首屏背景样式的颜色将依据选择的颜色值进行处理（颜色背景）"
+          },
+          "hero_slogan": {
+            "label": "标语",
+            "info": "标语会显示在背景图上方",
+            "default": "👋 What Can We Help?"
+          },
+          "search_hot_tags": {
+            "label": "热门标签",
+            "info": "设置以后，标签列表会显示在首页搜索栏下方"
+          },
+          "search_hot_keywords": {
+            "label": "热门搜索",
+            "info": "设置以后，搜索框下方会显示热门搜索。换行设置多个关键词"
+          },
+          "show_channels_section": {
+            "label": "第一个板块",
+            "info": "不勾选，首页将不会显示此板块"
+          },
+          "channels_section_title": {
+            "label": "第一个板块标题",
+            "default": "新手入门"
+          },
+          "show_topic_channel": {
+            "label": "专题推荐板块",
+            "info": "不勾选，首页将不会显示此板块; 请在页面设置勾选“是否为专题栏目”选项以显示在首页"
+          },
+          "topic_channel_title": {
+            "label": "专题推荐板块的标题",
+            "default": "专题推荐"
+          },
+          "show_newest_section": {
+            "label": "最新文章板块",
+            "info": "不勾选，首页将不会显示此板块"
+          },
+          "newest_section_title": {
+            "label": "最新文章板块标题",
+            "default": "最新文章"
+          },
+          "show_hottest_section": {
+            "label": "热门话题板块",
+            "info": "不勾选，首页将不会显示此板块"
+          },
+          "hottest_section_title": {
+            "label": "热门话题板块标题",
+            "default": "热门话题"
+          }
+        }
+      },
+      "help_center": {
+        "name": "帮助中心",
+        "description": "功能丰富的产品知识库样式",
+        "settings": {
+          "hero_bg_type": {
+            "label": "首屏背景样式",
+            "info": "选择背景样式后，背景色和背景图会根据选择的内容进行展示",
+            "choices": {
+              "none": "无背景",
+              "color": "颜色背景",
+              "image": "图片背景"
+            }
+          },
+          "hero_height": {
+            "label": "背景高度",
+            "info": "建议高度：360px"
+          },
+          "hero_image_url": {
+            "label": "背景图",
+            "info": "背景图会根据页面宽度和背景高度自动裁剪"
+          },
+          "hero_bg_color": {
+            "label": "背景色",
+            "info": "选择背景色后，背景色会根据选择的内容进行展示"
+          },
+          "hero_slogan": {
+            "label": "标语",
+            "info": "标语会显示在背景图上方",
+            "default": "👋 What Can We Help?"
+          },
+          "search_hot_tags": {
+            "label": "热门标签",
+            "info": "设置以后，标签列表会显示在首页搜索栏下方"
+          },
+          "search_hot_keywords": {
+            "label": "热门搜索",
+            "info": "设置以后，搜索框下方会显示热门搜索。换行设置多个关键词"
+          },
+          "show_channels_section": {
+            "label": "栏目导览板块",
+            "info": "不勾选，首页将不会显示此板块"
+          },
+          "channels_section_title": {
+            "label": "栏目导览板块标题",
+            "default": "栏目导览"
+          },
+          "show_newest_section": {
+            "label": "最新文章板块",
+            "info": "不勾选，首页将不会显示此板块"
+          },
+          "newest_section_title": {
+            "label": "最新文章板块标题",
+            "default": "最新文章"
+          },
+          "show_topic_channel": {
+            "label": "专题推荐板块",
+            "info": "不勾选，首页将不会显示此板块"
+          },
+          "topic_channel_title": {
+            "label": "专题推荐板块的标题",
+            "default": "专题推荐"
+          },
+          "show_hottest_section": {
+            "label": "热门文章板块",
+            "info": "不勾选，首页将不会显示此板块"
+          },
+          "hottest_section_title": {
+            "label": "热门文章板块标题",
+            "default": "热门文章"
+          }
+        }
+      },
+      "list": {
+        "name": "产品手册",
+        "description": "首页目录列表样式"
+      }
+    },
+    "page": {
+      "name": "普通页面模版",
+      "description": "内容页面模板",
+      "settings": {
+        "show_list": {
+          "label": "是否为栏目页面",
+          "info": "作为栏目页面，页面显示子页面列表"
+        },
+        "is_topic_channel": {
+          "label": "是否为专题栏目",
+          "info": "如果是专题栏目，页面将会显示在首页的专题栏目列表中"
+        },
+        "title": {
+          "label": "页面标题",
+          "info": "知识库同步，不可编辑"
+        },
+        "tags": {
+          "label": "页面标签"
+        },
+        "description": {
+          "label": "页面描述"
+        },
+        "icon": {
+          "label": "页面图标",
+          "info": "用于显示页面图标，建议1:1比例"
+        },
+        "content": {
+          "label": "页面内容",
+          "info": "同步自数据源，不可编辑"
+        }
+      },
+      "video": {
+        "name": "视频模版",
+        "description": "视频页面模版, 用于展示视频内容",
+        "settings": {
+          "is_video_list": {
+            "label": "是否为视频列表",
+            "info": "视频列表页，仅获取下级为视频模版页面; 请确保下级页面的模版为视频模版"
+          },
+          "video_url": {
+            "label": "视频地址",
+            "info": "用于呈现于视频列表页中, 列表页无需填写"
+          }
+        }
+      },
+      "export": {
+        "name": "导出页面模版",
+        "description": "常用于浏览器直接导出当前栏目及下级页面的内容"
+      }
+    }
+  },
+  "generic": {
+    "name": "通用设置",
+    "settings": {
+      "logo_url": {
+        "label": "Logo 图片",
+        "info": "若设置了logo，则页头显示 logo，否则显示：网站图标+站点名称"
+      },
+      "company_name": {
+        "label": "公司名称",
+        "default": "Baklib.cn",
+        "info": "显示在页面底部页脚位置"
+      },
+      "copyright_info": {
+        "label": "备案/版权信息",
+        "default": "蜀ICP备xxxx号"
+      },
+      "screen_width": {
+        "label": "页面宽度",
+        "choices": {
+          "narrow": "窄（1024像素）",
+          "medium": "适中（1280像素）",
+          "wide": "宽（1536像素）",
+          "full": "满屏"
+        }
+      },
+      "left_sidebar_width": {
+        "label": "左侧边栏宽度(详细页面中)",
+        "info": "建议：240px"
+      },
+      "right_sidebar_width": {
+        "label": "右侧边栏宽度(详细页面中)",
+        "info": "建议：240px"
+      },
+      "show_published_at": {
+        "label": "显示发布时间"
+      },
+      "show_author": {
+        "label": "显示作者"
+      },
+      "show_card_icon": {
+        "label": "首页是否显示栏目ICON图标",
+        "info": "建议自行在页面设置中配置图标"
+      },
+      "ai_search_completed_text": {
+        "label": "AI回答结束语",
+        "info": "AI回答结束后添加一句话"
+      }
+    }
+  },
+  "page_config": {
+    "name": "页面配置",
+    "settings": {
+      "show_page_tools_dropdown": {
+        "label": "显示页面工具下拉菜单"
+      }
+    }
+  },
+  "custom_html": {
+    "name": "自定义 HTML 代码",
+    "settings": {
+      "head_html": {
+        "label": "自定义 <head></head> 标签中的 HTML",
+        "info": "支持HTML标签和有限的TailwindCSS样式代码",
+        "placeholder": "通常在这里插入访问统计、客服机器人等嵌入代码"
+      },
+      "header_menu_html": {
+        "label": "顶部导航区域插入 HTML 代码",
+        "info": "支持HTML标签和有限的TailwindCSS样式代码",
+        "placeholder": "通常在这里插入公司其他网站的导航链接"
+      },
+      "footer_html": {
+        "label": "页脚区域插入 HTML 代码",
+        "info": "支持HTML标签和有限的TailwindCSS样式代码; 将完全替换默认页脚内容",
+        "placeholder": "若需要保留默认页脚内容，请在 footer_menu_html 中插入 HTML 代码"
+      },
+      "footer_menu_html": {
+        "label": "底部区域插入 HTML 代码(footer 内，footer_menu_html)",
+        "info": "支持HTML标签和有限的TailwindCSS样式代码",
+        "placeholder": "通常在这里插入公司其他网站的外部导航链接、友情链接、SEO 优化链接等"
+      },
+      "features_one_html": {
+        "label": "首页顶部功能区 HTML",
+        "info": "支持HTML标签和有限的TailwindCSS样式代码",
+        "placeholder": "通常在这里插入公司产品介绍、服务介绍等"
+      },
+      "features_two_html": {
+        "label": "首页底部功能区 HTML",
+        "info": "支持HTML标签和有限的TailwindCSS样式代码",
+        "placeholder": "通常在这里插入公司产品介绍、服务介绍等"
+      }
+    }
+  },
+  "settings": {
+    "weixin_share": {
+      "title": "微信配置",
+      "weixin_app_id": {
+        "label": "开发者ID(AppID)",
+        "info": "<a href='https://mp.weixin.qq.com/cgi-bin/frame'>微信公众号/设置与开发/开发接口管理</a>中获取 "
+      },
+      "weixin_app_secret": {
+        "label": "开发者密码(AppSecret)",
+        "info": ""
+      },
+      "weixin_enabled": {
+        "label": "是否启用微信分享",
+        "info": "提供站点页面微信分享的能力</br>请在微信公众号中配置ip白名单（ip: ${service_ip}）, 配置后将有一段时间的生效延迟。</br>检查是否开启微信分享权限，微信公众号/设置与开发/开发接口管理: <a href='https://mp.weixin.qq.com/cgi-bin/frame'>网页服务/分享接口</a>。</br>分享链接是否为卡片：从卡片形式进入分享卡片形式，链接形式进入分享链接形式；网页初始链接分享可由公司的服务号中或收藏后进行卡片分享（此规则为微信分享限制）。"
+      },
+      "weixin_debug": {
+        "label": "是否开启debug提示",
+        "info": "请仅在配置阶段开启此选项；开启后在访问前端站点时若未正确配置微信分享将自动提示错误信息"
+      }
+    }
+  }
+}

@@ -1,0 +1,76 @@
+<!-- 提供视频链接，Card显示视频列表 -->
+{% assign pages = page.children_in_list | limit: 200 %}
+{% assign default_avatar_url = 'images/avatar.svg' | asset_url %}
+
+<div class="px-4">
+	<div class="w-full max-w-[var(--max-content-width)] mx-auto grid grid-cols-1 lg:grid-cols-[var(--left-sidebar-width)_1fr] gap-6 md:pt-4 [&.has-toc]:lg:grid-cols-[var(--left-sidebar-width)_1fr_var(--right-sidebar-width)] data-controller="toc"
+		data-toc-header-selector-value=".js--header"
+		data-toc-offset-value="10"
+		data-toc-clipboard-success-value="{{ 'templates.page.copy_success' | t: '链接已复制' }}"">
+    <!-- 左侧导航树 -->
+		<aside class="hidden lg:block">
+			<div class="sticky top-[calc(var(--header-height)_+_1rem)] max-h-[calc(100vh-var(--header-height)-4rem)] max-w-full w-full overflow-auto rounded-box">
+				{% render 'nav_tree', nav_tree: site.nav_tree %}
+			</div>
+		</aside>
+
+		<!-- 中间内容 -->
+    <div class="px-0 lg:px-4 overflow-hidden">
+      <turbo-frame id="main-content-frame">
+        {% if page.settings.is_video_list %}
+          {% render 'page_video_list', page: page %}
+        {% else %}
+          {% render 'page', page: page %}
+        {% endif %}
+      </turbo-frame>
+    </div>
+	</div>
+</div>
+{% schema %}
+  {
+    "name": "t:schema.templates.page.video.name",
+    "description": "t:schema.templates.page.video.description",
+    "thumb_url": "images/schema/page-videos.png",
+    "sub_page_templates": ["page"],
+    "settings": [
+      {
+        "id": "is_video_list",
+        "type": "checkbox",
+        "default": "false",
+        "label": "t:schema.templates.page.video.settings.is_video_list.label",
+        "info": "t:schema.templates.page.video.settings.is_video_list.info"
+      },
+      {
+        "id": "video_url",
+        "type": "video_picker",
+        "label": "t:schema.templates.page.video.settings.video_url.label",
+        "info": "t:schema.templates.page.video.settings.video_url.info"
+      },
+      {
+        "id": "tags",
+        "type": "tag_picker",
+        "multiple": true,
+        "label": "t:schema.templates.page.settings.tags.label"
+      },
+      {
+        "id": "title",
+        "type": "text",
+        "readonly": true,
+        "label": "t:schema.templates.page.settings.title.label",
+        "info": "t:schema.templates.page.settings.title.info"
+      },
+      {
+        "id": "description",
+        "type": "textarea",
+        "label": "t:schema.templates.page.settings.description.label"
+      },
+      {
+        "id": "content",
+        "type": "richtext",
+        "label": "t:schema.templates.page.settings.content.label",
+        "readonly": true,
+        "info": "t:schema.templates.page.settings.content.info"
+      }
+    ]
+  }
+{% endschema %}

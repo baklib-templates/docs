@@ -1,0 +1,523 @@
+@import "tailwindcss";
+
+@theme {
+  /* 主色 */
+  --color-primary-50: hsl(
+    var(--theme-color-primary-hsl-h) var(--theme-color-primary-hsl-s) 97%
+  );
+  --color-primary-100: hsl(
+    var(--theme-color-primary-hsl-h) var(--theme-color-primary-hsl-s) 92%
+  );
+  --color-primary-200: hsl(
+    var(--theme-color-primary-hsl-h) var(--theme-color-primary-hsl-s) 85%
+  );
+  --color-primary-300: hsl(
+    var(--theme-color-primary-hsl-h) var(--theme-color-primary-hsl-s) 75%
+  );
+  --color-primary-400: hsl(
+    var(--theme-color-primary-hsl-h) var(--theme-color-primary-hsl-s) 65%
+  );
+  --color-primary-500: hsl(
+    var(--theme-color-primary-hsl-h) var(--theme-color-primary-hsl-s) 55%
+  );
+  --color-primary-600: hsl(
+    var(--theme-color-primary-hsl-h) var(--theme-color-primary-hsl-s) 45%
+  );
+  --color-primary-700: hsl(
+    var(--theme-color-primary-hsl-h) var(--theme-color-primary-hsl-s) 35%
+  );
+  --color-primary-800: hsl(
+    var(--theme-color-primary-hsl-h) var(--theme-color-primary-hsl-s) 25%
+  );
+  --color-primary-900: hsl(
+    var(--theme-color-primary-hsl-h) var(--theme-color-primary-hsl-s) 15%
+  );
+
+  /* 次色 */
+  --color-secondary-50: hsl(
+    var(--theme-color-secondary-hsl-h) var(--theme-color-secondary-hsl-s) 97%
+  );
+  --color-secondary-100: hsl(
+    var(--theme-color-secondary-hsl-h) var(--theme-color-secondary-hsl-s) 92%
+  );
+  --color-secondary-200: hsl(
+    var(--theme-color-secondary-hsl-h) var(--theme-color-secondary-hsl-s) 85%
+  );
+  --color-secondary-300: hsl(
+    var(--theme-color-secondary-hsl-h) var(--theme-color-secondary-hsl-s) 75%
+  );
+  --color-secondary-400: hsl(
+    var(--theme-color-secondary-hsl-h) var(--theme-color-secondary-hsl-s) 65%
+  );
+  --color-secondary-500: hsl(
+    var(--theme-color-secondary-hsl-h) var(--theme-color-secondary-hsl-s) 55%
+  );
+  --color-secondary-600: hsl(
+    var(--theme-color-secondary-hsl-h) var(--theme-color-secondary-hsl-s) 45%
+  );
+  --color-secondary-700: hsl(
+    var(--theme-color-secondary-hsl-h) var(--theme-color-secondary-hsl-s) 35%
+  );
+  --color-secondary-800: hsl(
+    var(--theme-color-secondary-hsl-h) var(--theme-color-secondary-hsl-s) 25%
+  );
+  --color-secondary-900: hsl(
+    var(--theme-color-secondary-hsl-h) var(--theme-color-secondary-hsl-s) 15%
+  );
+
+  /* 强调色 */
+  --color-accent-50: hsl(
+    var(--theme-color-accent-hsl-h) var(--theme-color-accent-hsl-s) 97%
+  );
+  --color-accent-100: hsl(
+    var(--theme-color-accent-hsl-h) var(--theme-color-accent-hsl-s) 92%
+  );
+  --color-accent-200: hsl(
+    var(--theme-color-accent-hsl-h) var(--theme-color-accent-hsl-s) 85%
+  );
+  --color-accent-300: hsl(
+    var(--theme-color-accent-hsl-h) var(--theme-color-accent-hsl-s) 75%
+  );
+  --color-accent-400: hsl(
+    var(--theme-color-accent-hsl-h) var(--theme-color-accent-hsl-s) 65%
+  );
+  --color-accent-500: hsl(
+    var(--theme-color-accent-hsl-h) var(--theme-color-accent-hsl-s) 55%
+  );
+  --color-accent-600: hsl(
+    var(--theme-color-accent-hsl-h) var(--theme-color-accent-hsl-s) 45%
+  );
+  --color-accent-700: hsl(
+    var(--theme-color-accent-hsl-h) var(--theme-color-accent-hsl-s) 35%
+  );
+  --color-accent-800: hsl(
+    var(--theme-color-accent-hsl-h) var(--theme-color-accent-hsl-s) 25%
+  );
+  --color-accent-900: hsl(
+    var(--theme-color-accent-hsl-h) var(--theme-color-accent-hsl-s) 15%
+  );
+
+  /* 信息色 */
+  --color-info-50: hsl(
+    var(--theme-color-info-hsl-h) var(--theme-color-info-hsl-s) 97%
+  );
+  --color-info-100: hsl(
+    var(--theme-color-info-hsl-h) var(--theme-color-info-hsl-s) 92%
+  );
+  --color-info-200: hsl(
+    var(--theme-color-info-hsl-h) var(--theme-color-info-hsl-s) 85%
+  );
+  --color-info-300: hsl(
+    var(--theme-color-info-hsl-h) var(--theme-color-info-hsl-s) 75%
+  );
+  --color-info-400: hsl(
+    var(--theme-color-info-hsl-h) var(--theme-color-info-hsl-s) 65%
+  );
+  --color-info-500: hsl(
+    var(--theme-color-info-hsl-h) var(--theme-color-info-hsl-s) 55%
+  );
+  --color-info-600: hsl(
+    var(--theme-color-info-hsl-h) var(--theme-color-info-hsl-s) 45%
+  );
+  --color-info-700: hsl(
+    var(--theme-color-info-hsl-h) var(--theme-color-info-hsl-s) 35%
+  );
+  --color-info-800: hsl(
+    var(--theme-color-info-hsl-h) var(--theme-color-info-hsl-s) 25%
+  );
+  --color-info-900: hsl(
+    var(--theme-color-info-hsl-h) var(--theme-color-info-hsl-s) 15%
+  );
+
+  /* 成功色 */
+  --color-success-50: hsl(
+    var(--theme-color-success-hsl-h) var(--theme-color-success-hsl-s) 97%
+  );
+  --color-success-100: hsl(
+    var(--theme-color-success-hsl-h) var(--theme-color-success-hsl-s) 92%
+  );
+  --color-success-200: hsl(
+    var(--theme-color-success-hsl-h) var(--theme-color-success-hsl-s) 85%
+  );
+  --color-success-300: hsl(
+    var(--theme-color-success-hsl-h) var(--theme-color-success-hsl-s) 75%
+  );
+  --color-success-400: hsl(
+    var(--theme-color-success-hsl-h) var(--theme-color-success-hsl-s) 65%
+  );
+  --color-success-500: hsl(
+    var(--theme-color-success-hsl-h) var(--theme-color-success-hsl-s) 55%
+  );
+  --color-success-600: hsl(
+    var(--theme-color-success-hsl-h) var(--theme-color-success-hsl-s) 45%
+  );
+  --color-success-700: hsl(
+    var(--theme-color-success-hsl-h) var(--theme-color-success-hsl-s) 35%
+  );
+  --color-success-800: hsl(
+    var(--theme-color-success-hsl-h) var(--theme-color-success-hsl-s) 25%
+  );
+  --color-success-900: hsl(
+    var(--theme-color-success-hsl-h) var(--theme-color-success-hsl-s) 15%
+  );
+
+  /* 警告色 */
+  --color-warning-50: hsl(
+    var(--theme-color-warning-hsl-h) var(--theme-color-warning-hsl-s) 97%
+  );
+  --color-warning-100: hsl(
+    var(--theme-color-warning-hsl-h) var(--theme-color-warning-hsl-s) 92%
+  );
+  --color-warning-200: hsl(
+    var(--theme-color-warning-hsl-h) var(--theme-color-warning-hsl-s) 85%
+  );
+  --color-warning-300: hsl(
+    var(--theme-color-warning-hsl-h) var(--theme-color-warning-hsl-s) 75%
+  );
+  --color-warning-400: hsl(
+    var(--theme-color-warning-hsl-h) var(--theme-color-warning-hsl-s) 65%
+  );
+  --color-warning-500: hsl(
+    var(--theme-color-warning-hsl-h) var(--theme-color-warning-hsl-s) 55%
+  );
+  --color-warning-600: hsl(
+    var(--theme-color-warning-hsl-h) var(--theme-color-warning-hsl-s) 45%
+  );
+  --color-warning-700: hsl(
+    var(--theme-color-warning-hsl-h) var(--theme-color-warning-hsl-s) 35%
+  );
+  --color-warning-800: hsl(
+    var(--theme-color-warning-hsl-h) var(--theme-color-warning-hsl-s) 25%
+  );
+  --color-warning-900: hsl(
+    var(--theme-color-warning-hsl-h) var(--theme-color-warning-hsl-s) 15%
+  );
+}
+
+@plugin "daisyui";
+
+@plugin "daisyui/theme" {
+  name: "light";
+  default: true;
+  --color-primary: hsl(var(--theme-color-primary));
+  --color-secondary: hsl(var(--theme-color-secondary));
+  --color-accent: hsl(var(--theme-color-accent));
+  --color-info: hsl(var(--theme-color-info));
+  --color-success: hsl(var(--theme-color-success));
+  --color-warning: hsl(var(--theme-color-warning));
+}
+
+@plugin "daisyui/theme" {
+  name: "dark";
+  --color-primary: hsl(var(--theme-color-primary-dark));
+  --color-secondary: hsl(var(--theme-color-secondary-dark));
+  --color-accent: hsl(var(--theme-color-accent-dark));
+  --color-info: hsl(var(--theme-color-info-dark));
+  --color-success: hsl(var(--theme-color-success-dark));
+  --color-warning: hsl(var(--theme-color-warning-dark));
+}
+
+@source "../../layout/*.liquid";
+@source "../../snippets/*.liquid";
+@source "../../statics/*.liquid";
+@source "../../templates/*.liquid";
+@source "../../javascripts/**/*.js";
+
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
+/* 暗色模式下使用暗色变量生成色阶（保持标准亮度） */
+[data-theme="dark"] {
+  /* 主色 */
+  --color-primary-50: hsl(var(--theme-color-primary-dark-hsl-h) var(--theme-color-primary-dark-hsl-s) 97%);
+  --color-primary-100: hsl(var(--theme-color-primary-dark-hsl-h) var(--theme-color-primary-dark-hsl-s) 92%);
+  --color-primary-200: hsl(var(--theme-color-primary-dark-hsl-h) var(--theme-color-primary-dark-hsl-s) 85%);
+  --color-primary-300: hsl(var(--theme-color-primary-dark-hsl-h) var(--theme-color-primary-dark-hsl-s) 75%);
+  --color-primary-400: hsl(var(--theme-color-primary-dark-hsl-h) var(--theme-color-primary-dark-hsl-s) 65%);
+  --color-primary-500: hsl(var(--theme-color-primary-dark-hsl-h) var(--theme-color-primary-dark-hsl-s) 55%);
+  --color-primary-600: hsl(var(--theme-color-primary-dark-hsl-h) var(--theme-color-primary-dark-hsl-s) 45%);
+  --color-primary-700: hsl(var(--theme-color-primary-dark-hsl-h) var(--theme-color-primary-dark-hsl-s) 35%);
+  --color-primary-800: hsl(var(--theme-color-primary-dark-hsl-h) var(--theme-color-primary-dark-hsl-s) 25%);
+  --color-primary-900: hsl(var(--theme-color-primary-dark-hsl-h) var(--theme-color-primary-dark-hsl-s) 15%);
+
+  /* 次色 */
+  --color-secondary-50: hsl(var(--theme-color-secondary-dark-hsl-h) var(--theme-color-secondary-dark-hsl-s) 97%);
+  --color-secondary-100: hsl(var(--theme-color-secondary-dark-hsl-h) var(--theme-color-secondary-dark-hsl-s) 92%);
+  --color-secondary-200: hsl(var(--theme-color-secondary-dark-hsl-h) var(--theme-color-secondary-dark-hsl-s) 85%);
+  --color-secondary-300: hsl(var(--theme-color-secondary-dark-hsl-h) var(--theme-color-secondary-dark-hsl-s) 75%);
+  --color-secondary-400: hsl(var(--theme-color-secondary-dark-hsl-h) var(--theme-color-secondary-dark-hsl-s) 65%);
+  --color-secondary-500: hsl(var(--theme-color-secondary-dark-hsl-h) var(--theme-color-secondary-dark-hsl-s) 55%);
+  --color-secondary-600: hsl(var(--theme-color-secondary-dark-hsl-h) var(--theme-color-secondary-dark-hsl-s) 45%);
+  --color-secondary-700: hsl(var(--theme-color-secondary-dark-hsl-h) var(--theme-color-secondary-dark-hsl-s) 35%);
+  --color-secondary-800: hsl(var(--theme-color-secondary-dark-hsl-h) var(--theme-color-secondary-dark-hsl-s) 25%);
+  --color-secondary-900: hsl(var(--theme-color-secondary-dark-hsl-h) var(--theme-color-secondary-dark-hsl-s) 15%);
+
+  /* 强调色 */
+  --color-accent-50: hsl(var(--theme-color-accent-dark-hsl-h) var(--theme-color-accent-dark-hsl-s) 97%);
+  --color-accent-100: hsl(var(--theme-color-accent-dark-hsl-h) var(--theme-color-accent-dark-hsl-s) 92%);
+  --color-accent-200: hsl(var(--theme-color-accent-dark-hsl-h) var(--theme-color-accent-dark-hsl-s) 85%);
+  --color-accent-300: hsl(var(--theme-color-accent-dark-hsl-h) var(--theme-color-accent-dark-hsl-s) 75%);
+  --color-accent-400: hsl(var(--theme-color-accent-dark-hsl-h) var(--theme-color-accent-dark-hsl-s) 65%);
+  --color-accent-500: hsl(var(--theme-color-accent-dark-hsl-h) var(--theme-color-accent-dark-hsl-s) 55%);
+  --color-accent-600: hsl(var(--theme-color-accent-dark-hsl-h) var(--theme-color-accent-dark-hsl-s) 45%);
+  --color-accent-700: hsl(var(--theme-color-accent-dark-hsl-h) var(--theme-color-accent-dark-hsl-s) 35%);
+  --color-accent-800: hsl(var(--theme-color-accent-dark-hsl-h) var(--theme-color-accent-dark-hsl-s) 25%);
+  --color-accent-900: hsl(var(--theme-color-accent-dark-hsl-h) var(--theme-color-accent-dark-hsl-s) 15%);
+
+  /* 信息色 */
+  --color-info-50: hsl(var(--theme-color-info-dark-hsl-h) var(--theme-color-info-dark-hsl-s) 97%);
+  --color-info-100: hsl(var(--theme-color-info-dark-hsl-h) var(--theme-color-info-dark-hsl-s) 92%);
+  --color-info-200: hsl(var(--theme-color-info-dark-hsl-h) var(--theme-color-info-dark-hsl-s) 85%);
+  --color-info-300: hsl(var(--theme-color-info-dark-hsl-h) var(--theme-color-info-dark-hsl-s) 75%);
+  --color-info-400: hsl(var(--theme-color-info-dark-hsl-h) var(--theme-color-info-dark-hsl-s) 65%);
+  --color-info-500: hsl(var(--theme-color-info-dark-hsl-h) var(--theme-color-info-dark-hsl-s) 55%);
+  --color-info-600: hsl(var(--theme-color-info-dark-hsl-h) var(--theme-color-info-dark-hsl-s) 45%);
+  --color-info-700: hsl(var(--theme-color-info-dark-hsl-h) var(--theme-color-info-dark-hsl-s) 35%);
+  --color-info-800: hsl(var(--theme-color-info-dark-hsl-h) var(--theme-color-info-dark-hsl-s) 25%);
+  --color-info-900: hsl(var(--theme-color-info-dark-hsl-h) var(--theme-color-info-dark-hsl-s) 15%);
+
+  /* 成功色 */
+  --color-success-50: hsl(var(--theme-color-success-dark-hsl-h) var(--theme-color-success-dark-hsl-s) 97%);
+  --color-success-100: hsl(var(--theme-color-success-dark-hsl-h) var(--theme-color-success-dark-hsl-s) 92%);
+  --color-success-200: hsl(var(--theme-color-success-dark-hsl-h) var(--theme-color-success-dark-hsl-s) 85%);
+  --color-success-300: hsl(var(--theme-color-success-dark-hsl-h) var(--theme-color-success-dark-hsl-s) 75%);
+  --color-success-400: hsl(var(--theme-color-success-dark-hsl-h) var(--theme-color-success-dark-hsl-s) 65%);
+  --color-success-500: hsl(var(--theme-color-success-dark-hsl-h) var(--theme-color-success-dark-hsl-s) 55%);
+  --color-success-600: hsl(var(--theme-color-success-dark-hsl-h) var(--theme-color-success-dark-hsl-s) 45%);
+  --color-success-700: hsl(var(--theme-color-success-dark-hsl-h) var(--theme-color-success-dark-hsl-s) 35%);
+  --color-success-800: hsl(var(--theme-color-success-dark-hsl-h) var(--theme-color-success-dark-hsl-s) 25%);
+  --color-success-900: hsl(var(--theme-color-success-dark-hsl-h) var(--theme-color-success-dark-hsl-s) 15%);
+
+  /* 警告色 */
+  --color-warning-50: hsl(var(--theme-color-warning-dark-hsl-h) var(--theme-color-warning-dark-hsl-s) 97%);
+  --color-warning-100: hsl(var(--theme-color-warning-dark-hsl-h) var(--theme-color-warning-dark-hsl-s) 92%);
+  --color-warning-200: hsl(var(--theme-color-warning-dark-hsl-h) var(--theme-color-warning-dark-hsl-s) 85%);
+  --color-warning-300: hsl(var(--theme-color-warning-dark-hsl-h) var(--theme-color-warning-dark-hsl-s) 75%);
+  --color-warning-400: hsl(var(--theme-color-warning-dark-hsl-h) var(--theme-color-warning-dark-hsl-s) 65%);
+  --color-warning-500: hsl(var(--theme-color-warning-dark-hsl-h) var(--theme-color-warning-dark-hsl-s) 55%);
+  --color-warning-600: hsl(var(--theme-color-warning-dark-hsl-h) var(--theme-color-warning-dark-hsl-s) 45%);
+  --color-warning-700: hsl(var(--theme-color-warning-dark-hsl-h) var(--theme-color-warning-dark-hsl-s) 35%);
+  --color-warning-800: hsl(var(--theme-color-warning-dark-hsl-h) var(--theme-color-warning-dark-hsl-s) 25%);
+  --color-warning-900: hsl(var(--theme-color-warning-dark-hsl-h) var(--theme-color-warning-dark-hsl-s) 15%);
+}
+
+@layer utilities {
+  .flex-col-container {
+    @apply flex h-full flex-col;
+  }
+}
+
+@layer components {
+  /* index.faqs Tab buttons */
+  .index-faqs-tabs {
+    @apply flex flex-wrap items-center gap-2;
+  }
+  .index-faqs-tab {
+    @apply px-3 py-2 text-sm rounded-full transition;
+    @apply bg-gray-100 text-slate-700 hover:bg-gray-200;
+    @apply dark:bg-slate-700 dark:text-slate-100 dark:hover:bg-slate-600;
+    @apply max-w-full;
+  }
+  .index-faqs-tab.is-active {
+    @apply bg-primary text-white;
+  }
+}
+
+.menu {
+  :where(li:not(.menu-title) > *:not(ul, details, .menu-title, .btn)), :where(li:not(.menu-title) > details > summary:not(.menu-title)) {
+    text-wrap: unset; /* 去掉menu 中设置的 balance 换行 */
+  }
+  :where(li > details > summary), :where(li > .menu-dropdown-toggle) {
+    &:after {
+      rotate: 135deg;
+    }
+  }
+  :where(li > details[open] > summary), :where(li > .menu-dropdown-toggle) {
+    &:after {
+      rotate: 225deg;
+    }
+  }
+}
+
+.custom-menu {
+  list-style: none;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  flex-wrap: wrap;
+  --menu-active-fg: var(--color-neutral-content);
+  --menu-active-bg: var(--color-neutral);
+  font-size: 0.875rem;
+
+  :where(li) {
+    position: relative;
+    display: flex;
+    flex-shrink: 0;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: stretch;
+    width: 100%;
+    margin-top: 5px;
+  }
+
+  [turbo-nav-tree-item]:hover {
+    [turbo-nav-tree-item-target-icon]{
+      @apply text-primary
+    }
+  }
+
+  li[active] > [turbo-nav-tree-item][active] {
+    @apply bg-primary/80;
+    a {
+      @apply font-bold text-base-100;
+    }
+  }
+
+  :where(li ul) {
+    position: relative;
+    padding-left: calc(0.25rem * 6);
+
+    &:before {
+      position: absolute;
+      inset-inline-start: calc(0.25rem * 0);
+      top: calc(0.25rem * 3);
+      bottom: calc(0.25rem * 3);
+      left: calc(0.25rem * 4.5);
+      background-color: var(--color-base-content);
+      opacity: 10%;
+      width: var(--border);
+      content: "";
+    }
+  }
+}
+
+.search-highlight-block {
+  b {
+    @apply text-primary;
+  }
+}
+
+summary.menu-active,
+summary:has(.menu-active) {
+  @apply text-neutral-content bg-neutral;
+}
+
+#page-content.ProseMirror a {
+  word-break: break-all;
+  @apply text-primary;
+}
+
+#page-content.ProseMirror .table-container {
+  @apply max-w-full overflow-x-auto;
+}
+
+#page-content.ProseMirror code {
+  @apply text-sm;
+}
+
+.no-scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* --- index.faqs mobile overflow + sizing tweaks (scoped) --- */
+@layer utilities {
+  @media (max-width: 640px) {
+    /* 搜索框更紧凑（仅 FAQs 首页） */
+    .index-faqs-hero-bg ~ .px-4 input[type="search"] {
+      height: 48px;
+      font-size: 16px;
+      line-height: 24px;
+      padding-right: 16px;
+    }
+    .index-faqs-hero-bg ~ .px-4 input[type="search"]::placeholder {
+      font-size: 14px;
+    }
+
+    /* Tab 过多时自动换行，避免横向溢出 */
+    .index-faqs-hero-bg ~ .px-4 .no-scrollbar.whitespace-nowrap {
+      flex-wrap: wrap;
+      white-space: normal;
+      overflow-x: hidden;
+      gap: 8px;
+    }
+    .index-faqs-hero-bg ~ .px-4 .no-scrollbar.whitespace-nowrap > a {
+      flex: 0 1 auto;
+      min-width: 0;
+      max-width: 100%;
+    }
+
+    /* FAQ 内容强制断行，避免长词/URL 撑出屏幕 */
+    .index-faqs-hero-bg ~ .px-4 details summary,
+    .index-faqs-hero-bg ~ .px-4 details .ProseMirror,
+    .index-faqs-hero-bg ~ .px-4 details .ProseMirror * {
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+    .index-faqs-hero-bg ~ .px-4 details svg,
+    .index-faqs-hero-bg ~ .px-4 details img {
+      max-width: 100%;
+      height: auto;
+    }
+  }
+}
+
+[x-cloak] {
+  display: none;
+}
+
+@import "./tooltip.css";
+@import 'viewerjs/dist/viewer.css';
+
+
+.ProseMirror {
+  [bke-role="column"] {
+    @apply dark:bg-base-300;
+  }
+}
+
+/* loading-spinner */
+.turbo-frame-loading-container {
+  position: absolute;
+  cursor: wait;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: transparent;
+  border-radius: 0.5rem;
+  z-index: 9999;
+  .loading-spinner {
+    @apply flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 font-[remixicon] not-italic text-primary text-3xl;
+    @apply after:content-['\eec9'] after:animate-spin;
+  }
+}
+
+.ai-response a {
+  @apply text-primary font-medium transition-colors;
+}
+
+.ai-response a:hover {
+  @apply text-primary underline cursor-pointer;
+}
+
+* {
+  scrollbar-width: thin;
+}
+
+:root {
+  --bke-content-h1-size: 1.5rem;
+  --bke-content-h2-size: 1.25rem;
+  --bke-content-h3-size: 1.125rem;
+  --bke-content-h4-size: 1rem;
+  --bke-content-h5-size: 0.875rem;
+  --bke-content-h6-size: 0.75rem;
+}
+
+
+.ProseMirror {
+  *+div[bke-role=paragraph], *+p, div[bke-role=paragraph]+*, p+* {
+    margin: 0rem 0 0.8rem 0;
+  }
+}

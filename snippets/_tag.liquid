@@ -1,0 +1,10 @@
+
+<a href="{{ tag.path }}" data-turbo-frame="_top" class="border border-[var(--tag-color)] dark:border-[var(--tag-dark-color)] rounded px-1 py-0.5 text-xs text-[var(--tag-color)] dark:text-[var(--tag-dark-color)] hover:text-white bg-[var(--tag-color)/20] dark:bg-[var(--tag-dark-color)/20] hover:bg-[var(--tag-color)] dark:hover:bg-[var(--tag-dark-color)]" style="
+  --tag-color-h: {{ tag.color_hsl[0] }}deg;
+  --tag-color-s: {{ tag.color_hsl[1] }}%;
+  --tag-color-l: {{ tag.color_hsl[2] }}%;
+  --tag-color: hsl(var(--tag-color-h) var(--tag-color-s) 50%);
+  --tag-dark-color: hsl(var(--tag-color-h) var(--tag-color-s) 70%);
+">
+  # {{ tag.name }}
+</a>
