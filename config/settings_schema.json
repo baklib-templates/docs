@@ -1,22 +1,29 @@
 [
   {
     "name": "theme_info",
-    "theme_name": "wiki",
+    "theme_name": "docs",
     "theme_label": "t:schema.theme_label",
     "theme_description": "t:schema.theme_description",
     "theme_version": "2.1.2",
     "theme_syntax_version": "v2",
     "theme_scope": "wiki",
     "theme_author": "Baklib",
-    "theme_documentation_url": "https://help.baklib.cn/themes/wiki",
-    "theme_support_url": "https://help.baklib.cn/themes/wiki/settings",
-    "theme_thumb_url": "images/schema/thumb.png",
+    "theme_documentation_url": "https://help.baklib.cn/themes/docs",
+    "theme_support_url": "https://help.baklib.cn/themes/docs/settings",
+    "theme_thumb_url": "images/theme/${lang}/thumb.png",
     "theme_preview_images": [
-      "images/schema/wiki.png",
-      "images/schema/index-help-center.png",
-      "images/schema/index-list.png",
-      "images/schema/index-docs.png",
-      "images/schema/page.png"
+      "images/theme/${lang}/index.png",
+      "images/theme/${lang}/index-mint.png",
+      "images/theme/${lang}/index-maple.png",
+      "images/theme/${lang}/index-palm.png",
+      "images/theme/${lang}/index-willow.png",
+      "images/theme/${lang}/index-linden.png",
+      "images/theme/${lang}/index-almond.png",
+      "images/theme/${lang}/index-aspen.png",
+      "images/theme/${lang}/index-sequoia.png",
+      "images/theme/${lang}/index-luma.png",
+      "images/theme/${lang}/index-list.png",
+      "images/theme/${lang}/page.png"
     ],
     "theme_languages": [
       {
@@ -38,12 +45,20 @@
       {
         "name": "日本語",
         "value": "ja"
+      },
+      {
+        "name": "Deutsch",
+        "value": "de"
+      },
+      {
+        "name": "Français",
+        "value": "fr"
       }
     ],
     "recommendations": {
       "color_schemas": {
         "fashion": {
-          "name": "时尚",
+          "name": "t:schema.recommendations.fashion.name",
           "colors": {
             "--theme-color-primary": "#03A9F4",
             "--theme-color-secondary": "#E91E63",
@@ -54,7 +69,7 @@
           }
         },
         "old_school": {
-          "name": "复古",
+          "name": "t:schema.recommendations.old_school.name",
           "colors": {
             "--theme-color-primary": "#9C27B0",
             "--theme-color-secondary": "#673AB7",
@@ -127,22 +142,25 @@
       {
         "id": "header_type",
         "type": "radio",
-        "label": "顶部导航栏风格",
-        "choices": [{"label":"简单透明","value":"0"},{"label":"自定义颜色","value":"1"}],
+        "label": "t:schema.generic.settings.header_type.label",
+        "choices": [
+          { "label": "t:schema.generic.settings.header_type.choices.transparent", "value": "0" },
+          { "label": "t:schema.generic.settings.header_type.choices.custom", "value": "1" }
+        ],
         "default": "1",
-        "info": "*  影响头部导航栏的背景色和文字颜色。\n*  0 - 浅色风格，毛玻璃展现形式。\n*  1 - 自定义颜色, 请在方选择背景、文字颜色。"
+        "info": "t:schema.generic.settings.header_type.info"
       },
       {
         "id": "header_bg_color",
         "type": "color",
-        "label": "顶部导航栏背景色",
+        "label": "t:schema.generic.settings.header_bg_color.label",
         "info": "",
         "default": "#ffffff"
       },
       {
         "id": "header_text_color",
         "type": "color",
-        "label": "顶部导航栏文字颜色",
+        "label": "t:schema.generic.settings.header_text_color.label",
         "default": "#000000"
       },
       {

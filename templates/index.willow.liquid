@@ -1,0 +1,166 @@
+<div class="relative [&_*]:shadow-none" x-data="gradientGenerator('{{ page.settings.hero_bg_color }}')">
+  {% render 'index_themes/decoration' %}
+
+  <div class='px-4' data-controller="link-target">
+    <section class="mx-auto max-w-[var(--max-content-width)]">
+      {% render 'index_themes/features_html', html: site.settings.features_one_html %}
+
+      {% render 'index_themes/hero_search', search_shape: 'square' %}
+
+      <div class='space-y-10'>
+        {% if page.settings.show_channels_section %}
+          {% render 'index_themes/channels_grid', columns: 2, card_style: 'flat' %}
+        {% endif %}
+
+        {% if page.settings.show_topic_channel %}
+          {% render 'index_themes/topic_grid', columns: 2 %}
+        {% endif %}
+
+        {% if page.settings.show_newest_section %}
+          {% render 'index_themes/recent_list', style: 'plain' %}
+        {% endif %}
+
+        {% if page.settings.show_hottest_section %}
+          {% render 'index_themes/hottest_list', style: 'plain' %}
+        {% endif %}
+
+        {% render 'index_themes/features_html', html: site.settings.features_two_html %}
+      </div>
+    </section>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "t:schema.templates.index.willow.name",
+    "description": "t:schema.templates.index.willow.description",
+    "thumb_url": "images/schema/index-willow.png",
+    "preview_image_urls": [
+      "images/schema/index-willow.png"
+    ],
+    "sub_page_templates": [
+      "page"
+    ],
+    "settings": [
+      {
+        "id": "hero_bg_type",
+        "type": "radio",
+        "label": "t:schema.templates.index.shared.settings.hero_bg_type.label",
+        "choices": [
+          {
+            "label": "t:schema.templates.index.shared.settings.hero_bg_type.choices.none",
+            "value": "0"
+          },
+          {
+            "label": "t:schema.templates.index.shared.settings.hero_bg_type.choices.color",
+            "value": "1"
+          },
+          {
+            "label": "t:schema.templates.index.shared.settings.hero_bg_type.choices.image",
+            "value": "2"
+          }
+        ],
+        "default": "0",
+        "info": "t:schema.templates.index.shared.settings.hero_bg_type.info"
+      },
+      {
+        "id": "hero_height",
+        "type": "range",
+        "label": "t:schema.templates.index.shared.settings.hero_height.label",
+        "info": "t:schema.templates.index.shared.settings.hero_height.info",
+        "min": 100,
+        "max": 600,
+        "step": 10,
+        "unit": "px",
+        "default": 360
+      },
+      {
+        "id": "hero_image_url",
+        "type": "image_picker",
+        "ratio": "4:1",
+        "width": 900,
+        "label": "t:schema.templates.index.shared.settings.hero_image_url.label",
+        "info": "t:schema.templates.index.shared.settings.hero_image_url.info"
+      },
+      {
+        "id": "hero_bg_color",
+        "type": "color",
+        "label": "t:schema.templates.index.shared.settings.hero_bg_color.label",
+        "info": "t:schema.templates.index.shared.settings.hero_bg_color.info",
+        "default": "#F8FAFC"
+      },
+      {
+        "id": "hero_slogan",
+        "type": "text",
+        "default": "t:schema.templates.index.shared.settings.hero_slogan.default",
+        "label": "t:schema.templates.index.shared.settings.hero_slogan.label",
+        "info": "t:schema.templates.index.shared.settings.hero_slogan.info"
+      },
+      {
+        "id": "search_hot_tags",
+        "type": "tag_picker",
+        "multiple": true,
+        "label": "t:schema.templates.index.shared.settings.search_hot_tags.label",
+        "info": "t:schema.templates.index.shared.settings.search_hot_tags.info"
+      },
+      {
+        "id": "search_hot_keywords",
+        "type": "textarea",
+        "label": "t:schema.templates.index.shared.settings.search_hot_keywords.label",
+        "info": "t:schema.templates.index.shared.settings.search_hot_keywords.info"
+      },
+      {
+        "id": "show_channels_section",
+        "label": "t:schema.templates.index.shared.settings.show_channels_section.label",
+        "type": "checkbox",
+        "default": true,
+        "info": "t:schema.templates.index.shared.settings.show_channels_section.info"
+      },
+      {
+        "id": "channels_section_title",
+        "label": "t:schema.templates.index.shared.settings.channels_section_title.label",
+        "type": "text",
+        "default": "t:schema.templates.index.shared.settings.channels_section_title.default"
+      },
+      {
+        "id": "show_topic_channel",
+        "label": "t:schema.templates.index.shared.settings.show_topic_channel.label",
+        "type": "checkbox",
+        "default": false,
+        "info": "t:schema.templates.index.shared.settings.show_topic_channel.info"
+      },
+      {
+        "id": "topic_channel_title",
+        "label": "t:schema.templates.index.shared.settings.topic_channel_title.label",
+        "type": "text",
+        "default": "t:schema.templates.index.shared.settings.topic_channel_title.default"
+      },
+      {
+        "id": "show_newest_section",
+        "label": "t:schema.templates.index.shared.settings.show_newest_section.label",
+        "type": "checkbox",
+        "default": false,
+        "info": "t:schema.templates.index.shared.settings.show_newest_section.info"
+      },
+      {
+        "id": "newest_section_title",
+        "label": "t:schema.templates.index.shared.settings.newest_section_title.label",
+        "type": "text",
+        "default": "t:schema.templates.index.shared.settings.newest_section_title.default"
+      },
+      {
+        "id": "show_hottest_section",
+        "label": "t:schema.templates.index.shared.settings.show_hottest_section.label",
+        "type": "checkbox",
+        "default": false,
+        "info": "t:schema.templates.index.shared.settings.show_hottest_section.info"
+      },
+      {
+        "id": "hottest_section_title",
+        "label": "t:schema.templates.index.shared.settings.hottest_section_title.label",
+        "type": "text",
+        "default": "t:schema.templates.index.shared.settings.hottest_section_title.default"
+      }
+    ]
+  }
+{% endschema %}

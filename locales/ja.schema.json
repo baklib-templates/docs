@@ -1,11 +1,17 @@
 {
-  "theme_label": "ナレッジコンテンツポータル",
-  "theme_description": "組織内のナレッジベースをCMSシステムを通じて独立した表示ウェブサイトに変換することをサポートする専門的なナレッジコンテンツ表示テーマ。企業ナレッジベース、製品ヘルプセンター、技術文書など、さまざまなコンテンツ表示シナリオに適しており、ナレッジ管理とコンテンツ表示をより効率的にします。",
+  "theme_label": "Docs",
+  "theme_description": "ユーザーが読みたくなるドキュメント体験を届けます。情報設計が明快で検索が速く、AI による回答にも対応。ナレッジベースを製品ドキュメントや API ガイドとして公開でき、ゼロからドキュメントサイトを構築する必要はありません。",
+  "recommendations": {
+    "fashion": {
+      "name": "ファッション"
+    },
+    "old_school": {
+      "name": "レトロ"
+    }
+  },
   "templates": {
     "index": {
-      "docs": {
-        "name": "ドキュメントセンター",
-        "description": "理想的な製品ユーザーマニュアル",
+      "shared": {
         "settings": {
           "hero_bg_type": {
             "label": "ヒーロー背景スタイル",
@@ -32,6 +38,18 @@
             "label": "スローガン",
             "info": "スローガンは背景画像の上に表示されます",
             "default": "👋 What Can We Help?"
+          },
+          "hero_subtitle": {
+            "label": "Hero サブタイトル",
+            "info": "任意。スローガンの下に表示される補足文（Aspen / Sequoia / Luma テーマで利用）。"
+          },
+          "cta_text": {
+            "label": "CTA ボタンの文言",
+            "info": "任意。URL と同時に設定するとスローガンの隣にメインアクションのボタンが表示されます（Aspen スタイル）。"
+          },
+          "cta_href": {
+            "label": "CTA ボタンのリンク",
+            "info": "CTA ボタンの遷移先となる完全 URL またはサイト内パス。"
           },
           "search_hot_tags": {
             "label": "人気のタグ",
@@ -75,77 +93,67 @@
           }
         }
       },
-      "help_center": {
-        "name": "ヘルプセンター",
-        "description": "機能豊富な製品ナレッジベーススタイル",
+      "mint": {
+        "name": "Mint (Classic)",
+        "description": "親しみある定番レイアウト。柔らかなグラデーションのヒーローと 3 カラムの入門カードで、製品ドキュメントの安全な既定値。"
+      },
+      "maple": {
+        "name": "Maple (Mintlify 風ドキュメントホーム)",
+        "description": "Mintlify Maple に近い 3 カラム：左ナビ、ドキュメント型ヘッダ（ラベル・タイトル・コピー・リード・任意バナー）、アウトラインカード、右「このページの目次」。検索はサイトヘッダー。",
         "settings": {
           "hero_bg_type": {
-            "label": "ヒーロー背景スタイル",
-            "info": "背景スタイルを選択すると、背景色と画像が選択した内容に応じて表示されます",
-            "choices": {
-              "none": "背景なし",
-              "color": "カラー背景",
-              "image": "画像背景"
-            }
-          },
-          "hero_height": {
-            "label": "背景の高さ",
-            "info": "推奨高さ：360px"
+            "info": "背景なしはプロトに近い見え方です。画像を選ぶとリード文の下に角丸バナーを表示します。"
           },
           "hero_image_url": {
-            "label": "背景画像",
-            "info": "背景画像はページ幅と背景の高さに応じて自動的にトリミングされます"
+            "info": "背景が画像のとき、リード文の下に角丸のバナー画像として表示します。"
           },
-          "hero_bg_color": {
-            "label": "背景色",
-            "info": "ヒーロー背景スタイルの色は選択した色値に基づいて処理されます（カラー背景）"
+          "hero_kicker": {
+            "label": "上段ラベル（アイブロー）",
+            "info": "タイトル上の小さな大文字ラベル。Maple のアクセント色を使います。",
+            "default": "はじめに"
+          },
+          "hero_intro": {
+            "label": "リード文",
+            "info": "タイトル下のプレーンテキスト。リッチなブロックはサイトの Features HTML（BKE Markdown 可）を利用してください。"
           },
           "hero_slogan": {
-            "label": "スローガン",
-            "info": "スローガンは背景画像の上に表示されます",
-            "default": "👋 What Can We Help?"
-          },
-          "search_hot_tags": {
-            "label": "人気のタグ",
-            "info": "設定すると、タグリストがホームページの検索バーの下に表示されます"
-          },
-          "search_hot_keywords": {
-            "label": "人気の検索",
-            "info": "設定すると、検索ボックスの下に人気の検索が表示されます。改行で複数のキーワードを設定します"
-          },
-          "show_channels_section": {
-            "label": "ナビゲーションセクション",
-            "info": "チェックを外すと、このセクションはホームページに表示されません"
+            "default": "Maple へようこそ"
           },
           "channels_section_title": {
-            "label": "ナビゲーションセクションのタイトル",
-            "default": "ナビゲーション"
-          },
-          "show_newest_section": {
-            "label": "最新記事セクション",
-            "info": "チェックを外すと、このセクションはホームページに表示されません"
-          },
-          "newest_section_title": {
-            "label": "最新記事セクションのタイトル",
-            "default": "最新記事"
-          },
-          "show_topic_channel": {
-            "label": "特集トピックセクション",
-            "info": "チェックを外すと、このセクションはホームページに表示されません"
+            "default": "セットアップ"
           },
           "topic_channel_title": {
-            "label": "特集トピックセクションのタイトル",
-            "default": "特集トピック"
-          },
-          "show_hottest_section": {
-            "label": "人気記事セクション",
-            "info": "チェックを外すと、このセクションはホームページに表示されません"
-          },
-          "hottest_section_title": {
-            "label": "人気記事セクションのタイトル",
-            "default": "人気記事"
+            "default": "カスタマイズ"
           }
         }
+      },
+      "palm": {
+        "name": "Palm (Enterprise)",
+        "description": "メッシュ背景＋セリフ見出し＋ 2 カラム — フィンテックや大企業向け。"
+      },
+      "willow": {
+        "name": "Willow (Minimal)",
+        "description": "装飾を排した没入型レイアウト。最新／人気は既定で非表示。"
+      },
+      "linden": {
+        "name": "Linden (Retro Terminal)",
+        "description": "等幅フォント＋方眼背景＋点線枠 — 80 年代ハッカー風。"
+      },
+      "almond": {
+        "name": "Almond (Warm)",
+        "description": "暖色グラデーションと大きな角丸カード。すべてのセクションが既定で有効。"
+      },
+      "aspen": {
+        "name": "Aspen (AI / SDK)",
+        "description": "等高線背景＋ 4 タイル入門グリッド — SDK / AI エンジニアリング向け。"
+      },
+      "sequoia": {
+        "name": "Sequoia (Large-scale API)",
+        "description": "余白を活かした 4 カラム — 大規模 API・開発者プラットフォーム向け。"
+      },
+      "luma": {
+        "name": "Luma (Lightweight)",
+        "description": "最も軽量。装飾を最小限に、最新／人気は既定で非表示。"
       },
       "list": {
         "name": "製品マニュアル",
@@ -235,6 +243,20 @@
       "right_sidebar_width": {
         "label": "右サイドバー幅（詳細ページ）",
         "info": "推奨：240px"
+      },
+      "header_type": {
+        "label": "ヘッダースタイル",
+        "info": "* ヘッダーナビゲーションバーの背景色とテキスト色に影響します。\n* 0 - フロストグラス風のライトスタイル。\n* 1 - カスタムカラー。下で背景色とテキスト色を選択してください。",
+        "choices": {
+          "transparent": "シンプル透明",
+          "custom": "カスタムカラー"
+        }
+      },
+      "header_bg_color": {
+        "label": "ヘッダー背景色"
+      },
+      "header_text_color": {
+        "label": "ヘッダーテキスト色"
       },
       "show_published_at": {
         "label": "公開時間を表示"

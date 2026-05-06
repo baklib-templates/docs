@@ -1,0 +1,83 @@
+{
+  "layout": {
+    "theme": {
+      "search_input_placeholder": "Suchen…",
+      "search_tags_label": "Beliebte Tags",
+      "search_keywords_label": "Beliebte Suchen"
+    }
+  },
+  "snippets": {
+    "header": {
+      "light_mode": "Hell",
+      "dark_mode": "Dunkel",
+      "auto_mode": "Automatisch"
+    },
+    "footer": {
+      "copyright": "Alle Rechte vorbehalten"
+    },
+    "feedback_form": {
+      "title": "Feedback senden",
+      "message_label": "Nachricht",
+      "message_placeholder": "Bitte geben Sie Ihr Feedback ein",
+      "message_required": "Feedback darf nicht leer sein",
+      "submit": "Senden",
+      "cancel": "Abbrechen"
+    },
+    "feedback_button": {
+      "title_posted": "Vielen Dank für Ihr Feedback",
+      "title_unposted": "Feedback senden"
+    },
+    "page": {
+      "prev_page": "Zurück",
+      "next_page": "Weiter"
+    },
+    "page_tools": {
+      "copy_page_label": "Seite kopieren",
+      "copy_page_description": "Diese Seite als Markdown für LLMs kopieren",
+      "open_in_chatgpt": "In ChatGPT öffnen",
+      "open_in_claude": "In Claude öffnen",
+      "ask_about_page": "Frage zu dieser Seite stellen",
+      "copy_mcp_label": "MCP-Installationsbefehl kopieren",
+      "copy_mcp_description": "npx-Befehl zur Installation des MCP-Servers kopieren",
+      "connect_to_cursor": "Mit Cursor verbinden",
+      "connect_to_cursor_description": "MCP Server in Cursor installieren",
+      "connect_to_vscode": "Mit VS Code verbinden",
+      "connect_to_vscode_description": "MCP Server in VS Code installieren"
+    }
+  },
+  "templates": {
+    "search": {
+      "placeholder": "Suchen…",
+      "no_results": "Keine Ergebnisse gefunden",
+      "ai_input_placeholder": "Geben Sie Ihre Frage ein…"
+    },
+    "page": {
+      "copy_success": "Link kopiert",
+      "page_toc": "Inhaltsverzeichnis",
+      "llm_prompt_template": "Lies %{url}, damit ich Fragen dazu stellen kann.",
+      "llm_copying": "Kopieren…",
+      "llm_copied": "Kopiert"
+    }
+  },
+  "ai": {
+    "title": "KI-Suche",
+    "thinking": "Denkt nach…",
+    "completed": "KI-Antwort abgeschlossen.",
+    "canceled": "Abgebrochen"
+  },
+  "generic": {
+    "published_at": "Veröffentlicht am",
+    "feedback_created_at": "Letztes Feedback am",
+    "buttons": {
+      "signout": "Abmelden"
+    },
+    "read_more": "Mehr ansehen",
+    "menu": ""
+  },
+  "search": {
+    "placeholder": "Suchen…"
+  },
+  "placeholders": {
+    "search": ""
+  }
+}

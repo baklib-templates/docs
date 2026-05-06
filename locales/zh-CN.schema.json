@@ -1,11 +1,17 @@
 {
-  "theme_label": "知识内容展示门户",
-  "theme_description": "专业的知识内容展示主题，支持将组织内部知识库通过 CMS 系统转化为独立的展示网站。适用于企业知识库、产品帮助中心、技术文档等多种内容展示场景，让知识管理和内容展示更加高效。",
+  "theme_label": "Docs",
+  "theme_description": "打造用户愿意阅读的文档体验：结构清晰、检索迅捷，并可接入 AI 问答。将知识库呈现为产品文档与 API 指南，无需从零自建文档站。",
+  "recommendations": {
+    "fashion": {
+      "name": "时尚"
+    },
+    "old_school": {
+      "name": "复古"
+    }
+  },
   "templates": {
     "index": {
-      "docs": {
-        "name": "文档中心",
-        "description": "理想的产品用户手册",
+      "shared": {
         "settings": {
           "hero_bg_type": {
             "label": "首屏背景样式",
@@ -32,6 +38,18 @@
             "label": "标语",
             "info": "标语会显示在背景图上方",
             "default": "👋 What Can We Help?"
+          },
+          "hero_subtitle": {
+            "label": "Hero 副标题",
+            "info": "可选副标题，显示在 Slogan 下方，可放较长引导文字。Aspen / Sequoia / Luma 主题会使用。"
+          },
+          "cta_text": {
+            "label": "CTA 按钮文字",
+            "info": "可选。与 CTA URL 同时填写时，会在 Slogan 旁出现一个主按钮（Aspen 风格）。"
+          },
+          "cta_href": {
+            "label": "CTA 按钮链接",
+            "info": "完整 URL 或站内路径，CTA 按钮指向的目标。"
           },
           "search_hot_tags": {
             "label": "热门标签",
@@ -75,77 +93,67 @@
           }
         }
       },
-      "help_center": {
-        "name": "帮助中心",
-        "description": "功能丰富的产品知识库样式",
+      "mint": {
+        "name": "Mint（经典款）",
+        "description": "经典文档站布局，柔色渐变 hero + 三列入门卡片，是产品文档最稳的默认款。"
+      },
+      "maple": {
+        "name": "Maple（Mintlify 文档首页）",
+        "description": "对齐 Mintlify Maple：左导航 + 文档式首页（眉题、标题、复制页面、导语、可选头图）+ 轮廓卡片 + 右侧页内目录；搜索使用站点顶栏。",
         "settings": {
           "hero_bg_type": {
-            "label": "首屏背景样式",
-            "info": "选择背景样式后，背景色和背景图会根据选择的内容进行展示",
-            "choices": {
-              "none": "无背景",
-              "color": "颜色背景",
-              "image": "图片背景"
-            }
-          },
-          "hero_height": {
-            "label": "背景高度",
-            "info": "建议高度：360px"
+            "info": "无背景更接近原型；若选「图片」，导语下方显示圆角横幅头图。"
           },
           "hero_image_url": {
-            "label": "背景图",
-            "info": "背景图会根据页面宽度和背景高度自动裁剪"
+            "info": "背景样式为图片时，在导语下方以内嵌圆角大图展示。"
           },
-          "hero_bg_color": {
-            "label": "背景色",
-            "info": "选择背景色后，背景色会根据选择的内容进行展示"
+          "hero_kicker": {
+            "label": "眉题 / 分区标签",
+            "info": "标题上方的小号全大写标签（如「入门」），使用 Maple 强调色。",
+            "default": "入门"
+          },
+          "hero_intro": {
+            "label": "导语段落",
+            "info": "标题下方的纯文字导语。复杂排版（标注框、分栏等）请用站点「Features HTML」，可配合 BKE Markdown。"
           },
           "hero_slogan": {
-            "label": "标语",
-            "info": "标语会显示在背景图上方",
-            "default": "👋 What Can We Help?"
-          },
-          "search_hot_tags": {
-            "label": "热门标签",
-            "info": "设置以后，标签列表会显示在首页搜索栏下方"
-          },
-          "search_hot_keywords": {
-            "label": "热门搜索",
-            "info": "设置以后，搜索框下方会显示热门搜索。换行设置多个关键词"
-          },
-          "show_channels_section": {
-            "label": "栏目导览板块",
-            "info": "不勾选，首页将不会显示此板块"
+            "default": "欢迎使用 Maple"
           },
           "channels_section_title": {
-            "label": "栏目导览板块标题",
-            "default": "栏目导览"
-          },
-          "show_newest_section": {
-            "label": "最新文章板块",
-            "info": "不勾选，首页将不会显示此板块"
-          },
-          "newest_section_title": {
-            "label": "最新文章板块标题",
-            "default": "最新文章"
-          },
-          "show_topic_channel": {
-            "label": "专题推荐板块",
-            "info": "不勾选，首页将不会显示此板块"
+            "default": "开始配置"
           },
           "topic_channel_title": {
-            "label": "专题推荐板块的标题",
-            "default": "专题推荐"
-          },
-          "show_hottest_section": {
-            "label": "热门文章板块",
-            "info": "不勾选，首页将不会显示此板块"
-          },
-          "hottest_section_title": {
-            "label": "热门文章板块标题",
-            "default": "热门文章"
+            "default": "个性化你的文档"
           }
         }
+      },
+      "palm": {
+        "name": "Palm（企业 / 金融）",
+        "description": "冷峻 mesh 背景 + 衬线标题 + 两列大卡，适合金融与企业平台文档。"
+      },
+      "willow": {
+        "name": "Willow（极简）",
+        "description": "无装饰、零干扰阅读体验，纯文字卡片，默认关闭最新 / 热门板块。"
+      },
+      "linden": {
+        "name": "Linden（复古终端）",
+        "description": "等宽字体 + 方格背景 + 虚线描边，80 年代极客文档美学。"
+      },
+      "almond": {
+        "name": "Almond（暖色）",
+        "description": "温暖柔和的渐变 + 圆角大卡，所有板块默认开启。"
+      },
+      "aspen": {
+        "name": "Aspen（AI / SDK）",
+        "description": "等高线背景 + 4 格入门 tile,面向 SDK 与 AI 工程文档。"
+      },
+      "sequoia": {
+        "name": "Sequoia（大规模 API）",
+        "description": "大留白宽松布局 + 4 列卡片,适合体量庞大的 API 与开发者平台文档。"
+      },
+      "luma": {
+        "name": "Luma（极轻）",
+        "description": "最克制的一款：装饰极少,两列扁平卡,默认隐藏最新 / 热门。"
       },
       "list": {
         "name": "产品手册",
@@ -235,6 +243,20 @@
       "right_sidebar_width": {
         "label": "右侧边栏宽度(详细页面中)",
         "info": "建议：240px"
+      },
+      "header_type": {
+        "label": "顶部导航栏风格",
+        "info": "*  影响头部导航栏的背景色和文字颜色。\n*  0 - 浅色风格，毛玻璃展现形式。\n*  1 - 自定义颜色，请在下方选择背景、文字颜色。",
+        "choices": {
+          "transparent": "简单透明",
+          "custom": "自定义颜色"
+        }
+      },
+      "header_bg_color": {
+        "label": "顶部导航栏背景色"
+      },
+      "header_text_color": {
+        "label": "顶部导航栏文字颜色"
       },
       "show_published_at": {
         "label": "显示发布时间"

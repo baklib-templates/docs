@@ -1,11 +1,17 @@
 {
-  "theme_label": "Knowledge Content Portal",
-  "theme_description": "Professional knowledge content display theme that supports converting internal organizational knowledge bases into independent display websites through CMS systems. Suitable for enterprise knowledge bases, product help centers, technical documentation, and other content display scenarios, making knowledge management and content display more efficient.",
+  "theme_label": "Docs",
+  "theme_description": "Ship documentation your users will actually read—clear information architecture, instant search, and AI-ready Q&A out of the box. Turn your knowledge base into polished product docs and API guides without hand-rolling a separate doc site.",
+  "recommendations": {
+    "fashion": {
+      "name": "Fashion"
+    },
+    "old_school": {
+      "name": "Retro"
+    }
+  },
   "templates": {
     "index": {
-      "docs": {
-        "name": "Documentation Center",
-        "description": "Ideal product user manual",
+      "shared": {
         "settings": {
           "hero_bg_type": {
             "label": "Hero Background Style",
@@ -32,6 +38,18 @@
             "label": "Slogan",
             "info": "Slogan will be displayed above the background image",
             "default": "👋 What Can We Help?"
+          },
+          "hero_subtitle": {
+            "label": "Hero subtitle",
+            "info": "Optional secondary line shown beneath the slogan; supports long descriptive text. Used by Aspen / Sequoia / Luma themes."
+          },
+          "cta_text": {
+            "label": "CTA button label",
+            "info": "Optional. When set together with the URL, a primary call-to-action is shown next to the slogan (Aspen-style)."
+          },
+          "cta_href": {
+            "label": "CTA button URL",
+            "info": "Absolute URL or in-site path the CTA button links to."
           },
           "search_hot_tags": {
             "label": "Popular Tags",
@@ -75,77 +93,67 @@
           }
         }
       },
-      "help_center": {
-        "name": "Help Center",
-        "description": "Feature-rich product knowledge base style",
+      "mint": {
+        "name": "Mint (Classic)",
+        "description": "Familiar layout with a gentle gradient hero and a 3-column getting-started grid—the safest default for product docs."
+      },
+      "maple": {
+        "name": "Maple (Mintlify-style docs)",
+        "description": "Three-column docs shell like Mintlify Maple: left navigation, document-style home header (eyebrow, title, Copy page, intro, optional hero image), outline tiles, and in-page TOC. Search uses the site header.",
         "settings": {
           "hero_bg_type": {
-            "label": "Hero Background Style",
-            "info": "After selecting the background style, the background color and image will be displayed according to the selected content",
-            "choices": {
-              "none": "No Background",
-              "color": "Color Background",
-              "image": "Image Background"
-            }
-          },
-          "hero_height": {
-            "label": "Background Height",
-            "info": "Recommended height: 360px"
+            "info": "Plain background matches the Maple prototype; choose Image for a rounded hero banner below the intro."
           },
           "hero_image_url": {
-            "label": "Background Image",
-            "info": "Background image will be automatically cropped according to page width and background height"
+            "info": "Shown as an inline rounded banner under the lead paragraph when background style is Image."
           },
-          "hero_bg_color": {
-            "label": "Background Color",
-            "info": "The color of the hero background style will be processed according to the selected color value (color background)"
+          "hero_kicker": {
+            "label": "Eyebrow label",
+            "info": "Small uppercase label above the title (e.g. Get Started). Tinted with Maple accent.",
+            "default": "Get Started"
+          },
+          "hero_intro": {
+            "label": "Lead paragraph",
+            "info": "Plain-text introduction under the title. For rich layouts (callouts, grids), use site Features HTML — BKE Markdown works well there."
           },
           "hero_slogan": {
-            "label": "Slogan",
-            "info": "Slogan will be displayed above the background image",
-            "default": "👋 What Can We Help?"
-          },
-          "search_hot_tags": {
-            "label": "Popular Tags",
-            "info": "After setting, the tag list will be displayed below the homepage search bar"
-          },
-          "search_hot_keywords": {
-            "label": "Popular Searches",
-            "info": "After setting, popular searches will be displayed below the search box. Use line breaks to set multiple keywords"
-          },
-          "show_channels_section": {
-            "label": "Navigation Section",
-            "info": "If unchecked, this section will not be displayed on the homepage"
+            "default": "Welcome to Maple"
           },
           "channels_section_title": {
-            "label": "Navigation Section Title",
-            "default": "Navigation"
-          },
-          "show_newest_section": {
-            "label": "Latest Articles Section",
-            "info": "If unchecked, this section will not be displayed on the homepage"
-          },
-          "newest_section_title": {
-            "label": "Latest Articles Section Title",
-            "default": "Latest Articles"
-          },
-          "show_topic_channel": {
-            "label": "Featured Topics Section",
-            "info": "If unchecked, this section will not be displayed on the homepage"
+            "default": "Setting up"
           },
           "topic_channel_title": {
-            "label": "Featured Topics Section Title",
-            "default": "Featured Topics"
-          },
-          "show_hottest_section": {
-            "label": "Popular Articles Section",
-            "info": "If unchecked, this section will not be displayed on the homepage"
-          },
-          "hottest_section_title": {
-            "label": "Popular Articles Section Title",
-            "default": "Popular Articles"
+            "default": "Make it yours"
           }
         }
+      },
+      "palm": {
+        "name": "Palm (Enterprise)",
+        "description": "Sober mesh background with serif headings and a 2-column layout—built for fintech and enterprise platforms."
+      },
+      "willow": {
+        "name": "Willow (Minimal)",
+        "description": "Distraction-free reading layout: no background art, plain text cards, latest/hottest sections off by default."
+      },
+      "linden": {
+        "name": "Linden (Retro Terminal)",
+        "description": "Monospace type with a grid backdrop and dashed borders—an 80s hacker aesthetic for opinionated docs."
+      },
+      "almond": {
+        "name": "Almond (Warm)",
+        "description": "Friendly warm gradient with rounded cards; all sections enabled by default."
+      },
+      "aspen": {
+        "name": "Aspen (AI / SDK)",
+        "description": "Engineering-leaning home with a contour-line backdrop and a 4-tile getting-started grid for SDK references."
+      },
+      "sequoia": {
+        "name": "Sequoia (Large-scale API)",
+        "description": "Spacious, breathing layout with a 4-column grid—designed for sprawling API and developer-platform docs."
+      },
+      "luma": {
+        "name": "Luma (Lightweight)",
+        "description": "The lightest variant: minimal decoration, 2-column flat cards, latest/hottest hidden by default."
       },
       "list": {
         "name": "Product Manual",
@@ -235,6 +243,20 @@
       "right_sidebar_width": {
         "label": "Right Sidebar Width (in detail pages)",
         "info": "Recommended: 240px"
+      },
+      "header_type": {
+        "label": "Header Style",
+        "info": "* Affects the background and text color of the top navigation bar.\n* 0 - Light style with frosted glass appearance.\n* 1 - Custom color, please choose background and text color below.",
+        "choices": {
+          "transparent": "Simple Transparent",
+          "custom": "Custom Color"
+        }
+      },
+      "header_bg_color": {
+        "label": "Header Background Color"
+      },
+      "header_text_color": {
+        "label": "Header Text Color"
       },
       "show_published_at": {
         "label": "Show Publication Time"

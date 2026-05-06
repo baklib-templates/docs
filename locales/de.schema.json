@@ -1,0 +1,341 @@
+{
+  "theme_label": "Docs",
+  "theme_description": "Dokumentation, die Nutzer wirklich lesen—klare Informationsarchitektur, blitzschnelle Suche und KI-gestützte Antworten out of the box. Verwandeln Sie Ihre Wissensdatenbank in überzeugende Produkt-Docs und API-Guides, ohne eine eigene Doc-Site von Grund auf zu bauen.",
+  "recommendations": {
+    "fashion": {
+      "name": "Fashion"
+    },
+    "old_school": {
+      "name": "Retro"
+    }
+  },
+  "templates": {
+    "index": {
+      "shared": {
+        "settings": {
+          "hero_bg_type": {
+            "label": "Hero-Hintergrundstil",
+            "info": "Nach Auswahl des Stils werden Hintergrundfarbe und -bild entsprechend angezeigt",
+            "choices": {
+              "none": "Kein Hintergrund",
+              "color": "Farbiger Hintergrund",
+              "image": "Bildhintergrund"
+            }
+          },
+          "hero_height": {
+            "label": "Hintergrundhöhe",
+            "info": "Empfohlene Höhe: 360px"
+          },
+          "hero_image_url": {
+            "label": "Hintergrundbild",
+            "info": "Das Hintergrundbild wird automatisch auf Seitenbreite und Hintergrundhöhe zugeschnitten"
+          },
+          "hero_bg_color": {
+            "label": "Hintergrundfarbe",
+            "info": "Bei farbigem Hintergrund wird die Farbe gemäß ausgewähltem Wert verwendet"
+          },
+          "hero_slogan": {
+            "label": "Slogan",
+            "info": "Der Slogan wird über dem Hintergrundbild angezeigt",
+            "default": "👋 Womit können wir helfen?"
+          },
+          "hero_subtitle": {
+            "label": "Hero-Untertitel",
+            "info": "Optionaler Zusatztext unter dem Slogan; eignet sich für längere Beschreibungen (verwendet in den Themes Aspen / Sequoia / Luma)."
+          },
+          "cta_text": {
+            "label": "Beschriftung der CTA-Schaltfläche",
+            "info": "Optional. Zusammen mit der URL erscheint neben dem Slogan eine primäre Handlungsaufforderung (Aspen-Stil)."
+          },
+          "cta_href": {
+            "label": "CTA-Schaltflächen-URL",
+            "info": "Vollständige URL oder seiteninterner Pfad, auf den die CTA-Schaltfläche verweist."
+          },
+          "search_hot_tags": {
+            "label": "Beliebte Tags",
+            "info": "Nach dem Setzen wird die Tag-Liste unter der Startseiten-Suchleiste angezeigt"
+          },
+          "search_hot_keywords": {
+            "label": "Beliebte Suchen",
+            "info": "Nach dem Setzen werden beliebte Suchen unter dem Suchfeld angezeigt. Mehrere Stichwörter mit Zeilenumbruch trennen"
+          },
+          "show_channels_section": {
+            "label": "Erste Sektion",
+            "info": "Wenn nicht ausgewählt, wird diese Sektion auf der Startseite nicht angezeigt"
+          },
+          "channels_section_title": {
+            "label": "Titel der ersten Sektion",
+            "default": "Erste Schritte"
+          },
+          "show_topic_channel": {
+            "label": "Sektion „Empfohlene Themen“",
+            "info": "Wenn nicht ausgewählt, wird diese Sektion auf der Startseite nicht angezeigt; aktivieren Sie zudem in den Seiteneinstellungen „Ist empfohlenes Thema“"
+          },
+          "topic_channel_title": {
+            "label": "Titel der empfohlenen Themen",
+            "default": "Empfohlene Themen"
+          },
+          "show_newest_section": {
+            "label": "Sektion „Neueste Artikel“",
+            "info": "Wenn nicht ausgewählt, wird diese Sektion auf der Startseite nicht angezeigt"
+          },
+          "newest_section_title": {
+            "label": "Titel der neuesten Artikel",
+            "default": "Neueste Artikel"
+          },
+          "show_hottest_section": {
+            "label": "Sektion „Trend-Themen“",
+            "info": "Wenn nicht ausgewählt, wird diese Sektion auf der Startseite nicht angezeigt"
+          },
+          "hottest_section_title": {
+            "label": "Titel der Trend-Themen",
+            "default": "Trend-Themen"
+          }
+        }
+      },
+      "mint": {
+        "name": "Mint (Klassisch)",
+        "description": "Klassisches Doku-Layout mit sanftem Hero-Verlauf und 3-spaltigem Einstiegsraster – die sicherste Voreinstellung."
+      },
+      "maple": {
+        "name": "Maple (Mintlify-ähnliche Doku-Startseite)",
+        "description": "Dreispaltiges Layout wie Mintlify Maple: linke Navigation, dokumentenartiger Kopf (Eyebrow, Titel, Seite kopieren, Einleitung, optionales Banner), Outline-Karten und rechts „Auf dieser Seite“. Suche in der Site-Header-Leiste.",
+        "settings": {
+          "hero_bg_type": {
+            "info": "Ohne Hintergrund entspricht es dem Prototyp; bei Bild erscheint unter der Einleitung ein abgerundetes Banner."
+          },
+          "hero_image_url": {
+            "info": "Bei Hintergrund „Bild“ wird dies unter der Einleitung als eingebettetes, rundes Banner angezeigt."
+          },
+          "hero_kicker": {
+            "label": "Eyebrow / Abschnittslabel",
+            "info": "Kleines Label in Großbuchstaben über dem Titel, in Maple-Akzentfarbe.",
+            "default": "Erste Schritte"
+          },
+          "hero_intro": {
+            "label": "Einleitung (Fließtext)",
+            "info": "Klartext unter dem Titel. Für reichere Blöcke nutzen Sie Features HTML der Site (inkl. BKE Markdown)."
+          },
+          "hero_slogan": {
+            "default": "Willkommen bei Maple"
+          },
+          "channels_section_title": {
+            "default": "Einrichten"
+          },
+          "topic_channel_title": {
+            "default": "Anpassen"
+          }
+        }
+      },
+      "palm": {
+        "name": "Palm (Enterprise)",
+        "description": "Nüchterner Mesh-Hintergrund, Serif-Titel und 2-Spalten-Layout – für Fintech und Konzernplattformen."
+      },
+      "willow": {
+        "name": "Willow (Minimal)",
+        "description": "Ablenkungsfreies Lese-Layout, schlichte Textkarten, Neueste/Beliebt standardmäßig aus."
+      },
+      "linden": {
+        "name": "Linden (Retro Terminal)",
+        "description": "Monospace-Schrift, Rasterhintergrund und gestrichelte Ränder – 80er-Hacker-Ästhetik."
+      },
+      "almond": {
+        "name": "Almond (Warm)",
+        "description": "Warmer Verlauf, große abgerundete Karten – alle Sektionen standardmäßig aktiv."
+      },
+      "aspen": {
+        "name": "Aspen (AI / SDK)",
+        "description": "Höhenlinien-Hintergrund und 4-Kachel-Einstieg – für SDK- und AI-Engineering-Dokus."
+      },
+      "sequoia": {
+        "name": "Sequoia (Großmaßstab-API)",
+        "description": "Weiträumiges Layout, 4 Spalten – für umfangreiche API- und Plattform-Dokus."
+      },
+      "luma": {
+        "name": "Luma (Leichtgewicht)",
+        "description": "Die leichteste Variante – minimale Dekoration, 2-spaltige Flat-Karten, Neueste/Beliebt standardmäßig aus."
+      },
+      "list": {
+        "name": "Produkthandbuch",
+        "description": "Verzeichnislisten-Stil auf der Startseite"
+      }
+    },
+    "page": {
+      "name": "Standard-Seitenvorlage",
+      "description": "Inhaltsseiten-Vorlage",
+      "settings": {
+        "show_list": {
+          "label": "Unterseiten-Liste anzeigen",
+          "info": "Wenn aktiviert, wird die Liste der Unterseiten auf der Seite angezeigt"
+        },
+        "is_topic_channel": {
+          "label": "Empfohlenes Thema",
+          "info": "Bei „Empfohlenes Thema“ erscheint die Seite in der Themenliste auf der Startseite"
+        },
+        "title": {
+          "label": "Seitentitel",
+          "info": "Mit der Wissensdatenbank synchronisiert, nicht editierbar"
+        },
+        "tags": {
+          "label": "Seiten-Tags"
+        },
+        "description": {
+          "label": "Seitenbeschreibung"
+        },
+        "icon": {
+          "label": "Seitensymbol",
+          "info": "Zur Anzeige des Seitensymbols, empfohlenes Verhältnis 1:1"
+        },
+        "content": {
+          "label": "Seiteninhalt",
+          "info": "Aus der Datenquelle synchronisiert, nicht editierbar"
+        }
+      },
+      "video": {
+        "name": "Video-Vorlage",
+        "description": "Vorlage für Videoseiten",
+        "settings": {
+          "is_video_list": {
+            "label": "Ist Videoliste",
+            "info": "Videolisten-Seite zeigt nur Unterseiten mit Video-Vorlage; bitte stellen Sie sicher, dass Unterseiten die Video-Vorlage verwenden"
+          },
+          "video_url": {
+            "label": "Video-URL",
+            "info": "Wird in der Videoliste angezeigt; auf der Listenseite nicht erforderlich"
+          }
+        }
+      },
+      "export": {
+        "name": "Export-Seitenvorlage",
+        "description": "Wird häufig verwendet, um den aktuellen Abschnitt und Unterseiten direkt im Browser zu exportieren"
+      }
+    }
+  },
+  "generic": {
+    "name": "Allgemeine Einstellungen",
+    "settings": {
+      "logo_url": {
+        "label": "Logo-Bild",
+        "info": "Wenn ein Logo gesetzt ist, wird es im Header angezeigt; sonst: Website-Symbol + Site-Name"
+      },
+      "company_name": {
+        "label": "Firmenname",
+        "default": "Baklib.cn",
+        "info": "Wird im Footer am Seitenende angezeigt"
+      },
+      "copyright_info": {
+        "label": "ICP/Copyright-Information",
+        "default": "ICP xxxxxx"
+      },
+      "screen_width": {
+        "label": "Seitenbreite",
+        "choices": {
+          "narrow": "Schmal (1024px)",
+          "medium": "Mittel (1280px)",
+          "wide": "Breit (1536px)",
+          "full": "Vollbild"
+        }
+      },
+      "left_sidebar_width": {
+        "label": "Linke Seitenleisten-Breite (Detailseiten)",
+        "info": "Empfohlen: 240px"
+      },
+      "right_sidebar_width": {
+        "label": "Rechte Seitenleisten-Breite (Detailseiten)",
+        "info": "Empfohlen: 240px"
+      },
+      "header_type": {
+        "label": "Header-Stil",
+        "info": "* Beeinflusst Hintergrund- und Textfarbe der oberen Navigation.\n* 0 - Heller Stil mit Frosted-Glass-Optik.\n* 1 - Eigene Farben, bitte unten Hintergrund- und Textfarbe wählen.",
+        "choices": {
+          "transparent": "Einfach transparent",
+          "custom": "Eigene Farbe"
+        }
+      },
+      "header_bg_color": {
+        "label": "Header-Hintergrundfarbe"
+      },
+      "header_text_color": {
+        "label": "Header-Textfarbe"
+      },
+      "show_published_at": {
+        "label": "Veröffentlichungszeit anzeigen"
+      },
+      "show_author": {
+        "label": "Autor anzeigen"
+      },
+      "show_card_icon": {
+        "label": "Sektions-Symbole auf der Startseite anzeigen",
+        "info": "Empfohlen, Symbole in den Seiteneinstellungen zu konfigurieren"
+      },
+      "ai_search_completed_text": {
+        "label": "KI-Abschlusstext",
+        "info": "Fügt nach der KI-Antwort einen Satz hinzu"
+      }
+    }
+  },
+  "page_config": {
+    "name": "Seiteneinstellungen",
+    "settings": {
+      "show_page_tools_dropdown": {
+        "label": "Seiten-Tools-Dropdown anzeigen"
+      }
+    }
+  },
+  "custom_html": {
+    "name": "Benutzerdefinierter HTML-Code",
+    "settings": {
+      "head_html": {
+        "label": "Benutzerdefiniertes HTML in <head></head>",
+        "info": "Unterstützt HTML-Tags und eingeschränkte TailwindCSS-Klassen",
+        "placeholder": "Üblich für Analytics, Support-Bot etc."
+      },
+      "header_menu_html": {
+        "label": "HTML im oberen Navigationsbereich einfügen",
+        "info": "Unterstützt HTML-Tags und eingeschränkte TailwindCSS-Klassen",
+        "placeholder": "Üblich für Navigationslinks zu anderen Firmenwebsites"
+      },
+      "footer_html": {
+        "label": "HTML im Footer-Bereich einfügen",
+        "info": "Unterstützt HTML-Tags und eingeschränkte TailwindCSS-Klassen; ersetzt den Standard-Footer komplett",
+        "placeholder": "Wenn der Standard-Footer erhalten bleiben soll, bitte HTML in footer_menu_html einfügen"
+      },
+      "footer_menu_html": {
+        "label": "HTML im unteren Bereich einfügen (innerhalb des Footers)",
+        "info": "Unterstützt HTML-Tags und eingeschränkte TailwindCSS-Klassen",
+        "placeholder": "Üblich für externe Navigation, Partner-Links und SEO-Links"
+      },
+      "features_one_html": {
+        "label": "HTML in der ersten Feature-Sektion der Startseite einfügen",
+        "info": "Unterstützt HTML-Tags und eingeschränkte TailwindCSS-Klassen",
+        "placeholder": "Üblich für Navigationslinks zu anderen Firmenwebsites"
+      },
+      "features_two_html": {
+        "label": "HTML in der zweiten Feature-Sektion der Startseite einfügen",
+        "info": "Unterstützt HTML-Tags und eingeschränkte TailwindCSS-Klassen",
+        "placeholder": "Üblich für Navigationslinks zu anderen Firmenwebsites"
+      }
+    }
+  },
+  "settings": {
+    "weixin_share": {
+      "title": "WeChat-Konfiguration",
+      "weixin_app_id": {
+        "label": "Entwickler-ID (AppID)",
+        "info": "<a href='https://mp.weixin.qq.com/cgi-bin/frame'>WeChat-Konto / Einstellungen & Entwicklung / Entwicklungsschnittstelle</a>"
+      },
+      "weixin_app_secret": {
+        "label": "Entwicklerschlüssel (AppSecret)",
+        "info": ""
+      },
+      "weixin_enabled": {
+        "label": "WeChat-Sharing aktivieren?",
+        "info": "Stellt die Möglichkeit bereit, Seiten in WeChat zu teilen.</br>Bitte tragen Sie die IP-Whitelist (ip: ${service_ip}) im WeChat-Konto ein. Änderungen können verzögert wirksam werden.</br>Prüfen Sie die Sharing-Berechtigung im WeChat-Konto / Einstellungen & Entwicklung / Entwicklungsschnittstelle: <a href='https://mp.weixin.qq.com/cgi-bin/frame'>Webdienst / Sharing-Schnittstelle</a>."
+      },
+      "weixin_debug": {
+        "label": "Debug-Hinweise aktivieren?",
+        "info": "Bitte nur während der Konfigurationsphase aktivieren; bei aktivierter Debug-Anzeige werden Konfigurationsfehler beim Aufruf der Seite gemeldet."
+      }
+    }
+  }
+}

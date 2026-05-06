@@ -42,17 +42,13 @@
     </section>
   {% endif %}
 
-  {% # 摘要 %}
+  {% # Subtitle / 摘要：Mintlify 风灰色引导文字，紧贴标题下方 %}
   {% assign description = page.settings.description | presence %}
   {% if description %}
-    <section class="mb-4">
-      <blockquote class="italic rounded-lg p-4 bg-base-200 text-base-content/50">
-        <p>{{ description }}</p>
-      </blockquote>
-    </section>
+    <p class="-mt-2 mb-6 text-base md:text-lg leading-relaxed text-base-content/60">{{ description }}</p>
   {% endif %}
 
-  <hr class='text-base-content/10 mb-4'/>
+  <hr class='border-base-content/10 mb-6'/>
 
   {% # 内容 %}
   <section id="page-content" class="ProseMirror flex-1 min-h-[20vh]" data-controller="link-target images-viewer" data-toc-target="content">

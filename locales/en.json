@@ -30,12 +30,26 @@
     "page": {
       "prev_page": "Previous",
       "next_page": "Next"
+    },
+    "page_tools": {
+      "copy_page_label": "Copy page",
+      "copy_page_description": "Copy this page as Markdown for LLMs",
+      "open_in_chatgpt": "Open in ChatGPT",
+      "open_in_claude": "Open in Claude",
+      "ask_about_page": "Ask a question about this page",
+      "copy_mcp_label": "Copy MCP install command",
+      "copy_mcp_description": "Copy npx command to install the MCP server",
+      "connect_to_cursor": "Connect to Cursor",
+      "connect_to_cursor_description": "Install MCP Server in Cursor",
+      "connect_to_vscode": "Connect to VS Code",
+      "connect_to_vscode_description": "Install MCP Server in VS Code"
     }
   },
   "templates": {
     "search": {
       "placeholder": "Search...",
-      "no_results": "No results found"
+      "no_results": "No results found",
+      "ai_input_placeholder": "Type your question…"
     },
     "page": {
       "copy_success": "Link copied",

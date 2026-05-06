@@ -15,7 +15,7 @@
       <rect x="9" y="9" width="13" height="13" rx="2"></rect>
       <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
     </svg>
-    <span data-copy-page-target="buttonLabel">复制页面</span>
+    <span data-copy-page-target="buttonLabel">{{ 'snippets.page_tools.copy_page_label' | t }}</span>
   </button>
   <div class="dropdown dropdown-end join-item">
     <div tabindex="0" role="button"
@@ -39,8 +39,8 @@
             </svg>
           </span>
           <span class="flex min-w-0 flex-1 flex-col">
-            <span class="font-semibold leading-tight">复制页面</span>
-            <span class="mt-0.5 text-xs text-base-content/60 leading-tight">将页面以 Markdown 格式复制给 LLMs</span>
+            <span class="font-semibold leading-tight">{{ 'snippets.page_tools.copy_page_label' | t }}</span>
+            <span class="mt-0.5 text-xs text-base-content/60 leading-tight">{{ 'snippets.page_tools.copy_page_description' | t }}</span>
           </span>
         </button>
       </li>
@@ -58,7 +58,7 @@
           </span>
           <span class="flex min-w-0 flex-1 flex-col">
             <span class="inline-flex items-center gap-1 font-semibold leading-tight">
-              在 ChatGPT 中打开
+              {{ 'snippets.page_tools.open_in_chatgpt' | t }}
               <svg xmlns="http://www.w3.org/2000/svg"
                 class="size-3 text-base-content/60 transition-colors group-hover:text-base-content/80"
                 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -66,7 +66,7 @@
                 <path stroke-linecap="round" stroke-linejoin="round" d="M8 7h9v9"></path>
               </svg>
             </span>
-            <span class="mt-0.5 text-xs text-base-content/60 leading-tight">询问有关此页面的问题</span>
+            <span class="mt-0.5 text-xs text-base-content/60 leading-tight">{{ 'snippets.page_tools.ask_about_page' | t }}</span>
           </span>
         </button>
       </li>
@@ -84,7 +84,7 @@
           </span>
           <span class="flex min-w-0 flex-1 flex-col">
             <span class="inline-flex items-center gap-1 font-semibold leading-tight">
-              在 Claude 中打开
+              {{ 'snippets.page_tools.open_in_claude' | t }}
               <svg xmlns="http://www.w3.org/2000/svg"
                 class="size-3 text-base-content/60 transition-colors group-hover:text-base-content/80"
                 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -92,7 +92,7 @@
                 <path stroke-linecap="round" stroke-linejoin="round" d="M8 7h9v9"></path>
               </svg>
             </span>
-            <span class="mt-0.5 text-xs text-base-content/60 leading-tight">询问有关此页面的问题</span>
+            <span class="mt-0.5 text-xs text-base-content/60 leading-tight">{{ 'snippets.page_tools.ask_about_page' | t }}</span>
           </span>
         </button>
       </li>
@@ -108,8 +108,8 @@
             </svg>
           </span>
           <span class="flex min-w-0 flex-1 flex-col">
-            <span class="font-semibold leading-tight">复制 MCP 安装命令</span>
-            <span class="mt-0.5 text-xs text-base-content/60 leading-tight">复制 npx 命令以安装 MCP 服务器</span>
+            <span class="font-semibold leading-tight">{{ 'snippets.page_tools.copy_mcp_label' | t }}</span>
+            <span class="mt-0.5 text-xs text-base-content/60 leading-tight">{{ 'snippets.page_tools.copy_mcp_description' | t }}</span>
           </span>
         </button>
       </li>
@@ -126,7 +126,7 @@
           </span>
           <span class="flex min-w-0 flex-1 flex-col">
             <span class="inline-flex items-center gap-1 font-semibold leading-tight">
-              连接到Cursor
+              {{ 'snippets.page_tools.connect_to_cursor' | t }}
               <svg xmlns="http://www.w3.org/2000/svg"
                 class="size-3 text-base-content/60 transition-colors group-hover:text-base-content/80"
                 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -134,7 +134,7 @@
                 <path stroke-linecap="round" stroke-linejoin="round" d="M8 7h9v9"></path>
               </svg>
             </span>
-            <span class="mt-0.5 text-xs text-base-content/60 leading-tight">在 Cursor 中安装 MCP Server</span>
+            <span class="mt-0.5 text-xs text-base-content/60 leading-tight">{{ 'snippets.page_tools.connect_to_cursor_description' | t }}</span>
           </span>
         </button>
       </li>
@@ -151,7 +151,7 @@
           </span>
           <span class="flex min-w-0 flex-1 flex-col">
             <span class="inline-flex items-center gap-1 font-semibold leading-tight">
-              连接到VS Code
+              {{ 'snippets.page_tools.connect_to_vscode' | t }}
               <svg xmlns="http://www.w3.org/2000/svg"
                 class="size-3 text-base-content/60 transition-colors group-hover:text-base-content/80"
                 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -159,7 +159,7 @@
                 <path stroke-linecap="round" stroke-linejoin="round" d="M8 7h9v9"></path>
               </svg>
             </span>
-            <span class="mt-0.5 text-xs text-base-content/60 leading-tight">在 VS Code 中安装 MCP Server</span>
+            <span class="mt-0.5 text-xs text-base-content/60 leading-tight">{{ 'snippets.page_tools.connect_to_vscode_description' | t }}</span>
           </span>
         </button>
       </li>

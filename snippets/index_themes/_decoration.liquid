@@ -1,0 +1,72 @@
+{% comment %}
+  Renders the user-controlled hero background decoration (color gradient or image)
+  and registers the `gradientGenerator` Alpine factory for the parent wrapper.
+
+  Optional:
+    skip_image  : when true, hero_bg_type image is not rendered here (e.g. Maple
+                  shows the image inline in the doc-style header).
+
+  Theme-specific decorations (mesh, scanline, contour, grid…) live as Tailwind
+  utility classes (including arbitrary values like `bg-[radial-gradient(...)]`)
+  on each `templates/index.<theme>.liquid` wrapper, not in this partial.
+{% endcomment %}
+
+{% assign _skip_image = skip_image | default: false %}
+
+<script>
+  function gradientGenerator(initialColor) {
+    return {
+      baseColor: initialColor,
+      isDark: document.documentElement.classList.contains('dark'),
+      init() {
+        const observer = new MutationObserver(() => {
+          this.isDark = document.documentElement.classList.contains('dark');
+        });
+        observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+      },
+      get lighterColor() {
+        return this.isDark
+          ? this.adjustColor(this.baseColor, -10)
+          : this.adjustColor(this.baseColor, 30);
+      },
+      get darkerColor() {
+        return this.isDark
+          ? this.adjustColor(this.baseColor, -40)
+          : this.adjustColor(this.baseColor, -20);
+      },
+      adjustColor(color, amt) {
+        let hex = color.replace('#', '');
+        let alpha = '';
+
+        if (hex.length === 8) {
+          alpha = hex.slice(6);
+          hex = hex.slice(0, 6);
+        }
+
+        let r = parseInt(hex.slice(0, 2), 16);
+        let g = parseInt(hex.slice(2, 4), 16);
+        let b = parseInt(hex.slice(4, 6), 16);
+
+        r = Math.min(255, Math.max(0, r + amt));
+        g = Math.min(255, Math.max(0, g + amt));
+        b = Math.min(255, Math.max(0, b + amt));
+
+        const toHex = (n) => n.toString(16).padStart(2, '0');
+        return `#${toHex(r)}${toHex(g)}${toHex(b)}${alpha}`;
+      }
+    };
+  }
+</script>
+
+{% if page.settings.hero_bg_type.value == '1' %}
+  <div class="left-0 right-0 top-0 bottom-0 absolute inset-x-0 overflow-hidden h-full -z-10 transform-gpu blur-3xl sm:-top-80 opacity-70" aria-hidden="true"
+    :style="isDark
+      ? `background: linear-gradient(to bottom, ${lighterColor} 45%, rgba(0, 0, 0, 0.5) 30%`
+      : `background: linear-gradient(to bottom, ${lighterColor} 45%, white 20%)`
+    ">
+  </div>
+{% elsif page.settings.hero_bg_type.value == '2' and _skip_image == false %}
+  {% assign default_hero_image = 'images/hero.jpg' | asset_url %}
+  {% assign bg_image_url = page.settings.hero_image_url | escape_once | default: default_hero_image %}
+  <div class="absolute w-full bg-center bg-cover -z-10" style="height: {{ page.settings.hero_height }}px; background-image: url('{{ bg_image_url }}')"></div>
+{% endif %}

@@ -30,12 +30,26 @@
     "page": {
       "prev_page": "上一頁",
       "next_page": "下一頁"
+    },
+    "page_tools": {
+      "copy_page_label": "複製頁面",
+      "copy_page_description": "將頁面以 Markdown 格式複製給 LLMs",
+      "open_in_chatgpt": "在 ChatGPT 中打開",
+      "open_in_claude": "在 Claude 中打開",
+      "ask_about_page": "詢問有關此頁面的問題",
+      "copy_mcp_label": "複製 MCP 安裝命令",
+      "copy_mcp_description": "複製 npx 命令以安裝 MCP 伺服器",
+      "connect_to_cursor": "連接到 Cursor",
+      "connect_to_cursor_description": "在 Cursor 中安裝 MCP Server",
+      "connect_to_vscode": "連接到 VS Code",
+      "connect_to_vscode_description": "在 VS Code 中安裝 MCP Server"
     }
   },
   "templates": {
     "search": {
       "placeholder": "搜尋...",
-      "no_results": "沒有找到相關結果"
+      "no_results": "沒有找到相關結果",
+      "ai_input_placeholder": "請輸入你的問題…"
     },
     "page": {
       "copy_success": "連結已複製",

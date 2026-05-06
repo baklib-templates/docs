@@ -1,0 +1,341 @@
+{
+  "theme_label": "Docs",
+  "theme_description": "Une documentation que vos utilisateurs lisent vraiment—architecture claire, recherche instantanée et réponses assistées par IA prêtes à l’emploi. Transformez votre base de connaissances en docs produit et guides API soignés, sans reconstruire un site de documentation à la main.",
+  "recommendations": {
+    "fashion": {
+      "name": "Tendance"
+    },
+    "old_school": {
+      "name": "Rétro"
+    }
+  },
+  "templates": {
+    "index": {
+      "shared": {
+        "settings": {
+          "hero_bg_type": {
+            "label": "Style d’arrière-plan Hero",
+            "info": "Une fois le style sélectionné, la couleur et l’image d’arrière-plan s’affichent en conséquence",
+            "choices": {
+              "none": "Aucun arrière-plan",
+              "color": "Arrière-plan coloré",
+              "image": "Arrière-plan image"
+            }
+          },
+          "hero_height": {
+            "label": "Hauteur de l’arrière-plan",
+            "info": "Hauteur recommandée : 360px"
+          },
+          "hero_image_url": {
+            "label": "Image d’arrière-plan",
+            "info": "L’image est automatiquement recadrée selon la largeur de la page et la hauteur d’arrière-plan"
+          },
+          "hero_bg_color": {
+            "label": "Couleur d’arrière-plan",
+            "info": "En arrière-plan coloré, la couleur sélectionnée est appliquée"
+          },
+          "hero_slogan": {
+            "label": "Slogan",
+            "info": "Le slogan s’affiche au-dessus de l’image d’arrière-plan",
+            "default": "👋 En quoi pouvons-nous vous aider ?"
+          },
+          "hero_subtitle": {
+            "label": "Sous-titre du hero",
+            "info": "Ligne secondaire optionnelle affichée sous le slogan ; permet un texte descriptif plus long (utilisée par les thèmes Aspen / Sequoia / Luma)."
+          },
+          "cta_text": {
+            "label": "Libellé du bouton CTA",
+            "info": "Optionnel. Lorsqu’il est renseigné avec l’URL, un bouton d’action principale s’affiche à côté du slogan (style Aspen)."
+          },
+          "cta_href": {
+            "label": "URL du bouton CTA",
+            "info": "URL absolue ou chemin interne vers lequel pointe le bouton CTA."
+          },
+          "search_hot_tags": {
+            "label": "Tags populaires",
+            "info": "Une fois définis, les tags s’affichent sous la barre de recherche d’accueil"
+          },
+          "search_hot_keywords": {
+            "label": "Recherches populaires",
+            "info": "Une fois définis, les mots-clés s’affichent sous la barre de recherche. Plusieurs mots-clés séparés par retour à la ligne"
+          },
+          "show_channels_section": {
+            "label": "Première section",
+            "info": "Si décoché, la section ne s’affiche pas sur la page d’accueil"
+          },
+          "channels_section_title": {
+            "label": "Titre de la première section",
+            "default": "Pour commencer"
+          },
+          "show_topic_channel": {
+            "label": "Section « Thèmes en vedette »",
+            "info": "Si décoché, la section ne s’affiche pas ; cochez aussi « Est un thème en vedette » dans les réglages de page"
+          },
+          "topic_channel_title": {
+            "label": "Titre des thèmes en vedette",
+            "default": "Thèmes en vedette"
+          },
+          "show_newest_section": {
+            "label": "Section « Derniers articles »",
+            "info": "Si décoché, la section ne s’affiche pas sur la page d’accueil"
+          },
+          "newest_section_title": {
+            "label": "Titre des derniers articles",
+            "default": "Derniers articles"
+          },
+          "show_hottest_section": {
+            "label": "Section « Sujets populaires »",
+            "info": "Si décoché, la section ne s’affiche pas sur la page d’accueil"
+          },
+          "hottest_section_title": {
+            "label": "Titre des sujets populaires",
+            "default": "Sujets populaires"
+          }
+        }
+      },
+      "mint": {
+        "name": "Mint (Classique)",
+        "description": "Mise en page documentaire familière avec un hero en dégradé doux et une grille de démarrage à 3 colonnes — la valeur par défaut la plus sûre."
+      },
+      "maple": {
+        "name": "Maple (accueil doc style Mintlify)",
+        "description": "Coque trois colonnes façon Mintlify Maple : navigation gauche, en-tête documentaire (mention au-dessus du titre, titre, copier la page, introduction, bannière optionnelle), tuiles en contour et TOC à droite. La recherche reste dans l'en-tête du site.",
+        "settings": {
+          "hero_bg_type": {
+            "info": "Sans arrière-plan, rendu proche du prototype ; avec Image, une bannière arrondie s'affiche sous l'introduction."
+          },
+          "hero_image_url": {
+            "info": "Si le fond est une image, affichage sous le paragraphe d'introduction sous forme de bannière arrondie intégrée."
+          },
+          "hero_kicker": {
+            "label": "Libellé au-dessus du titre",
+            "info": "Petite mention en majuscules au-dessus du titre ; utilise la couleur d'accent Maple.",
+            "default": "Pour commencer"
+          },
+          "hero_intro": {
+            "label": "Paragraphe d'introduction",
+            "info": "Texte brut sous le titre. Pour des blocs riches, utilisez les Features HTML du site (Markdown BKE possible)."
+          },
+          "hero_slogan": {
+            "default": "Bienvenue sur Maple"
+          },
+          "channels_section_title": {
+            "default": "Mise en place"
+          },
+          "topic_channel_title": {
+            "default": "Personnalisez"
+          }
+        }
+      },
+      "palm": {
+        "name": "Palm (Entreprise)",
+        "description": "Fond mesh sobre, titres serif et 2 colonnes — pour la fintech et les plateformes d'entreprise."
+      },
+      "willow": {
+        "name": "Willow (Minimaliste)",
+        "description": "Lecture sans distraction, cartes texte, dernières/populaires masquées par défaut."
+      },
+      "linden": {
+        "name": "Linden (Terminal rétro)",
+        "description": "Police monospace, fond quadrillé, bordures pointillées — esthétique hacker des années 80."
+      },
+      "almond": {
+        "name": "Almond (Chaleureux)",
+        "description": "Dégradé chaleureux et grandes cartes arrondies — toutes les sections actives par défaut."
+      },
+      "aspen": {
+        "name": "Aspen (AI / SDK)",
+        "description": "Fond en courbes de niveau et grille de démarrage à 4 tuiles — orientée SDK / IA."
+      },
+      "sequoia": {
+        "name": "Sequoia (API à grande échelle)",
+        "description": "Mise en page aérée à 4 colonnes — pour les documentations API et plateformes massives."
+      },
+      "luma": {
+        "name": "Luma (Léger)",
+        "description": "La variante la plus légère — décoration minimale, cartes plates à 2 colonnes, dernières/populaires masquées par défaut."
+      },
+      "list": {
+        "name": "Manuel produit",
+        "description": "Style liste-répertoire en page d’accueil"
+      }
+    },
+    "page": {
+      "name": "Modèle de page standard",
+      "description": "Modèle de page de contenu",
+      "settings": {
+        "show_list": {
+          "label": "Afficher la liste des sous-pages",
+          "info": "Si coché, la liste des sous-pages s’affiche sur la page"
+        },
+        "is_topic_channel": {
+          "label": "Est un thème en vedette",
+          "info": "Si oui, la page apparaît dans la liste des thèmes en vedette de l’accueil"
+        },
+        "title": {
+          "label": "Titre de la page",
+          "info": "Synchronisé depuis la base de connaissances, non modifiable"
+        },
+        "tags": {
+          "label": "Tags de la page"
+        },
+        "description": {
+          "label": "Description de la page"
+        },
+        "icon": {
+          "label": "Icône de la page",
+          "info": "Pour afficher l’icône de la page, ratio 1:1 recommandé"
+        },
+        "content": {
+          "label": "Contenu de la page",
+          "info": "Synchronisé depuis la source, non modifiable"
+        }
+      },
+      "video": {
+        "name": "Modèle vidéo",
+        "description": "Modèle de page vidéo, pour afficher du contenu vidéo",
+        "settings": {
+          "is_video_list": {
+            "label": "Est une liste vidéo",
+            "info": "La page de liste vidéo ne récupère que les sous-pages utilisant le modèle vidéo ; assurez-vous que les sous-pages utilisent ce modèle"
+          },
+          "video_url": {
+            "label": "URL vidéo",
+            "info": "Utilisée pour l’affichage dans la liste vidéo ; non requise sur la page de liste"
+          }
+        }
+      },
+      "export": {
+        "name": "Modèle de page d’export",
+        "description": "Souvent utilisé pour exporter directement le contenu d’une rubrique et de ses sous-pages dans le navigateur"
+      }
+    }
+  },
+  "generic": {
+    "name": "Réglages généraux",
+    "settings": {
+      "logo_url": {
+        "label": "Image du logo",
+        "info": "Si un logo est défini, il s’affiche dans l’en-tête ; sinon : icône du site + nom du site"
+      },
+      "company_name": {
+        "label": "Nom de l’entreprise",
+        "default": "Baklib.cn",
+        "info": "Affiché dans le pied de page en bas de la page"
+      },
+      "copyright_info": {
+        "label": "ICP / Informations de copyright",
+        "default": "ICP xxxxxx"
+      },
+      "screen_width": {
+        "label": "Largeur d’écran",
+        "choices": {
+          "narrow": "Étroite (1024px)",
+          "medium": "Moyenne (1280px)",
+          "wide": "Large (1536px)",
+          "full": "Plein écran"
+        }
+      },
+      "left_sidebar_width": {
+        "label": "Largeur de la barre latérale gauche (pages détaillées)",
+        "info": "Recommandé : 240px"
+      },
+      "right_sidebar_width": {
+        "label": "Largeur de la barre latérale droite (pages détaillées)",
+        "info": "Recommandé : 240px"
+      },
+      "header_type": {
+        "label": "Style de l’en-tête",
+        "info": "* Affecte la couleur de fond et de texte de la barre de navigation supérieure.\n* 0 - Style clair avec effet verre dépoli.\n* 1 - Couleurs personnalisées : choisissez ci-dessous le fond et le texte.",
+        "choices": {
+          "transparent": "Simple transparent",
+          "custom": "Couleur personnalisée"
+        }
+      },
+      "header_bg_color": {
+        "label": "Couleur de fond de l’en-tête"
+      },
+      "header_text_color": {
+        "label": "Couleur du texte de l’en-tête"
+      },
+      "show_published_at": {
+        "label": "Afficher la date de publication"
+      },
+      "show_author": {
+        "label": "Afficher l’auteur"
+      },
+      "show_card_icon": {
+        "label": "Afficher les icônes de section sur l’accueil",
+        "info": "Recommandé de configurer les icônes dans les réglages de page"
+      },
+      "ai_search_completed_text": {
+        "label": "Texte de fin IA",
+        "info": "Ajoute une phrase après la réponse de l’IA"
+      }
+    }
+  },
+  "page_config": {
+    "name": "Réglages de page",
+    "settings": {
+      "show_page_tools_dropdown": {
+        "label": "Afficher le menu d’outils de page"
+      }
+    }
+  },
+  "custom_html": {
+    "name": "Code HTML personnalisé",
+    "settings": {
+      "head_html": {
+        "label": "HTML personnalisé dans <head></head>",
+        "info": "Prend en charge les balises HTML et certaines classes TailwindCSS",
+        "placeholder": "Souvent utilisé pour insérer des analytics, un bot de support, etc."
+      },
+      "header_menu_html": {
+        "label": "Insérer du HTML dans la zone de navigation supérieure",
+        "info": "Prend en charge les balises HTML et certaines classes TailwindCSS",
+        "placeholder": "Souvent utilisé pour insérer des liens vers d’autres sites de l’entreprise"
+      },
+      "footer_html": {
+        "label": "Insérer du HTML dans la zone de pied de page",
+        "info": "Prend en charge les balises HTML et certaines classes TailwindCSS ; remplace complètement le pied de page par défaut",
+        "placeholder": "Si vous souhaitez conserver le pied de page par défaut, insérez le HTML dans footer_menu_html"
+      },
+      "footer_menu_html": {
+        "label": "Insérer du HTML en bas (à l’intérieur du footer)",
+        "info": "Prend en charge les balises HTML et certaines classes TailwindCSS",
+        "placeholder": "Souvent utilisé pour les liens externes, liens d’amitié et liens d’optimisation SEO"
+      },
+      "features_one_html": {
+        "label": "Insérer du HTML dans la première section feature de l’accueil",
+        "info": "Prend en charge les balises HTML et certaines classes TailwindCSS",
+        "placeholder": "Souvent utilisé pour insérer des liens vers d’autres sites de l’entreprise"
+      },
+      "features_two_html": {
+        "label": "Insérer du HTML dans la deuxième section feature de l’accueil",
+        "info": "Prend en charge les balises HTML et certaines classes TailwindCSS",
+        "placeholder": "Souvent utilisé pour insérer des liens vers d’autres sites de l’entreprise"
+      }
+    }
+  },
+  "settings": {
+    "weixin_share": {
+      "title": "Configuration WeChat",
+      "weixin_app_id": {
+        "label": "ID développeur (AppID)",
+        "info": "<a href='https://mp.weixin.qq.com/cgi-bin/frame'>Compte officiel WeChat / Paramètres & développement / Gestion des interfaces</a>"
+      },
+      "weixin_app_secret": {
+        "label": "Mot de passe développeur (AppSecret)",
+        "info": ""
+      },
+      "weixin_enabled": {
+        "label": "Activer le partage WeChat ?",
+        "info": "Permet de partager les pages du site sur WeChat.</br>Veuillez configurer la liste blanche d’IP (ip: ${service_ip}) dans le compte WeChat. Un délai de prise d’effet peut s’appliquer.</br>Vérifiez l’autorisation de partage WeChat dans Compte officiel / Paramètres & développement / Gestion des interfaces : <a href='https://mp.weixin.qq.com/cgi-bin/frame'>Service web / Interface de partage</a>."
+      },
+      "weixin_debug": {
+        "label": "Activer les invites de debug ?",
+        "info": "À activer uniquement pendant la configuration ; en cas d’activation, des messages d’erreur seront affichés si le partage WeChat n’est pas correctement configuré."
+      }
+    }
+  }
+}

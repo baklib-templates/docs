@@ -1,11 +1,9 @@
 {
-  "theme_label": "知識內容展示門戶",
-  "theme_description": "專業的知識內容展示主題，支持將組織內部知識庫通過 CMS 系統轉化為獨立的展示網站。適用於企業知識庫、產品幫助中心、技術文檔等多種內容展示場景，讓知識管理和內容展示更加高效。",
+  "theme_label": "Docs",
+  "theme_description": "打造使用者願意閱讀的文件體驗：架構清楚、搜尋迅速，並可接入 AI 問答。將知識庫呈現為產品文件與 API 指南，無須從零自建文件站。",
   "templates": {
     "index": {
-      "docs": {
-        "name": "文檔中心",
-        "description": "理想的產品用戶手冊",
+      "shared": {
         "settings": {
           "hero_bg_type": {
             "label": "首屏背景樣式",
@@ -32,6 +30,18 @@
             "label": "標語",
             "info": "標語會顯示在背景圖上方",
             "default": "👋 What Can We Help?"
+          },
+          "hero_subtitle": {
+            "label": "Hero 副標題",
+            "info": "可選副標題，顯示在 Slogan 下方，可放較長引導文字。Aspen / Sequoia / Luma 主題會使用。"
+          },
+          "cta_text": {
+            "label": "CTA 按鈕文字",
+            "info": "可選。與 CTA URL 同時填寫時，會在 Slogan 旁顯示一個主要按鈕（Aspen 風格）。"
+          },
+          "cta_href": {
+            "label": "CTA 按鈕連結",
+            "info": "完整 URL 或站內路徑，CTA 按鈕的目標。"
           },
           "search_hot_tags": {
             "label": "熱門標籤",
@@ -75,77 +85,67 @@
           }
         }
       },
-      "help_center": {
-        "name": "幫助中心",
-        "description": "功能豐富的產品知識庫樣式",
+      "mint": {
+        "name": "Mint（經典款）",
+        "description": "經典文件站佈局,柔色漸變 hero + 三欄入門卡片,是產品文件最穩的預設款。"
+      },
+      "maple": {
+        "name": "Maple（Mintlify 風格文件首頁）",
+        "description": "三欄文件殼與 Mintlify Maple 一致：左導覽、文件式首屏（眉題、標題、複製頁面、導語、可選橫幅）、外框卡片、右側本頁目錄；搜尋在站點頂欄。",
         "settings": {
           "hero_bg_type": {
-            "label": "首屏背景樣式",
-            "info": "選擇背景樣式後，背景色和背景圖會根據選擇的內容進行展示",
-            "choices": {
-              "none": "無背景",
-              "color": "顏色背景",
-              "image": "圖片背景"
-            }
-          },
-          "hero_height": {
-            "label": "背景高度",
-            "info": "建議高度：360px"
+            "info": "無背景較接近原型；若選圖片，導語下方顯示圓角橫幅。"
           },
           "hero_image_url": {
-            "label": "背景圖",
-            "info": "背景圖會根據頁面寬度和背景高度自動裁剪"
+            "info": "背景樣式為圖片時，在導語下方以圓角大圖呈現。"
           },
-          "hero_bg_color": {
-            "label": "背景色",
-            "info": "選擇背景色後，背景色會根據選擇的內容進行展示"
+          "hero_kicker": {
+            "label": "眉題 / 分區標籤",
+            "info": "標題上方的小型全大寫標籤，使用 Maple 強調色。",
+            "default": "開始使用"
+          },
+          "hero_intro": {
+            "label": "導語段落",
+            "info": "標題下方的純文字導語。複雜版面請用站點 Features HTML，可搭配 BKE Markdown。"
           },
           "hero_slogan": {
-            "label": "標語",
-            "info": "標語會顯示在背景圖上方",
-            "default": "👋 What Can We Help?"
-          },
-          "search_hot_tags": {
-            "label": "熱門標籤",
-            "info": "設置以後，標籤列表會顯示在首頁搜尋欄下方"
-          },
-          "search_hot_keywords": {
-            "label": "熱門搜尋",
-            "info": "設置以後，搜尋框下方會顯示熱門搜尋。換行設置多個關鍵詞"
-          },
-          "show_channels_section": {
-            "label": "欄目導覽板塊",
-            "info": "不勾選，首頁將不會顯示此板塊"
+            "default": "歡迎使用 Maple"
           },
           "channels_section_title": {
-            "label": "欄目導覽板塊標題",
-            "default": "欄目導覽"
-          },
-          "show_newest_section": {
-            "label": "最新文章板塊",
-            "info": "不勾選，首頁將不會顯示此板塊"
-          },
-          "newest_section_title": {
-            "label": "最新文章板塊標題",
-            "default": "最新文章"
-          },
-          "show_topic_channel": {
-            "label": "專題推薦板塊",
-            "info": "不勾選，首頁將不會顯示此板塊"
+            "default": "開始設定"
           },
           "topic_channel_title": {
-            "label": "專題推薦板塊的標題",
-            "default": "專題推薦"
-          },
-          "show_hottest_section": {
-            "label": "熱門文章板塊",
-            "info": "不勾選，首頁將不會顯示此板塊"
-          },
-          "hottest_section_title": {
-            "label": "熱門文章板塊標題",
-            "default": "熱門文章"
+            "default": "打造你的風格"
           }
         }
+      },
+      "palm": {
+        "name": "Palm（企業 / 金融）",
+        "description": "冷峻 mesh 背景 + 襯線標題 + 兩欄大卡,適合金融與企業平台文件。"
+      },
+      "willow": {
+        "name": "Willow（極簡）",
+        "description": "無裝飾、零干擾閱讀體驗,純文字卡片,預設關閉最新 / 熱門板塊。"
+      },
+      "linden": {
+        "name": "Linden（復古終端）",
+        "description": "等寬字型 + 方格背景 + 虛線描邊,80 年代極客文件美學。"
+      },
+      "almond": {
+        "name": "Almond（暖色）",
+        "description": "溫暖柔和的漸變 + 圓角大卡,所有板塊預設開啟。"
+      },
+      "aspen": {
+        "name": "Aspen（AI / SDK）",
+        "description": "等高線背景 + 4 格入門 tile,面向 SDK 與 AI 工程文件。"
+      },
+      "sequoia": {
+        "name": "Sequoia（大規模 API）",
+        "description": "大留白寬鬆佈局 + 4 列卡片,適合體量龐大的 API 與開發者平台文件。"
+      },
+      "luma": {
+        "name": "Luma（極輕）",
+        "description": "最克制的一款:裝飾極少,兩欄扁平卡,預設隱藏最新 / 熱門。"
       },
       "list": {
         "name": "產品手冊",

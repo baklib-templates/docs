@@ -1,11 +1,9 @@
 {
-  "theme_label": "지식 콘텐츠 포털",
-  "theme_description": "조직 내부 지식베이스를 CMS 시스템을 통해 독립적인 표시 웹사이트로 변환하는 것을 지원하는 전문적인 지식 콘텐츠 표시 테마. 기업 지식베이스, 제품 도움말 센터, 기술 문서 등 다양한 콘텐츠 표시 시나리오에 적합하며, 지식 관리와 콘텐츠 표시를 더욱 효율적으로 만듭니다.",
+  "theme_label": "Docs",
+  "theme_description": "사용자가 실제로 읽는 문서 경험을 제공합니다. 명확한 정보 구조, 빠른 검색, AI 기반 Q&A까지 지원합니다. 지식베이스를 제품 문서·API 가이드로 바로 공개하고, 문서 사이트를 처음부터 만들 필요가 없습니다.",
   "templates": {
     "index": {
-      "docs": {
-        "name": "문서 센터",
-        "description": "이상적인 제품 사용자 매뉴얼",
+      "shared": {
         "settings": {
           "hero_bg_type": {
             "label": "히어로 배경 스타일",
@@ -32,6 +30,18 @@
             "label": "슬로건",
             "info": "슬로건은 배경 이미지 위에 표시됩니다",
             "default": "👋 What Can We Help?"
+          },
+          "hero_subtitle": {
+            "label": "Hero 부제",
+            "info": "선택 사항. 슬로건 아래에 표시되는 보조 설명 문구입니다(Aspen / Sequoia / Luma 테마에서 사용)."
+          },
+          "cta_text": {
+            "label": "CTA 버튼 텍스트",
+            "info": "선택 사항. URL과 함께 입력하면 슬로건 옆에 주요 액션 버튼이 표시됩니다(Aspen 스타일)."
+          },
+          "cta_href": {
+            "label": "CTA 버튼 링크",
+            "info": "CTA 버튼이 가리킬 절대 URL 또는 사이트 내 경로."
           },
           "search_hot_tags": {
             "label": "인기 태그",
@@ -75,77 +85,67 @@
           }
         }
       },
-      "help_center": {
-        "name": "도움말 센터",
-        "description": "기능이 풍부한 제품 지식베이스 스타일",
+      "mint": {
+        "name": "Mint (Classic)",
+        "description": "친숙한 레이아웃에 부드러운 그라디언트 히어로와 3열 시작 카드 — 가장 무난한 제품 문서 기본값."
+      },
+      "maple": {
+        "name": "Maple (Mintlify 스타일 홈)",
+        "description": "Mintlify Maple과 같은 3단 레이아웃: 좌측 내비·문서형 헤더(라벨·제목·복사·리드·선택 배너)·아웃라인 카드·우측 목차. 검색은 사이트 헤더를 사용합니다.",
         "settings": {
           "hero_bg_type": {
-            "label": "히어로 배경 스타일",
-            "info": "배경 스타일을 선택하면 배경색과 이미지가 선택한 내용에 따라 표시됩니다",
-            "choices": {
-              "none": "배경 없음",
-              "color": "색상 배경",
-              "image": "이미지 배경"
-            }
-          },
-          "hero_height": {
-            "label": "배경 높이",
-            "info": "권장 높이: 360px"
+            "info": "배경 없음이 프로토타입과 유사합니다. 이미지를 선택하면 소개 아래에 둥근 배너가 표시됩니다."
           },
           "hero_image_url": {
-            "label": "배경 이미지",
-            "info": "배경 이미지는 페이지 너비와 배경 높이에 따라 자동으로 잘립니다"
+            "info": "배경 스타일이 이미지일 때 소개 문단 아래에 인라인 둥근 배너로 표시됩니다."
           },
-          "hero_bg_color": {
-            "label": "배경색",
-            "info": "히어로 배경 스타일의 색상은 선택한 색상 값에 따라 처리됩니다（색상 배경）"
+          "hero_kicker": {
+            "label": "상단 라벨(아이브로우)",
+            "info": "제목 위 작은 대문자 라벨입니다. Maple 강조색으로 표시됩니다.",
+            "default": "시작하기"
+          },
+          "hero_intro": {
+            "label": "리드 문단",
+            "info": "제목 아래 플레인 텍스트 소개입니다. 풍부한 블록은 사이트 Features HTML과 BKE Markdown을 활용하세요."
           },
           "hero_slogan": {
-            "label": "슬로건",
-            "info": "슬로건은 배경 이미지 위에 표시됩니다",
-            "default": "👋 What Can We Help?"
-          },
-          "search_hot_tags": {
-            "label": "인기 태그",
-            "info": "설정하면 태그 목록이 홈페이지 검색창 아래에 표시됩니다"
-          },
-          "search_hot_keywords": {
-            "label": "인기 검색어",
-            "info": "설정하면 검색창 아래에 인기 검색어가 표시됩니다. 줄바꿈으로 여러 키워드를 설정합니다"
-          },
-          "show_channels_section": {
-            "label": "네비게이션 섹션",
-            "info": "체크를 해제하면 이 섹션은 홈페이지에 표시되지 않습니다"
+            "default": "Maple에 오신 것을 환영합니다"
           },
           "channels_section_title": {
-            "label": "네비게이션 섹션 제목",
-            "default": "네비게이션"
-          },
-          "show_newest_section": {
-            "label": "최신 글 섹션",
-            "info": "체크를 해제하면 이 섹션은 홈페이지에 표시되지 않습니다"
-          },
-          "newest_section_title": {
-            "label": "최신 글 섹션 제목",
-            "default": "최신 글"
-          },
-          "show_topic_channel": {
-            "label": "주제 추천 섹션",
-            "info": "체크를 해제하면 이 섹션은 홈페이지에 표시되지 않습니다"
+            "default": "설정하기"
           },
           "topic_channel_title": {
-            "label": "주제 추천 섹션 제목",
-            "default": "주제 추천"
-          },
-          "show_hottest_section": {
-            "label": "인기 글 섹션",
-            "info": "체크를 해제하면 이 섹션은 홈페이지에 표시되지 않습니다"
-          },
-          "hottest_section_title": {
-            "label": "인기 글 섹션 제목",
-            "default": "인기 글"
+            "default": "나만의 문서로"
           }
         }
+      },
+      "palm": {
+        "name": "Palm (Enterprise)",
+        "description": "차분한 메쉬 배경, 세리프 제목, 2열 레이아웃 — 핀테크 및 엔터프라이즈 플랫폼용."
+      },
+      "willow": {
+        "name": "Willow (Minimal)",
+        "description": "장식 없는 집중 가독 레이아웃 — 텍스트 카드, 최신·인기 섹션 기본 숨김."
+      },
+      "linden": {
+        "name": "Linden (Retro Terminal)",
+        "description": "모노스페이스 + 격자 배경 + 점선 테두리 — 80년대 해커 미학."
+      },
+      "almond": {
+        "name": "Almond (Warm)",
+        "description": "따뜻한 그라디언트와 둥근 큰 카드 — 모든 섹션 기본 활성."
+      },
+      "aspen": {
+        "name": "Aspen (AI / SDK)",
+        "description": "등고선 배경 + 4타일 시작 그리드 — SDK 및 AI 엔지니어링 문서."
+      },
+      "sequoia": {
+        "name": "Sequoia (Large-scale API)",
+        "description": "넉넉한 여백과 4열 그리드 — 대규모 API 및 개발자 플랫폼 문서."
+      },
+      "luma": {
+        "name": "Luma (Lightweight)",
+        "description": "가장 가벼운 변형 — 장식 최소, 2열 플랫 카드, 최신·인기 기본 숨김."
       },
       "list": {
         "name": "제품 매뉴얼",

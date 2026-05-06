@@ -30,12 +30,26 @@
     "page": {
       "prev_page": "前へ",
       "next_page": "次へ"
+    },
+    "page_tools": {
+      "copy_page_label": "ページをコピー",
+      "copy_page_description": "ページを Markdown 形式でコピーして LLM に渡す",
+      "open_in_chatgpt": "ChatGPT で開く",
+      "open_in_claude": "Claude で開く",
+      "ask_about_page": "このページについて質問する",
+      "copy_mcp_label": "MCP インストールコマンドをコピー",
+      "copy_mcp_description": "MCP サーバーをインストールする npx コマンドをコピー",
+      "connect_to_cursor": "Cursor に接続",
+      "connect_to_cursor_description": "Cursor に MCP Server をインストール",
+      "connect_to_vscode": "VS Code に接続",
+      "connect_to_vscode_description": "VS Code に MCP Server をインストール"
     }
   },
   "templates": {
     "search": {
       "placeholder": "検索...",
-      "no_results": "検索結果が見つかりません"
+      "no_results": "検索結果が見つかりません",
+      "ai_input_placeholder": "質問を入力してください…"
     },
     "page": {
       "copy_success": "リンクをコピーしました",

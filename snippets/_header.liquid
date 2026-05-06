@@ -83,6 +83,29 @@
         {% endform_tag %}
       </div>
 
+      {%# Dark / Light toggle：复用 theme controller（layout 已在 <html> 上挂载） %}
+      <button type="button"
+        class="{{ header_icon_btn }} dark:hidden"
+        data-action="theme#toggle"
+        data-theme-mode-param="dark"
+        aria-label="Switch to dark mode"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="size-4 text-base-content/70" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="4"/>
+          <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
+        </svg>
+      </button>
+      <button type="button"
+        class="{{ header_icon_btn }} hidden dark:inline-flex"
+        data-action="theme#toggle"
+        data-theme-mode-param="light"
+        aria-label="Switch to light mode"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="size-4 text-base-content/70" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </button>
+
       {% if current_user %}
         <span class="hidden h-6 w-px shrink-0 bg-base-300 sm:block dark:bg-base-content/15" aria-hidden="true"></span>
         <div class="flex shrink-0 items-center">

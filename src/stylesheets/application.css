@@ -306,22 +306,6 @@
   }
 }
 
-@layer components {
-  /* index.faqs Tab buttons */
-  .index-faqs-tabs {
-    @apply flex flex-wrap items-center gap-2;
-  }
-  .index-faqs-tab {
-    @apply px-3 py-2 text-sm rounded-full transition;
-    @apply bg-gray-100 text-slate-700 hover:bg-gray-200;
-    @apply dark:bg-slate-700 dark:text-slate-100 dark:hover:bg-slate-600;
-    @apply max-w-full;
-  }
-  .index-faqs-tab.is-active {
-    @apply bg-primary text-white;
-  }
-}
-
 .menu {
   :where(li:not(.menu-title) > *:not(ul, details, .menu-title, .btn)), :where(li:not(.menu-title) > details > summary:not(.menu-title)) {
     text-wrap: unset; /* 去掉menu 中设置的 balance 换行 */
@@ -418,48 +402,6 @@ summary:has(.menu-active) {
   scrollbar-width: none;
   &::-webkit-scrollbar {
     display: none;
-  }
-}
-
-/* --- index.faqs mobile overflow + sizing tweaks (scoped) --- */
-@layer utilities {
-  @media (max-width: 640px) {
-    /* 搜索框更紧凑（仅 FAQs 首页） */
-    .index-faqs-hero-bg ~ .px-4 input[type="search"] {
-      height: 48px;
-      font-size: 16px;
-      line-height: 24px;
-      padding-right: 16px;
-    }
-    .index-faqs-hero-bg ~ .px-4 input[type="search"]::placeholder {
-      font-size: 14px;
-    }
-
-    /* Tab 过多时自动换行，避免横向溢出 */
-    .index-faqs-hero-bg ~ .px-4 .no-scrollbar.whitespace-nowrap {
-      flex-wrap: wrap;
-      white-space: normal;
-      overflow-x: hidden;
-      gap: 8px;
-    }
-    .index-faqs-hero-bg ~ .px-4 .no-scrollbar.whitespace-nowrap > a {
-      flex: 0 1 auto;
-      min-width: 0;
-      max-width: 100%;
-    }
-
-    /* FAQ 内容强制断行，避免长词/URL 撑出屏幕 */
-    .index-faqs-hero-bg ~ .px-4 details summary,
-    .index-faqs-hero-bg ~ .px-4 details .ProseMirror,
-    .index-faqs-hero-bg ~ .px-4 details .ProseMirror * {
-      overflow-wrap: anywhere;
-      word-break: break-word;
-    }
-    .index-faqs-hero-bg ~ .px-4 details svg,
-    .index-faqs-hero-bg ~ .px-4 details img {
-      max-width: 100%;
-      height: auto;
-    }
   }
 }
 

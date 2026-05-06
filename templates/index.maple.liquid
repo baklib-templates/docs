@@ -1,0 +1,224 @@
+{% comment %}
+  Maple：对齐 Mintlify 原型 — 与 `page` 相同的三栏文档壳；正文区为文档式页眉（眉题 / H1 / Copy page / 导语 / 可选头图），
+  搜索依托站点顶栏；入门卡与专题卡使用 `tile_style: doc` 轮廓卡片。主题强调色 CSS 变量 `--maple-accent`。
+{% endcomment %}
+<div class="px-4">
+  <div class="w-full max-w-[var(--max-content-width)] mx-auto grid grid-cols-1 lg:grid-cols-[var(--left-sidebar-width)_1fr] gap-6 group">
+    <aside class="hidden lg:block h-full border-r border-gray-200 dark:border-base-content/10">
+      <div class="sticky top-[calc(var(--header-height)_+_1rem)] max-h-[calc(100vh-var(--header-height)-4rem)] max-w-full w-full overflow-auto custom-menu px-2">
+        <turbo-frame id="page_nav_tree_frame__" src="{{ statics['page/nav_tree'] }}" loading="lazy">
+          <div class="flex items-center justify-center h-20 text-base-content/60">
+            <span class="loading loading-spinner loading-md"></span>
+          </div>
+        </turbo-frame>
+      </div>
+    </aside>
+
+    <turbo-frame id="main-content-frame" class='w-full' x-init="
+               $el.addEventListener('turbo:before-fetch-request', () => {
+                 $el.scrollTop = 0
+                 window.scrollTo({ top: 0, behavior: 'instant' })
+               })
+             ">
+      <div
+        data-controller="toc"
+        data-toc-header-selector-value=".js--header"
+        data-toc-offset-value="10"
+        data-toc-clipboard-success-value="{{ 'templates.page.copy_success' | t: '链接已复制' }}"
+        class='w-full group'
+      >
+        <div class='grid grid-cols-1 gap-6 group-[.has-toc]:lg:grid-cols-[1fr_var(--right-sidebar-width)] pt-4'>
+          <div class="px-0 lg:px-4 overflow-hidden">
+            <div
+              class="relative bg-base-100 [--maple-accent:#a34e36] dark:[--maple-accent:#d47860]"
+              {% if page.settings.hero_bg_type.value == '1' %}x-data="gradientGenerator('{{ page.settings.hero_bg_color }}')"{% endif %}
+            >
+              {% render 'index_themes/decoration', skip_image: true %}
+
+              <div data-controller="link-target">
+                {% render 'index_themes/maple_home_header' %}
+
+                <section class="space-y-10 pb-12" data-toc-target="content">
+                  {% comment %} 可选：站点「Features HTML」中的 BKE Markdown 区块；标题纳入右侧 TOC {% endcomment %}
+                  {% render 'index_themes/features_html', html: site.settings.features_one_html %}
+
+                  {% if page.settings.show_channels_section %}
+                    {% render 'index_themes/channels_grid',
+                      columns: 2,
+                      card_style: 'outline',
+                      item_limit: 4,
+                      tile_style: 'doc',
+                      section_align: 'left'
+                    %}
+                  {% endif %}
+
+                  {% if page.settings.show_topic_channel %}
+                    {% render 'index_themes/topic_grid',
+                      columns: 2,
+                      tile_style: 'doc',
+                      section_align: 'left'
+                    %}
+                  {% endif %}
+
+                  {% if page.settings.show_newest_section %}
+                    {% render 'index_themes/recent_list', style: 'card' %}
+                  {% endif %}
+
+                  {% if page.settings.show_hottest_section %}
+                    {% render 'index_themes/hottest_list', style: 'card' %}
+                  {% endif %}
+
+                  {% render 'index_themes/features_html', html: site.settings.features_two_html %}
+                </section>
+              </div>
+            </div>
+          </div>
+
+          <aside class="print:hidden hidden lg:block">
+            <div class="sticky top-[calc(var(--header-height)_+_1rem)] max-h-[calc(100vh-var(--header-height)-4rem)] max-w-full w-full overflow-auto rounded-box" data-toc-target="menu">
+              <div class="menu w-full">
+                <div class="menu-title">{{ 'templates.page.page_toc' | t }}</div>
+                <div data-toc-target="links"></div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </turbo-frame>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "t:schema.templates.index.maple.name",
+    "description": "t:schema.templates.index.maple.description",
+    "thumb_url": "images/schema/index-maple.png",
+    "preview_image_urls": [
+      "images/schema/index-maple.png"
+    ],
+    "sub_page_templates": [
+      "page"
+    ],
+    "settings": [
+      {
+        "id": "hero_bg_type",
+        "type": "radio",
+        "label": "t:schema.templates.index.shared.settings.hero_bg_type.label",
+        "choices": [
+          {
+            "label": "t:schema.templates.index.shared.settings.hero_bg_type.choices.none",
+            "value": "0"
+          },
+          {
+            "label": "t:schema.templates.index.shared.settings.hero_bg_type.choices.color",
+            "value": "1"
+          },
+          {
+            "label": "t:schema.templates.index.shared.settings.hero_bg_type.choices.image",
+            "value": "2"
+          }
+        ],
+        "default": "0",
+        "info": "t:schema.templates.index.maple.settings.hero_bg_type.info"
+      },
+      {
+        "id": "hero_height",
+        "type": "range",
+        "label": "t:schema.templates.index.shared.settings.hero_height.label",
+        "info": "t:schema.templates.index.shared.settings.hero_height.info",
+        "min": 100,
+        "max": 600,
+        "step": 10,
+        "unit": "px",
+        "default": 360
+      },
+      {
+        "id": "hero_image_url",
+        "type": "image_picker",
+        "ratio": "4:1",
+        "width": 900,
+        "label": "t:schema.templates.index.shared.settings.hero_image_url.label",
+        "info": "t:schema.templates.index.maple.settings.hero_image_url.info"
+      },
+      {
+        "id": "hero_bg_color",
+        "type": "color",
+        "label": "t:schema.templates.index.shared.settings.hero_bg_color.label",
+        "info": "t:schema.templates.index.shared.settings.hero_bg_color.info",
+        "default": "#A34E36"
+      },
+      {
+        "id": "hero_kicker",
+        "type": "text",
+        "label": "t:schema.templates.index.maple.settings.hero_kicker.label",
+        "info": "t:schema.templates.index.maple.settings.hero_kicker.info",
+        "default": "t:schema.templates.index.maple.settings.hero_kicker.default"
+      },
+      {
+        "id": "hero_slogan",
+        "type": "text",
+        "default": "t:schema.templates.index.maple.settings.hero_slogan.default",
+        "label": "t:schema.templates.index.shared.settings.hero_slogan.label",
+        "info": "t:schema.templates.index.maple.settings.hero_slogan.info"
+      },
+      {
+        "id": "hero_intro",
+        "type": "textarea",
+        "label": "t:schema.templates.index.maple.settings.hero_intro.label",
+        "info": "t:schema.templates.index.maple.settings.hero_intro.info"
+      },
+      {
+        "id": "show_channels_section",
+        "label": "t:schema.templates.index.shared.settings.show_channels_section.label",
+        "type": "checkbox",
+        "default": true,
+        "info": "t:schema.templates.index.shared.settings.show_channels_section.info"
+      },
+      {
+        "id": "channels_section_title",
+        "label": "t:schema.templates.index.shared.settings.channels_section_title.label",
+        "type": "text",
+        "default": "t:schema.templates.index.maple.settings.channels_section_title.default"
+      },
+      {
+        "id": "show_topic_channel",
+        "label": "t:schema.templates.index.shared.settings.show_topic_channel.label",
+        "type": "checkbox",
+        "default": true,
+        "info": "t:schema.templates.index.shared.settings.show_topic_channel.info"
+      },
+      {
+        "id": "topic_channel_title",
+        "label": "t:schema.templates.index.shared.settings.topic_channel_title.label",
+        "type": "text",
+        "default": "t:schema.templates.index.maple.settings.topic_channel_title.default"
+      },
+      {
+        "id": "show_newest_section",
+        "label": "t:schema.templates.index.shared.settings.show_newest_section.label",
+        "type": "checkbox",
+        "default": false,
+        "info": "t:schema.templates.index.shared.settings.show_newest_section.info"
+      },
+      {
+        "id": "newest_section_title",
+        "label": "t:schema.templates.index.shared.settings.newest_section_title.label",
+        "type": "text",
+        "default": "t:schema.templates.index.shared.settings.newest_section_title.default"
+      },
+      {
+        "id": "show_hottest_section",
+        "label": "t:schema.templates.index.shared.settings.show_hottest_section.label",
+        "type": "checkbox",
+        "default": false,
+        "info": "t:schema.templates.index.shared.settings.show_hottest_section.info"
+      },
+      {
+        "id": "hottest_section_title",
+        "label": "t:schema.templates.index.shared.settings.hottest_section_title.label",
+        "type": "text",
+        "default": "t:schema.templates.index.shared.settings.hottest_section_title.default"
+      }
+    ]
+  }
+{% endschema %}
