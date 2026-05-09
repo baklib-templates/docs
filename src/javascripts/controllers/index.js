@@ -12,6 +12,7 @@ import AiSearchCompletionController from './ai_search_completion_controller'
 import CopyPageController from "./copy_page_controller"
 import PageToolsController from "./page_tools_controller"
 import HeaderSearchController from "./header_search_controller"
+import ResizeBarController from "./resize_bar_controller"
 
 if (!window.Stimulus) {
   window.Stimulus = Application.start()
@@ -31,3 +32,4 @@ application.register('ai-search', AiSearchCompletionController)
 application.register("copy-page", CopyPageController)
 application.register("page-tools", PageToolsController)
 application.register("header-search", HeaderSearchController)
+application.register("resize-bar", ResizeBarController)

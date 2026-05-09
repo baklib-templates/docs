@@ -140,30 +140,6 @@
         "info": "t:schema.generic.settings.right_sidebar_width.info"
       },
       {
-        "id": "header_type",
-        "type": "radio",
-        "label": "t:schema.generic.settings.header_type.label",
-        "choices": [
-          { "label": "t:schema.generic.settings.header_type.choices.transparent", "value": "0" },
-          { "label": "t:schema.generic.settings.header_type.choices.custom", "value": "1" }
-        ],
-        "default": "1",
-        "info": "t:schema.generic.settings.header_type.info"
-      },
-      {
-        "id": "header_bg_color",
-        "type": "color",
-        "label": "t:schema.generic.settings.header_bg_color.label",
-        "info": "",
-        "default": "#ffffff"
-      },
-      {
-        "id": "header_text_color",
-        "type": "color",
-        "label": "t:schema.generic.settings.header_text_color.label",
-        "default": "#000000"
-      },
-      {
         "id": "show_published_at",
         "type": "checkbox",
         "label": "t:schema.generic.settings.show_published_at.label",

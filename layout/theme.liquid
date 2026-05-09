@@ -14,7 +14,11 @@
       {%- assign screen_width = site.settings.screen_width.value | presence | default: '1200px' -%}
       {%- assign left_sidebar_width = site.settings.left_sidebar_width | presence | default: '300' | append: 'px' -%}
       {%- assign right_sidebar_width = site.settings.right_sidebar_width | presence | default: '240' | append: 'px' -%}
-      {%- assign header_height = site.settings.header_height | presence | default: '64' | append: 'px' -%}
+      {%- comment -%}
+        暂不渲染全站 header/footer 时，将 --header-height 置为 0，避免 Mint 侧栏 sticky 仍预留原导航高度。
+        恢复页眉页脚后，请改回使用 site.settings.header_height。
+      {%- endcomment -%}
+      {%- assign header_height = '64px' -%}
 
       :root {
         --max-content-width: {{ screen_width }};
@@ -33,9 +37,8 @@
 
     {% weixin_share_tag app_id: site.settings.weixin_app_id, app_secret: site.settings.weixin_app_secret, debug: site.settings.weixin_debug, enabled: site.settings.weixin_enabled %}
   </head>
-  <body id="js--body" class="grid grid-rows-[auto_1fr_auto] min-h-screen tracking-wide" x-data="{ isHomePage: false }" x-init="isHomePage = location.pathname === '{{ site.index_path }}'">
-    {% render 'header' %}
+  <body id="js--body" class="min-h-screen tracking-wide" x-data="{ isHomePage: false }" x-init="isHomePage = location.pathname === '{{ site.index_path }}'">
+    {% comment %} 暂不加载全站 header / footer（Mint 等模板自建顶栏与页脚时再恢复） {% endcomment %}
     {{ content_for_layout }}
-    {% render 'footer' %}
   </body>
 </html>
