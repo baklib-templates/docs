@@ -1,36 +1,5 @@
 <div class="relative tracking-tight [&_section]:my-4" x-data="gradientGenerator('{{ page.settings.hero_bg_color }}')">
-  {% render 'index_themes/decoration' %}
 
-  <div class='px-4' data-controller="link-target">
-    <section class="mx-auto max-w-[var(--max-content-width)]">
-      {% render 'index_themes/features_html', html: site.settings.features_one_html %}
-
-      {% render 'index_themes/hero_search',
-         search_shape: 'rounded',
-         slogan_size: 'jumbo',
-         subtitle: page.settings.hero_subtitle %}
-
-      <div class='space-y-10'>
-        {% if page.settings.show_channels_section %}
-          {% render 'index_themes/channels_grid', columns: 4, card_style: 'flat' %}
-        {% endif %}
-
-        {% if page.settings.show_topic_channel %}
-          {% render 'index_themes/topic_grid', columns: 4 %}
-        {% endif %}
-
-        {% if page.settings.show_newest_section %}
-          {% render 'index_themes/recent_list', style: 'card' %}
-        {% endif %}
-
-        {% if page.settings.show_hottest_section %}
-          {% render 'index_themes/hottest_list', style: 'card' %}
-        {% endif %}
-
-        {% render 'index_themes/features_html', html: site.settings.features_two_html %}
-      </div>
-    </section>
-  </div>
 </div>
 
 {% schema %}

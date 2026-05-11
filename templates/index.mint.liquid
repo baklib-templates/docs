@@ -1,3 +1,4 @@
+{% comment %} 可以用不同的theme模板来实现不同的风格，比如palm、willow、linden、luma、maple、almond、luma、maple、almond、luma、maple、almond {% endcomment %}
 {% render 'index/mint/container', page: page %}
 
 {% schema %}
@@ -8,9 +9,15 @@
     "preview_image_urls": [
       "images/schema/index-mint.png"
     ],
-    "sub_page_templates": ["page"],
+    "sub_page_templates": ["page_mint"],
+    "force_sub_page_template": true,
     "settings": [
-
+      {
+        "id": "links_html",
+        "type": "html",
+        "label": "页面左侧自定义链接列表 HTML 代码",
+        "info": "支持HTML标签和有限的TailwindCSS样式代码"
+      }
     ]
   }
 {% endschema %}

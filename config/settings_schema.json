@@ -170,6 +170,12 @@
     "name": "t:schema.page_config.name",
     "settings": [
       {
+        "id": "feedback_enabled",
+        "type": "checkbox",
+        "label": "t:schema.page_config.settings.feedback_enabled.label",
+        "default": true
+      },
+      {
         "id": "show_page_tools_dropdown",
         "type": "checkbox",
         "label": "t:schema.page_config.settings.show_page_tools_dropdown.label",

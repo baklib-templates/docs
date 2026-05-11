@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "remixicon/fonts/remixicon.css";
 
 @theme {
   /* 主色 */
@@ -407,6 +408,11 @@ summary:has(.menu-active) {
 
 [x-cloak] {
   display: none;
+}
+
+/* TOC：当前小节高亮（toc_controller 为当前项添加 .is-toc-active） */
+[data-toc-nav] a[data-toc-anchor-param].is-toc-active {
+  @apply font-bold text-emerald-600 dark:text-emerald-400;
 }
 
 @import "./tooltip.css";

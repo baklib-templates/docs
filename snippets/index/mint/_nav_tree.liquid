@@ -1,0 +1,77 @@
+{%# locals:(nav_tree:, depth: 0, current_path: '', parent_path: '/', tree_url: '', id_prefix: 'index_list_nav_tree_frame_', root_container: '.custom-menu') %}
+{% assign depth = depth | default: 0 %}
+{% assign root_container = root_container | default: '.custom-menu' %}
+{% assign id_prefix = id_prefix | default: 'index_mint_nav_tree_frame_' %}
+{% assign tree_url = tree_url | default: statics['index/mint/nav_tree'] %}
+{% assign current_path = current_path | default: '' %}
+{% assign parent_path = parent_path | default: '/' %}
+
+<div
+  data-controller="turbo-nav-tree"
+  data-turbo-nav-tree-nav-tree-value='{{ nav_tree | to_json | escape }}'
+  data-turbo-nav-tree-depth-value='{{ depth }}'
+  data-turbo-nav-tree-current-path-value='{{ current_path }}'
+  data-turbo-nav-tree-parent-path-value='{{ parent_path }}'
+  data-turbo-nav-tree-url-value='{{ tree_url }}'
+  data-turbo-nav-tree-id-prefix-value='{{ id_prefix }}'
+  data-turbo-nav-tree-root-container-value='{{ root_container }}'>
+  <template data-turbo-nav-tree-target="itemTemplate">
+    {% raw %}
+      {{#hasChildren}}
+      <div
+        id="{{path}}"
+        class="relative scroll-m-4 first:scroll-m-20"
+        data-title="{{link_text}}"
+        data-active="{{isActive}}"
+        data-action="click->turbo-nav-tree#toggle"
+      >
+        <a
+          class="group flex items-start px-3 py-1.5 cursor-pointer gap-x-3 text-left rounded w-full outline-offset-[-1px] text-slate-700 hover:text-slate-900 hover:bg-slate-500/5 dark:text-slate-300 dark:hover:text-slate-100 dark:hover:bg-white/5 {{#isActive}}bg-slate-200/70 text-slate-900 dark:bg-slate-700/55 dark:text-white{{/isActive}}"
+          href="{{path}}"
+          data-turbo-frame="main-content-frame"
+          data-turbo-action="advance"
+          data-turbo-nav-tree-only-open-param="true"
+        >
+          <div class="h-[1lh] flex items-center shrink-0">
+            <span class="size-4 rounded bg-slate-400 dark:bg-slate-500"></span>
+          </div>
+          <div class="flex-1 flex min-w-0 items-start gap-x-2.5">
+            <div class="flex min-w-0 flex-1 flex-wrap items-center gap-1.5 [word-break:break-word]">
+              <span class="min-w-0 max-w-full break-words hyphens-auto">{{link_text}}</span>
+            </div>
+          </div>
+          <div turbo-nav-tree-item-target-icon class="ml-auto mt-[0.15rem] text-sky-400 transition-transform duration-200 {{#open}}rotate-90{{/open}}">
+            <svg class="size-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M9 6l6 6-6 6" />
+            </svg>
+          </div>
+        </a>
+      </div>
+      {{/hasChildren}}
+      {{^hasChildren}}
+      <div
+        id="{{path}}"
+        class="relative scroll-m-4 first:scroll-m-20"
+        data-title="{{link_text}}"
+        data-active="{{isActive}}"
+      >
+        <a
+          class="group flex items-start px-3 py-1.5 cursor-pointer gap-x-3 text-left rounded w-full outline-offset-[-1px] text-slate-700 hover:text-slate-900 hover:bg-slate-500/5 dark:text-slate-300 dark:hover:text-slate-100 dark:hover:bg-white/5 {{#isActive}}bg-slate-200/70 text-slate-900 dark:bg-slate-700/55 dark:text-white{{/isActive}}"
+          href="{{path}}"
+          data-turbo-frame="main-content-frame"
+          data-turbo-action="advance"
+        >
+          <div class="h-[1lh] flex items-center shrink-0">
+            <span class="size-4 rounded bg-slate-400 dark:bg-slate-500"></span>
+          </div>
+          <div class="flex-1 flex min-w-0 items-start gap-x-2.5">
+            <div class="flex min-w-0 flex-1 flex-wrap items-center gap-1.5 [word-break:break-word]">
+              <span class="min-w-0 max-w-full break-words hyphens-auto">{{link_text}}</span>
+            </div>
+          </div>
+        </a>
+      </div>
+      {{/hasChildren}}
+    {% endraw %}
+  </template>
+</div>
