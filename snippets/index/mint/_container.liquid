@@ -5,7 +5,7 @@
   {% assign current_root_channel = index_page.children_in_list | first %}
 {% endunless %}
 
-<div class="flex flex-grow relative bg-white text-neutral-900"
+<div class="flex flex-grow relative bg-base-100 text-base-content"
   x-data="{
     docTab: 'guides',
     isAtBottom: false,
@@ -43,11 +43,11 @@
     {% render 'index/mint/header', page: page %}
 
     {% comment %} top channels {% endcomment %}
-    <div class="sticky top-[var(--header-height)] w-full bg-white z-30 border-b border-neutral-100">
+    <div class="sticky top-[var(--header-height)] w-full bg-base-100 z-30 border-b border-base-200">
       <div class="mx-auto max-w-[var(--max-content-width)] h-12 px-4 lg:px-6">
         {% comment %} 面包屑 {% endcomment %}
         <div class="h-full flex items-center space-x-2 lg:hidden overflow-hidden">
-          <label for="my-drawer-3" class="btn btn-ghost btn-sm btn-square text-neutral-500" aria-label="Open sidebar">
+          <label for="my-drawer-3" class="btn btn-ghost btn-sm btn-square text-base-content/60" aria-label="Open sidebar">
             <svg class="size-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
               <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
             </svg>
@@ -57,12 +57,12 @@
         </div>
 
         {% comment %} channels {% endcomment %}
-        <div class="hidden lg:flex h-full gap-4 text-[0.85rem] font-bold dark:border-neutral-800 overflow-x-auto overflow-y-hidden" x-cloak>
+        <div class="hidden lg:flex h-full gap-4 text-[0.85rem] font-bold overflow-x-auto overflow-y-hidden" x-cloak>
           {% assign channels = index_page.children_in_list %}
           {% for channel in channels %}
             <a href="{{ channel.path }}"
               class="flex items-center whitespace-nowrap transition-all duration-300 border-b-[3px] space-x-1"
-              :class="channelPathActive('{{ channel.path }}', {{ forloop.index }}) ? ' border-emerald-500 text-emerald-600 ' : 'border-transparent text-neutral-500 hover:text-neutral-800'">
+              :class="channelPathActive('{{ channel.path }}', {{ forloop.index }}) ? ' border-primary text-primary ' : 'border-transparent text-base-content/60 hover:text-base-content'">
               {% if channel.settings.icon %}
                 <img src="{{ channel.settings.icon }}" class="size-4" alt="{{ channel.link_text }}">
               {% endif %}
@@ -76,9 +76,9 @@
     <div class="drawer lg:drawer-open mx-auto max-w-[var(--max-content-width)]  px-6">
       <input id="my-drawer-3" type="checkbox" class="drawer-toggle" />
       <div
-        class="drawer-side lg:sticky lg:top-[calc(var(--header-height)+3.2rem)] lg:max-h-[calc(100vh-var(--header-height)-13.1rem)] lg:overflow-y-auto z-99">
+        class="drawer-side lg:sticky lg:top-[calc(var(--header-height)+3.2rem)] lg:max-h-[calc(100vh-var(--header-height)-4.1rem)] lg:overflow-y-auto z-99">
         <label for="my-drawer-3" aria-label="close sidebar" class="drawer-overlay"></label>
-        <aside class="px-4 p-4 md:pt-10 pb-12 md:p-0 w-[var(--left-sidebar-width)] bg-white h-full space-y-3">
+        <aside class="px-4 p-4 md:pt-10 pb-12 md:p-0 w-[var(--left-sidebar-width)] bg-base-100 h-full space-y-3">
           {% comment %} index 中配置的链接 {% endcomment %}
           {% assign links_html = index_page.settings.links_html | presence %}
           {% if links_html %}
@@ -88,8 +88,8 @@
           {% endif %}
           {% if false %}
             <a href="#"
-              class="flex items-center gap-2 rounded-lg px-2 py-1.5 font-bold text-neutral-600 hover:bg-neutral-100">
-              <svg class="size-[1.1rem] text-neutral-400 dark:text-neutral-500" fill="none" viewBox="0 0 24 24"
+              class="flex items-center gap-2 rounded-lg px-2 py-1.5 font-bold text-base-content/70 hover:bg-base-200">
+                <svg class="size-[1.1rem] text-base-content/50" fill="none" viewBox="0 0 24 24"
                 stroke="currentColor" stroke-width="1.5">
                 <path stroke-linecap="round" stroke-linejoin="round"
                   d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
@@ -124,13 +124,13 @@
                 <article class="max-w-none flex flex-1 flex-col pt-10 min-h-[70vh]">
                   <div class="min-h-0 w-full flex-1 flex flex-col">
                     <div class="flex-1">
-                      <p class="mb-2 text-[0.8rem] font-bold tracking-wide text-emerald-600 dark:text-emerald-400 uppercase">{{
+                      <p class="mb-2 text-[0.8rem] font-bold tracking-wide text-primary uppercase">{{
                         current_root_channel.link_text }}
                       </p>
                       {% # 标题 %}
                       {% assign title = page.link_text | presence %}
                       <div class="mb-4 py-1 flex items-start justify-between gap-3">
-                        <h1 class="mb-3 text-2xl sm:text-3xl font-bold tracking-tight text-neutral-900 ">
+                        <h1 class="mb-3 text-2xl sm:text-3xl font-bold tracking-tight text-base-content">
                           {{ title }}
                         </h1>
                         {% if site.settings.show_page_tools_dropdown %}
@@ -139,7 +139,7 @@
                       </div>
 
                       {% if page.settings.description %}
-                      <p class="mb-8 text-[1.05rem] text-neutral-500 dark:text-neutral-400">{{ page.settings.description }}</p>
+                      <p class="mb-8 text-[1.05rem] text-base-content/70">{{ page.settings.description }}</p>
                       {% endif %}
 
                       {% comment %} page content：TOC 仅扫描正文内标题 {% endcomment %}
@@ -158,19 +158,19 @@
                   </div>
 
                   {% comment %} AI：flex-1 在短页占满剩余高度，条在 article 底；长页仍在正文后 + sticky bottom 吸附视口 {% endcomment %}
-                  <div class="sticky bottom-5 z-20 mt-6 w-full shrink-0 pointer-events-none print:hidden transition-all duration-300"
+                  <div class="sticky bottom-5 z-20 w-full shrink-0 pointer-events-none print:hidden transition-all duration-300"
                     :class="(isAtBottom || isAiOpen) ? 'translate-y-full opacity-0' : 'translate-y-0 opacity-100'">
                     <div
-                      class="pointer-events-auto flex flex-col w-full rounded-2xl border border-neutral-200 bg-white/90 shadow-[0_4px_12px_rgba(0,0,0,0.03)] backdrop-blur-xl transition-colors focus-within:border-emerald-500 dark:border-neutral-700/80 dark:bg-neutral-900/90 dark:focus-within:border-emerald-400">
+                      class="pointer-events-auto flex flex-col w-full rounded-2xl border border-base-200 bg-base-100/90 shadow-sm backdrop-blur-xl transition-colors focus-within:border-primary">
                       <div class="relative flex items-end">
                         <textarea aria-label="Ask a question..." placeholder="Ask a question..."
-                          class="w-full resize-none border-0 bg-transparent py-4 pl-4 pr-14 text-[0.95rem] text-neutral-900 placeholder-neutral-400 focus:outline-none focus:ring-0 dark:text-neutral-100 dark:placeholder-neutral-500"
+                          class="w-full resize-none border-0 bg-transparent py-4 pl-4 pr-14 text-[0.95rem] text-base-content placeholder-base-content/40 focus:outline-none focus:ring-0"
                           style="height: 60px;"
                           @keydown.enter.prevent="if($el.value.trim()) { isAiOpen = true; $el.value = ''; }"></textarea>
                         <span
-                          class="absolute bottom-4 right-12 hidden text-[0.75rem] font-medium text-neutral-400 dark:text-neutral-500 sm:inline">⌘I</span>
+                          class="absolute bottom-4 right-12 hidden text-[0.75rem] font-medium text-base-content/50 sm:inline">⌘I</span>
                         <button type="button" @click="isAiOpen = true"
-                          class="absolute bottom-3 right-2.5 flex size-8 items-center justify-center rounded-lg bg-emerald-500 text-white transition-colors hover:bg-emerald-600 disabled:opacity-50"
+                          class="absolute bottom-3 right-2.5 flex size-8 items-center justify-center rounded-lg bg-primary text-primary-content transition-colors hover:bg-primary/90 disabled:opacity-50"
                           aria-label="Send message">
                           <svg class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
                             stroke-linecap="round" stroke-linejoin="round">
@@ -183,12 +183,12 @@
                 </article>
 
                 <footer
-                  class="border-t border-neutral-200 py-8 text-[0.85rem] text-neutral-500 dark:border-neutral-800 dark:text-neutral-400">
+                  class="border-t border-base-200 py-8 text-[0.85rem] text-base-content/60">
                   <div class="flex flex-col items-center justify-between gap-4 sm:flex-row">
                     <p>© {{ 'now' | date: "%Y" }} Mint Starter Kit. All rights reserved.</p>
                     <div class="flex gap-4">
-                      <a href="#" class="hover:text-neutral-900 dark:hover:text-neutral-100">Privacy Policy</a>
-                      <a href="#" class="hover:text-neutral-900 dark:hover:text-neutral-100">Terms of Service</a>
+                      <a href="#" class="link link-hover text-base-content/60 hover:text-base-content">Privacy Policy</a>
+                      <a href="#" class="link link-hover text-base-content/60 hover:text-base-content">Terms of Service</a>
                     </div>
                   </div>
                 </footer>
@@ -207,8 +207,8 @@
                 aria-label="{{ 'templates.page.page_toc' | t }}"
               >
                 <div data-toc-target="menu">
-                  <p class="flex items-center gap-2 font-bold text-neutral-800 dark:text-neutral-200 mb-2">
-                    <svg class="size-4 text-neutral-400 dark:text-neutral-500" fill="none" viewBox="0 0 24 24"
+                  <p class="flex items-center gap-2 font-bold text-base-content mb-2">
+                    <svg class="size-4 text-base-content/50" fill="none" viewBox="0 0 24 24"
                       stroke="currentColor" stroke-width="1.5" aria-hidden="true">
                       <path stroke-linecap="round" stroke-linejoin="round"
                         d="M8.25 6.75h12M8.25 12h12m-12 5.25h12M3.75 6.75h.007v.008H3.75V6.75zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zM3.75 12h.007v.008H3.75V12zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm-.375 5.25h.007v.008H3.75v-.008zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
@@ -232,18 +232,18 @@
     x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" style="display: none;">
     <div class="absolute inset-0 bg-black/40 touch-none" @click="isAiOpen = false" @touchmove.prevent></div>
     <div
-      class="absolute inset-x-0 bottom-0 h-[86vh] rounded-t-2xl bg-white shadow-2xl flex flex-col overflow-hidden touch-pan-y">
+      class="absolute inset-x-0 bottom-0 h-[86vh] rounded-t-2xl bg-base-100 shadow-2xl flex flex-col overflow-hidden touch-pan-y">
       <div x-data="{ touchStartY: 0, dragY: 0, dragging: false }" class="touch-none shrink-0"
         @touchstart.passive="touchStartY = $event.touches[0].clientY; dragging = true"
         @touchmove="if (!dragging) return; let moved = $event.touches[0].clientY - touchStartY; dragY = moved > 0 ? moved : 0; $event.preventDefault(); $el.parentElement.style.transform = `translateY(${dragY}px)`; $el.parentElement.style.transition = 'none';"
         @touchend="if (dragY > 120) { isAiOpen = false }; dragging = false; dragY = 0; $el.parentElement.style.transform = ''; $el.parentElement.style.transition = 'transform 0.2s ease-out';"
         @touchcancel="dragging = false; dragY = 0; $el.parentElement.style.transform = ''; $el.parentElement.style.transition = 'transform 0.2s ease-out';">
         <div class="flex items-center justify-center pt-2 pb-1">
-          <div class="h-1 w-10 rounded-full bg-neutral-300"></div>
+          <div class="h-1 w-10 rounded-full bg-base-300"></div>
         </div>
         <div class="flex items-center justify-between px-4 py-3">
-          <div class="flex items-center gap-2 font-bold text-neutral-900 text-[0.95rem]">
-            <svg class="size-4 text-emerald-500" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          <div class="flex items-center gap-2 font-bold text-base-content text-[0.95rem]">
+            <svg class="size-4 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor"
               stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
               <path
                 d="m9.813 15.904-.813 2.846a4.5 4.5 0 0 1-3.09-3.09L3.064 14.85a4.5 4.5 0 0 1 3.09-3.09l2.846-.813a4.5 4.5 0 0 1 3.09 3.09l-.813 2.847a4.5 4.5 0 0 1-3.09 3.09Z" />
@@ -254,7 +254,7 @@
             </svg>
             Assistant
           </div>
-          <button type="button" class="text-neutral-500 hover:text-neutral-700 p-1.5 rounded-lg" aria-label="Close"
+          <button type="button" class="btn btn-ghost btn-sm btn-square text-base-content/60" aria-label="Close"
             @click="isAiOpen = false">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -264,19 +264,19 @@
           </button>
         </div>
       </div>
-      <div class="flex-1 flex items-center justify-center text-xs text-neutral-400 px-4">
+      <div class="flex-1 flex items-center justify-center text-xs text-base-content/50 px-4">
         Responses are generated using AI and may contain mistakes.
       </div>
       <div class="px-4 pb-4 shrink-0">
         <div
-          class="flex flex-col w-full rounded-2xl bg-white border border-neutral-200 focus-within:border-emerald-500 transition-colors">
+          class="flex flex-col w-full rounded-2xl bg-base-100 border border-base-200 focus-within:border-primary transition-colors">
           <div class="relative flex items-end">
             <textarea
-              class="w-full bg-transparent border-0 text-neutral-900 placeholder-neutral-500 focus:outline-none focus:ring-0 py-2.5 pl-3.5 pr-10 text-[0.85rem] !pb-0 resize-none"
+              class="w-full bg-transparent border-0 text-base-content placeholder-base-content/50 focus:outline-none focus:ring-0 py-2.5 pl-3.5 pr-10 text-[0.85rem] !pb-0 resize-none"
               placeholder="Ask a question..." style="height: 50px;"></textarea>
           </div>
           <div class="flex items-center justify-between px-2 pb-2">
-            <button type="button" class="p-1 rounded-lg text-neutral-500 hover:text-neutral-700 hover:bg-neutral-100"
+            <button type="button" class="btn btn-ghost btn-sm btn-square text-base-content/60"
               aria-label="Add attachment">
               <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none"
                 stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
@@ -286,7 +286,7 @@
                 </path>
               </svg>
             </button>
-            <button class="flex justify-center items-center rounded-full p-1 size-6 bg-emerald-500/10 text-emerald-500"
+            <button class="btn btn-circle btn-ghost btn-sm bg-primary/10 text-primary"
               aria-label="Send message" disabled="">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-3.5">
@@ -302,23 +302,23 @@
 
   {% comment %} AI Assistant 侧边栏（桌面） {% endcomment %}
   <div
-    class="hidden lg:flex bg-slate-100 overflow-hidden z-50 w-[var(--ai-sidebar-width,340px)] sticky top-0 max-h-screen overflow-y-auto transition-[width] duration-300 [.resize-bar-dragging_&]:transition-none"
+    class="hidden lg:flex bg-base-200 overflow-hidden z-50 w-[var(--ai-sidebar-width,340px)] sticky top-0 max-h-screen overflow-y-auto transition-[width] duration-300 [.resize-bar-dragging_&]:transition-none"
     x-show="isAiOpen" x-transition:enter="transition ease-out duration-300"
     x-transition:enter-start="opacity-0 translate-x-full" x-transition:enter-end="opacity-100 translate-x-0"
     x-transition:leave="transition ease-in duration-300" x-transition:leave-start="opacity-100 translate-x-0"
     x-transition:leave-end="opacity-0 translate-x-full" style="display: none;" data-controller="resize-bar"
-    data-resize-bar-target="target" data-resize-bar-dragging-class="bg-slate-200 cursor-ew-resize !transition-none"
+    data-resize-bar-target="target" data-resize-bar-dragging-class="bg-base-300 cursor-ew-resize !transition-none"
     data-resize-bar-min-size-value="350" data-resize-bar-max-size-value="600" data-resize-bar-direction-value="left"
     data-resize-bar-remember-value="true" data-resize-bar-key-value="ai-sidebar-width"
     data-resize-bar-css-var-value="--ai-sidebar-width">
-    <div class="transition bg-slate-100 w-[6px] shrink-0 hover:bg-slate-200 hover:cursor-ew-resize"
+    <div class="transition bg-base-200 w-[6px] shrink-0 hover:bg-base-300 hover:cursor-ew-resize"
       data-resize-bar-target="bar">
     </div>
-    <div class="relative flex flex-col flex-1 bg-white dark:bg-neutral-950 min-w-0">
+    <div class="relative flex flex-col flex-1 bg-base-100 min-w-0">
       <!-- AI Header -->
-      <div class="flex items-center justify-between px-4 py-3 dark:border-neutral-800">
-        <div class="flex items-center gap-2 font-bold text-neutral-900 dark:text-neutral-100 text-[0.95rem]">
-          <svg class="size-4 text-emerald-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+      <div class="flex items-center justify-between px-4 py-3 border-b border-base-200">
+        <div class="flex items-center gap-2 font-bold text-base-content text-[0.95rem]">
+          <svg class="size-4 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
             stroke-linecap="round" stroke-linejoin="round">
             <path
               d="m9.813 15.904-.813 2.846a4.5 4.5 0 0 1-3.09-3.09L3.064 14.85a4.5 4.5 0 0 1 3.09-3.09l2.846-.813a4.5 4.5 0 0 1 3.09 3.09l-.813 2.847a4.5 4.5 0 0 1-3.09 3.09Z" />
@@ -330,32 +330,32 @@
           Assistant
         </div>
         <div class="flex items-center gap-1">
-          <button type="button" class="group hover:bg-neutral-100 dark:hover:bg-white/10 p-1.5 rounded-lg"
+          <button type="button" class="btn btn-ghost btn-sm btn-square group"
             aria-label="Expand">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-              class="size-4 sm:size-3.5 text-neutral-500 group-hover:text-neutral-700 dark:group-hover:text-neutral-300">
+              class="size-4 sm:size-3.5 text-base-content/60 group-hover:text-base-content">
               <polyline points="15 3 21 3 21 9"></polyline>
               <polyline points="9 21 3 21 3 15"></polyline>
               <line x1="21" x2="14" y1="3" y2="10"></line>
               <line x1="3" x2="10" y1="21" y2="14"></line>
             </svg>
           </button>
-          <button type="button" class="group hover:bg-neutral-100 dark:hover:bg-white/10 p-1.5 rounded-lg"
+          <button type="button" class="btn btn-ghost btn-sm btn-square group"
             aria-label="Trash">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-              class="size-4 sm:size-3.5 text-neutral-500 group-hover:text-neutral-700 dark:group-hover:text-neutral-300">
+              class="size-4 sm:size-3.5 text-base-content/60 group-hover:text-base-content">
               <path d="M3 6h18"></path>
               <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
               <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
             </svg>
           </button>
-          <button type="button" class="group hover:bg-neutral-100 dark:hover:bg-white/10 p-1.5 rounded-lg"
+          <button type="button" class="btn btn-ghost btn-sm btn-square group"
             aria-label="Close" @click="isAiOpen = false">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-              class="size-[20px] sm:size-4 text-neutral-500 group-hover:text-neutral-700 dark:group-hover:text-neutral-300">
+              class="size-[20px] sm:size-4 text-base-content/60 group-hover:text-base-content">
               <path d="M18 6 6 18"></path>
               <path d="m6 6 12 12"></path>
             </svg>
@@ -367,10 +367,10 @@
       <div class="flex-1 flex flex-col-reverse overflow-y-auto px-5 min-h-0 relative">
         <div class="flex flex-col gap-3 mb-2">
           <div class="flex justify-end items-end w-full flex-col gap-2">
-            <div class="flex px-3 py-2 items-start gap-4 w-fit rounded-2xl bg-neutral-100 dark:bg-white/5">
+            <div class="flex px-3 py-2 items-start gap-4 w-fit rounded-2xl bg-base-200">
               <div class="flex items-start gap-4 w-full">
                 <div class="flex flex-col gap-1 w-full">
-                  <div class="break-words hyphens-auto text-base lg:text-sm text-neutral-800 dark:text-neutral-200">订单
+                  <div class="break-words hyphens-auto text-base lg:text-sm text-base-content">订单
                   </div>
                 </div>
               </div>
@@ -380,7 +380,7 @@
           <div class="flex flex-col py-4 gap-4 self-stretch">
             <div
               class="space-y-4 whitespace-normal prose prose-sm dark:prose-invert overflow-x-auto pb-1 max-lg:text-base">
-              <p class="whitespace-pre-line leading-relaxed text-neutral-800 dark:text-neutral-200">
+              <p class="whitespace-pre-line leading-relaxed text-base-content">
                 您的问题"订单"过于简短。请问您想了解关于订单的什么内容？例如 API 端点、创建订单、查询订单等？</p>
             </div>
 
@@ -388,26 +388,26 @@
               <button class="flex items-center gap-2 cursor-pointer w-fit group">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                   stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
-                  class="size-3 flex-shrink-0 text-neutral-500 dark:text-neutral-400 group-hover:text-neutral-600 dark:group-hover:text-neutral-300">
+                  class="size-3 flex-shrink-0 text-base-content/50 group-hover:text-base-content">
                   <circle cx="11" cy="11" r="8"></circle>
                   <path d="m21 21-4.3-4.3"></path>
                 </svg>
                 <span
-                  class="text-xs font-medium text-neutral-500 dark:text-neutral-400 text-left group-hover:text-neutral-600 dark:group-hover:text-neutral-300">Searched
+                  class="text-xs font-medium text-base-content/60 text-left group-hover:text-base-content">Searched
                   for 1 pattern</span>
               </button>
             </div>
 
             <div
               class="space-y-4 whitespace-normal prose prose-sm dark:prose-invert overflow-x-auto pb-1 max-lg:text-base">
-              <p class="whitespace-pre-line leading-relaxed text-neutral-800 dark:text-neutral-200">
+              <p class="whitespace-pre-line leading-relaxed text-base-content">
                 文档中似乎没有专门关于订单的内容。请提供更多细节，例如您想做什么？我可以帮您查找相关文档。</p>
             </div>
 
             <div class="flex items-start gap-2 w-full mt-1">
               <div class="flex items-center gap-1">
                 <button aria-label="Vote that response was good"
-                  class="rounded-lg p-1.5 hover:bg-neutral-100 dark:hover:bg-white/10 cursor-pointer text-neutral-500 hover:text-neutral-700 dark:hover:text-neutral-300 transition-colors">
+                  class="btn btn-ghost btn-sm btn-square text-base-content/60 hover:text-base-content transition-colors">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                     class="size-4 sm:size-3.5">
@@ -418,7 +418,7 @@
                   </svg>
                 </button>
                 <button aria-label="Vote that response was not good"
-                  class="rounded-lg p-1.5 hover:bg-neutral-100 dark:hover:bg-white/10 cursor-pointer text-neutral-500 hover:text-neutral-700 dark:hover:text-neutral-300 transition-colors">
+                  class="btn btn-ghost btn-sm btn-square text-base-content/60 hover:text-base-content transition-colors">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                     class="size-4 sm:size-3.5">
@@ -429,7 +429,7 @@
                   </svg>
                 </button>
                 <button
-                  class="rounded-lg p-1.5 hover:bg-neutral-100 dark:hover:bg-white/10 cursor-pointer text-neutral-500 hover:text-neutral-700 dark:hover:text-neutral-300 transition-colors"
+                  class="btn btn-ghost btn-sm btn-square text-base-content/60 hover:text-base-content transition-colors"
                   aria-label="Copy chat response">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -439,7 +439,7 @@
                   </svg>
                 </button>
                 <button
-                  class="rounded-lg p-1.5 hover:bg-neutral-100 dark:hover:bg-white/10 cursor-pointer text-neutral-500 hover:text-neutral-700 dark:hover:text-neutral-300 transition-colors"
+                  class="btn btn-ghost btn-sm btn-square text-base-content/60 hover:text-base-content transition-colors"
                   aria-label="Reload last chat">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -460,16 +460,16 @@
       <!-- AI Input Area -->
       <div class="px-4 pb-4 shrink-0 mt-2">
         <div
-          class="flex flex-col w-full rounded-2xl pointer-events-auto bg-white dark:bg-neutral-900/90 border border-neutral-200 dark:border-white/30 focus-within:border-emerald-500 dark:focus-within:border-emerald-400 transition-colors">
+          class="flex flex-col w-full rounded-2xl pointer-events-auto bg-base-100 border border-base-200 focus-within:border-primary transition-colors">
           <div class="relative flex items-end">
             <textarea
-              class="w-full bg-transparent border-0 text-neutral-900 dark:text-neutral-100 placeholder-neutral-500 dark:placeholder-neutral-400 focus:outline-none focus:ring-0 py-2.5 pl-3.5 pr-10 text-[0.85rem] !pb-0 resize-none"
+              class="w-full bg-transparent border-0 text-base-content placeholder-base-content/50 focus:outline-none focus:ring-0 py-2.5 pl-3.5 pr-10 text-[0.85rem] !pb-0 resize-none"
               placeholder="Ask a question..." style="height: 50px;"></textarea>
           </div>
           <div class="flex items-center justify-between px-2 pb-2">
             <input type="file" class="hidden">
             <button type="button"
-              class="p-1 rounded-lg text-neutral-500 hover:text-neutral-700 dark:text-neutral-400 dark:hover:text-neutral-200 hover:bg-neutral-100 dark:hover:bg-white/10"
+              class="btn btn-ghost btn-sm btn-square text-base-content/60 hover:text-base-content"
               aria-label="Add attachment">
               <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none"
                 stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
@@ -480,7 +480,7 @@
               </svg>
             </button>
             <button
-              class="flex justify-center items-center rounded-full p-1 size-6 bg-emerald-500/10 text-emerald-500 dark:bg-emerald-500/20 dark:text-emerald-400"
+              class="btn btn-circle btn-ghost btn-sm bg-primary/10 text-primary"
               aria-label="Send message" disabled="">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-3.5">

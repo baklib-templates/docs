@@ -1,0 +1,93 @@
+{% comment %} locals: hot_keywords {% endcomment %}
+<dialog
+  id="site-search-modal"
+  class="site-search-modal modal p-0 sm:p-4"
+  data-header-search-target="modal"
+  aria-label="{{ 'search.placeholder' | t: '搜索' }}"
+>
+  <div
+    class="modal-box flex max-h-[min(85vh,720px)] w-[min(100vw-1rem,36rem)] max-w-none flex-col gap-0 overflow-hidden rounded-2xl border border-base-200 bg-base-100 p-0 shadow-2xl sm:max-w-[min(100vw-2rem,36rem)]"
+  >
+    <div class="shrink-0 border-b border-base-200 bg-base-100 px-3 py-3 sm:px-4">
+      <label class="border border-base-300 flex h-11 w-full items-center gap-2 rounded-xl bg-base-100 px-3 text-base-content focus-within:border-base-content">
+        <i class="ri-search-line shrink-0 text-lg leading-none text-base-content/45" aria-hidden="true"></i>
+        <input
+          type="search"
+          autocomplete="off"
+          class="grow truncate border-0 bg-transparent p-0 text-sm outline-none focus:outline-none "
+          placeholder="{{ 'search.placeholder' | t: 'Search...' }}"
+          data-header-search-target="modalInput"
+          data-action="input->header-search#onModalInput keydown->header-search#onModalKeydown"
+        />
+        <kbd class="">ESC</kbd>
+      </label>
+    </div>
+
+    <div
+      class="min-h-0 flex-1 overflow-y-auto overscroll-contain px-3 pb-3 pt-2 sm:px-4 hidden"
+      data-header-search-target="resultsScroll"
+      data-action="mouseleave->header-search#clearListSelection mouseenter->header-search#resultsEnter"
+    >
+      <div
+        class="mb-1 flex flex-col gap-2 {% unless hot_keywords.size > 0 %}hidden{% endunless %}"
+        data-header-search-target="hotSection"
+      >
+        {% if hot_keywords.size > 0 %}
+          <p class="px-0.5 text-[0.7rem] font-semibold uppercase tracking-wide text-base-content/45">
+            {{ 'layout.theme.search_keywords_label' | t: '热门搜索' }}
+          </p>
+          <div class="flex flex-wrap gap-2" data-header-search-target="hotList">
+            {% for kw in hot_keywords %}
+              {% assign kw_trim = kw | strip %}
+              {% if kw_trim != blank %}
+                <button
+                  type="button"
+                  class="btn btn-sm rounded-full border border-base-200 bg-base-200/40 font-normal text-base-content/80 hover:border-primary/30 hover:bg-primary/10"
+                  data-action="click->header-search#applyHotKeyword"
+                  data-kw="{{ kw_trim | escape_once }}"
+                >
+                  {{ kw_trim }}
+                </button>
+              {% endif %}
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+
+      <turbo-frame
+        id="search_preview_frame"
+        class="flex min-h-0 flex-col gap-0"
+        data-turbo-action="advance"
+        data-header-search-target="previewFrame"
+      ></turbo-frame>
+    </div>
+
+    <div
+      class="shrink-0 border-t border-base-200 bg-base-100 px-3 py-3 sm:px-4 hidden"
+      data-header-search-target="aiSection"
+    >
+      <p class="mb-1.5 px-0.5 text-[0.7rem] font-semibold uppercase tracking-wide text-base-content/45">Ask AI assistant</p>
+      <a
+        href="#"
+        class="flex items-start gap-2.5 rounded-xl px-2 py-2 text-sm text-primary hover:bg-primary/10"
+        data-header-search-target="aiLink"
+        data-turbo-frame="_top"
+      >
+        <svg class="mt-0.5 size-4 shrink-0 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="m9.813 15.904-.813 2.846a4.5 4.5 0 0 1-3.09-3.09L3.064 14.85a4.5 4.5 0 0 1 3.09-3.09l2.846-.813a4.5 4.5 0 0 1 3.09 3.09l-.813 2.847a4.5 4.5 0 0 1-3.09 3.09Z" />
+          <path d="m18.259 8.715-.259 1.035a3.375 3.375 0 0 1-2.455 2.456L14.5 12.465a3.375 3.375 0 0 1 2.455-2.456l1.035-.259a3.375 3.375 0 0 1 2.456 2.456l-.259 1.035a3.375 3.375 0 0 1-2.456-2.456Z" />
+          <path d="m16.894 20.567-.394 1.183a2.25 2.25 0 0 1-1.423 1.423l-1.183-.394a2.25 2.25 0 0 1 1.423-1.423l.394-1.183a2.25 2.25 0 0 1 1.423 1.423l1.183.394a2.25 2.25 0 0 1-1.423-1.423Z" />
+        </svg>
+        <span class="min-w-0 leading-snug">
+          <span class="search-modal-ai-lead text-base-content/70">Can you tell me about </span>
+          <strong class="search-modal-ai-q font-semibold text-primary"></strong>
+          <span class="text-base-content/70">?</span>
+        </span>
+      </a>
+    </div>
+  </div>
+  {% comment %} DaisyUI：method="dialog" 的 backdrop 表单，点击遮罩关闭（与官方示例一致）{% endcomment %}
+  <form method="dialog" class="modal-backdrop">
+    <button>{{ 'generic.buttons.close' | t: '关闭' }}</button>
+  </form>
+</dialog>

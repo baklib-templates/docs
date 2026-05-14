@@ -6,13 +6,13 @@ const DEFAULT_ITEM_TEMPLATE = `
 <li>
   <a
     href="#{{id}}"
-    class="block py-[0.15rem] text-neutral-500 hover:text-neutral-800 hover:underline dark:text-neutral-400 dark:hover:text-neutral-200"
+    class="block py-[0.15rem] text-base-content/60 hover:text-base-content hover:underline"
     data-turbo="false"
     data-action="click->toc#navigateToAnchor"
     data-toc-anchor-param="{{id}}"
   >{{text}}</a>
   {{#hasChildren}}
-  <ul class="mt-1 space-y-1 border-l border-neutral-200 pl-3 dark:border-neutral-700">
+  <ul class="mt-1 space-y-1 border-l border-base-200 pl-3">
     {{#children}}
       {{> item}}
     {{/children}}
@@ -24,11 +24,11 @@ const DEFAULT_ITEM_TEMPLATE = `
 /** 未提供 `<template data-toc-target="rootTemplate">` 时使用的默认根模板（`items` 为一级节点数组） */
 const DEFAULT_ROOT_TEMPLATE = `
 <nav
-  class="border-l border-neutral-200 pl-4 dark:border-neutral-700"
+  class="border-l border-base-200 pl-4"
   data-toc-nav
   {{#ariaLabel}}aria-label="{{ariaLabel}}"{{/ariaLabel}}
 >
-  <ul class="space-y-2 text-neutral-500 dark:text-neutral-400">
+  <ul class="space-y-2 text-base-content/60">
     {{#items}}
       {{> item}}
     {{/items}}
@@ -211,7 +211,7 @@ export default class extends Controller {
       const htmlStr = `
         <input type="hidden" value="${linkUrl.replace(/"/g, "&quot;")}" data-clipboard-target="source" />
         <button type="button" data-action="clipboard#copy" data-clipboard-target="button" class="inline-flex ml-1 opacity-0 group-hover:opacity-100">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-300 group-hover:text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-base-content/30 group-hover:text-base-content/60" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
           </svg>
         </button>

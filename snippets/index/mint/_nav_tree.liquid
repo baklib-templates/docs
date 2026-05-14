@@ -7,10 +7,10 @@
 {% assign parent_path = parent_path | default: '/' %}
 
 <div
+  class="min-w-0 w-full max-w-full"
   data-controller="turbo-nav-tree"
   data-turbo-nav-tree-nav-tree-value='{{ nav_tree | to_json | escape }}'
   data-turbo-nav-tree-depth-value='{{ depth }}'
-  data-turbo-nav-tree-current-path-value='{{ current_path }}'
   data-turbo-nav-tree-parent-path-value='{{ parent_path }}'
   data-turbo-nav-tree-url-value='{{ tree_url }}'
   data-turbo-nav-tree-id-prefix-value='{{ id_prefix }}'
@@ -19,55 +19,74 @@
     {% raw %}
       {{#hasChildren}}
       <div
-        id="{{path}}"
-        class="relative scroll-m-4 first:scroll-m-20"
+        class="group/menu-row relative flex min-w-0 max-w-full w-full scroll-m-4 items-stretch gap-0.5 first:scroll-m-20 rounded-lg [&[active]]:bg-primary/20 [&[active]>a]:font-bold [&[active]>*]:text-primary hover:bg-base-200/60 dark:hover:bg-base-300/40"
         data-title="{{link_text}}"
-        data-active="{{isActive}}"
-        data-action="click->turbo-nav-tree#toggle"
       >
         <a
-          class="group flex items-start px-3 py-1.5 cursor-pointer gap-x-3 text-left rounded w-full outline-offset-[-1px] text-slate-700 hover:text-slate-900 hover:bg-slate-500/5 dark:text-slate-300 dark:hover:text-slate-100 dark:hover:bg-white/5 {{#isActive}}bg-slate-200/70 text-slate-900 dark:bg-slate-700/55 dark:text-white{{/isActive}}"
+          class="group/minilink flex min-w-0 flex-1 items-start gap-x-3 px-3 py-1.5 text-left outline-offset-[-1px] text-base-content/80 hover:text-base-content"
           href="{{path}}"
           data-turbo-frame="main-content-frame"
           data-turbo-action="advance"
           data-turbo-nav-tree-only-open-param="true"
+          data-action="click->turbo-nav-tree#click"
         >
-          <div class="h-[1lh] flex items-center shrink-0">
-            <span class="size-4 rounded bg-slate-400 dark:bg-slate-500"></span>
+          {{#show_icon_column}}
+          <div class="h-[1lh] flex shrink-0 items-center">
+            {{#icon_url}}
+            <span class="relative inline-flex size-4 shrink-0 items-center justify-center rounded">
+              <img src="{{icon_url}}" alt="" class="size-4 rounded object-cover" loading="lazy" decoding="async" onerror="this.classList.add('hidden'); this.nextElementSibling.classList.remove('hidden')" />
+              <span class="hidden size-4 shrink-0 rounded" aria-hidden="true"></span>
+            </span>
+            {{/icon_url}}
+            {{^icon_url}}
+            <span class="size-4 shrink-0 rounded" aria-hidden="true"></span>
+            {{/icon_url}}
           </div>
-          <div class="flex-1 flex min-w-0 items-start gap-x-2.5">
-            <div class="flex min-w-0 flex-1 flex-wrap items-center gap-1.5 [word-break:break-word]">
-              <span class="min-w-0 max-w-full break-words hyphens-auto">{{link_text}}</span>
-            </div>
-          </div>
-          <div turbo-nav-tree-item-target-icon class="ml-auto mt-[0.15rem] text-sky-400 transition-transform duration-200 {{#open}}rotate-90{{/open}}">
-            <svg class="size-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M9 6l6 6-6 6" />
-            </svg>
+          {{/show_icon_column}}
+          <div class="flex min-w-0 flex-1 items-start gap-x-2.5">
+            <span class="line-clamp-2 hyphens-auto">{{link_text}}</span>
           </div>
         </a>
+        <button
+          type="button"
+          class="px-3 my-0.5 shrink-0 text-base-content/80 group-hover/menu-row:text-base-content hover:bg-transparent hover:border-none cursor-pointer"
+          data-action="click->turbo-nav-tree#toggle"
+          aria-expanded="{{#open}}true{{/open}}{{^open}}false{{/open}}"
+          aria-label="展开或收起子菜单"
+        >
+          <span turbo-nav-tree-item-target-icon class="inline-flex transition-transform {{#open}}rotate-90{{/open}} text-md">
+            <i class="ri-arrow-right-s-line leading-none" aria-hidden="true"></i>
+          </span>
+        </button>
       </div>
       {{/hasChildren}}
       {{^hasChildren}}
       <div
-        id="{{path}}"
-        class="relative scroll-m-4 first:scroll-m-20"
+        class="group/menu-row relative min-w-0 max-w-full w-full scroll-m-4 first:scroll-m-20 rounded-lg [&[active]]:bg-primary/20 [&[active]>a]:font-bold [&[active]>a]:text-primary hover:bg-base-200/60 dark:hover:bg-base-300/40"
         data-title="{{link_text}}"
-        data-active="{{isActive}}"
       >
         <a
-          class="group flex items-start px-3 py-1.5 cursor-pointer gap-x-3 text-left rounded w-full outline-offset-[-1px] text-slate-700 hover:text-slate-900 hover:bg-slate-500/5 dark:text-slate-300 dark:hover:text-slate-100 dark:hover:bg-white/5 {{#isActive}}bg-slate-200/70 text-slate-900 dark:bg-slate-700/55 dark:text-white{{/isActive}}"
+          class="group flex min-w-0 flex-1 items-start px-3 py-1.5 cursor-pointer gap-x-3 text-left rounded w-full outline-offset-[-1px] text-base-content/80"
           href="{{path}}"
           data-turbo-frame="main-content-frame"
           data-turbo-action="advance"
+          data-action="click->turbo-nav-tree#click"
         >
-          <div class="h-[1lh] flex items-center shrink-0">
-            <span class="size-4 rounded bg-slate-400 dark:bg-slate-500"></span>
+          {{#show_icon_column}}
+          <div class="h-[1lh] flex shrink-0 items-center">
+            {{#icon_url}}
+            <span class="relative inline-flex size-4 shrink-0 items-center justify-center rounded">
+              <img src="{{icon_url}}" alt="" class="size-4 rounded object-cover" loading="lazy" decoding="async" onerror="this.classList.add('hidden'); this.nextElementSibling.classList.remove('hidden')" />
+              <span class="hidden size-4 shrink-0 rounded" aria-hidden="true"></span>
+            </span>
+            {{/icon_url}}
+            {{^icon_url}}
+            <span class="size-4 shrink-0 rounded" aria-hidden="true"></span>
+            {{/icon_url}}
           </div>
-          <div class="flex-1 flex min-w-0 items-start gap-x-2.5">
-            <div class="flex min-w-0 flex-1 flex-wrap items-center gap-1.5 [word-break:break-word]">
-              <span class="min-w-0 max-w-full break-words hyphens-auto">{{link_text}}</span>
-            </div>
+          {{/show_icon_column}}
+          <div class="flex min-w-0 flex-1 items-start gap-x-2.5">
+            <span class="line-clamp-2 hyphens-auto">{{link_text}}</span>
           </div>
         </a>
       </div>

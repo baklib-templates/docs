@@ -132,7 +132,7 @@ export default class extends Controller {
     if (status === 'error') {
       const button = this.retryButton
       button.dataset.idx = idx
-      msgSpan.innerHTML = `<span class='bkt-text-red-500'>${this.escapeHTML(content)}</span> ${button.outerHTML}`;
+      msgSpan.innerHTML = `<span class="text-error">${this.escapeHTML(content)}</span> ${button.outerHTML}`;
       if (retryFn) {
         setTimeout(() => {
           const btns = this.messagesTarget.querySelectorAll(`[data-idx='${idx}']`);
@@ -146,7 +146,7 @@ export default class extends Controller {
       msgSpan.innerHTML = marked(content);
       forceScroll = false;
     } else {
-      msgSpan.innerHTML = `<span class="bkt-text-gray-400">${this.messagesValue.thinking}</span>`;
+      msgSpan.innerHTML = `<span class="text-base-content/50">${this.messagesValue.thinking}</span>`;
     }
     this.messagesTarget.appendChild(tpl);
     // 绑定重试
@@ -174,7 +174,7 @@ export default class extends Controller {
     if (status === 'error') {
       const button = this.retryButton
       button.dataset.idx = idx
-      msgSpan.innerHTML = `<span class='bkt-text-red-500'>${this.escapeHTML(content)}</span> ${button.outerHTML}`;
+      msgSpan.innerHTML = `<span class="text-error">${this.escapeHTML(content)}</span> ${button.outerHTML}`;
       if (retryFn) {
         setTimeout(() => {
           const btn = this.messagesTarget.querySelector(`[data-idx='${idx}']`);
@@ -184,11 +184,11 @@ export default class extends Controller {
         }, 0);
       }
     } else if (status === 'canceled') {
-      msgSpan.innerHTML = `<span class="bkt-text-gray-400">${this.messagesValue.canceled}</span>`;
+      msgSpan.innerHTML = `<span class="text-base-content/50">${this.messagesValue.canceled}</span>`;
     } else if (content) {
       msgSpan.innerHTML = marked(content);
     } else {
-      msgSpan.innerHTML = `<span class="bkt-text-gray-400">${this.messagesValue.thinking}</span>`;
+      msgSpan.innerHTML = `<span class="text-base-content/50">${this.messagesValue.thinking}</span>`;
     }
     this.scrollToBottom();
   }
@@ -344,8 +344,8 @@ export default class extends Controller {
       return this.retryButtonTarget;
     } else {
       const button = document.createElement('button');
-      button.classList.add("bkt-size-4", "bkt-text-gray-600")
-      button.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" class="bkt-size-full" viewBox="0 0 24 24" fill="currentColor"><path d="M5.46257 4.43262C7.21556 2.91688 9.5007 2 12 2C17.5228 2 22 6.47715 22 12C22 14.1361 21.3302 16.1158 20.1892 17.7406L17 12H20C20 7.58172 16.4183 4 12 4C9.84982 4 7.89777 4.84827 6.46023 6.22842L5.46257 4.43262ZM18.5374 19.5674C16.7844 21.0831 14.4993 22 12 22C6.47715 22 2 17.5228 2 12C2 9.86386 2.66979 7.88416 3.8108 6.25944L7 12H4C4 16.4183 7.58172 20 12 20C14.1502 20 16.1022 19.1517 17.5398 17.7716L18.5374 19.5674Z"></path></svg>`
+      button.classList.add("inline-flex", "size-4", "shrink-0", "items-center", "justify-center", "text-base-content/70")
+      button.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" class="size-full" viewBox="0 0 24 24" fill="currentColor"><path d="M5.46257 4.43262C7.21556 2.91688 9.5007 2 12 2C17.5228 2 22 6.47715 22 12C22 14.1361 21.3302 16.1158 20.1892 17.7406L17 12H20C20 7.58172 16.4183 4 12 4C9.84982 4 7.89777 4.84827 6.46023 6.22842L5.46257 4.43262ZM18.5374 19.5674C16.7844 21.0831 14.4993 22 12 22C6.47715 22 2 17.5228 2 12C2 9.86386 2.66979 7.88416 3.8108 6.25944L7 12H4C4 16.4183 7.58172 20 12 20C14.1502 20 16.1022 19.1517 17.5398 17.7716L18.5374 19.5674Z"></path></svg>`
       return button;
     }
   }

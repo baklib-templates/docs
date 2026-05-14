@@ -21,12 +21,12 @@
   {% form_tag 'feedback', page: page %}
     <section class="mt-6">
       <div class="flex flex-col gap-4 sm:flex-row sm:items-center">
-        <p class="text-[0.92rem] text-neutral-600">这个页面对您有帮助吗？</p>
+        <p class="text-[0.92rem] text-base-content/70">这个页面对您有帮助吗？</p>
         <div class="flex items-center gap-2">
           <button
             type="button"
-            class="btn btn-sm h-9 min-w-22 rounded-xl border border-neutral-200 bg-white px-4 text-md font-medium text-neutral-700 shadow-none hover:bg-neutral-100"
-            :class="state === 'yes' ? '!border-neutral-700' : ''"
+            class="btn btn-sm h-9 min-w-22 rounded-xl px-4 text-md font-medium shadow-none"
+            :class="state === 'yes' ? 'btn-primary' : 'btn-outline border-base-300'"
             @click="state = 'yes'; reason = ''; details = ''; submitted = false"
           >
             <i class="ri-thumb-up-line text-base leading-none" aria-hidden="true"></i>
@@ -34,8 +34,8 @@
           </button>
           <button
             type="button"
-            class="btn btn-sm h-9 min-w-18 rounded-xl border border-neutral-200 bg-white px-4 text-md font-medium text-neutral-700 shadow-none hover:bg-neutral-100"
-            :class="state === 'no' ? '!border-neutral-700' : ''"
+            class="btn btn-sm h-9 min-w-18 rounded-xl px-4 text-md font-medium shadow-none"
+            :class="state === 'no' ? 'btn-primary' : 'btn-outline border-base-300'"
             @click="state = 'no'; reason = ''; details = ''; submitted = false"
           >
             <i class="ri-thumb-down-line text-base leading-none" aria-hidden="true"></i>
@@ -51,30 +51,30 @@
         :value="reason === '其他' && details.trim() ? ('其他：' + details.trim()) : reason"
       ></textarea>
 
-      <div x-show="state && !submitted" class="mt-4 border-t border-neutral-200 pt-4" x-cloak>
-        <h3 class="text-md font-semibold tracking-tight text-neutral-900" x-text="state === 'yes' ? '太棒了！什么方法对你最有效？' : '我们如何改进产品？'"></h3>
+      <div x-show="state && !submitted" class="mt-4 border-t border-base-200 pt-4" x-cloak>
+        <h3 class="text-md font-semibold tracking-tight text-base-content" x-text="state === 'yes' ? '太棒了！什么方法对你最有效？' : '我们如何改进产品？'"></h3>
 
         <fieldset class="mt-5 space-y-3">
           <template x-if="state === 'yes'">
             <div class="space-y-3">
-              <label class="flex cursor-pointer items-center gap-3 text-xs text-neutral-600">
-                <input type="radio" name="page-feedback-reason" class="radio radio-sm border-neutral-400 bg-transparent" value="按预期发挥作用" x-model="reason">
+              <label class="flex cursor-pointer items-center gap-3 text-xs text-base-content/70">
+                <input type="radio" name="page-feedback-reason" class="radio radio-sm radio-primary" value="按预期发挥作用" x-model="reason">
                 <span>该指南按预期发挥作用。</span>
               </label>
-              <label class="flex cursor-pointer items-center gap-3 text-xs text-neutral-600">
-                <input type="radio" name="page-feedback-reason" class="radio radio-sm border-neutral-400 bg-transparent" value="很容易找到信息" x-model="reason">
+              <label class="flex cursor-pointer items-center gap-3 text-xs text-base-content/70">
+                <input type="radio" name="page-feedback-reason" class="radio radio-sm radio-primary" value="很容易找到信息" x-model="reason">
                 <span>我很容易就找到了我需要的信息。</span>
               </label>
-              <label class="flex cursor-pointer items-center gap-3 text-xs text-neutral-600">
-                <input type="radio" name="page-feedback-reason" class="radio radio-sm border-neutral-400 bg-transparent" value="产品功能容易理解" x-model="reason">
+              <label class="flex cursor-pointer items-center gap-3 text-xs text-base-content/70">
+                <input type="radio" name="page-feedback-reason" class="radio radio-sm radio-primary" value="产品功能容易理解" x-model="reason">
                 <span>产品及其功能很容易理解。</span>
               </label>
-              <label class="flex cursor-pointer items-center gap-3 text-xs text-neutral-600">
-                <input type="radio" name="page-feedback-reason" class="radio radio-sm border-neutral-400 bg-transparent" value="文档已更新" x-model="reason">
+              <label class="flex cursor-pointer items-center gap-3 text-xs text-base-content/70">
+                <input type="radio" name="page-feedback-reason" class="radio radio-sm radio-primary" value="文档已更新" x-model="reason">
                 <span>文档已更新。</span>
               </label>
-              <label class="flex cursor-pointer items-center gap-3 text-xs text-neutral-600">
-                <input type="radio" name="page-feedback-reason" class="radio radio-sm border-neutral-400 bg-transparent" value="其他" x-model="reason">
+              <label class="flex cursor-pointer items-center gap-3 text-xs text-base-content/70">
+                <input type="radio" name="page-feedback-reason" class="radio radio-sm radio-primary" value="其他" x-model="reason">
                 <span>其他</span>
               </label>
             </div>
@@ -82,24 +82,24 @@
 
           <template x-if="state === 'no'">
             <div class="space-y-3">
-              <label class="flex cursor-pointer items-center gap-3 text-xs text-neutral-600">
-                <input type="radio" name="page-feedback-reason" class="radio radio-sm border-neutral-400 bg-transparent" value="帮助我更快开始" x-model="reason">
+              <label class="flex cursor-pointer items-center gap-3 text-xs text-base-content/70">
+                <input type="radio" name="page-feedback-reason" class="radio radio-sm radio-primary" value="帮助我更快开始" x-model="reason">
                 <span>帮我更快开始</span>
               </label>
-              <label class="flex cursor-pointer items-center gap-3 text-xs text-neutral-600">
-                <input type="radio" name="page-feedback-reason" class="radio radio-sm border-neutral-400 bg-transparent" value="更容易找到内容" x-model="reason">
+              <label class="flex cursor-pointer items-center gap-3 text-xs text-base-content/70">
+                <input type="radio" name="page-feedback-reason" class="radio radio-sm radio-primary" value="更容易找到内容" x-model="reason">
                 <span>让我更容易找到我想要的东西</span>
               </label>
-              <label class="flex cursor-pointer items-center gap-3 text-xs text-neutral-600">
-                <input type="radio" name="page-feedback-reason" class="radio radio-sm border-neutral-400 bg-transparent" value="更好理解产品" x-model="reason">
+              <label class="flex cursor-pointer items-center gap-3 text-xs text-base-content/70">
+                <input type="radio" name="page-feedback-reason" class="radio radio-sm radio-primary" value="更好理解产品" x-model="reason">
                 <span>让用户能够轻松理解产品及其功能。</span>
               </label>
-              <label class="flex cursor-pointer items-center gap-3 text-xs text-neutral-600">
-                <input type="radio" name="page-feedback-reason" class="radio radio-sm border-neutral-400 bg-transparent" value="更新文档" x-model="reason">
+              <label class="flex cursor-pointer items-center gap-3 text-xs text-base-content/70">
+                <input type="radio" name="page-feedback-reason" class="radio radio-sm radio-primary" value="更新文档" x-model="reason">
                 <span>更新此文档</span>
               </label>
-              <label class="flex cursor-pointer items-center gap-3 text-xs text-neutral-600">
-                <input type="radio" name="page-feedback-reason" class="radio radio-sm border-neutral-400 bg-transparent" value="其他" x-model="reason">
+              <label class="flex cursor-pointer items-center gap-3 text-xs text-base-content/70">
+                <input type="radio" name="page-feedback-reason" class="radio radio-sm radio-primary" value="其他" x-model="reason">
                 <span>其他</span>
               </label>
             </div>
@@ -113,26 +113,26 @@
             type="text"
             x-model="details"
             placeholder="（可选）您能否分享一下您的经历？"
-            class="input input-bordered h-10 w-full rounded-xl border-neutral-200 bg-white text-xs text-neutral-700 placeholder-neutral-400 focus:border-neutral-400 focus:outline-none"
+            class="input input-bordered input-sm h-10 w-full rounded-xl border-base-300 bg-base-100 text-xs text-base-content placeholder-base-content/50 focus:border-primary focus:outline-none"
           >
         </div>
 
         <div class="mt-6 flex items-center gap-3">
-          <button type="button" class="btn btn-sm h-10 rounded-2xl border border-neutral-300 bg-white px-4 text-md font-medium text-neutral-700 shadow-none hover:bg-neutral-100" @click="state = ''; reason = ''; details = ''">
+          <button type="button" class="btn btn-sm btn-outline h-10 rounded-2xl border-base-300 px-4" @click="state = ''; reason = ''; details = ''">
             取消
           </button>
-          <button type="submit" class="btn btn-sm h-10 rounded-2xl border-0 bg-neutral-500 px-5 text-md font-medium text-white shadow-none hover:bg-neutral-600 disabled:bg-neutral-300" :disabled="!state || !reason || (reason === '其他' && !details.trim())" @click="submitted = true">
+          <button type="submit" class="btn btn-sm btn-primary h-10 rounded-2xl px-5" :disabled="!state || !reason || (reason === '其他' && !details.trim())" @click="submitted = true">
             提交反馈
           </button>
         </div>
       </div>
 
       {% if page.visitor_posted_feedback %}
-        <div class="mt-4 rounded-xl border border-neutral-200 bg-neutral-50 px-4 py-3 text-xs text-neutral-600">
+        <div class="mt-4 rounded-xl border border-base-200 bg-base-200/50 px-4 py-3 text-xs text-base-content/80">
           感谢你的反馈，我们会持续优化内容体验。
         </div>
       {% else %}
-        <div x-show="submitted" class="mt-4 rounded-xl border border-neutral-200 bg-neutral-50 px-4 py-3 text-xs text-neutral-600" x-cloak>
+        <div x-show="submitted" class="mt-4 rounded-xl border border-base-200 bg-base-200/50 px-4 py-3 text-xs text-base-content/80" x-cloak>
           感谢你的反馈，我们会持续优化内容体验。
         </div>
       {% endif %}
