@@ -341,7 +341,6 @@
     flex-wrap: wrap;
     align-items: stretch;
     width: 100%;
-    margin-top: 5px;
   }
 
   :where(li ul) {

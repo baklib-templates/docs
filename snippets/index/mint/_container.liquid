@@ -11,14 +11,26 @@
     isAtBottom: false,
     isAiOpen: localStorage.getItem('mintIsAiOpen') === 'true',
     currentPath: '{{ page.path }}',
-    channelPathActive(href, index) {
+    channelPathActive(href, index, is_full_match = false) {
       if (index === 1 && this.currentPath == '/') return true;
       if (!href) return false;
       if (href === '/') return this.currentPath === '/';
+      if (is_full_match) return this.currentPath === href;
       return this.currentPath === href || (this.currentPath && this.currentPath.startsWith(href + '/'));
     }
   }"
   x-init="
+    const syncCurrentPathFromLocation = () => {
+      let p = window.location.pathname || '/';
+      if (p.length > 1 && p.endsWith('/')) p = p.slice(0, -1);
+      currentPath = p;
+    };
+    syncCurrentPathFromLocation();
+    ['turbo:load', 'turbo:render', 'turbo:frame-load'].forEach((ev) => {
+      document.addEventListener(ev, syncCurrentPathFromLocation);
+    });
+    window.addEventListener('popstate', syncCurrentPathFromLocation);
+
     const lockScroll = () => {
       const mobile = window.matchMedia('(max-width: 1023px)').matches;
       if (mobile && isAiOpen) {
@@ -63,8 +75,9 @@
             <a href="{{ channel.path }}"
               class="flex items-center whitespace-nowrap transition-all duration-300 border-b-[3px] space-x-1"
               :class="channelPathActive('{{ channel.path }}', {{ forloop.index }}) ? ' border-primary text-primary ' : 'border-transparent text-base-content/60 hover:text-base-content'">
-              {% if channel.settings.icon %}
-                <img src="{{ channel.settings.icon }}" class="size-4" alt="{{ channel.link_text }}">
+              {% assign icon_url = channel.settings.icon | presence %}
+              {% if icon_url %}
+                <img src="{{ icon_url | asset_url }}" class="size-4" alt="{{ channel.link_text }}">
               {% endif %}
               <span>{{ channel.link_text }}</span>
             </a>
@@ -98,7 +111,7 @@
             </a>
           {% endif %}
 
-          {% render 'index/mint/nav_tree_list', page: current_root_channel %}
+          {% render 'index/mint/nav_tree_list', page: current_root_channel, current_path: page.path %}
         </aside>
       </div>
 

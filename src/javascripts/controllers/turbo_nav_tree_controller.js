@@ -52,7 +52,9 @@ export default class extends Controller {
       this.refreshActiveState()
     }
     document.addEventListener("turbo:load", this.boundSyncNavFromUrl)
+    document.addEventListener("turbo:render", this.boundSyncNavFromUrl)
     document.addEventListener("turbo:frame-load", this.boundSyncNavFromUrl)
+    window.addEventListener("popstate", this.boundSyncNavFromUrl)
 
     if (this.element.dataset.rendered === "true") {
       this.refreshActiveState();
@@ -69,7 +71,9 @@ export default class extends Controller {
   disconnect() {
     if (this.boundSyncNavFromUrl) {
       document.removeEventListener("turbo:load", this.boundSyncNavFromUrl)
+      document.removeEventListener("turbo:render", this.boundSyncNavFromUrl)
       document.removeEventListener("turbo:frame-load", this.boundSyncNavFromUrl)
+      window.removeEventListener("popstate", this.boundSyncNavFromUrl)
     }
   }
 
@@ -79,15 +83,13 @@ export default class extends Controller {
     this.#syncCurrentPathFromWindow()
 
     const current = this.#normalizePathname(this.currentPath)
-    const links = this.menuContainer.querySelectorAll("a[href]")
-    let aDom = null
-    for (const a of links) {
-      if (this.#normalizePathname(a.getAttribute("href")) === current) {
-        aDom = a
-        break
-      }
+    const aDom = this.#resolveActiveAnchorForPath(current)
+
+    // 当前 URL 在侧栏没有任何对应链接时，必须清掉上次点击留在树上的 [active]，否则会与外层 Alpine 高亮不一致
+    if (!aDom) {
+      this.#clearTreeActiveState()
+      return
     }
-    if (!aDom) return
 
     this.menuContainer.querySelectorAll('li[active]').forEach((li) => {
       li.querySelector("[turbo-nav-tree-children-container]")?.classList.remove('opacity-0')
@@ -98,6 +100,46 @@ export default class extends Controller {
     });
     this.click({ currentTarget: aDom });
   };
+
+  /** 去掉树上所有 [active]（含 li 与行容器），不触发导航 */
+  #clearTreeActiveState() {
+    this.menuContainer?.querySelectorAll("[active]").forEach((el) => {
+      el.removeAttribute("active")
+    })
+  }
+
+  /**
+   * 在 `.custom-menu` 内根据当前 pathname 找到应对高亮的 a：先精确匹配，再最长前缀匹配（与 channelPathActive 语义一致）。
+   * @param {string} current normalize 后的 pathname
+   * @returns {HTMLAnchorElement | null}
+   */
+  #resolveActiveAnchorForPath(current) {
+    const links = [...this.menuContainer.querySelectorAll("a[href]")]
+    const norm = (a) => this.#normalizePathname(a.getAttribute("href"))
+
+    const exact = links.find((a) => norm(a) === current)
+    if (exact) return exact
+
+    let best = null
+    let bestLen = -1
+    for (const a of links) {
+      const h = norm(a)
+      if (!this.#hrefCoversCurrent(h, current)) continue
+      if (h.length > bestLen) {
+        bestLen = h.length
+        best = a
+      }
+    }
+    return best
+  }
+
+  /** 当前页是否落在该 href 对应路径下（含自身，不含用「/」吞掉所有页） */
+  #hrefCoversCurrent(hrefPath, current) {
+    if (!current) return false
+    if (current === hrefPath) return true
+    if (hrefPath === "/") return false
+    return current.startsWith(hrefPath + "/")
+  }
 
   renderTree(nodes, depth, container) {
     if (container.rendered) return
@@ -235,20 +277,23 @@ export default class extends Controller {
       target.setAttribute("data-turbo-frame", "_top")
     }
 
+    if (!this.menuContainer) return
+
+    // 必须先清掉树上的 [active]：refreshActiveState 可能把「仅在外层分组 a 上」的链接交给本方法，此时没有 li，但仍要清树
+    this.menuContainer.querySelectorAll("[active]").forEach((el) => {
+      el.removeAttribute("active")
+    })
+
     const li = target.closest("li")
-    if (!li || !this.menuContainer) return
+    if (!li) return
 
-    this.menuContainer.querySelectorAll('[active]').forEach(el => {
-      el.removeAttribute('active');
+    this.getParents(target, "li", this.menuContainer).forEach((el) => {
+      el.setAttribute("active", "")
     })
 
-    this.getParents(target, 'li', this.menuContainer).forEach(el => {
-      el.setAttribute('active', '');
-    })
+    li.querySelector("[turbo-nav-tree-item]")?.setAttribute("active", "")
 
-    li.querySelector('[turbo-nav-tree-item]')?.setAttribute('active', '')
-
-    this.treeContainerToggle(li, true);
+    this.treeContainerToggle(li, true)
   }
 
   /** @param {string} path href 或 pathname */
