@@ -46,9 +46,7 @@ export default class extends Controller {
   }
 
   targetTargetConnected(target){
-    // console.log("targetTargetConnected", target)
     setTimeout(() => {
-      // 初始化时就把宽度 clamp 到 min/max，避免第一次 mousemove 时突然跳到 min。
       let rawSize = null;
       if(this.cachedSize) {
         rawSize = Number(this.cachedSize);
@@ -72,26 +70,45 @@ export default class extends Controller {
   }
 
   get size(){
-    // clientWidth 受 flex 布局影响较大；用 bounding rect 更接近真实视觉尺寸
     return Math.round(this.targetTarget.getBoundingClientRect().width)
   }
 
   set size(v){
-    this.cachedSize = v
-    // 固定当前 pane 宽度，避免 flex-grow:1 重新分配空间，保证 bar 与光标同步
-    this.targetTarget.style.flex = `0 0 ${v}px`
-    this.targetTarget.style.width = `${v}px`
-    this.targetTarget.style.minWidth = `${v}px`
-    
+    const size = Math.max(this.minSize, Math.min(this.maxSize, Math.round(v)))
+    this.cachedSize = size
+    this.targetTarget.style.flex = `0 0 ${size}px`
+    this.targetTarget.style.width = `${size}px`
+    this.targetTarget.style.minWidth = `${size}px`
+
     if (this.hasCssVarValue) {
-      document.documentElement.style.setProperty(this.cssVarValue, `${v}px`);
+      document.documentElement.style.setProperty(this.cssVarValue, `${size}px`);
     }
 
-    // 在 target connected 时，有时候 dispatch 不触发，所以加上延时
     clearTimeout(resizeEventTimer);
     resizeEventTimer = setTimeout(() => {
-      this.dispatch("resize", { detail: { key: this.cacheKey, width: `${v}px` } })
+      this.emitResize(size)
     }, 16);
+  }
+
+  emitResize(size) {
+    this.dispatch("resize", {
+      detail: {
+        key: this.cacheKey,
+        size,
+        width: `${size}px`,
+        minSize: this.minSize,
+        maxSize: this.maxSize,
+      }
+    })
+  }
+
+  setWidth(width) {
+    if (!Number.isFinite(width)) return
+    this.size = width
+  }
+
+  toggleWidth() {
+    this.setWidth(this.size >= this.maxSize ? this.minSize : this.maxSize)
   }
 
   get cacheKey(){

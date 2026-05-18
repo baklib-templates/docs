@@ -10,6 +10,9 @@
     docTab: 'guides',
     isAtBottom: false,
     isAiOpen: localStorage.getItem('mintIsAiOpen') === 'true',
+    aiSidebarWidth: 350,
+    aiSidebarMinWidth: 350,
+    aiSidebarMaxWidth: 600,
     currentPath: '{{ page.path }}',
     channelPathActive(href, index, is_full_match = false) {
       if (index === 1 && this.currentPath == '/') return true;
@@ -17,6 +20,18 @@
       if (href === '/') return this.currentPath === '/';
       if (is_full_match) return this.currentPath === href;
       return this.currentPath === href || (this.currentPath && this.currentPath.startsWith(href + '/'));
+    },
+    onAiSidebarResize(event) {
+      const { size, minSize, maxSize } = event.detail || {};
+      if (Number.isFinite(size)) this.aiSidebarWidth = size;
+      if (Number.isFinite(minSize)) this.aiSidebarMinWidth = minSize;
+      if (Number.isFinite(maxSize)) this.aiSidebarMaxWidth = maxSize;
+    },
+    toggleAiSidebarWidth() {
+      const el = this.$refs.aiSidebar;
+      if (!el || !window.Stimulus) return;
+      const ctrl = window.Stimulus.getControllerForElementAndIdentifier(el, 'resize-bar');
+      ctrl?.toggleWidth();
     }
   }"
   x-init="
@@ -316,13 +331,24 @@
   {% comment %} AI Assistant 侧边栏（桌面） {% endcomment %}
   <div
     class="hidden lg:flex bg-base-200 overflow-hidden z-50 w-[var(--ai-sidebar-width,340px)] sticky top-0 max-h-screen overflow-y-auto transition-[width] duration-300 [.resize-bar-dragging_&]:transition-none"
-    x-show="isAiOpen" x-transition:enter="transition ease-out duration-300"
-    x-transition:enter-start="opacity-0 translate-x-full" x-transition:enter-end="opacity-100 translate-x-0"
-    x-transition:leave="transition ease-in duration-300" x-transition:leave-start="opacity-100 translate-x-0"
-    x-transition:leave-end="opacity-0 translate-x-full" style="display: none;" data-controller="resize-bar"
-    data-resize-bar-target="target" data-resize-bar-dragging-class="bg-base-300 cursor-ew-resize !transition-none"
-    data-resize-bar-min-size-value="350" data-resize-bar-max-size-value="600" data-resize-bar-direction-value="left"
-    data-resize-bar-remember-value="true" data-resize-bar-key-value="ai-sidebar-width"
+    x-show="isAiOpen"
+    x-transition:enter="transition ease-out duration-300"
+    x-transition:enter-start="opacity-0 translate-x-full"
+    x-transition:enter-end="opacity-100 translate-x-0"
+    x-transition:leave="transition ease-in duration-300"
+    x-transition:leave-start="opacity-100 translate-x-0"
+    x-transition:leave-end="opacity-0 translate-x-full"
+    style="display: none;"
+    x-ref="aiSidebar"
+    @resize-bar:resize="onAiSidebarResize($event)"
+    data-controller="resize-bar"
+    data-resize-bar-target="target"
+    data-resize-bar-dragging-class="bg-base-300 cursor-ew-resize !transition-none"
+    data-resize-bar-min-size-value="350"
+    data-resize-bar-max-size-value="600"
+    data-resize-bar-direction-value="left"
+    data-resize-bar-remember-value="true"
+    data-resize-bar-key-value="ai-sidebar-width"
     data-resize-bar-css-var-value="--ai-sidebar-width">
     <div class="transition bg-base-200 w-[6px] shrink-0 hover:bg-base-300 hover:cursor-ew-resize"
       data-resize-bar-target="bar">
@@ -331,48 +357,26 @@
       <!-- AI Header -->
       <div class="flex items-center justify-between px-4 py-3 border-b border-base-200">
         <div class="flex items-center gap-2 font-bold text-base-content text-[0.95rem]">
-          <svg class="size-4 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-            stroke-linecap="round" stroke-linejoin="round">
-            <path
-              d="m9.813 15.904-.813 2.846a4.5 4.5 0 0 1-3.09-3.09L3.064 14.85a4.5 4.5 0 0 1 3.09-3.09l2.846-.813a4.5 4.5 0 0 1 3.09 3.09l-.813 2.847a4.5 4.5 0 0 1-3.09 3.09Z" />
-            <path
-              d="m18.259 8.715-.259 1.035a3.375 3.375 0 0 1-2.455 2.456L14.5 12.465a3.375 3.375 0 0 1 2.455-2.456l1.035-.259a3.375 3.375 0 0 1 2.456 2.456l-.259 1.035a3.375 3.375 0 0 1-2.456-2.456Z" />
-            <path
-              d="m16.894 20.567-.394 1.183a2.25 2.25 0 0 1-1.423 1.423l-1.183-.394a2.25 2.25 0 0 1 1.423-1.423l.394-1.183a2.25 2.25 0 0 1 1.423 1.423l1.183.394a2.25 2.25 0 0 1-1.423-1.423Z" />
-          </svg>
+          <i class="ri-sparkling-2-line size-4 text-primary leading-none" aria-hidden="true"></i>
           Assistant
         </div>
         <div class="flex items-center gap-1">
-          <button type="button" class="btn btn-ghost btn-sm btn-square group"
-            aria-label="Expand">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-              class="size-4 sm:size-3.5 text-base-content/60 group-hover:text-base-content">
-              <polyline points="15 3 21 3 21 9"></polyline>
-              <polyline points="9 21 3 21 3 15"></polyline>
-              <line x1="21" x2="14" y1="3" y2="10"></line>
-              <line x1="3" x2="10" y1="21" y2="14"></line>
-            </svg>
+          {% comment %} 最大化/最小化， icon 也自动切换 {% endcomment %}
+          <button type="button" class="btn btn-ghost font-normal btn-sm btn-square group"
+            :aria-label="aiSidebarWidth >= aiSidebarMaxWidth ? 'Collapse' : 'Expand'"
+            @click="toggleAiSidebarWidth()">
+            <i class="icon-thin text-base text-base-content/60 group-hover:text-base-content leading-none"
+              :class="aiSidebarWidth >= aiSidebarMaxWidth ? 'ri-collapse-diagonal-line' : 'ri-expand-diagonal-line'"
+              aria-hidden="true"></i>
           </button>
-          <button type="button" class="btn btn-ghost btn-sm btn-square group"
+          <button type="button" class="btn btn-ghost font-normal btn-sm btn-square group"
             aria-label="Trash">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-              class="size-4 sm:size-3.5 text-base-content/60 group-hover:text-base-content">
-              <path d="M3 6h18"></path>
-              <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
-              <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
-            </svg>
+            <i class="ri-delete-bin-line icon-thin text-base text-base-content/60 group-hover:text-base-content leading-none" aria-hidden="true"></i>
           </button>
-          <button type="button" class="btn btn-ghost btn-sm btn-square group"
+          <div type="button" class="btn btn-ghost font-normal btn-sm btn-square group"
             aria-label="Close" @click="isAiOpen = false">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-              class="size-[20px] sm:size-4 text-base-content/60 group-hover:text-base-content">
-              <path d="M18 6 6 18"></path>
-              <path d="m6 6 12 12"></path>
-            </svg>
-          </button>
+            <i class="ri-close-line icon-thin text-base text-base-content/60 group-hover:text-base-content leading-none" aria-hidden="true"></i>
+          </div>
         </div>
       </div>
 

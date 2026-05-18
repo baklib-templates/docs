@@ -456,6 +456,14 @@ summary:has(.menu-active) {
   }
 }
 
+/* Remix Icon 工具栏：略细描边 */
+@layer components {
+  .icon-thin {
+    -webkit-text-stroke: 0.35px currentColor;
+    paint-order: stroke fill;
+  }
+}
+
 kbd {
     display: inline-flex;
     align-items: center;
