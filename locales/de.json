@@ -10,7 +10,8 @@
     "header": {
       "light_mode": "Hell",
       "dark_mode": "Dunkel",
-      "auto_mode": "Automatisch"
+      "auto_mode": "Automatisch",
+      "ask_ai": "KI fragen"
     },
     "footer": {
       "copyright": "Alle Rechte vorbehalten"

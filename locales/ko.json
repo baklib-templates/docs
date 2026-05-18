@@ -10,7 +10,8 @@
     "header": {
       "light_mode": "밝은 색",
       "dark_mode": "어두운 색",
-      "auto_mode": "자동"
+      "auto_mode": "자동",
+      "ask_ai": "AI에게 질문"
     },
     "footer": {
       "copyright": "All Rights Reserved"

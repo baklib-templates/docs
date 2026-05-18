@@ -1,7 +1,7 @@
 {% assign min_depth = min_depth | default: 1 %}
 {% assign depth = breadcrumb | size %}
 {% if depth > min_depth %}
-  <nav class="flex flex-wrap items-center gap-x-2 text-sm leading-normal" aria-label="面包屑">
+  <nav class="flex items-center gap-x-2 text-sm leading-normal" aria-label="面包屑">
     {% for crumb in breadcrumb %}
       {% if forloop.index0 != 0 %}
         {% if forloop.index0 > 1 %}

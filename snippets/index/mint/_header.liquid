@@ -1,131 +1,105 @@
-<div
-  data-controller="header-search"
-  data-header-search-search-url-value="{{ site.search_path }}"
-  data-header-search-preview-url-value="{{ statics['index/mint/search_preview'] }}"
+<header
+  class="js--header sticky top-0 z-40 h-[var(--header-height)] bg-base-100/90 backdrop-blur-md supports-[backdrop-filter]:bg-base-100/80"
 >
-  <header
-    class="js--header h-[var(--header-height)] sticky top-0 z-40 bg-base-100/90 backdrop-blur-md supports-[backdrop-filter]:bg-base-100/80"
-  >
-    <div
-      class="mx-auto grid h-14 max-w-[var(--max-content-width)] grid-cols-[minmax(0,1fr)_auto] lg:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-3 border-b border-base-200 px-4 lg:px-6">
-      {% assign mint_default_site_icon = 'images/mint-default-site-icon.svg' | asset_url %}
-      <a href="{{ site.index_path }}"
-        class="flex min-w-0 items-center gap-2 justify-self-start font-semibold tracking-tight text-base-content">
-        {% assign logo_url = site.settings.logo_url | presence %}
-        {% if logo_url %}
-          <span class="inline-flex h-8 max-h-8 shrink-0 items-center justify-center">
-            <img src="{{ logo_url }}" class="h-full w-auto max-w-[10rem] rounded-md object-contain" width="160" height="32" alt="{{ site.name | escape_once }}">
+  <div
+    class="mx-auto grid h-full max-w-[var(--max-content-width)] grid-cols-[minmax(0,1fr)_auto] lg:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-3 border-b border-base-200 px-4 lg:px-6">
+    {% assign mint_default_site_icon = 'images/mint-default-site-icon.svg' | asset_url %}
+    <a href="{{ site.index_path }}"
+      class="flex min-w-0 items-center gap-2 justify-self-start font-semibold tracking-tight text-base-content">
+      {% assign logo_url = site.settings.logo_url | presence %}
+      {% if logo_url %}
+        <span class="inline-flex h-8 max-h-8 shrink-0 items-center justify-center">
+          <img src="{{ logo_url }}" class="h-full w-auto max-w-[10rem] rounded-md object-contain" width="160" height="32" alt="{{ site.name | escape_once }}">
+        </span>
+      {% else %}
+        {% assign favicon_url = site.favicon_url | presence | default: mint_default_site_icon %}
+        {% if favicon_url %}
+          <span class="inline-flex size-8 shrink-0 items-center justify-center overflow-hidden rounded-md bg-base-200" aria-hidden="true">
+            <img src="{{ favicon_url }}" class="size-6 object-contain" width="24" height="24" alt="">
           </span>
-        {% else %}
-          {% assign favicon_url = site.favicon_url | presence | default: mint_default_site_icon %}
-          {% if favicon_url %}
-            <span class="inline-flex size-8 shrink-0 items-center justify-center overflow-hidden rounded-md bg-base-200" aria-hidden="true">
-              <img src="{{ favicon_url }}" class="size-6 object-contain" width="24" height="24" alt="">
-            </span>
-          {% endif %}
-          <span class="truncate text-[1.1rem] font-extrabold tracking-tight">{{ site.name }}</span>
         {% endif %}
-      </a>
+        <span class="truncate text-[1.1rem] font-extrabold tracking-tight">{{ site.name }}</span>
+      {% endif %}
+    </a>
 
-      <div class="hidden min-w-0 flex-1 items-center justify-center gap-2.5 lg:flex">
-        <button
-          type="button"
-          class="flex h-9 w-full min-w-[16.5rem] max-w-[22rem] cursor-pointer items-center rounded-lg border border-base-200 bg-base-200/50 px-2.5 text-left text-[0.85rem] text-base-content/50 shadow-inner transition-colors hover:border-base-300 hover:bg-base-200"
-          data-action="click->header-search#openModal"
-          aria-haspopup="dialog"
-        >
-          <i class="ri-search-line shrink-0 text-[0.95rem] leading-none text-base-content/45" aria-hidden="true"></i>
-          <span class="ml-2.5 min-w-0 flex-1 truncate">{{ 'search.placeholder' | t: 'Search...' }}</span>
-        </button>
-        <button type="button" @click="isAiOpen = !isAiOpen"
-          class="btn btn-ghost btn-sm h-[2.125rem] shrink-0 gap-1.5 rounded-lg border border-base-300 px-3.5 font-bold text-base-content/80 hover:bg-base-200">
-          <svg class="size-[0.95rem] text-primary" viewBox="0 0 24 24" fill="none"
-            stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path
-              d="m9.813 15.904-.813 2.846a4.5 4.5 0 0 1-3.09-3.09L3.064 14.85a4.5 4.5 0 0 1 3.09-3.09l2.846-.813a4.5 4.5 0 0 1 3.09 3.09l-.813 2.847a4.5 4.5 0 0 1-3.09 3.09Z" />
-            <path
-              d="m18.259 8.715-.259 1.035a3.375 3.375 0 0 1-2.455 2.456L14.5 12.465a3.375 3.375 0 0 1 2.455-2.456l1.035-.259a3.375 3.375 0 0 1 2.456 2.456l-.259 1.035a3.375 3.375 0 0 1-2.456-2.456Z" />
-            <path
-              d="m16.894 20.567-.394 1.183a2.25 2.25 0 0 1-1.423 1.423l-1.183-.394a2.25 2.25 0 0 1 1.423-1.423l.394-1.183a2.25 2.25 0 0 1 1.423 1.423l1.183.394a2.25 2.25 0 0 1-1.423-1.423Z" />
-          </svg>
-          Ask AI
-        </button>
-      </div>
+    <div class="hidden min-w-0 flex-1 items-center justify-center gap-2.5 lg:flex">
+      <button
+        type="button"
+        class="flex h-9 w-full min-w-[16.5rem] max-w-[22rem] cursor-pointer items-center rounded-lg border border-base-200 bg-base-200/50 px-2.5 text-left text-[0.85rem] text-base-content/50 shadow-inner transition-colors hover:border-base-300 hover:bg-base-200"
+        data-action="click->header-search#openModal"
+        aria-haspopup="dialog"
+      >
+        <i class="ri-search-line shrink-0 text-[0.95rem] leading-none text-base-content/45" aria-hidden="true"></i>
+        <span class="ml-2.5 min-w-0 flex-1 truncate">{{ 'search.placeholder' | t: 'Search...' }}</span>
+      </button>
+      <button type="button" @click="toggleAiAssistant()"
+        class="btn btn-ghost btn-sm h-[2.125rem] shrink-0 gap-1.5 rounded-lg border border-base-300 px-3.5 font-bold text-base-content/80 hover:bg-base-200">
+        <i class="ri-sparkling-2-line shrink-0 text-[0.95rem] leading-none text-primary" aria-hidden="true"></i>
+        {{ 'snippets.header.ask_ai' | t: 'Ask AI' }}
+      </button>
+    </div>
 
-      <div class="hidden lg:flex shrink-0 items-center justify-end gap-3 sm:gap-4">
-        {% assign header_menu_html = site.settings.header_menu_html | presence %}
-        {% if header_menu_html %}
+    <div class="hidden lg:flex shrink-0 items-center justify-end gap-3 sm:gap-4">
+      {% assign header_menu_html = site.settings.header_menu_html | presence %}
+      {% if header_menu_html %}
         {% comment %} 分割线 {% endcomment %}
         <div class="hidden lg:block w-px h-4 bg-base-300"></div>
         <div class="hidden lg:flex flex-1 justify-end min-w-0">
           <div class="flex items-center gap-6">{{ header_menu_html }}</div>
         </div>
-        {% endif %}
+      {% endif %}
 
-        {% if current_user %}
-          <span class="hidden h-6 w-px shrink-0 bg-base-300 sm:block dark:bg-base-content/15" aria-hidden="true"></span>
-          <div class="flex shrink-0 items-center">
-            <div class="dropdown dropdown-end">
-              <div tabindex="0" role="button" class="{{ header_icon_btn }}" aria-label="{{ current_user.name | escape_once }}">
-                {% if current_user.image %}
-                  <img src="{{ current_user.image }}" alt="" class="size-7 rounded-lg object-cover sm:size-8" width="32" height="32" />
-                {% else %}
-                  <svg class="size-4 text-base-content/60 sm:size-[1.125rem]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
-                    <circle cx="12" cy="8" r="4" />
-                    <path d="M4 20c0-4 8-4 8-4s8 0 8 4" />
-                  </svg>
-                {% endif %}
-              </div>
-              <div tabindex="0" class="dropdown-content rounded-box mt-2 w-44 space-y-3 bg-base-100 px-3 py-2 shadow">
-                <div class="line-clamp-1 border-b border-base-200 pb-2 font-medium text-primary">{{ current_user.name }}</div>
-                <div class="text-base-content/60">
-                  {% form_tag 'sign_out' %}
-                    <button type="submit" class="h-5 w-full text-left hover:link">{{ 'generic.buttons.signout' | t }}</button>
-                  {% endform_tag %}
-                </div>
+      {% if current_user %}
+        <span class="hidden h-6 w-px shrink-0 bg-base-300 sm:block dark:bg-base-content/15" aria-hidden="true"></span>
+        <div class="flex shrink-0 items-center">
+          <div class="dropdown dropdown-end">
+            <div tabindex="0" role="button" class="{{ header_icon_btn }}" aria-label="{{ current_user.name | escape_once }}">
+              {% if current_user.image %}
+                <img src="{{ current_user.image }}" alt="" class="size-7 rounded-lg object-cover sm:size-8" width="32" height="32" />
+              {% else %}
+                <svg class="size-4 text-base-content/60 sm:size-[1.125rem]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                  <circle cx="12" cy="8" r="4" />
+                  <path d="M4 20c0-4 8-4 8-4s8 0 8 4" />
+                </svg>
+              {% endif %}
+            </div>
+            <div tabindex="0" class="dropdown-content rounded-box mt-2 w-44 space-y-3 bg-base-100 px-3 py-2 shadow">
+              <div class="line-clamp-1 border-b border-base-200 pb-2 font-medium text-primary">{{ current_user.name }}</div>
+              <div class="text-base-content/60">
+                {% form_tag 'sign_out' %}
+                  <button type="submit" class="h-5 w-full text-left hover:link">{{ 'generic.buttons.signout' | t }}</button>
+                {% endform_tag %}
               </div>
             </div>
           </div>
-        {% endif %}
-      </div>
+        </div>
+      {% endif %}
+    </div>
 
-      <div class="flex lg:hidden items-center gap-3">
-        <button type="button"
-          class="btn btn-ghost btn-sm btn-square text-base-content/60"
-          id="search-bar-entry-mobile"
-          data-action="click->header-search#openModal"
-          aria-label="Open search"
-          aria-haspopup="dialog">
-          <span class="sr-only">Search...</span>
-          <i class="ri-search-line text-base leading-none" aria-hidden="true"></i>
-        </button>
-        <button id="assistant-entry-mobile" type="button" class="btn btn-ghost btn-sm btn-square text-base-content/60" @click="isAiOpen = !isAiOpen">
-          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none"
-            stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
-            class="size-[1.125rem]">
-            <path
-              d="M5.65799 2.99L4.39499 2.569L3.97399 1.306C3.83699 0.898 3.16199 0.898 3.02499 1.306L2.60399 2.569L1.34099 2.99C1.13699 3.058 0.998993 3.249 0.998993 3.464C0.998993 3.679 1.13699 3.87 1.34099 3.938L2.60399 4.359L3.02499 5.622C3.09299 5.826 3.28499 5.964 3.49999 5.964C3.71499 5.964 3.90599 5.826 3.97499 5.622L4.39599 4.359L5.65899 3.938C5.86299 3.87 6.00099 3.679 6.00099 3.464C6.00099 3.249 5.86199 3.058 5.65799 2.99Z"
-              fill="currentColor" stroke="none"></path>
-            <path d="M9.5 2.75L11.412 7.587L16.25 9.5L11.412 11.413L9.5 16.25L7.587 11.413L2.75 9.5L7.587 7.587L9.5 2.75Z"
-              stroke="currentColor" width="1.5" linecap="round" linejoin="round"></path>
-          </svg>
-        </button>
+    <div class="flex lg:hidden items-center gap-3">
+      <button type="button"
+        class="btn btn-ghost btn-sm btn-square text-base-content/60"
+        id="search-bar-entry-mobile"
+        data-action="click->header-search#openModal"
+        aria-label="Open search"
+        aria-haspopup="dialog">
+        <span class="sr-only">Search...</span>
+        <i class="ri-search-line text-base leading-none" aria-hidden="true"></i>
+      </button>
+      <button id="assistant-entry-mobile" type="button" class="btn btn-ghost btn-sm btn-square text-base-content/60" @click="toggleAiAssistant()" aria-label="{{ 'snippets.header.ask_ai' | t: 'Ask AI' }}">
+        <i class="ri-sparkling-2-line text-base leading-none text-primary" aria-hidden="true"></i>
+      </button>
 
+      {% if header_menu_html %}
         <div class="dropdown dropdown-end">
           <div tabindex="0" role="button" class="btn btn-ghost btn-sm btn-square h-7 w-7 min-h-0 p-0">
-            <svg class="h-4 w-4 bg-current"
-              style="-webkit-mask-image:url(https://d3gk2c5xim1je2.cloudfront.net/v7.1.0/solid/ellipsis-vertical.svg);-webkit-mask-repeat:no-repeat;-webkit-mask-position:center;mask-image:url(https://d3gk2c5xim1je2.cloudfront.net/v7.1.0/solid/ellipsis-vertical.svg);mask-repeat:no-repeat;mask-position:center"></svg>
+            <i class="ri-more-2-line text-base leading-none" aria-hidden="true"></i>
           </div>
-          <ul tabindex="-1" class="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
-            <li><a>Item 1</a></li>
-            <li><a>Item 2</a></li>
-          </ul>
+          <div class="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
+              {{ header_menu_html }}
+          </div>
         </div>
-      </div>
+      {% endif %}
     </div>
-  </header>
-
-  {% assign mint_index = site.pages['/'] %}
-  {% assign mint_hot_keywords = mint_index.settings.search_hot_keywords | default: '' | reg_split: "/\n/" %}
-  {% render 'index/mint/search_modal', hot_keywords: mint_hot_keywords %}
-</div>
+  </div>
+</header>

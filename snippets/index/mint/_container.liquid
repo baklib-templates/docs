@@ -5,7 +5,11 @@
   {% assign current_root_channel = index_page.children_in_list | first %}
 {% endunless %}
 
-<div class="flex flex-grow relative bg-base-100 text-base-content"
+<div
+  data-controller="header-search"
+  data-header-search-search-url-value="{{ site.search_path }}"
+  data-header-search-preview-url-value="{{ statics['index/mint/search_preview'] }}"
+  class="flex flex-grow relative bg-base-100 text-base-content"
   x-data="{
     docTab: 'guides',
     isAtBottom: false,
@@ -32,6 +36,13 @@
       if (!el || !window.Stimulus) return;
       const ctrl = window.Stimulus.getControllerForElementAndIdentifier(el, 'resize-bar');
       ctrl?.toggleWidth();
+    },
+    closeMobileDrawer() {
+      const drawer = document.getElementById('my-drawer-3');
+      if (drawer) drawer.checked = false;
+    },
+    toggleAiAssistant() {
+      this.isAiOpen = !this.isAiOpen;
     }
   }"
   x-init="
@@ -64,10 +75,18 @@
     window.addEventListener('resize', lockScroll);
   "
   @scroll.window="isAtBottom = (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 120)"
+  @keydown.window="
+    if (event.isComposing) return;
+    if (event.key !== 'i' && event.key !== 'I') return;
+    if (!(event.metaKey || event.ctrlKey)) return;
+    if (event.altKey || event.shiftKey) return;
+    event.preventDefault();
+    toggleAiAssistant();
+  "
 >
   <div class="flex-grow min-w-0">
     {%comment %} Mint 文档顶栏：与天蓝色文档风统一； {% endcomment %}
-    {% render 'index/mint/header', page: page %}
+    {% render 'index/mint/header' %}
 
     {% comment %} top channels {% endcomment %}
     <div class="sticky top-[var(--header-height)] w-full bg-base-100 z-30 border-b border-base-200">
@@ -101,29 +120,25 @@
       </div>
     </div>
 
-    <div class="drawer lg:drawer-open mx-auto max-w-[var(--max-content-width)]  px-6">
+    <div class="drawer lg:drawer-open mx-auto max-w-[var(--max-content-width)] px-4 md:px-6">
       <input id="my-drawer-3" type="checkbox" class="drawer-toggle" />
       <div
         class="drawer-side lg:sticky lg:top-[calc(var(--header-height)+3.2rem)] lg:max-h-[calc(100vh-var(--header-height)-4.1rem)] lg:overflow-y-auto z-99">
         <label for="my-drawer-3" aria-label="close sidebar" class="drawer-overlay"></label>
-        <aside class="px-4 p-4 md:pt-10 pb-12 md:p-0 w-[var(--left-sidebar-width)] bg-base-100 h-full space-y-3">
+        <aside
+          class="px-4 p-4 md:pt-10 pb-12 md:p-0 w-[var(--left-sidebar-width)] bg-base-100 h-full space-y-3"
+          @click="
+            const a = $event.target.closest('a[href]');
+            const href = a?.getAttribute('href');
+            if (a && href && href !== '#') closeMobileDrawer();
+          "
+        >
           {% comment %} index 中配置的链接 {% endcomment %}
           {% assign links_html = index_page.settings.links_html | presence %}
           {% if links_html %}
             <div class="space-y-[0.15rem] text-[0.85rem] -mt-2 pl-0">
               {{ links_html }}
             </div>
-          {% endif %}
-          {% if false %}
-            <a href="#"
-              class="flex items-center gap-2 rounded-lg px-2 py-1.5 font-bold text-base-content/70 hover:bg-base-200">
-                <svg class="size-[1.1rem] text-base-content/50" fill="none" viewBox="0 0 24 24"
-                stroke="currentColor" stroke-width="1.5">
-                <path stroke-linecap="round" stroke-linejoin="round"
-                  d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
-              </svg>
-              Documentation
-            </a>
           {% endif %}
 
           {% render 'index/mint/nav_tree_list', page: current_root_channel, current_path: page.path %}
@@ -145,7 +160,7 @@
             data-toc-clipboard-success-value="{{ 'templates.page.copy_success' | t: '链接已复制' }}"
             class="w-full min-w-0 group"
           >
-            <div class="grid grid-cols-1 gap-6 transition-all duration-300 px-4 lg:px-6 w-full"
+            <div class="grid grid-cols-1 gap-6 transition-all duration-300 px-0 md:px-4 lg:px-6 w-full"
               :class="isAiOpen ? 'lg:grid-cols-1' : 'lg:grid-cols-1 lg:group-[.has-toc]:grid-cols-[minmax(0,1fr)_minmax(11rem,15rem)]'">
               {% comment %} 主内容 {% endcomment %}
               <main class="min-w-0 flex flex-col">
@@ -158,11 +173,11 @@
                       {% # 标题 %}
                       {% assign title = page.link_text | presence %}
                       <div class="mb-4 py-1 flex items-start justify-between gap-3">
-                        <h1 class="mb-3 text-2xl sm:text-3xl font-bold tracking-tight text-base-content">
+                        <h1 class="flex-1 mb-3 text-2xl sm:text-3xl font-bold tracking-tight text-base-content">
                           {{ title }}
                         </h1>
                         {% if site.settings.show_page_tools_dropdown %}
-                        {% render 'page_tools_dropdown', page: page %}
+                          {% render 'page_tools_dropdown', page: page %}
                         {% endif %}
                       </div>
 
@@ -189,37 +204,27 @@
                   <div class="sticky bottom-5 z-20 w-full shrink-0 pointer-events-none print:hidden transition-all duration-300"
                     :class="(isAtBottom || isAiOpen) ? 'translate-y-full opacity-0' : 'translate-y-0 opacity-100'">
                     <div
-                      class="pointer-events-auto flex flex-col w-full rounded-2xl border border-base-200 bg-base-100/90 shadow-sm backdrop-blur-xl transition-colors focus-within:border-primary">
+                      class="pointer-events-auto flex flex-col w-full rounded-2xl border border-base-200 bg-base-100/90 shadow-sm backdrop-blur-xl transition-colors focus-within:border-primary" x-data="{ inputValue: '' }">
                       <div class="relative flex items-end">
                         <textarea aria-label="Ask a question..." placeholder="Ask a question..."
                           class="w-full resize-none border-0 bg-transparent py-4 pl-4 pr-14 text-[0.95rem] text-base-content placeholder-base-content/40 focus:outline-none focus:ring-0"
                           style="height: 60px;"
-                          @keydown.enter.prevent="if($el.value.trim()) { isAiOpen = true; $el.value = ''; }"></textarea>
+                          @keydown.enter.prevent="if(inputValue.trim()) { isAiOpen = true; $el.value = ''; inputValue = ''; }"
+                          x-model="inputValue"></textarea>
                         <span
                           class="absolute bottom-4 right-12 hidden text-[0.75rem] font-medium text-base-content/50 sm:inline">⌘I</span>
-                        <button type="button" @click="isAiOpen = true"
-                          class="absolute bottom-3 right-2.5 flex size-8 items-center justify-center rounded-lg bg-primary text-primary-content transition-colors hover:bg-primary/90 disabled:opacity-50"
+                        <button type="button"
+                          class="absolute bottom-3 right-2.5 flex size-8 items-center justify-center rounded-lg bg-primary/10 text-primary transition-colors hover:bg-primary/90 disabled:opacity-50"
+                          :disabled="!inputValue.trim()"
                           aria-label="Send message">
-                          <svg class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-                            stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M4.5 10.5L12 3m0 0l7.5 7.5M12 3v18" />
-                          </svg>
+                          <i class="ri-arrow-up-line leading-none" aria-hidden="true"></i>
                         </button>
                       </div>
                     </div>
                   </div>
                 </article>
 
-                <footer
-                  class="border-t border-base-200 py-8 text-[0.85rem] text-base-content/60">
-                  <div class="flex flex-col items-center justify-between gap-4 sm:flex-row">
-                    <p>© {{ 'now' | date: "%Y" }} Mint Starter Kit. All rights reserved.</p>
-                    <div class="flex gap-4">
-                      <a href="#" class="link link-hover text-base-content/60 hover:text-base-content">Privacy Policy</a>
-                      <a href="#" class="link link-hover text-base-content/60 hover:text-base-content">Terms of Service</a>
-                    </div>
-                  </div>
-                </footer>
+                {% render 'index/mint/footer' %}
               </main>
 
               {% comment %} 右侧目录：lg+ 且有标题时显示；AI 侧栏打开时关闭 {% endcomment %}
@@ -271,24 +276,12 @@
         </div>
         <div class="flex items-center justify-between px-4 py-3">
           <div class="flex items-center gap-2 font-bold text-base-content text-[0.95rem]">
-            <svg class="size-4 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-              stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <path
-                d="m9.813 15.904-.813 2.846a4.5 4.5 0 0 1-3.09-3.09L3.064 14.85a4.5 4.5 0 0 1 3.09-3.09l2.846-.813a4.5 4.5 0 0 1 3.09 3.09l-.813 2.847a4.5 4.5 0 0 1-3.09 3.09Z" />
-              <path
-                d="m18.259 8.715-.259 1.035a3.375 3.375 0 0 1-2.455 2.456L14.5 12.465a3.375 3.375 0 0 1 2.455-2.456l1.035-.259a3.375 3.375 0 0 1 2.456 2.456l-.259 1.035a3.375 3.375 0 0 1-2.456-2.456Z" />
-              <path
-                d="m16.894 20.567-.394 1.183a2.25 2.25 0 0 1-1.423 1.423l-1.183-.394a2.25 2.25 0 0 1 1.423-1.423l.394-1.183a2.25 2.25 0 0 1 1.423 1.423l1.183.394a2.25 2.25 0 0 1-1.423-1.423Z" />
-            </svg>
-            Assistant
+            <i class="ri-sparkling-2-line size-4 text-primary leading-none" aria-hidden="true"></i>
+            {{ 'snippets.header.assistant' | t: 'Assistant' }}
           </div>
           <button type="button" class="btn btn-ghost btn-sm btn-square text-base-content/60" aria-label="Close"
             @click="isAiOpen = false">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M18 6 6 18"></path>
-              <path d="m6 6 12 12"></path>
-            </svg>
+            <i class="ri-close-line icon-thin text-base text-base-content/60 group-hover:text-base-content leading-none" aria-hidden="true"></i>
           </button>
         </div>
       </div>
@@ -306,21 +299,11 @@
           <div class="flex items-center justify-between px-2 pb-2">
             <button type="button" class="btn btn-ghost btn-sm btn-square text-base-content/60"
               aria-label="Add attachment">
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none"
-                stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
-                class="size-3.5">
-                <path
-                  d="M7.75 5V11.75C7.75 12.578 8.422 13.25 9.25 13.25C10.078 13.25 10.75 12.578 10.75 11.75V4.75C10.75 3.093 9.407 1.75 7.75 1.75C6.093 1.75 4.75 3.093 4.75 4.75V11.75C4.75 14.235 6.765 16.25 9.25 16.25C11.735 16.25 13.75 14.235 13.75 11.75V5">
-                </path>
-              </svg>
+              <i class="ri-attachment-line leading-none" aria-hidden="true"></i>
             </button>
             <button class="btn btn-circle btn-ghost btn-sm bg-primary/10 text-primary"
               aria-label="Send message" disabled="">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-3.5">
-                <path d="m5 12 7-7 7 7"></path>
-                <path d="M12 19V5"></path>
-              </svg>
+              <i class="ri-arrow-up-line leading-none" aria-hidden="true"></i>
             </button>
           </div>
         </div>
@@ -423,49 +406,15 @@
 
             <div class="flex items-start gap-2 w-full mt-1">
               <div class="flex items-center gap-1">
-                <button aria-label="Vote that response was good"
-                  class="btn btn-ghost btn-sm btn-square text-base-content/60 hover:text-base-content transition-colors">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    class="size-4 sm:size-3.5">
-                    <path d="M7 10v12"></path>
-                    <path
-                      d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2a3.13 3.13 0 0 1 3 3.88Z">
-                    </path>
-                  </svg>
-                </button>
-                <button aria-label="Vote that response was not good"
-                  class="btn btn-ghost btn-sm btn-square text-base-content/60 hover:text-base-content transition-colors">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    class="size-4 sm:size-3.5">
-                    <path d="M17 14V2"></path>
-                    <path
-                      d="M9 18.12 10 14H4.17a2 2 0 0 1-1.92-2.56l2.33-8A2 2 0 0 1 6.5 2H20a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-2.76a2 2 0 0 0-1.79 1.11L12 22a3.13 3.13 0 0 1-3-3.88Z">
-                    </path>
-                  </svg>
-                </button>
                 <button
                   class="btn btn-ghost btn-sm btn-square text-base-content/60 hover:text-base-content transition-colors"
                   aria-label="Copy chat response">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    class="size-4 sm:size-3.5">
-                    <rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect>
-                    <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path>
-                  </svg>
+                  <i class="ri-file-copy-line leading-none" aria-hidden="true"></i>
                 </button>
                 <button
                   class="btn btn-ghost btn-sm btn-square text-base-content/60 hover:text-base-content transition-colors"
                   aria-label="Reload last chat">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    class="size-4 sm:size-3.5">
-                    <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"></path>
-                    <path d="M21 3v5h-5"></path>
-                    <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"></path>
-                    <path d="M8 16H3v5"></path>
-                  </svg>
+                  <i class="ri-refresh-line leading-none" aria-hidden="true"></i>
                 </button>
               </div>
             </div>
@@ -488,26 +437,21 @@
             <button type="button"
               class="btn btn-ghost btn-sm btn-square text-base-content/60 hover:text-base-content"
               aria-label="Add attachment">
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none"
-                stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
-                class="size-3.5">
-                <path
-                  d="M7.75 5V11.75C7.75 12.578 8.422 13.25 9.25 13.25C10.078 13.25 10.75 12.578 10.75 11.75V4.75C10.75 3.093 9.407 1.75 7.75 1.75C6.093 1.75 4.75 3.093 4.75 4.75V11.75C4.75 14.235 6.765 16.25 9.25 16.25C11.735 16.25 13.75 14.235 13.75 11.75V5"
-                  stroke="currentColor" width="1.5" linecap="round" linejoin="round"></path>
-              </svg>
+              <i class="ri-attachment-line leading-none" aria-hidden="true"></i>
             </button>
             <button
               class="btn btn-circle btn-ghost btn-sm bg-primary/10 text-primary"
               aria-label="Send message" disabled="">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-3.5">
-                <path d="m5 12 7-7 7 7"></path>
-                <path d="M12 19V5"></path>
-              </svg>
+              <i class="ri-arrow-up-line leading-none" aria-hidden="true"></i>
             </button>
           </div>
         </div>
       </div>
     </div>
   </div>
+
+  {% comment %} 搜索弹窗 {% endcomment %}
+  {% assign mint_index = site.pages['/'] %}
+  {% assign mint_hot_keywords = mint_index.settings.search_hot_keywords | default: '' | reg_split: "/\n/" %}
+  {% render 'index/mint/search_modal', hot_keywords: mint_hot_keywords %}
 </div>

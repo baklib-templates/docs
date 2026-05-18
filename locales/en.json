@@ -10,7 +10,8 @@
     "header": {
       "light_mode": "light color",
       "dark_mode": "dark color",
-      "auto_mode": "automatic"
+      "auto_mode": "automatic",
+      "ask_ai": "Ask AI"
     },
     "footer": {
       "copyright": "All Rights Reserved"

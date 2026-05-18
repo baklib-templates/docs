@@ -10,7 +10,8 @@
     "header": {
       "light_mode": "亮色",
       "dark_mode": "暗色",
-      "auto_mode": "自動"
+      "auto_mode": "自動",
+      "ask_ai": "問 AI"
     },
     "footer": {
       "copyright": "版權所有"

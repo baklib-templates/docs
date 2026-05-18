@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus";
 import { buildUrl } from "../utils/index.js";
 
 /**
- * 顶栏搜索：⌘/Ctrl+K 打开弹层、`<dialog class="modal">` 开关；ESC 关闭弹层（文档级监听，含焦点在热门词等控件上）。
+ * 顶栏搜索：⌘/Ctrl+K 切换弹层开关；ESC 关闭弹层（文档级监听，含焦点在热门词等控件上）。
  * 有关键词时展开结果区（Turbo 预览 + 热门词）与底部 AI 区，无关键词时仅保留搜索框。键盘 ↑/↓ 切换选中、Enter 跳转。
  * 弹层显隐由原生 dialog + DaisyUI（modal-box + modal-backdrop 表单）负责。
  */
@@ -168,14 +168,17 @@ export default class extends Controller {
     this.modalInputTarget.dispatchEvent(new Event("input", { bubbles: true }));
   }
 
+  /** ⌘/Ctrl+K：弹层已开则关，未开则开 */
+  toggleModal() {
+    if (!this.hasModalTarget) return;
+    if (this.modalTarget.open) this.closeModal();
+    else this.openModal();
+  }
+
   /**
-   * ⌘/Ctrl+K：有弹层则打开；否则若有可见内联 input 则聚焦；否则跳整页搜索。
+   * 无弹层时的 ⌘/Ctrl+K：若有可见内联 input 则聚焦；否则跳整页搜索。
    */
   focusOrNavigate() {
-    if (this.hasModalTarget) {
-      this.openModal();
-      return;
-    }
     if (this.hasInputTarget) {
       const el = this.inputTarget;
       if (el.offsetParent || el.getClientRects().length) {
@@ -202,12 +205,15 @@ export default class extends Controller {
     if (!(event.metaKey || event.ctrlKey)) return;
     if (event.altKey || event.shiftKey) return;
 
+    if (this.hasModalTarget) {
+      event.preventDefault();
+      this.toggleModal();
+      return;
+    }
+
     const el = event.target;
     const tag = el && el.tagName;
     if (tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT" || el?.isContentEditable) {
-      if (this.hasModalTarget && this.modalTarget.open && this.modalTarget.contains(el)) {
-        event.preventDefault();
-      }
       return;
     }
 

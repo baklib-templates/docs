@@ -10,7 +10,8 @@
     "header": {
       "light_mode": "明るい色",
       "dark_mode": "ダークカラー",
-      "auto_mode": "自動"
+      "auto_mode": "自動",
+      "ask_ai": "AIに質問"
     },
     "footer": {
       "copyright": "All Rights Reserved"

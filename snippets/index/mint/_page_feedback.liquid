@@ -16,7 +16,19 @@
 {% endif %}
 
 <div
-  x-data="{ state: '{{ default_state }}', reason: '', details: '', submitted: {{ has_posted_feedback }} }"
+  x-data="{
+    state: '{{ default_state }}',
+    reason: '',
+    details: '',
+    submitted: {{ has_posted_feedback }},
+    scrollToFollowUp() {
+      this.$nextTick(() => {
+        requestAnimationFrame(() => {
+          this.$refs.followUp?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+      });
+    }
+  }"
 >
   {% form_tag 'feedback', page: page %}
     <section class="mt-6">
@@ -27,7 +39,7 @@
             type="button"
             class="btn btn-sm h-9 min-w-22 rounded-xl px-4 text-md font-medium shadow-none"
             :class="state === 'yes' ? 'btn-primary' : 'btn-outline border-base-300'"
-            @click="state = 'yes'; reason = ''; details = ''; submitted = false"
+            @click="state = 'yes'; reason = ''; details = ''; submitted = false; scrollToFollowUp()"
           >
             <i class="ri-thumb-up-line text-base leading-none" aria-hidden="true"></i>
             是的
@@ -36,7 +48,7 @@
             type="button"
             class="btn btn-sm h-9 min-w-18 rounded-xl px-4 text-md font-medium shadow-none"
             :class="state === 'no' ? 'btn-primary' : 'btn-outline border-base-300'"
-            @click="state = 'no'; reason = ''; details = ''; submitted = false"
+            @click="state = 'no'; reason = ''; details = ''; submitted = false; scrollToFollowUp()"
           >
             <i class="ri-thumb-down-line text-base leading-none" aria-hidden="true"></i>
             不
@@ -51,7 +63,12 @@
         :value="reason === '其他' && details.trim() ? ('其他：' + details.trim()) : reason"
       ></textarea>
 
-      <div x-show="state && !submitted" class="mt-4 border-t border-base-200 pt-4" x-cloak>
+      <div
+        x-show="state && !submitted"
+        x-ref="followUp"
+        class="mt-4 scroll-mt-[calc(var(--header-height)+0.75rem)] border-t border-base-200 pt-4"
+        x-cloak
+      >
         <h3 class="text-md font-semibold tracking-tight text-base-content" x-text="state === 'yes' ? '太棒了！什么方法对你最有效？' : '我们如何改进产品？'"></h3>
 
         <fieldset class="mt-5 space-y-3">
