@@ -4,11 +4,28 @@
 {% unless current_root_channel %}
   {% assign current_root_channel = index_page.children_in_list | first %}
 {% endunless %}
+{% assign ai_assistant_title = "snippets.mint.ai.assistant_title" | t: "AI 助手" | presence %}
+{% assign ai_input_placeholder = "snippets.mint.ai.input_placeholder" | t: "输入你的问题…" | presence %}
+{% assign ai_send_label = "snippets.mint.ai.send" | t: "发送" | presence %}
+{% assign ai_reading_text = "snippets.mint.ai.reading" | t: "正在阅读文档…" | presence %}
+{% assign ai_thinking_status = "snippets.mint.ai.thinking_status" | t: "正在思考…" | presence %}
+{% assign ai_network_error = "snippets.mint.ai.network_error" | t: "网络错误，请重试" | presence %}
+{% assign ai_timeout_error = "snippets.mint.ai.timeout_error" | t: "响应超时，请重试" | presence %}
+{% assign ai_completed_text = site.settings.ai_search_completed_text | presence %}
+{% unless ai_completed_text %}
+  {% assign ai_completed_text = "ai.completed" | t: "AI 回答完毕." | presence %}
+{% endunless %}
 
 <div
-  data-controller="header-search"
+  data-controller="header-search ai-search"
+  data-action="mint:ai-send@window->ai-search#sendFromWindow"
   data-header-search-search-url-value="{{ site.search_path }}"
   data-header-search-preview-url-value="{{ statics['index/mint/search_preview'] }}"
+  data-ai-search-url-value="/-/ai-search-completion"
+  data-ai-search-chats-url-value="/-/ai_chats"
+  data-ai-search-timeout-value="60"
+  data-ai-search-messages-value='{"thinking":"{{ ai_thinking_status | escape }}","reading":"{{ ai_reading_text | escape }}","thinking_status":"{{ ai_thinking_status | escape }}","completed":"{{ ai_completed_text | escape }}","network_error":"{{ ai_network_error | escape }}","timeout_error":"{{ ai_timeout_error | escape }}"}'
+  data-ai-search-query-value='{"path":"{{ page.path | escape }}"}'
   class="flex flex-grow relative bg-base-100 text-base-content"
   x-data="{
     docTab: 'guides',
@@ -146,12 +163,6 @@
       </div>
 
       <div class="drawer-content flex flex-col items-center justify-center">
-        <turbo-frame id="main-content-frame" class='w-full' x-init="
-                               $el.addEventListener('turbo:before-fetch-request', () => {
-                                 $el.scrollTop = 0
-                                 window.scrollTo({ top: 0, behavior: 'instant' })
-                               })
-                             ">
           <div
             data-controller="toc"
             data-toc-header-selector-value=".js--header"
@@ -162,70 +173,78 @@
           >
             <div class="grid grid-cols-1 gap-6 transition-all duration-300 px-0 md:px-4 lg:px-6 w-full"
               :class="isAiOpen ? 'lg:grid-cols-1' : 'lg:grid-cols-1 lg:group-[.has-toc]:grid-cols-[minmax(0,1fr)_minmax(11rem,15rem)]'">
-              {% comment %} 主内容 {% endcomment %}
-              <main class="min-w-0 flex flex-col">
-                <article class="max-w-none flex flex-1 flex-col pt-10 min-h-[70vh]">
-                  <div class="min-h-0 w-full flex-1 flex flex-col">
-                    <div class="flex-1">
-                      <p class="mb-2 text-[0.8rem] font-bold tracking-wide text-primary uppercase">{{
-                        current_root_channel.link_text }}
-                      </p>
-                      {% # 标题 %}
-                      {% assign title = page.link_text | presence %}
-                      <div class="mb-4 py-1 flex items-start justify-between gap-3">
-                        <h1 class="flex-1 mb-3 text-2xl sm:text-3xl font-bold tracking-tight text-base-content">
-                          {{ title }}
-                        </h1>
-                        {% if site.settings.show_page_tools_dropdown %}
-                          {% render 'page_tools_dropdown', page: page %}
+              <turbo-frame id="main-content-frame" class='w-full' x-init="
+                               $el.addEventListener('turbo:before-fetch-request', () => {
+                                 $el.scrollTop = 0
+                                 window.scrollTo({ top: 0, behavior: 'instant' })
+                               })
+                             ">
+                {% comment %} 主内容 {% endcomment %}
+                <main class="min-w-0 flex flex-col">
+                  <article class="max-w-none flex flex-1 flex-col pt-10 min-h-[70vh]">
+                    <div class="min-h-0 w-full flex-1 flex flex-col">
+                      <div class="flex-1">
+                        <p class="mb-2 text-[0.8rem] font-bold tracking-wide text-primary uppercase">{{
+                          current_root_channel.link_text }}
+                        </p>
+                        {% # 标题 %}
+                        {% assign title = page.link_text | presence %}
+                        <div class="mb-4 py-1 flex items-start justify-between gap-3">
+                          <h1 class="flex-1 mb-3 text-2xl sm:text-3xl font-bold tracking-tight text-base-content">
+                            {{ title }}
+                          </h1>
+                          {% if site.settings.show_page_tools_dropdown %}
+                            {% render 'page_tools_dropdown', page: page %}
+                          {% endif %}
+                        </div>
+
+                        {% if page.settings.description %}
+                        <p class="mb-8 text-[1.05rem] text-base-content/70">{{ page.settings.description }}</p>
                         {% endif %}
+
+                        {% comment %} page content：TOC 仅扫描正文内标题 {% endcomment %}
+                        <div class="prose dark:prose-invert max-w-none min-h-[40vh]" data-toc-target="content">
+                          {{ page.settings.content }}
+                        </div>
                       </div>
 
-                      {% if page.settings.description %}
-                      <p class="mb-8 text-[1.05rem] text-base-content/70">{{ page.settings.description }}</p>
+                      {% comment %} 是否有帮助的反馈区域 {% endcomment %}
+                      {% if site.settings.feedback_enabled %}
+                        {% render 'index/mint/page_feedback', page: page %}
                       {% endif %}
 
-                      {% comment %} page content：TOC 仅扫描正文内标题 {% endcomment %}
-                      <div class="prose dark:prose-invert max-w-none min-h-[40vh]" data-toc-target="content">
-                        {{ page.settings.content }}
-                      </div>
+                      {% comment %} 上一页、下一页 {% endcomment %}
+                      {% render 'index/mint/page_pager', page: page %}
                     </div>
 
-                    {% comment %} 是否有帮助的反馈区域 {% endcomment %}
-                    {% if site.settings.feedback_enabled %}
-                      {% render 'index/mint/page_feedback', page: page %}
-                    {% endif %}
-
-                    {% comment %} 上一页、下一页 {% endcomment %}
-                    {% render 'index/mint/page_pager', page: page %}
-                  </div>
-
-                  {% comment %} AI：flex-1 在短页占满剩余高度，条在 article 底；长页仍在正文后 + sticky bottom 吸附视口 {% endcomment %}
-                  <div class="sticky bottom-5 z-20 w-full shrink-0 pointer-events-none print:hidden transition-all duration-300"
-                    :class="(isAtBottom || isAiOpen) ? 'translate-y-full opacity-0' : 'translate-y-0 opacity-100'">
-                    <div
-                      class="pointer-events-auto flex flex-col w-full rounded-2xl border border-base-200 bg-base-100/90 shadow-sm backdrop-blur-xl transition-colors focus-within:border-primary" x-data="{ inputValue: '' }">
-                      <div class="relative flex items-end">
-                        <textarea aria-label="Ask a question..." placeholder="Ask a question..."
-                          class="w-full resize-none border-0 bg-transparent py-4 pl-4 pr-14 text-[0.95rem] text-base-content placeholder-base-content/40 focus:outline-none focus:ring-0"
-                          style="height: 60px;"
-                          @keydown.enter.prevent="if(inputValue.trim()) { isAiOpen = true; $el.value = ''; inputValue = ''; }"
-                          x-model="inputValue"></textarea>
-                        <span
-                          class="absolute bottom-4 right-12 hidden text-[0.75rem] font-medium text-base-content/50 sm:inline">⌘I</span>
-                        <button type="button"
-                          class="absolute bottom-3 right-2.5 flex size-8 items-center justify-center rounded-lg bg-primary/10 text-primary transition-colors hover:bg-primary/90 disabled:opacity-50"
-                          :disabled="!inputValue.trim()"
-                          aria-label="Send message">
-                          <i class="ri-arrow-up-line leading-none" aria-hidden="true"></i>
-                        </button>
+                    {% comment %} AI：flex-1 在短页占满剩余高度，条在 article 底；长页仍在正文后 + sticky bottom 吸附视口 {% endcomment %}
+                    <div class="sticky bottom-5 z-20 w-full shrink-0 pointer-events-none print:hidden transition-all duration-300"
+                      :class="(isAtBottom || isAiOpen) ? 'translate-y-full opacity-0' : 'translate-y-0 opacity-100'">
+                      <div
+                        class="pointer-events-auto flex flex-col w-full rounded-2xl border border-base-200 bg-base-100/90 shadow-sm backdrop-blur-xl transition-colors focus-within:border-primary" x-data="{ inputValue: '' }">
+                        <div class="relative flex items-end">
+                          <textarea aria-label="{{ ai_input_placeholder }}" placeholder="{{ ai_input_placeholder }}"
+                            class="w-full resize-none border-0 bg-transparent py-4 pl-4 pr-14 text-[0.95rem] text-base-content placeholder-base-content/40 focus:outline-none focus:ring-0"
+                            style="height: 60px;"
+                            @keydown.enter.prevent="if(inputValue.trim()) { window.dispatchEvent(new CustomEvent('mint:ai-send', { detail: { message: inputValue.trim() } })); isAiOpen = true; $el.value = ''; inputValue = ''; }"
+                            x-model="inputValue"></textarea>
+                          <span
+                            class="absolute bottom-4 right-12 hidden text-[0.75rem] font-medium text-base-content/50 sm:inline">⌘I</span>
+                          <button type="button"
+                            class="absolute bottom-3 right-2.5 flex size-8 items-center justify-center rounded-lg bg-primary/10 text-primary transition-colors hover:bg-primary/90 disabled:opacity-50"
+                            :disabled="!inputValue.trim()"
+                            aria-label="{{ ai_send_label }}"
+                            @click="if(inputValue.trim()) { window.dispatchEvent(new CustomEvent('mint:ai-send', { detail: { message: inputValue.trim() } })); isAiOpen = true; inputValue = ''; }">
+                            <i class="ri-arrow-up-line leading-none" aria-hidden="true"></i>
+                          </button>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </article>
+                  </article>
 
-                {% render 'index/mint/footer' %}
-              </main>
+                  {% render 'index/mint/footer' %}
+                </main>
+              </turbo-frame>
 
               {% comment %} 右侧目录：lg+ 且有标题时显示；AI 侧栏打开时关闭 {% endcomment %}
               <aside
@@ -253,7 +272,6 @@
               </aside>
             </div>
           </div>
-        </turbo-frame>
       </div>
     </div>
   </div>
@@ -277,7 +295,7 @@
         <div class="flex items-center justify-between px-4 py-3">
           <div class="flex items-center gap-2 font-bold text-base-content text-[0.95rem]">
             <i class="ri-sparkling-2-line size-4 text-primary leading-none" aria-hidden="true"></i>
-            {{ 'snippets.header.assistant' | t: 'Assistant' }}
+            {{ ai_assistant_title }}
           </div>
           <button type="button" class="btn btn-ghost btn-sm btn-square text-base-content/60" aria-label="Close"
             @click="isAiOpen = false">
@@ -285,16 +303,20 @@
           </button>
         </div>
       </div>
-      <div class="flex-1 flex items-center justify-center text-xs text-base-content/50 px-4">
-        Responses are generated using AI and may contain mistakes.
-      </div>
+      {% render 'index/mint/ai_chat_messages',
+        variant: 'drawer',
+        wrapper_class: 'flex-1 min-h-0 overflow-y-auto px-4 pb-2',
+        messages_class: 'flex flex-col gap-3'
+      %}
       <div class="px-4 pb-4 shrink-0">
         <div
           class="flex flex-col w-full rounded-2xl bg-base-100 border border-base-200 focus-within:border-primary transition-colors">
           <div class="relative flex items-end">
             <textarea
+              data-ai-search-target="input"
+              data-action="input->ai-search#syncSendButton keydown->ai-search#onInputKeydown"
               class="w-full bg-transparent border-0 text-base-content placeholder-base-content/50 focus:outline-none focus:ring-0 py-2.5 pl-3.5 pr-10 text-[0.85rem] !pb-0 resize-none"
-              placeholder="Ask a question..." style="height: 50px;"></textarea>
+              placeholder="{{ ai_input_placeholder }}" style="height: 50px;"></textarea>
           </div>
           <div class="flex items-center justify-between px-2 pb-2">
             <button type="button" class="btn btn-ghost btn-sm btn-square text-base-content/60"
@@ -302,7 +324,9 @@
               <i class="ri-attachment-line leading-none" aria-hidden="true"></i>
             </button>
             <button class="btn btn-circle btn-ghost btn-sm bg-primary/10 text-primary"
-              aria-label="Send message" disabled="">
+              data-ai-search-target="send"
+              data-action="click->ai-search#send"
+              aria-label="{{ ai_send_label }}" disabled>
               <i class="ri-arrow-up-line leading-none" aria-hidden="true"></i>
             </button>
           </div>
@@ -341,7 +365,7 @@
       <div class="flex items-center justify-between px-4 py-3 border-b border-base-200">
         <div class="flex items-center gap-2 font-bold text-base-content text-[0.95rem]">
           <i class="ri-sparkling-2-line size-4 text-primary leading-none" aria-hidden="true"></i>
-          Assistant
+          {{ ai_assistant_title }}
         </div>
         <div class="flex items-center gap-1">
           {% comment %} 最大化/最小化， icon 也自动切换 {% endcomment %}
@@ -352,8 +376,10 @@
               :class="aiSidebarWidth >= aiSidebarMaxWidth ? 'ri-collapse-diagonal-line' : 'ri-expand-diagonal-line'"
               aria-hidden="true"></i>
           </button>
-          <button type="button" class="btn btn-ghost font-normal btn-sm btn-square group"
-            aria-label="Trash">
+          <button type="button" class="hidden btn btn-ghost font-normal btn-sm btn-square group"
+            aria-label="{{ 'snippets.mint.ai.clear_chat' | t: '清空对话' }}"
+            data-ai-search-target="clearButton"
+            data-action="click->ai-search#clearChat">
             <i class="ri-delete-bin-line icon-thin text-base text-base-content/60 group-hover:text-base-content leading-none" aria-hidden="true"></i>
           </button>
           <div type="button" class="btn btn-ghost font-normal btn-sm btn-square group"
@@ -364,64 +390,11 @@
       </div>
 
       <!-- AI Messages Area -->
-      <div class="flex-1 flex flex-col-reverse overflow-y-auto px-5 min-h-0 relative">
-        <div class="flex flex-col gap-3 mb-2">
-          <div class="flex justify-end items-end w-full flex-col gap-2">
-            <div class="flex px-3 py-2 items-start gap-4 w-fit rounded-2xl bg-base-200">
-              <div class="flex items-start gap-4 w-full">
-                <div class="flex flex-col gap-1 w-full">
-                  <div class="break-words hyphens-auto text-base lg:text-sm text-base-content">订单
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="flex flex-col py-4 gap-4 self-stretch">
-            <div
-              class="space-y-4 whitespace-normal prose prose-sm dark:prose-invert overflow-x-auto pb-1 max-lg:text-base">
-              <p class="whitespace-pre-line leading-relaxed text-base-content">
-                您的问题"订单"过于简短。请问您想了解关于订单的什么内容？例如 API 端点、创建订单、查询订单等？</p>
-            </div>
-
-            <div class="flex flex-col gap-2">
-              <button class="flex items-center gap-2 cursor-pointer w-fit group">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
-                  class="size-3 flex-shrink-0 text-base-content/50 group-hover:text-base-content">
-                  <circle cx="11" cy="11" r="8"></circle>
-                  <path d="m21 21-4.3-4.3"></path>
-                </svg>
-                <span
-                  class="text-xs font-medium text-base-content/60 text-left group-hover:text-base-content">Searched
-                  for 1 pattern</span>
-              </button>
-            </div>
-
-            <div
-              class="space-y-4 whitespace-normal prose prose-sm dark:prose-invert overflow-x-auto pb-1 max-lg:text-base">
-              <p class="whitespace-pre-line leading-relaxed text-base-content">
-                文档中似乎没有专门关于订单的内容。请提供更多细节，例如您想做什么？我可以帮您查找相关文档。</p>
-            </div>
-
-            <div class="flex items-start gap-2 w-full mt-1">
-              <div class="flex items-center gap-1">
-                <button
-                  class="btn btn-ghost btn-sm btn-square text-base-content/60 hover:text-base-content transition-colors"
-                  aria-label="Copy chat response">
-                  <i class="ri-file-copy-line leading-none" aria-hidden="true"></i>
-                </button>
-                <button
-                  class="btn btn-ghost btn-sm btn-square text-base-content/60 hover:text-base-content transition-colors"
-                  aria-label="Reload last chat">
-                  <i class="ri-refresh-line leading-none" aria-hidden="true"></i>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="h-px w-full shrink-0"></div>
-      </div>
+      {% render 'index/mint/ai_chat_messages',
+        variant: 'desktop',
+        wrapper_class: 'flex-1 min-h-0 overflow-y-auto px-5',
+        messages_class: 'flex flex-col gap-3 py-4'
+      %}
 
       <!-- AI Input Area -->
       <div class="px-4 pb-4 shrink-0 mt-2">
@@ -429,8 +402,10 @@
           class="flex flex-col w-full rounded-2xl pointer-events-auto bg-base-100 border border-base-200 focus-within:border-primary transition-colors">
           <div class="relative flex items-end">
             <textarea
+              data-ai-search-target="input"
+              data-action="input->ai-search#syncSendButton keydown->ai-search#onInputKeydown"
               class="w-full bg-transparent border-0 text-base-content placeholder-base-content/50 focus:outline-none focus:ring-0 py-2.5 pl-3.5 pr-10 text-[0.85rem] !pb-0 resize-none"
-              placeholder="Ask a question..." style="height: 50px;"></textarea>
+              placeholder="{{ ai_input_placeholder }}" style="height: 50px;"></textarea>
           </div>
           <div class="flex items-center justify-between px-2 pb-2">
             <input type="file" class="hidden">
@@ -441,7 +416,9 @@
             </button>
             <button
               class="btn btn-circle btn-ghost btn-sm bg-primary/10 text-primary"
-              aria-label="Send message" disabled="">
+              data-ai-search-target="send"
+              data-action="click->ai-search#send"
+              aria-label="{{ ai_send_label }}" disabled>
               <i class="ri-arrow-up-line leading-none" aria-hidden="true"></i>
             </button>
           </div>
@@ -449,6 +426,55 @@
       </div>
     </div>
   </div>
+
+  <template data-ai-search-target="userMessageTemplate">
+    <div class="ai-chat-user-round flex justify-end">
+      <div class="max-w-[88%] rounded-2xl bg-base-200 px-3 py-2">
+        <p class="ai-user-message break-words text-sm text-base-content"></p>
+      </div>
+    </div>
+  </template>
+
+  <template data-ai-search-target="assistantMessageTemplate">
+    <div class="ai-chat-assistant-round flex flex-col gap-1">
+      <div
+        class="w-full rounded-2xl border border-base-200 bg-base-100 px-3 py-2"
+        data-controller="markdown"
+      >
+        <pre class="hidden" data-markdown-target="content"></pre>
+        <div class="chat-message max-w-none break-words text-base-content" data-markdown-target="renderedContent"></div>
+      </div>
+      <div class="ai-message-actions hidden items-center gap-1">
+        <button
+          class="btn btn-ghost btn-sm btn-square text-base-content/60 hover:text-base-content"
+          type="button"
+          data-action="click->ai-search#copyLastResponse"
+          aria-label="{{ 'snippets.mint.ai.copy_response' | t: '复制回答' }}"
+        >
+          <i class="ri-file-copy-line leading-none" aria-hidden="true"></i>
+        </button>
+        <button
+          class="btn btn-ghost btn-sm btn-square text-base-content/60 hover:text-base-content"
+          type="button"
+          data-action="click->ai-search#retryLastResponse"
+          aria-label="{{ 'snippets.mint.ai.retry_response' | t: '重新生成' }}"
+        >
+          <i class="ri-refresh-line leading-none" aria-hidden="true"></i>
+        </button>
+      </div>
+    </div>
+  </template>
+
+  <button
+    type="button"
+    class="hidden btn btn-ghost btn-xs btn-square align-middle text-base-content/70"
+    data-ai-search-target="retryButton"
+    data-action="click->ai-search#retryFromButton"
+    aria-label="{{ 'snippets.mint.ai.retry_response' | t: '重新生成' }}"
+  >
+    <i class="ri-refresh-line leading-none" aria-hidden="true"></i>
+  </button>
+  <div data-ai-search-target="error" class="hidden"></div>
 
   {% comment %} 搜索弹窗 {% endcomment %}
   {% assign mint_index = site.pages['/'] %}

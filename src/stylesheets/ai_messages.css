@@ -1,0 +1,133 @@
+@import "highlight.js/styles/github.css";
+@import "katex/dist/katex.min.css";
+
+.ai-response a {
+  @apply text-primary font-medium transition-colors;
+}
+
+.ai-response a:hover {
+  @apply text-primary underline cursor-pointer;
+}
+
+.chat-message {
+  h1 {
+    @apply text-2xl font-bold mt-5 mb-3;
+  }
+
+  h2 {
+    @apply text-xl font-bold mt-4 mb-2;
+  }
+
+  h3, h4, h5, h6 {
+    @apply text-base font-semibold mt-3 mb-2;
+  }
+
+  p {
+    @apply my-2 leading-relaxed;
+  }
+
+  ul {
+    @apply list-disc list-outside my-2 ml-5;
+  }
+
+  ol {
+    @apply list-decimal list-outside my-2 ml-5;
+  }
+
+  li {
+    @apply my-1;
+  }
+
+  blockquote {
+    @apply border-l-4 border-base-300 pl-3 text-base-content/80 my-3;
+  }
+
+  a {
+    @apply text-primary hover:underline;
+  }
+
+  .table-wrap {
+    @apply my-3 overflow-x-auto rounded-lg border border-base-300;
+  }
+
+  table {
+    @apply w-full min-w-[32rem] border-collapse text-sm;
+  }
+
+  thead {
+    @apply bg-base-200/70;
+  }
+
+  th {
+    @apply border-b border-base-300 px-3 py-2 text-left font-semibold text-base-content;
+  }
+
+  td {
+    @apply border-b border-base-200 px-3 py-2 align-top text-base-content;
+  }
+
+  tr:last-child td {
+    @apply border-b-0;
+  }
+
+  .task-list {
+    @apply list-none ml-0;
+  }
+
+  .task-list-item {
+    @apply flex items-start gap-2;
+  }
+
+  .task-list-item-checkbox {
+    @apply mt-1;
+  }
+
+  pre {
+    @apply rounded-lg my-3 overflow-x-auto bg-base-200 p-3;
+    white-space: pre;
+  }
+
+  code {
+    @apply bg-base-200 text-base-content px-1.5 py-0.5 rounded text-xs font-mono;
+  }
+
+  pre code {
+    @apply bg-transparent p-0 text-sm;
+  }
+
+  .code-block {
+    @apply my-4 overflow-hidden rounded-xl border border-base-300 bg-base-100;
+  }
+
+  .code-block__header {
+    @apply flex items-center justify-between border-b border-base-300 bg-base-200/70 px-3 py-2 text-xs;
+  }
+
+  .code-block__language {
+    @apply font-semibold text-base-content/80;
+  }
+
+  .code-block__content {
+    @apply bg-base-100 p-0;
+  }
+
+  .code-copy-btn {
+    @apply text-base-content/70 hover:text-base-content;
+  }
+
+  .code-copy-btn__label {
+    @apply text-xs;
+  }
+
+  .code-copy-btn[data-copy-button-state="success"] {
+    @apply !text-success;
+  }
+
+  .code-copy-btn[data-copy-button-state="error"] {
+    @apply !text-error;
+  }
+
+  .footnotes {
+    @apply mt-4 border-t border-base-300 pt-3 text-xs text-base-content/80;
+  }
+}

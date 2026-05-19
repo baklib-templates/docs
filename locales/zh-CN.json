@@ -32,6 +32,23 @@
       "prev_page": "上一页",
       "next_page": "下一页"
     },
+    "mint": {
+      "ai": {
+        "assistant_title": "AI 助手",
+        "input_placeholder": "输入你的问题…",
+        "send": "发送",
+        "disclaimer": "内容由 AI 生成，可能存在错误，请自行核实。",
+        "network_error": "网络错误，请重试",
+        "timeout_error": "响应超时，请重试",
+        "reading": "正在阅读文档…",
+        "thinking_status": "正在思考…",
+        "copy_response": "复制回答",
+        "retry_response": "重新生成",
+        "clear_chat": "清空对话",
+        "collapse": "收起侧栏",
+        "expand": "展开侧栏"
+      }
+    },
     "page_tools": {
       "copy_page_label": "复制页面",
       "copy_page_description": "将页面以 Markdown 格式复制给 LLMs",
@@ -70,7 +87,8 @@
     "published_at": "发布时间",
     "feedback_created_at": "上次反馈于",
     "buttons": {
-      "signout": "退出登录"
+      "signout": "退出登录",
+      "close": "关闭"
     },
     "read_more": "查看更多",
     "menu": ""

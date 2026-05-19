@@ -32,6 +32,23 @@
       "prev_page": "Previous",
       "next_page": "Next"
     },
+    "mint": {
+      "ai": {
+        "assistant_title": "Assistant",
+        "input_placeholder": "Ask a question...",
+        "send": "Send",
+        "disclaimer": "Responses are generated using AI and may contain mistakes.",
+        "network_error": "Network error. Please try again.",
+        "timeout_error": "Request timed out. Please try again.",
+        "reading": "Reading documentation…",
+        "thinking_status": "Thinking…",
+        "copy_response": "Copy response",
+        "retry_response": "Regenerate",
+        "clear_chat": "Clear chat",
+        "collapse": "Collapse sidebar",
+        "expand": "Expand sidebar"
+      }
+    },
     "page_tools": {
       "copy_page_label": "Copy page",
       "copy_page_description": "Copy this page as Markdown for LLMs",
@@ -70,7 +87,8 @@
     "published_at": "Published at",
     "feedback_created_at": "Last feedback at",
     "buttons": {
-      "signout": "Sign Out"
+      "signout": "Sign Out",
+      "close": "Close"
     },
     "read_more": "View more",
     "menu": ""

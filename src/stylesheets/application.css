@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "remixicon/fonts/remixicon.css";
+@import "./ai_messages.css";
 
 @theme {
   /* 主色 */
@@ -426,14 +427,6 @@ summary:has(.menu-active) {
     @apply flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 font-[remixicon] not-italic text-primary text-3xl;
     @apply after:content-['\eec9'] after:animate-spin;
   }
-}
-
-.ai-response a {
-  @apply text-primary font-medium transition-colors;
-}
-
-.ai-response a:hover {
-  @apply text-primary underline cursor-pointer;
 }
 
 * {
