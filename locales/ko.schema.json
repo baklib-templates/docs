@@ -109,7 +109,8 @@
             "info": "제목 아래 플레인 텍스트 소개입니다. 풍부한 블록은 사이트 Features HTML과 BKE Markdown을 활용하세요."
           },
           "hero_slogan": {
-            "default": "Maple에 오신 것을 환영합니다"
+            "default": "Maple에 오신 것을 환영합니다",
+            "info": ""
           },
           "channels_section_title": {
             "default": "설정하기"
@@ -249,6 +250,20 @@
       "ai_search_completed_text": {
         "label": "AI 답변 종료 문구",
         "info": "AI 답변이 끝난 후 문장을 추가합니다."
+      },
+      "header_type": {
+        "label": "",
+        "info": "",
+        "choices": {
+          "transparent": "",
+          "custom": ""
+        }
+      },
+      "header_bg_color": {
+        "label": ""
+      },
+      "header_text_color": {
+        "label": ""
       }
     }
   },
@@ -257,6 +272,9 @@
     "settings": {
       "show_page_tools_dropdown": {
         "label": "페이지 도구 드롭다운 표시"
+      },
+      "feedback_enabled": {
+        "label": ""
       }
     }
   },
@@ -314,6 +332,14 @@
         "label": "debug 프롬프트 설정 여부",
         "info": "구성 단계에서만 이 옵션을 켜십시오.오픈 후 프런트엔드 사이트에 액세스할 때 위챗 공유를 제대로 구성하지 않으면 오류 메시지가 자동으로 표시됩니다."
       }
+    }
+  },
+  "recommendations": {
+    "fashion": {
+      "name": ""
+    },
+    "old_school": {
+      "name": ""
     }
   }
 }

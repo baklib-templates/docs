@@ -55,6 +55,46 @@
         "clear_chat": "Clear chat",
         "collapse": "Collapse sidebar",
         "expand": "Expand sidebar"
+      },
+      "breadcrumb": {
+        "label": "Breadcrumb"
+      },
+      "nav_tree": {
+        "toggle_submenu": "Expand or collapse submenu"
+      },
+      "page_feedback": {
+        "prompt": "Was this page helpful to you?",
+        "yes_button": "Yes",
+        "no_button": "No",
+        "follow_up_yes": "Great! What worked best for you?",
+        "follow_up_no": "How can we improve our product?",
+        "cancel": "Cancel",
+        "submit": "Submit feedback",
+        "thanks": "Thank you for your feedback. We will keep improving the experience.",
+        "other": "Other",
+        "other_prefix": "Other: ",
+        "other_details_sr": "Other feedback details",
+        "other_placeholder": "(Optional) Can you share more about your experience?",
+        "yes": {
+          "works_as_expected": "Worked as expected",
+          "works_as_expected_label": "This guide worked as expected.",
+          "easy_to_find": "Easy to find information",
+          "easy_to_find_label": "I easily found the information I needed.",
+          "easy_to_understand": "Easy to understand features",
+          "easy_to_understand_label": "The product and its features were easy to understand.",
+          "docs_updated": "Documentation updated",
+          "docs_updated_label": "The documentation is up to date."
+        },
+        "no": {
+          "faster_start": "Help me get started faster",
+          "faster_start_label": "Help me get started faster",
+          "easier_find": "Easier to find content",
+          "easier_find_label": "Make it easier for me to find what I need",
+          "better_understand": "Better product understanding",
+          "better_understand_label": "Help users understand the product and its features more easily.",
+          "update_docs": "Update documentation",
+          "update_docs_label": "Update this documentation"
+        }
       }
     },
     "page_tools": {
@@ -72,9 +112,16 @@
     }
   },
   "templates": {
+    "feedback": {
+      "success_title": "Feedback submitted",
+      "success_message": "Thank you for your feedback. We will keep improving the experience.",
+      "error_title": "Submission failed",
+      "error_message": "Something went wrong. Please check and try again."
+    },
     "search": {
       "placeholder": "Search...",
       "no_results": "No results found",
+      "featured_label": "Featured",
       "ai_input_placeholder": "Type your question…"
     },
     "page": {

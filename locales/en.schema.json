@@ -117,7 +117,8 @@
             "info": "Plain-text introduction under the title. For rich layouts (callouts, grids), use site Features HTML — BKE Markdown works well there."
           },
           "hero_slogan": {
-            "default": "Welcome to Maple"
+            "default": "Welcome to Maple",
+            "info": ""
           },
           "channels_section_title": {
             "default": "Setting up"
@@ -279,6 +280,9 @@
     "settings": {
       "show_page_tools_dropdown": {
         "label": "Show Page Tools Dropdown"
+      },
+      "feedback_enabled": {
+        "label": ""
       }
     }
   },

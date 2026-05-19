@@ -117,7 +117,8 @@
             "info": "Texte brut sous le titre. Pour des blocs riches, utilisez les Features HTML du site (Markdown BKE possible)."
           },
           "hero_slogan": {
-            "default": "Bienvenue sur Maple"
+            "default": "Bienvenue sur Maple",
+            "info": ""
           },
           "channels_section_title": {
             "default": "Mise en place"
@@ -279,6 +280,9 @@
     "settings": {
       "show_page_tools_dropdown": {
         "label": "Afficher le menu d’outils de page"
+      },
+      "feedback_enabled": {
+        "label": ""
       }
     }
   },

@@ -55,6 +55,46 @@
         "clear_chat": "清空对话",
         "collapse": "收起侧栏",
         "expand": "展开侧栏"
+      },
+      "breadcrumb": {
+        "label": "面包屑"
+      },
+      "nav_tree": {
+        "toggle_submenu": "展开或收起子菜单"
+      },
+      "page_feedback": {
+        "prompt": "这个页面对您有帮助吗？",
+        "yes_button": "是的",
+        "no_button": "不",
+        "follow_up_yes": "太棒了！什么方法对你最有效？",
+        "follow_up_no": "我们如何改进产品？",
+        "cancel": "取消",
+        "submit": "提交反馈",
+        "thanks": "感谢你的反馈，我们会持续优化内容体验。",
+        "other": "其他",
+        "other_prefix": "其他：",
+        "other_details_sr": "其他反馈详情",
+        "other_placeholder": "（可选）您能否分享一下您的经历？",
+        "yes": {
+          "works_as_expected": "按预期发挥作用",
+          "works_as_expected_label": "该指南按预期发挥作用。",
+          "easy_to_find": "很容易找到信息",
+          "easy_to_find_label": "我很容易就找到了我需要的信息。",
+          "easy_to_understand": "产品功能容易理解",
+          "easy_to_understand_label": "产品及其功能很容易理解。",
+          "docs_updated": "文档已更新",
+          "docs_updated_label": "文档已更新。"
+        },
+        "no": {
+          "faster_start": "帮助我更快开始",
+          "faster_start_label": "帮我更快开始",
+          "easier_find": "更容易找到内容",
+          "easier_find_label": "让我更容易找到我想要的东西",
+          "better_understand": "更好理解产品",
+          "better_understand_label": "让用户能够轻松理解产品及其功能。",
+          "update_docs": "更新文档",
+          "update_docs_label": "更新此文档"
+        }
       }
     },
     "page_tools": {
@@ -72,9 +112,16 @@
     }
   },
   "templates": {
+    "feedback": {
+      "success_title": "反馈已提交",
+      "success_message": "感谢您的反馈，我们会持续优化内容体验。",
+      "error_title": "提交失败",
+      "error_message": "提交失败，请检查后重试。"
+    },
     "search": {
       "placeholder": "搜索...",
       "no_results": "没有找到相关结果",
+      "featured_label": "精选",
       "ai_input_placeholder": "请输入你的问题…"
     },
     "page": {

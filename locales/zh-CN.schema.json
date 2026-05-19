@@ -117,7 +117,8 @@
             "info": "标题下方的纯文字导语。复杂排版（标注框、分栏等）请用站点「Features HTML」，可配合 BKE Markdown。"
           },
           "hero_slogan": {
-            "default": "欢迎使用 Maple"
+            "default": "欢迎使用 Maple",
+            "info": ""
           },
           "channels_section_title": {
             "default": "开始配置"
@@ -279,6 +280,9 @@
     "settings": {
       "show_page_tools_dropdown": {
         "label": "显示页面工具下拉菜单"
+      },
+      "feedback_enabled": {
+        "label": ""
       }
     }
   },

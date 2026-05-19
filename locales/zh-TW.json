@@ -40,6 +40,61 @@
         "ask_ai_ellipsis": "…",
         "ask_ai_query_display": "「%{query}」",
         "ask_ai_message": "請介紹一下「%{query}」"
+      },
+      "ai": {
+        "assistant_title": "AI 助手",
+        "input_placeholder": "輸入你的問題…",
+        "send": "傳送",
+        "disclaimer": "內容由 AI 生成，可能存在錯誤，請自行核實。",
+        "network_error": "網路錯誤，請重試",
+        "timeout_error": "回應逾時，請重試",
+        "reading": "正在閱讀文件…",
+        "thinking_status": "正在思考…",
+        "copy_response": "複製回答",
+        "retry_response": "重新產生",
+        "clear_chat": "清空對話",
+        "collapse": "收起側欄",
+        "expand": "展開側欄"
+      },
+      "breadcrumb": {
+        "label": "麵包屑"
+      },
+      "nav_tree": {
+        "toggle_submenu": "展開或收合子選單"
+      },
+      "page_feedback": {
+        "prompt": "這個頁面對您有幫助嗎？",
+        "yes_button": "是的",
+        "no_button": "不",
+        "follow_up_yes": "太棒了！什麼方法對你最有效？",
+        "follow_up_no": "我們如何改進產品？",
+        "cancel": "取消",
+        "submit": "提交回饋",
+        "thanks": "感謝你的回饋，我們會持續優化內容體驗。",
+        "other": "其他",
+        "other_prefix": "其他：",
+        "other_details_sr": "其他回饋詳情",
+        "other_placeholder": "（可選）您能否分享一下您的經歷？",
+        "yes": {
+          "works_as_expected": "按預期發揮作用",
+          "works_as_expected_label": "該指南按預期發揮作用。",
+          "easy_to_find": "很容易找到資訊",
+          "easy_to_find_label": "我很容易就找到了我需要的資訊。",
+          "easy_to_understand": "產品功能容易理解",
+          "easy_to_understand_label": "產品及其功能很容易理解。",
+          "docs_updated": "文件已更新",
+          "docs_updated_label": "文件已更新。"
+        },
+        "no": {
+          "faster_start": "幫助我更快開始",
+          "faster_start_label": "幫我更快開始",
+          "easier_find": "更容易找到內容",
+          "easier_find_label": "讓我更容易找到我想要的東西",
+          "better_understand": "更好理解產品",
+          "better_understand_label": "讓使用者能夠輕鬆理解產品及其功能。",
+          "update_docs": "更新文件",
+          "update_docs_label": "更新此文件"
+        }
       }
     },
     "page_tools": {
@@ -60,7 +115,8 @@
     "search": {
       "placeholder": "搜尋...",
       "no_results": "沒有找到相關結果",
-      "ai_input_placeholder": "請輸入你的問題…"
+      "ai_input_placeholder": "請輸入你的問題…",
+      "featured_label": "精選"
     },
     "page": {
       "copy_success": "連結已複製",
@@ -68,6 +124,12 @@
       "llm_prompt_template": "讀取 %{url} 的內容，以便我可以詢問關於它的問題。",
       "llm_copying": "複製中...",
       "llm_copied": "已複製"
+    },
+    "feedback": {
+      "success_title": "回饋已提交",
+      "success_message": "感謝你的回饋，我們會持續優化內容體驗。",
+      "error_title": "提交失敗",
+      "error_message": "提交失敗，請檢查後重試。"
     }
   },
   "ai": {
@@ -80,7 +142,8 @@
     "published_at": "發布時間",
     "feedback_created_at": "上次反饋於",
     "buttons": {
-      "signout": "登出"
+      "signout": "登出",
+      "close": "關閉"
     },
     "read_more": "查看更多",
     "menu": ""

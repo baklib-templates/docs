@@ -1,6 +1,7 @@
 {% layout none %}
 {% assign q = params.q | strip %}
-{% assign empty_message = "templates.search.no_results" | t: "没有搜索到内容" %}
+{% assign empty_message = "templates.search.no_results" | t: "没有找到相关结果" %}
+{% assign featured_label = "templates.search.featured_label" | t: "精选" %}
 <turbo-frame id="search_preview_frame">
   {% if q == blank %}
   {% else %}
@@ -15,7 +16,7 @@
         >
           <span class="mt-0.5 inline-flex size-6 shrink-0 items-center justify-center rounded-md bg-primary/15 text-xs font-bold text-primary" aria-hidden="true">↗</span>
           <span class="min-w-0 flex-1">
-            <span class="mb-0.5 line-clamp-1 block text-[0.7rem] font-semibold uppercase tracking-wide text-base-content/45">Featured</span>
+            <span class="mb-0.5 line-clamp-1 block text-[0.7rem] font-semibold uppercase tracking-wide text-base-content/45">{{ featured_label }}</span>
             <span class="search-highlight-block line-clamp-2 block text-sm font-semibold leading-snug text-base-content">{{ link.link_text }}</span>
           </span>
           <svg class="search-modal__chev mt-1 size-4 shrink-0 text-base-content/30 opacity-0 transition-opacity group-hover:opacity-100" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">

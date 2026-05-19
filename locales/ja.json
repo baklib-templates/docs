@@ -40,6 +40,61 @@
         "ask_ai_ellipsis": "…",
         "ask_ai_query_display": "「%{query}」",
         "ask_ai_message": "「%{query}」について教えてください。"
+      },
+      "ai": {
+        "assistant_title": "AIアシスタント",
+        "input_placeholder": "質問を入力…",
+        "send": "送信",
+        "disclaimer": "回答はAIにより生成され、誤りが含まれる場合があります。",
+        "network_error": "ネットワークエラー。もう一度お試しください。",
+        "timeout_error": "タイムアウトしました。もう一度お試しください。",
+        "reading": "ドキュメントを読み込み中…",
+        "thinking_status": "考え中…",
+        "copy_response": "回答をコピー",
+        "retry_response": "再生成",
+        "clear_chat": "チャットをクリア",
+        "collapse": "サイドバーを閉じる",
+        "expand": "サイドバーを開く"
+      },
+      "breadcrumb": {
+        "label": "パンくずリスト"
+      },
+      "nav_tree": {
+        "toggle_submenu": "サブメニューを開閉"
+      },
+      "page_feedback": {
+        "prompt": "このページは役に立ちましたか？",
+        "yes_button": "はい",
+        "no_button": "いいえ",
+        "follow_up_yes": "よかったです！何が最も役立ちましたか？",
+        "follow_up_no": "製品をどのように改善できますか？",
+        "cancel": "キャンセル",
+        "submit": "フィードバックを送信",
+        "thanks": "フィードバックありがとうございます。引き続き体験を改善します。",
+        "other": "その他",
+        "other_prefix": "その他：",
+        "other_details_sr": "その他のフィードバック詳細",
+        "other_placeholder": "（任意）体験について詳しく教えてください。",
+        "yes": {
+          "works_as_expected": "期待どおりに機能",
+          "works_as_expected_label": "このガイドは期待どおりに機能しました。",
+          "easy_to_find": "情報を見つけやすい",
+          "easy_to_find_label": "必要な情報を簡単に見つけられました。",
+          "easy_to_understand": "機能が理解しやすい",
+          "easy_to_understand_label": "製品とその機能は理解しやすかったです。",
+          "docs_updated": "ドキュメントが更新済み",
+          "docs_updated_label": "ドキュメントは最新です。"
+        },
+        "no": {
+          "faster_start": "より早く始められる",
+          "faster_start_label": "より早く始められるようにしてほしい",
+          "easier_find": "コンテンツを見つけやすく",
+          "easier_find_label": "必要なものを見つけやすくしてほしい",
+          "better_understand": "製品をより理解しやすく",
+          "better_understand_label": "ユーザーが製品と機能を理解しやすくしてほしい。",
+          "update_docs": "ドキュメントを更新",
+          "update_docs_label": "このドキュメントを更新してほしい"
+        }
       }
     },
     "page_tools": {
@@ -60,7 +115,8 @@
     "search": {
       "placeholder": "検索...",
       "no_results": "検索結果が見つかりません",
-      "ai_input_placeholder": "質問を入力してください…"
+      "ai_input_placeholder": "質問を入力してください…",
+      "featured_label": "おすすめ"
     },
     "page": {
       "copy_success": "リンクをコピーしました",
@@ -68,6 +124,12 @@
       "llm_prompt_template": "読み込み %{url} の内容, 私はそれについて質問することができます。",
       "llm_copying": "コピー中...",
       "llm_copied": "コピーされました"
+    },
+    "feedback": {
+      "success_title": "フィードバックを送信しました",
+      "success_message": "フィードバックありがとうございます。引き続き体験を改善します。",
+      "error_title": "送信に失敗しました",
+      "error_message": "問題が発生しました。確認してからもう一度お試しください。"
     }
   },
   "ai": {
@@ -80,7 +142,8 @@
     "published_at": "公開日時",
     "feedback_created_at": "最終フィードバック",
     "buttons": {
-      "signout": "ログアウト"
+      "signout": "ログアウト",
+      "close": "閉じる"
     },
     "read_more": "詳細を表示",
     "menu": ""

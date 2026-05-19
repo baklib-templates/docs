@@ -117,7 +117,8 @@
             "info": "タイトル下のプレーンテキスト。リッチなブロックはサイトの Features HTML（BKE Markdown 可）を利用してください。"
           },
           "hero_slogan": {
-            "default": "Maple へようこそ"
+            "default": "Maple へようこそ",
+            "info": ""
           },
           "channels_section_title": {
             "default": "セットアップ"
@@ -279,6 +280,9 @@
     "settings": {
       "show_page_tools_dropdown": {
         "label": "ページツールのドロップダウンを表示"
+      },
+      "feedback_enabled": {
+        "label": ""
       }
     }
   },

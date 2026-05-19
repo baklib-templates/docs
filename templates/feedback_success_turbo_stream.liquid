@@ -1,20 +1,23 @@
 {% layout none %}
 
+{% assign toast_message = success | presence %}
+{% unless toast_message %}
+  {% assign toast_message = 'templates.feedback.success_message' | t: '感谢您的反馈，我们会持续优化内容体验。' %}
+{% endunless %}
+
 <turbo-stream action="remove" target="js--feedback-modal"></turbo-stream>
 
-{% # 更新feedback按钮 %}
 <turbo-stream action="replace" target="js--feedback-{{ page.id }}">
   <template>
     {% render 'feedback_button', page: page %}
   </template>
 </turbo-stream>
 
+<turbo-stream action="remove" target="js--feedback-toast"></turbo-stream>
+<turbo-stream action="remove" target="js--feedback-error"></turbo-stream>
+
 <turbo-stream action="append" target="js--body">
   <template>
-    <div class="toast toast-bottom toast-center" id="js--feedback-error" x-data="" x-init="setTimeout(() => { $el.remove() }, 5000)">
-      <div class="alert alert-success">
-        <span>{{ success }}</span>
-      </div>
-    </div>
+    {% render 'feedback_toast', variant: 'success', message: toast_message %}
   </template>
 </turbo-stream>

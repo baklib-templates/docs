@@ -40,6 +40,61 @@
         "ask_ai_ellipsis": "…",
         "ask_ai_query_display": "%{query}",
         "ask_ai_message": "Peux-tu me parler de %{query} ?"
+      },
+      "ai": {
+        "assistant_title": "Assistant IA",
+        "input_placeholder": "Posez une question…",
+        "send": "Envoyer",
+        "disclaimer": "Les réponses sont générées par IA et peuvent contenir des erreurs.",
+        "network_error": "Erreur réseau. Veuillez réessayer.",
+        "timeout_error": "Délai dépassé. Veuillez réessayer.",
+        "reading": "Lecture de la documentation…",
+        "thinking_status": "Réflexion…",
+        "copy_response": "Copier la réponse",
+        "retry_response": "Régénérer",
+        "clear_chat": "Effacer la conversation",
+        "collapse": "Réduire la barre latérale",
+        "expand": "Développer la barre latérale"
+      },
+      "breadcrumb": {
+        "label": "Fil d'Ariane"
+      },
+      "nav_tree": {
+        "toggle_submenu": "Développer ou réduire le sous-menu"
+      },
+      "page_feedback": {
+        "prompt": "Cette page vous a-t-elle été utile ?",
+        "yes_button": "Oui",
+        "no_button": "Non",
+        "follow_up_yes": "Super ! Qu'est-ce qui vous a le plus aidé ?",
+        "follow_up_no": "Comment pouvons-nous améliorer notre produit ?",
+        "cancel": "Annuler",
+        "submit": "Envoyer le commentaire",
+        "thanks": "Merci pour votre retour. Nous continuerons d'améliorer l'expérience.",
+        "other": "Autre",
+        "other_prefix": "Autre : ",
+        "other_details_sr": "Détails du commentaire",
+        "other_placeholder": "(Facultatif) Pouvez-vous partager votre expérience ?",
+        "yes": {
+          "works_as_expected": "Conforme aux attentes",
+          "works_as_expected_label": "Ce guide a fonctionné comme prévu.",
+          "easy_to_find": "Informations faciles à trouver",
+          "easy_to_find_label": "J'ai facilement trouvé les informations dont j'avais besoin.",
+          "easy_to_understand": "Fonctionnalités faciles à comprendre",
+          "easy_to_understand_label": "Le produit et ses fonctionnalités étaient faciles à comprendre.",
+          "docs_updated": "Documentation à jour",
+          "docs_updated_label": "La documentation est à jour."
+        },
+        "no": {
+          "faster_start": "Démarrage plus rapide",
+          "faster_start_label": "M'aider à démarrer plus vite",
+          "easier_find": "Contenu plus facile à trouver",
+          "easier_find_label": "Faciliter la recherche de ce dont j'ai besoin",
+          "better_understand": "Mieux comprendre le produit",
+          "better_understand_label": "Aider les utilisateurs à comprendre le produit et ses fonctionnalités.",
+          "update_docs": "Mettre à jour la documentation",
+          "update_docs_label": "Mettre à jour cette documentation"
+        }
       }
     },
     "page_tools": {
@@ -60,7 +115,8 @@
     "search": {
       "placeholder": "Rechercher…",
       "no_results": "Aucun résultat trouvé",
-      "ai_input_placeholder": "Saisissez votre question…"
+      "ai_input_placeholder": "Saisissez votre question…",
+      "featured_label": "À la une"
     },
     "page": {
       "copy_success": "Lien copié",
@@ -68,6 +124,12 @@
       "llm_prompt_template": "Lis %{url} pour que je puisse poser des questions à son sujet.",
       "llm_copying": "Copie en cours…",
       "llm_copied": "Copié"
+    },
+    "feedback": {
+      "success_title": "Commentaire envoyé",
+      "success_message": "Merci pour votre retour. Nous continuerons d'améliorer l'expérience.",
+      "error_title": "Échec de l'envoi",
+      "error_message": "Une erreur s'est produite. Veuillez vérifier et réessayer."
     }
   },
   "ai": {
@@ -80,7 +142,8 @@
     "published_at": "Publié le",
     "feedback_created_at": "Dernier retour le",
     "buttons": {
-      "signout": "Se déconnecter"
+      "signout": "Se déconnecter",
+      "close": "Fermer"
     },
     "read_more": "Voir plus",
     "menu": ""

@@ -3,6 +3,7 @@
 {% assign root_container = root_container | default: '.custom-menu' %}
 {% assign id_prefix = id_prefix | default: 'index_mint_nav_tree_frame_' %}
 {% assign tree_url = tree_url | default: statics['index/mint/nav_tree'] %}
+{% assign nav_tree_toggle_aria = 'snippets.mint.nav_tree.toggle_submenu' | t: '展开或收起子菜单' %}
 {% assign current_path = current_path | default: '' %}
 {% assign parent_path = parent_path | default: '/' %}
 
@@ -53,7 +54,9 @@
           class="px-3 my-0.5 shrink-0 text-base-content/80 group-hover/menu-row:text-base-content hover:bg-transparent hover:border-none cursor-pointer"
           data-action="click->turbo-nav-tree#toggle"
           aria-expanded="{{#open}}true{{/open}}{{^open}}false{{/open}}"
-          aria-label="展开或收起子菜单"
+{% endraw %}
+          aria-label="{{ nav_tree_toggle_aria | escape_once }}"
+{% raw %}
         >
           <span turbo-nav-tree-item-target-icon class="inline-flex transition-transform {{#open}}rotate-90{{/open}} text-md">
             <i class="ri-arrow-right-s-line leading-none" aria-hidden="true"></i>

@@ -15,25 +15,70 @@
   {% assign has_posted_feedback = true %}
 {% endif %}
 
+{% assign fb_prompt = 'snippets.mint.page_feedback.prompt' | t: '这个页面对您有帮助吗？' %}
+{% assign fb_yes = 'snippets.mint.page_feedback.yes_button' | t: '是的' %}
+{% assign fb_no = 'snippets.mint.page_feedback.no_button' | t: '不' %}
+{% assign fb_follow_up_yes = 'snippets.mint.page_feedback.follow_up_yes' | t: '太棒了！什么方法对你最有效？' %}
+{% assign fb_follow_up_no = 'snippets.mint.page_feedback.follow_up_no' | t: '我们如何改进产品？' %}
+{% assign fb_cancel = 'snippets.mint.page_feedback.cancel' | t: '取消' %}
+{% assign fb_submit = 'snippets.mint.page_feedback.submit' | t: '提交反馈' %}
+{% assign fb_thanks = 'snippets.mint.page_feedback.thanks' | t: '感谢你的反馈，我们会持续优化内容体验。' %}
+{% assign fb_other = 'snippets.mint.page_feedback.other' | t: '其他' %}
+{% assign fb_other_prefix = 'snippets.mint.page_feedback.other_prefix' | t: '其他：' %}
+{% assign fb_other_details_sr = 'snippets.mint.page_feedback.other_details_sr' | t: '其他反馈详情' %}
+{% assign fb_other_placeholder = 'snippets.mint.page_feedback.other_placeholder' | t: '（可选）您能否分享一下您的经历？' %}
+
+{% assign fb_yes_works = 'snippets.mint.page_feedback.yes.works_as_expected' | t: '按预期发挥作用' %}
+{% assign fb_yes_works_label = 'snippets.mint.page_feedback.yes.works_as_expected_label' | t: '该指南按预期发挥作用。' %}
+{% assign fb_yes_find = 'snippets.mint.page_feedback.yes.easy_to_find' | t: '很容易找到信息' %}
+{% assign fb_yes_find_label = 'snippets.mint.page_feedback.yes.easy_to_find_label' | t: '我很容易就找到了我需要的信息。' %}
+{% assign fb_yes_understand = 'snippets.mint.page_feedback.yes.easy_to_understand' | t: '产品功能容易理解' %}
+{% assign fb_yes_understand_label = 'snippets.mint.page_feedback.yes.easy_to_understand_label' | t: '产品及其功能很容易理解。' %}
+{% assign fb_yes_updated = 'snippets.mint.page_feedback.yes.docs_updated' | t: '文档已更新' %}
+{% assign fb_yes_updated_label = 'snippets.mint.page_feedback.yes.docs_updated_label' | t: '文档已更新。' %}
+
+{% assign fb_no_start = 'snippets.mint.page_feedback.no.faster_start' | t: '帮助我更快开始' %}
+{% assign fb_no_start_label = 'snippets.mint.page_feedback.no.faster_start_label' | t: '帮我更快开始' %}
+{% assign fb_no_find = 'snippets.mint.page_feedback.no.easier_find' | t: '更容易找到内容' %}
+{% assign fb_no_find_label = 'snippets.mint.page_feedback.no.easier_find_label' | t: '让我更容易找到我想要的东西' %}
+{% assign fb_no_understand = 'snippets.mint.page_feedback.no.better_understand' | t: '更好理解产品' %}
+{% assign fb_no_understand_label = 'snippets.mint.page_feedback.no.better_understand_label' | t: '让用户能够轻松理解产品及其功能。' %}
+{% assign fb_no_update = 'snippets.mint.page_feedback.no.update_docs' | t: '更新文档' %}
+{% assign fb_no_update_label = 'snippets.mint.page_feedback.no.update_docs_label' | t: '更新此文档' %}
+
 <div
   x-data="{
     state: '{{ default_state }}',
     reason: '',
     details: '',
-    submitted: {{ has_posted_feedback }},
+    submitted: '{{ has_posted_feedback }}',
+    otherLabel: '{{ fb_other }}',
+    otherPrefix: '{{ fb_other_prefix }}',
+    followUpYes: '{{ fb_follow_up_yes }}',
+    followUpNo: '{{ fb_follow_up_no }}',
+    closeAiSidebar() {
+      window.dispatchEvent(new CustomEvent('mint:ai-close'));
+    },
     scrollToFollowUp() {
+      this.closeAiSidebar();
       this.$nextTick(() => {
         requestAnimationFrame(() => {
           this.$refs.followUp?.scrollIntoView({ behavior: 'smooth', block: 'start' });
         });
       });
+    },
+    feedbackMessage() {
+      if (this.reason === this.otherLabel && this.details.trim()) {
+        return this.otherPrefix + this.details.trim();
+      }
+      return this.reason;
     }
   }"
 >
   {% form_tag 'feedback', page: page %}
     <section class="mt-6">
       <div class="flex flex-col gap-4 sm:flex-row sm:items-center">
-        <p class="text-[0.92rem] text-base-content/70">这个页面对您有帮助吗？</p>
+        <p class="text-[0.92rem] text-base-content/70">{{ fb_prompt }}</p>
         <div class="flex items-center gap-2">
           <button
             type="button"
@@ -42,7 +87,7 @@
             @click="state = 'yes'; reason = ''; details = ''; submitted = false; scrollToFollowUp()"
           >
             <i class="ri-thumb-up-line text-base leading-none" aria-hidden="true"></i>
-            是的
+            {{ fb_yes }}
           </button>
           <button
             type="button"
@@ -51,7 +96,7 @@
             @click="state = 'no'; reason = ''; details = ''; submitted = false; scrollToFollowUp()"
           >
             <i class="ri-thumb-down-line text-base leading-none" aria-hidden="true"></i>
-            不
+            {{ fb_no }}
           </button>
         </div>
       </div>
@@ -60,7 +105,7 @@
       <textarea
         name="{{ form.feedback_message_field_name }}"
         class="hidden"
-        :value="reason === '其他' && details.trim() ? ('其他：' + details.trim()) : reason"
+        :value="feedbackMessage()"
       ></textarea>
 
       <div
@@ -69,30 +114,30 @@
         class="mt-4 scroll-mt-[calc(var(--header-height)+0.75rem)] border-t border-base-200 pt-4"
         x-cloak
       >
-        <h3 class="text-md font-semibold tracking-tight text-base-content" x-text="state === 'yes' ? '太棒了！什么方法对你最有效？' : '我们如何改进产品？'"></h3>
+        <h3 class="text-md font-semibold tracking-tight text-base-content" x-text="state === 'yes' ? followUpYes : followUpNo"></h3>
 
         <fieldset class="mt-5 space-y-3">
           <template x-if="state === 'yes'">
             <div class="space-y-3">
               <label class="flex cursor-pointer items-center gap-3 text-xs text-base-content/70">
-                <input type="radio" name="page-feedback-reason" class="radio radio-sm radio-primary" value="按预期发挥作用" x-model="reason">
-                <span>该指南按预期发挥作用。</span>
+                <input type="radio" name="page-feedback-reason" class="radio radio-sm radio-primary" value="{{ fb_yes_works | escape_once }}" x-model="reason">
+                <span>{{ fb_yes_works_label }}</span>
               </label>
               <label class="flex cursor-pointer items-center gap-3 text-xs text-base-content/70">
-                <input type="radio" name="page-feedback-reason" class="radio radio-sm radio-primary" value="很容易找到信息" x-model="reason">
-                <span>我很容易就找到了我需要的信息。</span>
+                <input type="radio" name="page-feedback-reason" class="radio radio-sm radio-primary" value="{{ fb_yes_find | escape_once }}" x-model="reason">
+                <span>{{ fb_yes_find_label }}</span>
               </label>
               <label class="flex cursor-pointer items-center gap-3 text-xs text-base-content/70">
-                <input type="radio" name="page-feedback-reason" class="radio radio-sm radio-primary" value="产品功能容易理解" x-model="reason">
-                <span>产品及其功能很容易理解。</span>
+                <input type="radio" name="page-feedback-reason" class="radio radio-sm radio-primary" value="{{ fb_yes_understand | escape_once }}" x-model="reason">
+                <span>{{ fb_yes_understand_label }}</span>
               </label>
               <label class="flex cursor-pointer items-center gap-3 text-xs text-base-content/70">
-                <input type="radio" name="page-feedback-reason" class="radio radio-sm radio-primary" value="文档已更新" x-model="reason">
-                <span>文档已更新。</span>
+                <input type="radio" name="page-feedback-reason" class="radio radio-sm radio-primary" value="{{ fb_yes_updated | escape_once }}" x-model="reason">
+                <span>{{ fb_yes_updated_label }}</span>
               </label>
               <label class="flex cursor-pointer items-center gap-3 text-xs text-base-content/70">
-                <input type="radio" name="page-feedback-reason" class="radio radio-sm radio-primary" value="其他" x-model="reason">
-                <span>其他</span>
+                <input type="radio" name="page-feedback-reason" class="radio radio-sm radio-primary" value="{{ fb_other | escape_once }}" x-model="reason">
+                <span>{{ fb_other }}</span>
               </label>
             </div>
           </template>
@@ -100,57 +145,57 @@
           <template x-if="state === 'no'">
             <div class="space-y-3">
               <label class="flex cursor-pointer items-center gap-3 text-xs text-base-content/70">
-                <input type="radio" name="page-feedback-reason" class="radio radio-sm radio-primary" value="帮助我更快开始" x-model="reason">
-                <span>帮我更快开始</span>
+                <input type="radio" name="page-feedback-reason" class="radio radio-sm radio-primary" value="{{ fb_no_start | escape_once }}" x-model="reason">
+                <span>{{ fb_no_start_label }}</span>
               </label>
               <label class="flex cursor-pointer items-center gap-3 text-xs text-base-content/70">
-                <input type="radio" name="page-feedback-reason" class="radio radio-sm radio-primary" value="更容易找到内容" x-model="reason">
-                <span>让我更容易找到我想要的东西</span>
+                <input type="radio" name="page-feedback-reason" class="radio radio-sm radio-primary" value="{{ fb_no_find | escape_once }}" x-model="reason">
+                <span>{{ fb_no_find_label }}</span>
               </label>
               <label class="flex cursor-pointer items-center gap-3 text-xs text-base-content/70">
-                <input type="radio" name="page-feedback-reason" class="radio radio-sm radio-primary" value="更好理解产品" x-model="reason">
-                <span>让用户能够轻松理解产品及其功能。</span>
+                <input type="radio" name="page-feedback-reason" class="radio radio-sm radio-primary" value="{{ fb_no_understand | escape_once }}" x-model="reason">
+                <span>{{ fb_no_understand_label }}</span>
               </label>
               <label class="flex cursor-pointer items-center gap-3 text-xs text-base-content/70">
-                <input type="radio" name="page-feedback-reason" class="radio radio-sm radio-primary" value="更新文档" x-model="reason">
-                <span>更新此文档</span>
+                <input type="radio" name="page-feedback-reason" class="radio radio-sm radio-primary" value="{{ fb_no_update | escape_once }}" x-model="reason">
+                <span>{{ fb_no_update_label }}</span>
               </label>
               <label class="flex cursor-pointer items-center gap-3 text-xs text-base-content/70">
-                <input type="radio" name="page-feedback-reason" class="radio radio-sm radio-primary" value="其他" x-model="reason">
-                <span>其他</span>
+                <input type="radio" name="page-feedback-reason" class="radio radio-sm radio-primary" value="{{ fb_other | escape_once }}" x-model="reason">
+                <span>{{ fb_other }}</span>
               </label>
             </div>
           </template>
         </fieldset>
 
-        <div x-show="reason === '其他'" class="mt-2" x-cloak>
-          <label for="feedback-other-details" class="sr-only">其他反馈详情</label>
+        <div x-show="reason === otherLabel" class="mt-2" x-cloak>
+          <label for="feedback-other-details" class="sr-only">{{ fb_other_details_sr }}</label>
           <input
             id="feedback-other-details"
             type="text"
             x-model="details"
-            placeholder="（可选）您能否分享一下您的经历？"
+            placeholder="{{ fb_other_placeholder | escape_once }}"
             class="input input-bordered input-sm h-10 w-full rounded-xl border-base-300 bg-base-100 text-xs text-base-content placeholder-base-content/50 focus:border-primary focus:outline-none"
           >
         </div>
 
         <div class="mt-6 flex items-center gap-3">
           <button type="button" class="btn btn-sm btn-outline h-10 rounded-2xl border-base-300 px-4" @click="state = ''; reason = ''; details = ''">
-            取消
+            {{ fb_cancel }}
           </button>
-          <button type="submit" class="btn btn-sm btn-primary h-10 rounded-2xl px-5" :disabled="!state || !reason || (reason === '其他' && !details.trim())" @click="submitted = true">
-            提交反馈
+          <button type="submit" class="btn btn-sm btn-primary h-10 rounded-2xl px-5" :disabled="!state || !reason || (reason === otherLabel && !details.trim())" @click="submitted = true">
+            {{ fb_submit }}
           </button>
         </div>
       </div>
 
       {% if page.visitor_posted_feedback %}
         <div class="mt-4 rounded-xl border border-base-200 bg-base-200/50 px-4 py-3 text-xs text-base-content/80">
-          感谢你的反馈，我们会持续优化内容体验。
+          {{ fb_thanks }}
         </div>
       {% else %}
         <div x-show="submitted" class="mt-4 rounded-xl border border-base-200 bg-base-200/50 px-4 py-3 text-xs text-base-content/80" x-cloak>
-          感谢你的反馈，我们会持续优化内容体验。
+          {{ fb_thanks }}
         </div>
       {% endif %}
     </section>

@@ -95,6 +95,7 @@
   "
   @scroll.window="isAtBottom = (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 120)"
   @mint:ai-send.window="isAiOpen = true"
+  @mint:ai-close.window="isAiOpen = false"
   @keydown.window="
     if (event.isComposing) return;
     if (event.key !== 'i' && event.key !== 'I') return;
