@@ -32,6 +32,16 @@
       "prev_page": "前へ",
       "next_page": "次へ"
     },
+    "mint": {
+      "search": {
+        "ask_ai_section": "AI アシスタントに質問",
+        "ask_ai_lead": "次について教えてください：",
+        "ask_ai_trailing": "",
+        "ask_ai_ellipsis": "…",
+        "ask_ai_query_display": "「%{query}」",
+        "ask_ai_message": "「%{query}」について教えてください。"
+      }
+    },
     "page_tools": {
       "copy_page_label": "ページをコピー",
       "copy_page_description": "ページを Markdown 形式でコピーして LLM に渡す",

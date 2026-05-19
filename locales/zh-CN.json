@@ -33,6 +33,14 @@
       "next_page": "下一页"
     },
     "mint": {
+      "search": {
+        "ask_ai_section": "向 AI 助手提问",
+        "ask_ai_lead": "帮我介绍一下",
+        "ask_ai_trailing": "",
+        "ask_ai_ellipsis": "…",
+        "ask_ai_query_display": "「%{query}」",
+        "ask_ai_message": "请介绍一下「%{query}」"
+      },
       "ai": {
         "assistant_title": "AI 助手",
         "input_placeholder": "输入你的问题…",

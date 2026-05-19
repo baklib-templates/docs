@@ -3356,6 +3356,12 @@
   .min-h-9 {
     min-height: calc(var(--spacing) * 9);
   }
+  .min-h-10 {
+    min-height: calc(var(--spacing) * 10);
+  }
+  .min-h-20 {
+    min-height: calc(var(--spacing) * 20);
+  }
   .min-h-\[20vh\] {
     min-height: 20vh;
   }
@@ -3370,6 +3376,11 @@
   }
   .min-h-screen {
     min-height: 100vh;
+  }
+  .loading-lg {
+    @layer daisyui.l1.l2 {
+      width: calc(var(--size-selector, 0.25rem) * 7);
+    }
   }
   .loading-md {
     @layer daisyui.l1.l2 {
@@ -3612,6 +3623,9 @@
   }
   .cursor-ew-resize {
     cursor: ew-resize;
+  }
+  .cursor-not-allowed {
+    cursor: not-allowed;
   }
   .cursor-pointer {
     cursor: pointer;
@@ -4592,6 +4606,12 @@
   .text-\[0\.95rem\] {
     font-size: 0.95rem;
   }
+  .text-\[0\.875rem\] {
+    font-size: 0.875rem;
+  }
+  .text-\[0\.8125rem\] {
+    font-size: 0.8125rem;
+  }
   .text-\[1\.1rem\] {
     font-size: 1.1rem;
   }
@@ -4609,6 +4629,10 @@
   .leading-8 {
     --tw-leading: calc(var(--spacing) * 8);
     line-height: calc(var(--spacing) * 8);
+  }
+  .leading-\[1\.65\] {
+    --tw-leading: 1.65;
+    line-height: 1.65;
   }
   .leading-none {
     --tw-leading: 1;
@@ -4894,6 +4918,9 @@
   }
   .opacity-30 {
     opacity: 30%;
+  }
+  .opacity-50 {
+    opacity: 50%;
   }
   .opacity-70 {
     opacity: 70%;
@@ -17732,34 +17759,46 @@ body {
   text-decoration-line: underline;
 }
 .chat-message {
+  font-size: 0.85rem;
+  --tw-leading: 1.65;
+  line-height: 1.65;
+  color: var(--color-base-content);
   h1 {
-    margin-top: calc(var(--spacing) * 5);
-    margin-bottom: calc(var(--spacing) * 3);
-    font-size: var(--text-2xl);
-    line-height: var(--tw-leading, var(--text-2xl--line-height));
+    margin-top: calc(var(--spacing) * 4);
+    margin-bottom: calc(var(--spacing) * 2);
+    font-size: 1.05rem;
+    --tw-leading: var(--leading-snug);
+    line-height: var(--leading-snug);
     --tw-font-weight: var(--font-weight-bold);
     font-weight: var(--font-weight-bold);
   }
   h2 {
-    margin-top: calc(var(--spacing) * 4);
+    margin-top: calc(var(--spacing) * 3);
     margin-bottom: calc(var(--spacing) * 2);
-    font-size: var(--text-xl);
-    line-height: var(--tw-leading, var(--text-xl--line-height));
+    font-size: 1rem;
+    --tw-leading: var(--leading-snug);
+    line-height: var(--leading-snug);
     --tw-font-weight: var(--font-weight-bold);
     font-weight: var(--font-weight-bold);
   }
-  h3, h4, h5, h6 {
+  h3 {
     margin-top: calc(var(--spacing) * 3);
-    margin-bottom: calc(var(--spacing) * 2);
-    font-size: var(--text-base);
-    line-height: var(--tw-leading, var(--text-base--line-height));
+    margin-bottom: calc(var(--spacing) * 1.5);
+    font-size: 0.9375rem;
+    --tw-font-weight: var(--font-weight-semibold);
+    font-weight: var(--font-weight-semibold);
+  }
+  h4, h5, h6 {
+    margin-top: calc(var(--spacing) * 2);
+    margin-bottom: calc(var(--spacing) * 1);
+    font-size: 0.875rem;
     --tw-font-weight: var(--font-weight-semibold);
     font-weight: var(--font-weight-semibold);
   }
   p {
     margin-block: calc(var(--spacing) * 2);
-    --tw-leading: var(--leading-relaxed);
-    line-height: var(--leading-relaxed);
+    --tw-leading: 1.65;
+    line-height: 1.65;
   }
   ul {
     margin-block: calc(var(--spacing) * 2);
@@ -17807,8 +17846,7 @@ body {
     width: 100%;
     min-width: 32rem;
     border-collapse: collapse;
-    font-size: var(--text-sm);
-    line-height: var(--tw-leading, var(--text-sm--line-height));
+    font-size: 0.8125rem;
   }
   thead {
     background-color: var(--color-base-200);

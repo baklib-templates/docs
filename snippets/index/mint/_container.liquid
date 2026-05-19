@@ -11,6 +11,7 @@
 {% assign ai_thinking_status = "snippets.mint.ai.thinking_status" | t: "正在思考…" | presence %}
 {% assign ai_network_error = "snippets.mint.ai.network_error" | t: "网络错误，请重试" | presence %}
 {% assign ai_timeout_error = "snippets.mint.ai.timeout_error" | t: "响应超时，请重试" | presence %}
+{% assign search_ask_ai_message_tpl = "snippets.mint.search.ask_ai_message" | t: "请介绍一下「%{query}」" %}
 {% assign ai_completed_text = site.settings.ai_search_completed_text | presence %}
 {% unless ai_completed_text %}
   {% assign ai_completed_text = "ai.completed" | t: "AI 回答完毕." | presence %}
@@ -21,6 +22,7 @@
   data-action="mint:ai-send@window->ai-search#sendFromWindow"
   data-header-search-search-url-value="{{ site.search_path }}"
   data-header-search-preview-url-value="{{ statics['index/mint/search_preview'] }}"
+  data-header-search-ask-ai-message-template-value="{{ search_ask_ai_message_tpl | escape }}"
   data-ai-search-url-value="/-/ai-search-completion"
   data-ai-search-chats-url-value="/-/ai_chats"
   data-ai-search-timeout-value="60"
@@ -92,6 +94,7 @@
     window.addEventListener('resize', lockScroll);
   "
   @scroll.window="isAtBottom = (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 120)"
+  @mint:ai-send.window="isAiOpen = true"
   @keydown.window="
     if (event.isComposing) return;
     if (event.key !== 'i' && event.key !== 'I') return;
@@ -125,7 +128,10 @@
           {% for channel in channels %}
             <a href="{{ channel.path }}"
               class="flex items-center whitespace-nowrap transition-all duration-300 border-b-[3px] space-x-1"
-              :class="channelPathActive('{{ channel.path }}', {{ forloop.index }}) ? ' border-primary text-primary ' : 'border-transparent text-base-content/60 hover:text-base-content'">
+              :class="channelPathActive('{{ channel.path }}', {{ forloop.index }}) ? ' border-primary text-primary ' : 'border-transparent text-base-content/60 hover:text-base-content'"
+              data-turbo-frame="main-content-frame"
+              data-turbo-action="advance"
+            >
               {% assign icon_url = channel.settings.icon | presence %}
               {% if icon_url %}
                 <img src="{{ icon_url | asset_url }}" class="size-4" alt="{{ channel.link_text }}">
@@ -203,7 +209,7 @@
                         {% endif %}
 
                         {% comment %} page content：TOC 仅扫描正文内标题 {% endcomment %}
-                        <div class="prose dark:prose-invert max-w-none min-h-[40vh]" data-toc-target="content">
+                        <div class="prose ProseMirror dark:prose-invert max-w-none min-h-[40vh]" data-toc-target="content">
                           {{ page.settings.content }}
                         </div>
                       </div>
@@ -226,7 +232,7 @@
                           <textarea aria-label="{{ ai_input_placeholder }}" placeholder="{{ ai_input_placeholder }}"
                             class="w-full resize-none border-0 bg-transparent py-4 pl-4 pr-14 text-[0.95rem] text-base-content placeholder-base-content/40 focus:outline-none focus:ring-0"
                             style="height: 60px;"
-                            @keydown.enter.prevent="if(inputValue.trim()) { window.dispatchEvent(new CustomEvent('mint:ai-send', { detail: { message: inputValue.trim() } })); isAiOpen = true; $el.value = ''; inputValue = ''; }"
+                            @keydown.enter.prevent="if(inputValue.trim()) { window.dispatchEvent(new CustomEvent('mint:ai-send', { detail: { message: inputValue.trim() } })); $el.value = ''; inputValue = ''; }"
                             x-model="inputValue"></textarea>
                           <span
                             class="absolute bottom-4 right-12 hidden text-[0.75rem] font-medium text-base-content/50 sm:inline">⌘I</span>
@@ -234,7 +240,7 @@
                             class="absolute bottom-3 right-2.5 flex size-8 items-center justify-center rounded-lg bg-primary/10 text-primary transition-colors hover:bg-primary/90 disabled:opacity-50"
                             :disabled="!inputValue.trim()"
                             aria-label="{{ ai_send_label }}"
-                            @click="if(inputValue.trim()) { window.dispatchEvent(new CustomEvent('mint:ai-send', { detail: { message: inputValue.trim() } })); isAiOpen = true; inputValue = ''; }">
+                            @click="if(inputValue.trim()) { window.dispatchEvent(new CustomEvent('mint:ai-send', { detail: { message: inputValue.trim() } })); inputValue = ''; }">
                             <i class="ri-arrow-up-line leading-none" aria-hidden="true"></i>
                           </button>
                         </div>
@@ -430,7 +436,7 @@
   <template data-ai-search-target="userMessageTemplate">
     <div class="ai-chat-user-round flex justify-end">
       <div class="max-w-[88%] rounded-2xl bg-base-200 px-3 py-2">
-        <p class="ai-user-message break-words text-sm text-base-content"></p>
+        <p class="ai-user-message break-words text-[0.875rem] leading-[1.65] text-base-content"></p>
       </div>
     </div>
   </template>

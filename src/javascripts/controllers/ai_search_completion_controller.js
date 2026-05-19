@@ -48,6 +48,7 @@ export default class extends Controller {
   }
 
   sendFromWindow(event) {
+    if (this.isStreaming) return;
     const text = event.detail?.message?.trim();
     if (!text) return;
     this.sendMessage(text);
@@ -59,6 +60,7 @@ export default class extends Controller {
   }
 
   onInputKeydown(event) {
+    if (this.isStreaming) return;
     if (event.key === "Enter" && !event.shiftKey) {
       event.preventDefault();
       this.#sendUserMessage();
@@ -66,8 +68,10 @@ export default class extends Controller {
   }
 
   syncSendButton() {
-    if (!this.hasSendTarget || !this.hasInputTarget) return;
-    const hasText = this.inputTargets.some((el) => el.value.trim());
+    if (!this.hasSendTarget) return;
+    const hasText = this.hasInputTarget
+      ? this.inputTargets.some((el) => el.value.trim())
+      : false;
     this.sendTargets.forEach((btn) => {
       btn.disabled = !hasText || this.isStreaming;
     });
@@ -81,14 +85,7 @@ export default class extends Controller {
 
   retryLastResponse() {
     const idx = this.chatHistory.length - 1;
-    const round = this.chatHistory[idx];
-    if (!round?.user) return;
-    if (this.isStreaming) this.stopStreaming();
-    round.ai = "";
-    round.status = "streaming";
-    this.#removeLastAssistantRound();
-    this.appendAssistantMessage("", "streaming", idx);
-    this.#streamAssistant(round.user, idx, { replaceLastAssistant: true });
+    void this.#resendRound(idx);
   }
 
   async copyLastResponse() {
@@ -123,7 +120,6 @@ export default class extends Controller {
       el.innerHTML = "";
     });
     this.chatIdValue = "";
-    this.urlValue = this.urlValue.replace(/\/\d+$/, "");
     this.#toggleEmptyHint(true);
     this.#syncClearButtonVisibility();
   }
@@ -131,11 +127,12 @@ export default class extends Controller {
   #delayAutoSubmit() {
     if (this.delayAutoSubmitTimer) clearTimeout(this.delayAutoSubmitTimer);
     this.delayAutoSubmitTimer = setTimeout(() => {
-      if (this.messageValue) this.sendMessage(this.messageValue);
+      if (this.messageValue && !this.isStreaming) this.sendMessage(this.messageValue);
     }, 500);
   }
 
   #sendUserMessage() {
+    if (this.isStreaming) return;
     const message = (this.inputTargets.find((el) => el.value.trim())?.value || "").trim();
     if (!message) return;
     this.inputTargets.forEach((el) => {
@@ -146,16 +143,7 @@ export default class extends Controller {
   }
 
   sendMessage(message) {
-    if (!message || !this.url) return;
-
-    if (this.isStreaming) {
-      this.updateCurrentAssistantMessage(
-        this.currentRound.ai,
-        "canceled",
-        this.chatHistory.length - 1
-      );
-      this.stopStreaming();
-    }
+    if (!message || !this.url || this.isStreaming) return;
 
     this.#toggleEmptyHint(false);
 
@@ -164,6 +152,8 @@ export default class extends Controller {
       ai: "",
       status: "streaming",
       retry: null,
+      userMessageId: null,
+      assistantMessageId: null,
     };
     this.chatHistory.push(this.currentRound);
     this.#syncClearButtonVisibility();
@@ -174,7 +164,7 @@ export default class extends Controller {
     this.#streamAssistant(message, idx);
   }
 
-  async #streamAssistant(message, idx, { replaceLastAssistant = false } = {}) {
+  async #streamAssistant(message, idx, { replaceLastAssistant = false, resendMessageId = null } = {}) {
     this.isStreaming = true;
     this.syncSendButton();
     this.currentRound.ai = "";
@@ -183,17 +173,9 @@ export default class extends Controller {
       this.updateCurrentAssistantMessage("", "streaming", idx);
     }
 
-    const params = new URLSearchParams({ message });
     await this.#ensureChatId();
-    if (this.chatIdValue) {
-      params.append("chat_id", this.chatIdValue);
-    }
-    const query = this.hasQueryValue ? this.queryValue : {};
-    Object.entries(query).forEach(([key, value]) => {
-      if (value != null && value !== "") params.append(`query[${key}]`, value);
-    });
-
-    this.eventSource = new EventSource(`${this.url}?${params.toString()}`);
+    const streamUrl = this.#buildStreamUrl({ message, resendMessageId });
+    this.eventSource = new EventSource(streamUrl);
     this.startTimeoutTimer();
 
     this.eventSource.onmessage = (event) => {
@@ -205,6 +187,11 @@ export default class extends Controller {
       }
 
       this.resetTimeoutTimer();
+
+      if (data.status === "meta") {
+        this.#assignMessageIdsFromSSE(data, idx);
+        return;
+      }
 
       if (data.status === "started" || data.status === "reading") {
         this.updateCurrentAssistantMessage(this.messagesValue.reading, "status", idx);
@@ -241,6 +228,7 @@ export default class extends Controller {
             this.messagesValue.completed
           );
         }
+        this.#assignMessageIdsFromSSE(data, idx);
         this.currentRound.status = "completed";
         this.#finishStreaming(idx);
         this.updateCurrentAssistantMessage(this.currentRound.ai, "completed", idx);
@@ -263,11 +251,7 @@ export default class extends Controller {
     this.currentRound.status = "error";
     this.#finishStreaming(idx);
     this.currentRound.retry = () => {
-      this.currentRound.status = "streaming";
-      this.currentRound.ai = "";
-      this.#removeLastAssistantRound();
-      this.appendAssistantMessage("", "streaming", idx);
-      this.#streamAssistant(this.currentRound.user, idx, { replaceLastAssistant: true });
+      void this.#resendRound(idx);
     };
     this.updateCurrentAssistantMessage(
       this.currentRound.ai,
@@ -306,15 +290,25 @@ export default class extends Controller {
 
     const rounds = [];
     let pendingUser = null;
+    let pendingUserEl = null;
 
     primary.querySelectorAll(".ai-chat-user-round, .ai-chat-assistant-round").forEach((el) => {
       if (el.matches(".ai-chat-user-round")) {
         pendingUser = el.querySelector(".ai-user-message")?.textContent?.trim() || "";
+        pendingUserEl = el;
       } else if (el.matches(".ai-chat-assistant-round") && pendingUser != null) {
         const contentEl = el.querySelector("[data-markdown-target='content']");
         const ai = contentEl?.textContent?.trim() || "";
-        rounds.push({ user: pendingUser, ai, status: "completed", retry: null });
+        rounds.push({
+          user: pendingUser,
+          ai,
+          status: "completed",
+          retry: null,
+          userMessageId: pendingUserEl?.dataset.userMessageId || null,
+          assistantMessageId: el.dataset.assistantMessageId || null,
+        });
         pendingUser = null;
+        pendingUserEl = null;
       }
     });
 
@@ -431,6 +425,81 @@ export default class extends Controller {
     this.messagesTargets.forEach((container) => {
       const rounds = container.querySelectorAll(".ai-chat-assistant-round");
       rounds[rounds.length - 1]?.remove();
+    });
+  }
+
+  async #resendRound(idx) {
+    const round = this.chatHistory[idx];
+    if (!round?.user) return;
+    if (this.isStreaming) this.stopStreaming();
+
+    await this.#ensureChatId();
+
+    const resendMessageId = round.assistantMessageId || round.userMessageId;
+    round.ai = "";
+    round.status = "streaming";
+    round.assistantMessageId = null;
+    this.#removeLastAssistantRound();
+    this.appendAssistantMessage("", "streaming", idx);
+
+    if (resendMessageId && this.chatIdValue) {
+      this.#streamAssistant(null, idx, { replaceLastAssistant: true, resendMessageId });
+      return;
+    }
+
+    this.#streamAssistant(round.user, idx, { replaceLastAssistant: true });
+  }
+
+  #buildStreamUrl({ message, resendMessageId }) {
+    const base = (this.url || "").replace(/\/$/, "");
+    const params = new URLSearchParams();
+    const query = this.hasQueryValue ? this.queryValue : {};
+
+    let streamUrl = base;
+    if (this.chatIdValue) {
+      streamUrl = `${base}/${this.chatIdValue}`;
+    }
+
+    if (resendMessageId) {
+      params.append("message_id", String(resendMessageId));
+    } else if (message) {
+      params.append("message", message);
+    }
+
+    Object.entries(query).forEach(([key, value]) => {
+      if (value != null && value !== "") params.append(`query[${key}]`, value);
+    });
+
+    const qs = params.toString();
+    return qs ? `${streamUrl}?${qs}` : streamUrl;
+  }
+
+  #assignMessageIdsFromSSE(data, idx) {
+    const round = this.chatHistory[idx];
+    if (!round) return;
+
+    if (data.user_message_id) round.userMessageId = String(data.user_message_id);
+    if (data.assistant_message_id) round.assistantMessageId = String(data.assistant_message_id);
+    if (!round.assistantMessageId && data.message_id) {
+      round.assistantMessageId = String(data.message_id);
+    }
+
+    this.#syncRoundMessageIdsToDom(idx, round);
+  }
+
+  #syncRoundMessageIdsToDom(idx, round) {
+    this.messagesTargets.forEach((container) => {
+      const userRounds = container.querySelectorAll(".ai-chat-user-round");
+      const assistantRounds = container.querySelectorAll(".ai-chat-assistant-round");
+      const userEl = userRounds[idx];
+      const assistantEl = assistantRounds[idx];
+
+      if (userEl && round.userMessageId) {
+        userEl.dataset.userMessageId = round.userMessageId;
+      }
+      if (assistantEl && round.assistantMessageId) {
+        assistantEl.dataset.assistantMessageId = round.assistantMessageId;
+      }
     });
   }
 

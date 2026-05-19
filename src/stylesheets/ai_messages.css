@@ -9,21 +9,28 @@
   @apply text-primary underline cursor-pointer;
 }
 
+/* AI 侧栏/弹层：与输入框 text-[0.85rem] 同档，略放大正文以利阅读 */
 .chat-message {
+  @apply text-[0.85rem] leading-[1.65] text-base-content;
+
   h1 {
-    @apply text-2xl font-bold mt-5 mb-3;
+    @apply text-[1.05rem] font-bold mt-4 mb-2 leading-snug;
   }
 
   h2 {
-    @apply text-xl font-bold mt-4 mb-2;
+    @apply text-[1rem] font-bold mt-3 mb-2 leading-snug;
   }
 
-  h3, h4, h5, h6 {
-    @apply text-base font-semibold mt-3 mb-2;
+  h3 {
+    @apply text-[0.9375rem] font-semibold mt-3 mb-1.5;
+  }
+
+  h4, h5, h6 {
+    @apply text-[0.875rem] font-semibold mt-2 mb-1;
   }
 
   p {
-    @apply my-2 leading-relaxed;
+    @apply my-2 leading-[1.65];
   }
 
   ul {
@@ -51,7 +58,7 @@
   }
 
   table {
-    @apply w-full min-w-[32rem] border-collapse text-sm;
+    @apply w-full min-w-[32rem] border-collapse text-[0.8125rem];
   }
 
   thead {

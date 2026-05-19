@@ -32,6 +32,16 @@
       "prev_page": "Précédent",
       "next_page": "Suivant"
     },
+    "mint": {
+      "search": {
+        "ask_ai_section": "Demander à l'assistant IA",
+        "ask_ai_lead": "Peux-tu me parler de ",
+        "ask_ai_trailing": " ?",
+        "ask_ai_ellipsis": "…",
+        "ask_ai_query_display": "%{query}",
+        "ask_ai_message": "Peux-tu me parler de %{query} ?"
+      }
+    },
     "page_tools": {
       "copy_page_label": "Copier la page",
       "copy_page_description": "Copier cette page au format Markdown pour les LLM",

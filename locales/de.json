@@ -32,6 +32,16 @@
       "prev_page": "Zurück",
       "next_page": "Weiter"
     },
+    "mint": {
+      "search": {
+        "ask_ai_section": "KI-Assistent fragen",
+        "ask_ai_lead": "Kannst du mir etwas über ",
+        "ask_ai_trailing": " erzählen?",
+        "ask_ai_ellipsis": "…",
+        "ask_ai_query_display": "%{query}",
+        "ask_ai_message": "Kannst du mir etwas über %{query} erzählen?"
+      }
+    },
     "page_tools": {
       "copy_page_label": "Seite kopieren",
       "copy_page_description": "Diese Seite als Markdown für LLMs kopieren",

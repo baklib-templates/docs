@@ -1,4 +1,9 @@
 {% comment %} locals: hot_keywords {% endcomment %}
+{% assign search_ask_ai_section = "snippets.mint.search.ask_ai_section" | t: "向 AI 助手提问" %}
+{% assign search_ask_ai_lead = "snippets.mint.search.ask_ai_lead" | t: "帮我介绍一下" %}
+{% assign search_ask_ai_ellipsis = "snippets.mint.search.ask_ai_ellipsis" | t: "…" %}
+{% assign search_ask_ai_trailing = "snippets.mint.search.ask_ai_trailing" | t: "" %}
+{% assign search_ask_ai_query_display = "snippets.mint.search.ask_ai_query_display" | t: "「%{query}」" %}
 <dialog
   id="site-search-modal"
   class="site-search-modal modal !items-start justify-center px-3 pt-12 pb-8 sm:px-4 sm:pt-16 sm:pb-10"
@@ -24,7 +29,7 @@
     </div>
 
     <div
-      class="min-h-0 flex-1 overflow-y-auto overscroll-contain px-3 pb-3 pt-2 sm:px-4 hidden"
+      class="min-h-20 flex-1 overflow-y-auto overscroll-contain px-3 pb-3 pt-2 sm:px-4 hidden"
       data-header-search-target="resultsScroll"
       data-action="mouseleave->header-search#clearListSelection mouseenter->header-search#resultsEnter"
     >
@@ -56,34 +61,38 @@
 
       <turbo-frame
         id="search_preview_frame"
-        class="flex min-h-0 flex-col gap-0"
+        class="flex min-h-20 flex-col gap-0"
         data-turbo-action="advance"
         data-header-search-target="previewFrame"
-      ></turbo-frame>
+      >
+        <div class="flex items-center justify-center h-12 text-base-content/60">
+          <div class="loading loading-spinner loading-lg"></div>
+        </div>
+      </turbo-frame>
     </div>
 
     <div
       class="shrink-0 border-t border-base-200 bg-base-100 px-3 py-3 sm:px-4 hidden"
       data-header-search-target="aiSection"
     >
-      <p class="mb-1.5 px-0.5 text-[0.7rem] font-semibold uppercase tracking-wide text-base-content/45">Ask AI assistant</p>
-      <a
-        href="#"
-        class="flex items-start gap-2.5 rounded-xl px-2 py-2 text-sm text-primary hover:bg-primary/10"
+      <p class="mb-1.5 px-0.5 text-[0.7rem] font-semibold uppercase tracking-wide text-base-content/45">{{ search_ask_ai_section }}</p>
+      <button
+        type="button"
+        class="flex w-full gap-2.5 rounded-xl px-2 py-2 text-left text-sm text-primary hover:bg-primary/10 items-center bg-base-200/40 cursor-pointer"
         data-header-search-target="aiLink"
-        data-turbo-frame="_top"
+        data-header-search-ask-ai-ellipsis-value="{{ search_ask_ai_ellipsis | escape }}"
+        data-header-search-ask-ai-query-display-value="{{ search_ask_ai_query_display | escape }}"
+        data-action="click->header-search#askAiFromSearch"
       >
-        <svg class="mt-0.5 size-4 shrink-0 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="m9.813 15.904-.813 2.846a4.5 4.5 0 0 1-3.09-3.09L3.064 14.85a4.5 4.5 0 0 1 3.09-3.09l2.846-.813a4.5 4.5 0 0 1 3.09 3.09l-.813 2.847a4.5 4.5 0 0 1-3.09 3.09Z" />
-          <path d="m18.259 8.715-.259 1.035a3.375 3.375 0 0 1-2.455 2.456L14.5 12.465a3.375 3.375 0 0 1 2.455-2.456l1.035-.259a3.375 3.375 0 0 1 2.456 2.456l-.259 1.035a3.375 3.375 0 0 1-2.456-2.456Z" />
-          <path d="m16.894 20.567-.394 1.183a2.25 2.25 0 0 1-1.423 1.423l-1.183-.394a2.25 2.25 0 0 1 1.423-1.423l.394-1.183a2.25 2.25 0 0 1 1.423 1.423l1.183.394a2.25 2.25 0 0 1-1.423-1.423Z" />
-        </svg>
+        <i class="ri-sparkling-2-line size-4 shrink-0 text-primary leading-none" aria-hidden="true"></i>
         <span class="min-w-0 leading-snug">
-          <span class="search-modal-ai-lead text-base-content/70">Can you tell me about </span>
+          <span class="search-modal-ai-lead text-base-content/70">{{ search_ask_ai_lead }}</span>
           <strong class="search-modal-ai-q font-semibold text-primary"></strong>
-          <span class="text-base-content/70">?</span>
+          {% if search_ask_ai_trailing != blank %}
+            <span class="search-modal-ai-trailing text-base-content/70">{{ search_ask_ai_trailing }}</span>
+          {% endif %}
         </span>
-      </a>
+      </button>
     </div>
   </div>
   {% comment %} DaisyUI：method="dialog" 的 backdrop 表单，点击遮罩关闭（与官方示例一致）{% endcomment %}

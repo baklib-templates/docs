@@ -21,6 +21,7 @@ export default class extends Controller {
   static values = {
     searchUrl: String,
     previewUrl: String,
+    askAiMessageTemplate: String,
     debounceMs: { type: Number, default: 220 },
   };
 
@@ -159,6 +160,19 @@ export default class extends Controller {
       this.selectedIndex = 0;
       this.#paintSelection();
     }
+  }
+
+  /** 搜索弹窗底部「向 AI 提问」：关闭弹窗、打开侧栏并提交当前关键词 */
+  askAiFromSearch(event) {
+    event?.preventDefault();
+    const q = (this.modalInputTarget?.value || "").trim();
+    if (!q) return;
+
+    const tpl = this.hasAskAiMessageTemplateValue ? this.askAiMessageTemplateValue : "%{query}";
+    const message = tpl.includes("%{query}") ? tpl.replace("%{query}", q) : `${tpl} ${q}`.trim();
+
+    this.closeModal();
+    window.dispatchEvent(new CustomEvent("mint:ai-send", { detail: { message } }));
   }
 
   applyHotKeyword(event) {
@@ -322,14 +336,14 @@ export default class extends Controller {
     }
   }
 
-  /** 底部「Ask AI」链到搜索页并带上当前 q，文案中的关键词同步 */
+  /** 底部「向 AI 提问」预览文案中的关键词同步 */
   #updateAiLink() {
-    if (!this.hasAiLinkTarget || !this.hasSearchUrlValue) return;
+    if (!this.hasAiLinkTarget) return;
     const q = (this.modalInputTarget?.value || "").trim();
-    const u = new URL(this.searchUrlValue, window.location.href);
-    u.searchParams.set("q", q);
-    this.aiLinkTarget.href = u.toString();
     const strong = this.aiLinkTarget.querySelector(".search-modal-ai-q");
-    if (strong) strong.textContent = q || "…";
+    if (!strong) return;
+    const ellipsis = this.aiLinkTarget.dataset.headerSearchAskAiEllipsisValue || "…";
+    const displayTpl = this.aiLinkTarget.dataset.headerSearchAskAiQueryDisplayValue || "%{query}";
+    strong.textContent = q ? displayTpl.replace("%{query}", q) : ellipsis;
   }
 }

@@ -33,6 +33,14 @@
       "next_page": "Next"
     },
     "mint": {
+      "search": {
+        "ask_ai_section": "Ask AI assistant",
+        "ask_ai_lead": "Can you tell me about ",
+        "ask_ai_trailing": "?",
+        "ask_ai_ellipsis": "…",
+        "ask_ai_query_display": "%{query}",
+        "ask_ai_message": "Can you tell me about %{query}?"
+      },
       "ai": {
         "assistant_title": "Assistant",
         "input_placeholder": "Ask a question...",

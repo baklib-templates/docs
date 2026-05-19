@@ -1,5 +1,5 @@
 {% layout none %}
-{% assign q = params.q | default: params.keywords | strip %}
+{% assign q = params.q | strip %}
 {% assign empty_message = "templates.search.no_results" | t: "没有搜索到内容" %}
 <turbo-frame id="search_preview_frame">
   {% if q == blank %}
@@ -58,11 +58,9 @@
           </a>
           {% assign idx = idx | plus: 1 %}
         {% else %}
-          {% if idx == 0 %}
-            <div class="rounded-xl border border-dashed border-base-300 bg-base-200/30 px-4 py-8 text-center text-sm text-base-content/60">
-              {{ empty_message }}
-            </div>
-          {% endif %}
+          <div class="rounded-xl border border-dashed border-base-300 bg-base-200/30 px-4 py-8 text-center text-sm text-base-content/60">
+            {{ empty_message }}
+          </div>
         {% endfor %}
       {% endpaginate_tag %}
     {% endsearch %}

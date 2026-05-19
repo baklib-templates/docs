@@ -32,6 +32,16 @@
       "prev_page": "이전",
       "next_page": "다음"
     },
+    "mint": {
+      "search": {
+        "ask_ai_section": "AI 어시스턴트에게 질문",
+        "ask_ai_lead": "다음에 대해 알려 주세요: ",
+        "ask_ai_trailing": "",
+        "ask_ai_ellipsis": "…",
+        "ask_ai_query_display": "「%{query}」",
+        "ask_ai_message": "「%{query}」에 대해 알려 주세요."
+      }
+    },
     "page_tools": {
       "copy_page_label": "페이지 복사",
       "copy_page_description": "페이지를 Markdown 형식으로 복사하여 LLM에 전달",

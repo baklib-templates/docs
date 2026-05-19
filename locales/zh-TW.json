@@ -32,6 +32,16 @@
       "prev_page": "上一頁",
       "next_page": "下一頁"
     },
+    "mint": {
+      "search": {
+        "ask_ai_section": "向 AI 助手提問",
+        "ask_ai_lead": "幫我介紹一下",
+        "ask_ai_trailing": "",
+        "ask_ai_ellipsis": "…",
+        "ask_ai_query_display": "「%{query}」",
+        "ask_ai_message": "請介紹一下「%{query}」"
+      }
+    },
     "page_tools": {
       "copy_page_label": "複製頁面",
       "copy_page_description": "將頁面以 Markdown 格式複製給 LLMs",
