@@ -1,0 +1,165 @@
+{
+  "theme_label": "Docs",
+  "theme_description": "ユーザーが読みたくなるドキュメント体験を届けます。情報設計が明快で検索が速く、AI による回答にも対応。ナレッジベースを製品ドキュメントや API ガイドとして公開でき、ゼロからドキュメントサイトを構築する必要はありません。",
+  "recommendations": {
+    "fashion": {
+      "name": "ファッション"
+    },
+    "old_school": {
+      "name": "レトロ"
+    }
+  },
+  "templates": {
+    "index": {
+      "mint": {
+        "name": "クラシック 3 カラム",
+        "description": "3カラムのドキュメントサイト：上部バーの検索と Ask AI、上部タブ、左側ドキュメントツリー、右側ページ内目次。本文エリアはフィードバック、前後ページ、下部 AI 質問に対応。",
+        "settings": {
+          "links_html": {
+            "label": "ページ左側のカスタムリンク一覧 HTML",
+            "info": "HTMLタグと限定的なTailwindCSSスタイルコードをサポート"
+          }
+        }
+      }
+    },
+    "page": {
+      "description": "コンテンツページテンプレート",
+      "settings": {
+        "title": {
+          "label": "ページタイトル",
+          "info": "ナレッジベースから同期、編集不可"
+        },
+        "tags": {
+          "label": "ページタグ"
+        },
+        "description": {
+          "label": "ページ説明"
+        },
+        "icon": {
+          "label": "ページアイコン",
+          "info": "ページアイコンの表示に使用、推奨比率1:1"
+        },
+        "content": {
+          "label": "ページコンテンツ",
+          "info": "データソースから同期、編集不可"
+        }
+      }
+    }
+  },
+  "generic": {
+    "name": "一般設定",
+    "settings": {
+      "logo_url": {
+        "label": "ロゴ画像",
+        "info": "ロゴが設定されている場合、ヘッダーに表示されます。それ以外の場合は：サイトアイコン+サイト名"
+      },
+      "company_name": {
+        "label": "会社名",
+        "default": "Baklib.cn",
+        "info": "フッターに表示"
+      },
+      "copyright_info": {
+        "label": "著作権情報",
+        "default": "ICP xxxxx"
+      },
+      "screen_width": {
+        "label": "画面幅",
+        "choices": {
+          "narrow": "狭い（1024px）",
+          "medium": "中（1280px）",
+          "wide": "広い（1536px）",
+          "full": "全画面"
+        }
+      },
+      "left_sidebar_width": {
+        "label": "左サイドバー幅（詳細ページ）",
+        "info": "推奨：240px"
+      },
+      "right_sidebar_width": {
+        "label": "右サイドバー幅（詳細ページ）",
+        "info": "推奨：240px"
+      },
+      "show_published_at": {
+        "label": "公開時間を表示"
+      },
+      "show_author": {
+        "label": "著者を表示"
+      },
+      "show_card_icon": {
+        "label": "ホームページにセクションアイコンを表示",
+        "info": "ページ設定でアイコンを設定することを推奨"
+      },
+      "ai_search_completed_text": {
+        "label": "AI回答終了文",
+        "info": "AIの回答が終了した後に一文を追加"
+      }
+    }
+  },
+  "page_config": {
+    "name": "ページ設定",
+    "settings": {
+      "show_page_tools_dropdown": {
+        "label": "ページツールのドロップダウンを表示"
+      },
+      "feedback_enabled": {
+        "label": ""
+      }
+    }
+  },
+  "custom_html": {
+    "name": "カスタムHTMLコード",
+    "settings": {
+      "head_html": {
+        "label": "<head></head>タグ内のカスタムHTML",
+        "info": "HTMLタグと限られたTailwindCSSスタイルコードをサポート",
+        "placeholder": "通常、アクセス解析、カスタマーサービスボットなどを挿入するために使用"
+      },
+      "header_menu_html": {
+        "label": "トップナビゲーション領域にHTMLコードを挿入",
+        "info": "HTMLタグと限られたTailwindCSSスタイルコードをサポート",
+        "placeholder": "通常、会社の他のウェブサイトへのナビゲーションリンクを挿入するために使用"
+      },
+      "footer_html": {
+        "label": "フッター領域にHTMLコードを挿入",
+        "info": "HTMLタグと限られたTailwindCSSスタイルコードをサポート; デフォルトのフッターコンテンツを完全に置き換えます",
+        "placeholder": "デフォルトのフッターコンテンツを保持したい場合は、footer_menu_htmlにHTMLコードを挿入してください"
+      },
+      "footer_menu_html": {
+        "label": "フッター領域内にHTMLコードを挿入(footer内、footer_menu_html)",
+        "info": "HTMLタグと限られたTailwindCSSスタイルコードをサポート",
+        "placeholder": "通常、会社の他のウェブサイトへの外部リンク、相互リンク、SEO最適化リンクなどを挿入するために使用"
+      },
+      "features_one_html": {
+        "label": "ホームページの機能セクション1にHTMLコードを挿入",
+        "info": "HTMLタグと限られたTailwindCSSスタイルコードをサポート",
+        "placeholder": "通常、会社の他のウェブサイトへのナビゲーションリンクを挿入するために使用"
+      },
+      "features_two_html": {
+        "label": "ホームページの機能セクション2にHTMLコードを挿入",
+        "info": "HTMLタグと限られたTailwindCSSスタイルコードをサポート",
+        "placeholder": "通常、会社の他のウェブサイトへのナビゲーションリンクを挿入するために使用"
+      }
+    }
+  },
+  "settings": {
+    "weixin_share": {
+      "title": "ウィーチャット構成",
+      "weixin_app_id": {
+        "label": "開発者ID（AppID）",
+        "info": "<a href='https://mp.weixin.qq.com/cgi-bin/frame'>WeChat公衆番号/設定と開発/開発インタフェース管理</a>で取得"
+      },
+      "weixin_app_secret": {
+        "label": "開発者パスワード（AppSecret）",
+        "info": ""
+      },
+      "weixin_enabled": {
+        "label": "ウィチャット共有を有効にするかどうか",
+        "info": "サイトページの微信共有を提供する能力</br>1.微信公衆番号にipホワイトリスト（ip:${service _ ip}）を設定してください。設定後に有効化が遅れる時間があります。</br>2.ウィーチャット共有権限がオンになっているかどうかをチェックし、ウィーチャット公式アカウント/設定と開発/開発インタフェース管理：<a href='https://mp.weixin.qq.com/cgi-bin/frame'>ウェブサービス/共有インターフェース</a>。</br>3.共有リンクがカードかどうか：カード形式から共有カード形式に入り、リンク形式から共有リンク形式に入る、ウェブページの初期リンク共有は、会社のサービス番号またはコレクション後にカード共有することができます（この規則は微信共有制限です）。"
+      },
+      "weixin_debug": {
+        "label": "debugプロンプトをオンにするかどうか",
+        "info": "このオプションは構成段階でのみ有効にしてください。オンにすると、フロントエンドサイトにアクセスする際に微信共有が正しく構成されていない場合、エラーメッセージが自動的に表示されます"
+      }
+    }
+  }
+}

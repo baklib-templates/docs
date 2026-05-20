@@ -1,0 +1,165 @@
+{
+  "theme_label": "Docs",
+  "theme_description": "打造用户愿意阅读的文档体验：结构清晰、检索迅捷，并可接入 AI 问答。将知识库呈现为产品文档与 API 指南，无需从零自建文档站。",
+  "recommendations": {
+    "fashion": {
+      "name": "时尚"
+    },
+    "old_school": {
+      "name": "复古"
+    }
+  },
+  "templates": {
+    "index": {
+      "mint": {
+        "name": "Mint（经典款）",
+        "description": "三栏文档站：顶栏搜索与 Ask AI、顶栏Tab、左侧文档树、右侧页内目录；正文区支持反馈、上下页与底部 AI 提问。",
+        "settings": {
+          "links_html": {
+            "label": "页面左侧自定义链接列表 HTML 代码",
+            "info": "支持HTML标签和有限的TailwindCSS样式代码"
+          }
+        }
+      }
+    },
+    "page": {
+      "description": "内容页面模板",
+      "settings": {
+        "title": {
+          "label": "页面标题",
+          "info": "知识库同步，不可编辑"
+        },
+        "tags": {
+          "label": "页面标签"
+        },
+        "description": {
+          "label": "页面描述"
+        },
+        "icon": {
+          "label": "页面图标",
+          "info": "用于显示页面图标，建议1:1比例"
+        },
+        "content": {
+          "label": "页面内容",
+          "info": "同步自数据源，不可编辑"
+        }
+      }
+    }
+  },
+  "generic": {
+    "name": "通用设置",
+    "settings": {
+      "logo_url": {
+        "label": "Logo 图片",
+        "info": "若设置了logo，则页头显示 logo，否则显示：网站图标+站点名称"
+      },
+      "company_name": {
+        "label": "公司名称",
+        "default": "Baklib.cn",
+        "info": "显示在页面底部页脚位置"
+      },
+      "copyright_info": {
+        "label": "备案/版权信息",
+        "default": "蜀ICP备xxxx号"
+      },
+      "screen_width": {
+        "label": "页面宽度",
+        "choices": {
+          "narrow": "窄（1024像素）",
+          "medium": "适中（1280像素）",
+          "wide": "宽（1536像素）",
+          "full": "满屏"
+        }
+      },
+      "left_sidebar_width": {
+        "label": "左侧边栏宽度(详细页面中)",
+        "info": "建议：240px"
+      },
+      "right_sidebar_width": {
+        "label": "右侧边栏宽度(详细页面中)",
+        "info": "建议：240px"
+      },
+      "show_published_at": {
+        "label": "显示发布时间"
+      },
+      "show_author": {
+        "label": "显示作者"
+      },
+      "show_card_icon": {
+        "label": "首页是否显示栏目ICON图标",
+        "info": "建议自行在页面设置中配置图标"
+      },
+      "ai_search_completed_text": {
+        "label": "AI回答结束语",
+        "info": "AI回答结束后添加一句话"
+      }
+    }
+  },
+  "page_config": {
+    "name": "页面配置",
+    "settings": {
+      "show_page_tools_dropdown": {
+        "label": "显示页面工具下拉菜单"
+      },
+      "feedback_enabled": {
+        "label": ""
+      }
+    }
+  },
+  "custom_html": {
+    "name": "自定义 HTML 代码",
+    "settings": {
+      "head_html": {
+        "label": "自定义 <head></head> 标签中的 HTML",
+        "info": "支持HTML标签和有限的TailwindCSS样式代码",
+        "placeholder": "通常在这里插入访问统计、客服机器人等嵌入代码"
+      },
+      "header_menu_html": {
+        "label": "顶部导航区域插入 HTML 代码",
+        "info": "支持HTML标签和有限的TailwindCSS样式代码",
+        "placeholder": "通常在这里插入公司其他网站的导航链接"
+      },
+      "footer_html": {
+        "label": "页脚区域插入 HTML 代码",
+        "info": "支持HTML标签和有限的TailwindCSS样式代码; 将完全替换默认页脚内容",
+        "placeholder": "若需要保留默认页脚内容，请在 footer_menu_html 中插入 HTML 代码"
+      },
+      "footer_menu_html": {
+        "label": "底部区域插入 HTML 代码(footer 内，footer_menu_html)",
+        "info": "支持HTML标签和有限的TailwindCSS样式代码",
+        "placeholder": "通常在这里插入公司其他网站的外部导航链接、友情链接、SEO 优化链接等"
+      },
+      "features_one_html": {
+        "label": "首页顶部功能区 HTML",
+        "info": "支持HTML标签和有限的TailwindCSS样式代码",
+        "placeholder": "通常在这里插入公司产品介绍、服务介绍等"
+      },
+      "features_two_html": {
+        "label": "首页底部功能区 HTML",
+        "info": "支持HTML标签和有限的TailwindCSS样式代码",
+        "placeholder": "通常在这里插入公司产品介绍、服务介绍等"
+      }
+    }
+  },
+  "settings": {
+    "weixin_share": {
+      "title": "微信配置",
+      "weixin_app_id": {
+        "label": "开发者ID(AppID)",
+        "info": "<a href='https://mp.weixin.qq.com/cgi-bin/frame'>微信公众号/设置与开发/开发接口管理</a>中获取 "
+      },
+      "weixin_app_secret": {
+        "label": "开发者密码(AppSecret)",
+        "info": ""
+      },
+      "weixin_enabled": {
+        "label": "是否启用微信分享",
+        "info": "提供站点页面微信分享的能力</br>请在微信公众号中配置ip白名单（ip: ${service_ip}）, 配置后将有一段时间的生效延迟。</br>检查是否开启微信分享权限，微信公众号/设置与开发/开发接口管理: <a href='https://mp.weixin.qq.com/cgi-bin/frame'>网页服务/分享接口</a>。</br>分享链接是否为卡片：从卡片形式进入分享卡片形式，链接形式进入分享链接形式；网页初始链接分享可由公司的服务号中或收藏后进行卡片分享（此规则为微信分享限制）。"
+      },
+      "weixin_debug": {
+        "label": "是否开启debug提示",
+        "info": "请仅在配置阶段开启此选项；开启后在访问前端站点时若未正确配置微信分享将自动提示错误信息"
+      }
+    }
+  }
+}

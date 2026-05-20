@@ -1,0 +1,135 @@
+{
+  "layout": {
+    "theme": {
+      "search_keywords_label": "Popular Searches"
+    }
+  },
+  "snippets": {
+    "header": {
+      "ask_ai": "Ask AI"
+    },
+    "footer": {
+      "copyright": "All Rights Reserved"
+    },
+    "feedback_form": {
+      "title": "Submit Feedback",
+      "message_label": "Message",
+      "message_placeholder": "Please enter your feedback",
+      "message_required": "Feedback message cannot be empty",
+      "submit": "Submit",
+      "cancel": "Cancel"
+    },
+    "feedback_button": {
+      "title_posted": "Thank you for your feedback",
+      "title_unposted": "Submit Feedback"
+    },
+    "mint": {
+      "search": {
+        "ask_ai_section": "Ask AI assistant",
+        "ask_ai_lead": "Can you tell me about ",
+        "ask_ai_trailing": "?",
+        "ask_ai_ellipsis": "…",
+        "ask_ai_query_display": "%{query}",
+        "ask_ai_message": "Can you tell me about %{query}?"
+      },
+      "ai": {
+        "assistant_title": "Assistant",
+        "input_placeholder": "Ask a question...",
+        "send": "Send",
+        "disclaimer": "Responses are generated using AI and may contain mistakes.",
+        "network_error": "Network error. Please try again.",
+        "timeout_error": "Request timed out. Please try again.",
+        "reading": "Reading documentation…",
+        "thinking_status": "Thinking…",
+        "copy_response": "Copy response",
+        "retry_response": "Regenerate",
+        "clear_chat": "Clear chat"
+      },
+      "breadcrumb": {
+        "label": "Breadcrumb"
+      },
+      "nav_tree": {
+        "toggle_submenu": "Expand or collapse submenu"
+      },
+      "page_feedback": {
+        "prompt": "Was this page helpful to you?",
+        "yes_button": "Yes",
+        "no_button": "No",
+        "follow_up_yes": "Great! What worked best for you?",
+        "follow_up_no": "How can we improve our product?",
+        "cancel": "Cancel",
+        "submit": "Submit feedback",
+        "thanks": "Thank you for your feedback. We will keep improving the experience.",
+        "other": "Other",
+        "other_prefix": "Other: ",
+        "other_details_sr": "Other feedback details",
+        "other_placeholder": "(Optional) Can you share more about your experience?",
+        "yes": {
+          "works_as_expected": "Worked as expected",
+          "works_as_expected_label": "This guide worked as expected.",
+          "easy_to_find": "Easy to find information",
+          "easy_to_find_label": "I easily found the information I needed.",
+          "easy_to_understand": "Easy to understand features",
+          "easy_to_understand_label": "The product and its features were easy to understand.",
+          "docs_updated": "Documentation updated",
+          "docs_updated_label": "The documentation is up to date."
+        },
+        "no": {
+          "faster_start": "Help me get started faster",
+          "faster_start_label": "Help me get started faster",
+          "easier_find": "Easier to find content",
+          "easier_find_label": "Make it easier for me to find what I need",
+          "better_understand": "Better product understanding",
+          "better_understand_label": "Help users understand the product and its features more easily.",
+          "update_docs": "Update documentation",
+          "update_docs_label": "Update this documentation"
+        }
+      }
+    },
+    "page_tools": {
+      "copy_page_label": "Copy page",
+      "copy_page_description": "Copy this page as Markdown for LLMs",
+      "open_in_chatgpt": "Open in ChatGPT",
+      "open_in_claude": "Open in Claude",
+      "ask_about_page": "Ask a question about this page",
+      "copy_mcp_label": "Copy MCP install command",
+      "copy_mcp_description": "Copy npx command to install the MCP server",
+      "connect_to_cursor": "Connect to Cursor",
+      "connect_to_cursor_description": "Install MCP Server in Cursor",
+      "connect_to_vscode": "Connect to VS Code",
+      "connect_to_vscode_description": "Install MCP Server in VS Code"
+    }
+  },
+  "templates": {
+    "feedback": {
+      "success_title": "Feedback submitted",
+      "success_message": "Thank you for your feedback. We will keep improving the experience.",
+      "error_title": "Submission failed",
+      "error_message": "Something went wrong. Please check and try again."
+    },
+    "search": {
+      "no_results": "No results found",
+      "featured_label": "Featured"
+    },
+    "page": {
+      "copy_success": "Link copied",
+      "page_toc": "Table of Contents",
+      "llm_prompt_template": "Read from %{url} so I can ask questions about it.",
+      "llm_copying": "Copying...",
+      "llm_copied": "Copied"
+    }
+  },
+  "ai": {
+    "completed": "AI response completed."
+  },
+  "generic": {
+    "feedback_created_at": "Last feedback at",
+    "buttons": {
+      "signout": "Sign Out",
+      "close": "Close"
+    }
+  },
+  "search": {
+    "placeholder": "Search .."
+  }
+}

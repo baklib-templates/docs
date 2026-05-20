@@ -1,0 +1,135 @@
+{
+  "layout": {
+    "theme": {
+      "search_keywords_label": "인기 검색어"
+    }
+  },
+  "snippets": {
+    "header": {
+      "ask_ai": "AI에게 질문"
+    },
+    "footer": {
+      "copyright": "All Rights Reserved"
+    },
+    "feedback_form": {
+      "title": "피드백 제출",
+      "message_label": "메시지",
+      "message_placeholder": "피드백을 입력하세요",
+      "message_required": "피드백 메시지는 필수입니다",
+      "submit": "제출",
+      "cancel": "취소"
+    },
+    "feedback_button": {
+      "title_posted": "피드백 감사합니다",
+      "title_unposted": "피드백 제출"
+    },
+    "mint": {
+      "search": {
+        "ask_ai_section": "AI 어시스턴트에게 질문",
+        "ask_ai_lead": "다음에 대해 알려 주세요: ",
+        "ask_ai_trailing": "",
+        "ask_ai_ellipsis": "…",
+        "ask_ai_query_display": "「%{query}」",
+        "ask_ai_message": "「%{query}」에 대해 알려 주세요."
+      },
+      "ai": {
+        "assistant_title": "AI 어시스턴트",
+        "input_placeholder": "질문을 입력하세요…",
+        "send": "보내기",
+        "disclaimer": "응답은 AI로 생성되며 오류가 포함될 수 있습니다.",
+        "network_error": "네트워크 오류입니다. 다시 시도해 주세요.",
+        "timeout_error": "요청 시간이 초과되었습니다. 다시 시도해 주세요.",
+        "reading": "문서를 읽는 중…",
+        "thinking_status": "생각 중…",
+        "copy_response": "답변 복사",
+        "retry_response": "다시 생성",
+        "clear_chat": "대화 지우기"
+      },
+      "breadcrumb": {
+        "label": "탐색 경로"
+      },
+      "nav_tree": {
+        "toggle_submenu": "하위 메뉴 펼치기/접기"
+      },
+      "page_feedback": {
+        "prompt": "이 페이지가 도움이 되었나요?",
+        "yes_button": "예",
+        "no_button": "아니요",
+        "follow_up_yes": "좋습니다! 어떤 점이 가장 도움이 되었나요?",
+        "follow_up_no": "제품을 어떻게 개선할 수 있을까요?",
+        "cancel": "취소",
+        "submit": "피드백 제출",
+        "thanks": "피드백 감사합니다. 계속해서 경험을 개선하겠습니다.",
+        "other": "기타",
+        "other_prefix": "기타: ",
+        "other_details_sr": "기타 피드백 상세",
+        "other_placeholder": "(선택) 경험에 대해 더 공유해 주시겠어요?",
+        "yes": {
+          "works_as_expected": "예상대로 작동",
+          "works_as_expected_label": "이 가이드는 예상대로 작동했습니다.",
+          "easy_to_find": "정보를 쉽게 찾음",
+          "easy_to_find_label": "필요한 정보를 쉽게 찾았습니다.",
+          "easy_to_understand": "기능 이해가 쉬움",
+          "easy_to_understand_label": "제품과 기능을 이해하기 쉬웠습니다.",
+          "docs_updated": "문서 업데이트됨",
+          "docs_updated_label": "문서가 최신 상태입니다."
+        },
+        "no": {
+          "faster_start": "더 빠른 시작",
+          "faster_start_label": "더 빠르게 시작할 수 있게 도와주세요",
+          "easier_find": "콘텐츠 찾기 쉬움",
+          "easier_find_label": "필요한 것을 더 쉽게 찾을 수 있게 해주세요",
+          "better_understand": "제품 이해 개선",
+          "better_understand_label": "사용자가 제품과 기능을 더 쉽게 이해할 수 있게 해주세요.",
+          "update_docs": "문서 업데이트",
+          "update_docs_label": "이 문서를 업데이트해 주세요"
+        }
+      }
+    },
+    "page_tools": {
+      "copy_page_label": "페이지 복사",
+      "copy_page_description": "페이지를 Markdown 형식으로 복사하여 LLM에 전달",
+      "open_in_chatgpt": "ChatGPT에서 열기",
+      "open_in_claude": "Claude에서 열기",
+      "ask_about_page": "이 페이지에 대해 질문하기",
+      "copy_mcp_label": "MCP 설치 명령 복사",
+      "copy_mcp_description": "MCP 서버 설치용 npx 명령 복사",
+      "connect_to_cursor": "Cursor에 연결",
+      "connect_to_cursor_description": "Cursor에 MCP Server 설치",
+      "connect_to_vscode": "VS Code에 연결",
+      "connect_to_vscode_description": "VS Code에 MCP Server 설치"
+    }
+  },
+  "templates": {
+    "search": {
+      "no_results": "검색 결과가 없습니다",
+      "featured_label": "추천"
+    },
+    "page": {
+      "copy_success": "링크가 복사되었습니다",
+      "page_toc": "목차",
+      "llm_prompt_template": "읽기 %{url} 의 내용, 나는 그것에 대해 질문할 수 있습니다.",
+      "llm_copying": "복사 중...",
+      "llm_copied": "복사되었습니다"
+    },
+    "feedback": {
+      "success_title": "피드백이 제출되었습니다",
+      "success_message": "피드백 감사합니다. 계속해서 경험을 개선하겠습니다.",
+      "error_title": "제출 실패",
+      "error_message": "문제가 발생했습니다. 확인 후 다시 시도해 주세요."
+    }
+  },
+  "ai": {
+    "completed": "AI 응답 완료."
+  },
+  "generic": {
+    "feedback_created_at": "마지막 피드백",
+    "buttons": {
+      "signout": "로그아웃",
+      "close": "닫기"
+    }
+  },
+  "search": {
+    "placeholder": "검색..."
+  }
+}

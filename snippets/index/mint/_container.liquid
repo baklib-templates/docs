@@ -1,0 +1,490 @@
+{% assign index_page = site.pages['/'] %}
+{% assign current_root_channel_path = page.breadcrumb[1].path %}
+{% assign current_root_channel = site.pages[current_root_channel_path] %}
+{% unless current_root_channel %}
+  {% assign current_root_channel = index_page.children_in_list | first %}
+{% endunless %}
+{% assign ai_assistant_title = "snippets.mint.ai.assistant_title" | t: "AI 助手" | presence %}
+{% assign ai_input_placeholder = "snippets.mint.ai.input_placeholder" | t: "输入你的问题…" | presence %}
+{% assign ai_send_label = "snippets.mint.ai.send" | t: "发送" | presence %}
+{% assign ai_reading_text = "snippets.mint.ai.reading" | t: "正在阅读文档…" | presence %}
+{% assign ai_thinking_status = "snippets.mint.ai.thinking_status" | t: "正在思考…" | presence %}
+{% assign ai_network_error = "snippets.mint.ai.network_error" | t: "网络错误，请重试" | presence %}
+{% assign ai_timeout_error = "snippets.mint.ai.timeout_error" | t: "响应超时，请重试" | presence %}
+{% assign search_ask_ai_message_tpl = "snippets.mint.search.ask_ai_message" | t: "请介绍一下「%{query}」" %}
+{% assign ai_completed_text = site.settings.ai_search_completed_text | presence %}
+{% unless ai_completed_text %}
+  {% assign ai_completed_text = "ai.completed" | t: "AI 回答完毕." | presence %}
+{% endunless %}
+
+<div
+  data-controller="header-search ai-search"
+  data-action="mint:ai-send@window->ai-search#sendFromWindow"
+  data-header-search-search-url-value="{{ site.search_path }}"
+  data-header-search-preview-url-value="{{ statics['index/mint/search_preview'] }}"
+  data-header-search-ask-ai-message-template-value="{{ search_ask_ai_message_tpl | escape }}"
+  data-ai-search-url-value="/-/ai-search-completion"
+  data-ai-search-chats-url-value="/-/ai_chats"
+  data-ai-search-timeout-value="60"
+  data-ai-search-messages-value='{"thinking":"{{ ai_thinking_status | escape }}","reading":"{{ ai_reading_text | escape }}","thinking_status":"{{ ai_thinking_status | escape }}","completed":"{{ ai_completed_text | escape }}","network_error":"{{ ai_network_error | escape }}","timeout_error":"{{ ai_timeout_error | escape }}"}'
+  data-ai-search-query-value='{"path":"{{ page.path | escape }}"}'
+  class="flex flex-grow relative bg-base-100 text-base-content"
+  x-data="{
+    docTab: 'guides',
+    isAtBottom: false,
+    isAiOpen: localStorage.getItem('mintIsAiOpen') === 'true',
+    aiSidebarWidth: 350,
+    aiSidebarMinWidth: 350,
+    aiSidebarMaxWidth: 600,
+    currentPath: '{{ page.path }}',
+    channelPathActive(href, index, is_full_match = false) {
+      if (index === 1 && this.currentPath == '/') return true;
+      if (!href) return false;
+      if (href === '/') return this.currentPath === '/';
+      if (is_full_match) return this.currentPath === href;
+      return this.currentPath === href || (this.currentPath && this.currentPath.startsWith(href + '/'));
+    },
+    onAiSidebarResize(event) {
+      const { size, minSize, maxSize } = event.detail || {};
+      if (Number.isFinite(size)) this.aiSidebarWidth = size;
+      if (Number.isFinite(minSize)) this.aiSidebarMinWidth = minSize;
+      if (Number.isFinite(maxSize)) this.aiSidebarMaxWidth = maxSize;
+    },
+    toggleAiSidebarWidth() {
+      const el = this.$refs.aiSidebar;
+      if (!el || !window.Stimulus) return;
+      const ctrl = window.Stimulus.getControllerForElementAndIdentifier(el, 'resize-bar');
+      ctrl?.toggleWidth();
+    },
+    closeMobileDrawer() {
+      const drawer = document.getElementById('my-drawer-3');
+      if (drawer) drawer.checked = false;
+    },
+    toggleAiAssistant() {
+      this.isAiOpen = !this.isAiOpen;
+    }
+  }"
+  x-init="
+    const syncCurrentPathFromLocation = () => {
+      let p = window.location.pathname || '/';
+      if (p.length > 1 && p.endsWith('/')) p = p.slice(0, -1);
+      currentPath = p;
+    };
+    syncCurrentPathFromLocation();
+    ['turbo:load', 'turbo:render', 'turbo:frame-load'].forEach((ev) => {
+      document.addEventListener(ev, syncCurrentPathFromLocation);
+    });
+    window.addEventListener('popstate', syncCurrentPathFromLocation);
+
+    const lockScroll = () => {
+      const mobile = window.matchMedia('(max-width: 1023px)').matches;
+      if (mobile && isAiOpen) {
+        document.body.style.overflow = 'hidden';
+
+      } else {
+        document.body.style.overflow = '';
+        document.documentElement.style.overflow = '';
+      }
+    };
+    $watch('isAiOpen', val => {
+      localStorage.setItem('mintIsAiOpen', val);
+      lockScroll();
+    });
+    lockScroll();
+    window.addEventListener('resize', lockScroll);
+  "
+  @scroll.window="isAtBottom = (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 120)"
+  @mint:ai-send.window="isAiOpen = true"
+  @mint:ai-close.window="isAiOpen = false"
+  @keydown.window="
+    if (event.isComposing) return;
+    if (event.key !== 'i' && event.key !== 'I') return;
+    if (!(event.metaKey || event.ctrlKey)) return;
+    if (event.altKey || event.shiftKey) return;
+    event.preventDefault();
+    toggleAiAssistant();
+  "
+>
+  <div class="flex-grow min-w-0">
+    {%comment %} Mint 文档顶栏：与天蓝色文档风统一； {% endcomment %}
+    {% render 'index/mint/header' %}
+
+    {% comment %} top channels {% endcomment %}
+    <div class="sticky top-[var(--header-height)] w-full bg-base-100 z-30 border-b border-base-200">
+      <div class="mx-auto max-w-[var(--max-content-width)] h-12 px-4 lg:px-6">
+        {% comment %} 面包屑 {% endcomment %}
+        <div class="h-full flex items-center space-x-2 lg:hidden overflow-hidden">
+          <label for="my-drawer-3" class="btn btn-ghost btn-sm btn-square text-base-content/60" aria-label="Open sidebar">
+            <svg class="size-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </label>
+
+          {% render 'index/mint/breadcrumb', breadcrumb: page.breadcrumb %}
+        </div>
+
+        {% comment %} channels {% endcomment %}
+        <div class="hidden lg:flex h-full gap-4 text-[0.85rem] font-bold overflow-x-auto overflow-y-hidden" x-cloak>
+          {% assign channels = index_page.children_in_list %}
+          {% for channel in channels %}
+            <a href="{{ channel.path }}"
+              class="flex items-center whitespace-nowrap transition-all duration-300 border-b-[3px] space-x-1"
+              :class="channelPathActive('{{ channel.path }}', {{ forloop.index }}) ? ' border-primary text-primary ' : 'border-transparent text-base-content/60 hover:text-base-content'"
+              data-turbo-frame="main-content-frame"
+              data-turbo-action="advance"
+            >
+              {% assign icon_url = channel.settings.icon | presence %}
+              {% if icon_url %}
+                <img src="{{ icon_url | asset_url }}" class="size-4" alt="{{ channel.link_text }}">
+              {% endif %}
+              <span>{{ channel.link_text }}</span>
+            </a>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+
+    <div class="drawer lg:drawer-open mx-auto max-w-[var(--max-content-width)] px-4 md:px-6">
+      <input id="my-drawer-3" type="checkbox" class="drawer-toggle" />
+      <div
+        class="drawer-side lg:sticky lg:top-[calc(var(--header-height)+3.2rem)] lg:max-h-[calc(100vh-var(--header-height)-4.1rem)] lg:overflow-y-auto z-99">
+        <label for="my-drawer-3" aria-label="close sidebar" class="drawer-overlay"></label>
+        <aside
+          class="px-4 p-4 md:pt-10 pb-12 md:p-0 w-[var(--left-sidebar-width)] bg-base-100 h-full space-y-3"
+          @click="
+            const a = $event.target.closest('a[href]');
+            const href = a?.getAttribute('href');
+            if (a && href && href !== '#') closeMobileDrawer();
+          "
+        >
+          {% comment %} index 中配置的链接 {% endcomment %}
+          {% assign links_html = index_page.settings.links_html | presence %}
+          {% if links_html %}
+            <div class="space-y-[0.15rem] text-[0.85rem] -mt-2 pl-0">
+              {{ links_html }}
+            </div>
+          {% endif %}
+
+          {% render 'index/mint/nav_tree_list', page: current_root_channel, current_path: page.path %}
+        </aside>
+      </div>
+
+      <div class="drawer-content flex flex-col items-center justify-center">
+        <turbo-frame id="main-content-frame" class='w-full' x-init="
+                               $el.addEventListener('turbo:before-fetch-request', () => {
+                                 $el.scrollTop = 0
+                                 window.scrollTo({ top: 0, behavior: 'instant' })
+                               })
+                             ">
+          <div
+            data-controller="toc"
+            data-toc-header-selector-value=".js--header"
+            data-toc-offset-value="58"
+            data-toc-title-value="{{ 'templates.page.page_toc' | t }}"
+            data-toc-clipboard-success-value="{{ 'templates.page.copy_success' | t: '链接已复制' }}"
+            class="w-full min-w-0 group"
+          >
+            <div class="grid grid-cols-1 gap-6 transition-all duration-300 px-0 md:px-4 lg:px-6 w-full"
+              :class="isAiOpen ? 'lg:grid-cols-1' : 'lg:grid-cols-1 lg:group-[.has-toc]:grid-cols-[minmax(0,1fr)_minmax(11rem,15rem)]'">
+              {% comment %} 主内容 {% endcomment %}
+              <main class="min-w-0 flex flex-col">
+                <article class="max-w-none flex flex-1 flex-col pt-10 min-h-[70vh]">
+                  <div class="min-h-0 w-full flex-1 flex flex-col">
+                    <div class="flex-1">
+                      <p class="mb-2 text-[0.8rem] font-bold tracking-wide text-primary uppercase">{{
+                        current_root_channel.link_text }}
+                      </p>
+                      {% # 标题 %}
+                      {% assign title = page.link_text | presence %}
+                      <div class="mb-4 py-1 flex items-start justify-between gap-3">
+                        <h1 class="flex-1 mb-3 text-2xl sm:text-3xl font-bold tracking-tight text-base-content">
+                          {{ title }}
+                        </h1>
+                        {% if site.settings.show_page_tools_dropdown %}
+                          {% render 'page_tools_dropdown', page: page %}
+                        {% endif %}
+                      </div>
+
+                      {% if page.settings.description %}
+                      <p class="mb-8 text-[1.05rem] text-base-content/70">{{ page.settings.description }}</p>
+                      {% endif %}
+
+                      {% comment %} page content：TOC 仅扫描正文内标题 {% endcomment %}
+                      <div class="prose ProseMirror dark:prose-invert max-w-none min-h-[40vh]" data-toc-target="content">
+                        {{ page.settings.content }}
+                      </div>
+                    </div>
+
+                    {% comment %} 是否有帮助的反馈区域 {% endcomment %}
+                    {% if site.settings.feedback_enabled %}
+                      {% render 'index/mint/page_feedback', page: page %}
+                    {% endif %}
+
+                    {% comment %} 上一页、下一页 {% endcomment %}
+                    {% render 'index/mint/page_pager', page: page %}
+                  </div>
+
+                  {% comment %} AI：flex-1 在短页占满剩余高度，条在 article 底；长页仍在正文后 + sticky bottom 吸附视口 {% endcomment %}
+                  <div class="sticky bottom-5 z-20 w-full shrink-0 pointer-events-none print:hidden transition-all duration-300"
+                    :class="(isAtBottom || isAiOpen) ? 'translate-y-full opacity-0' : 'translate-y-0 opacity-100'">
+                    <div
+                      class="pointer-events-auto flex flex-col w-full rounded-2xl border border-base-200 bg-base-100/90 shadow-sm backdrop-blur-xl transition-colors focus-within:border-primary" x-data="{ inputValue: '' }">
+                      <div class="relative flex items-end">
+                        <textarea aria-label="{{ ai_input_placeholder }}" placeholder="{{ ai_input_placeholder }}"
+                          class="w-full resize-none border-0 bg-transparent py-4 pl-4 pr-14 text-[0.95rem] text-base-content placeholder-base-content/40 focus:outline-none focus:ring-0"
+                          style="height: 60px;"
+                          @keydown.enter.prevent="if(inputValue.trim()) { window.dispatchEvent(new CustomEvent('mint:ai-send', { detail: { message: inputValue.trim() } })); $el.value = ''; inputValue = ''; }"
+                          x-model="inputValue"></textarea>
+                        <span
+                          class="absolute bottom-4 right-12 hidden text-[0.75rem] font-medium text-base-content/50 sm:inline">⌘I</span>
+                        <button type="button"
+                          class="absolute bottom-3 right-2.5 flex size-8 items-center justify-center rounded-lg bg-primary/10 text-primary transition-colors hover:bg-primary/90 disabled:opacity-50"
+                          :disabled="!inputValue.trim()"
+                          aria-label="{{ ai_send_label }}"
+                          @click="if(inputValue.trim()) { window.dispatchEvent(new CustomEvent('mint:ai-send', { detail: { message: inputValue.trim() } })); inputValue = ''; }">
+                          <i class="ri-arrow-up-line leading-none" aria-hidden="true"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+
+                {% render 'index/mint/footer' %}
+              </main>
+
+              {% comment %} 右侧目录：lg+ 且有标题时显示；AI 侧栏打开时关闭 {% endcomment %}
+              <aside
+                class="print:hidden hidden w-full min-w-0 overflow-y-auto transition-opacity duration-300 max-h-[calc(100vh-var(--header-height)-3.1rem)] sticky top-[calc(var(--header-height)+3.1rem)] space-y-3 text-[0.85rem] pt-10 lg:group-[.has-toc]:block"
+                x-show="!isAiOpen"
+                x-transition:enter="transition ease-out duration-200"
+                x-transition:enter-start="opacity-0"
+                x-transition:enter-end="opacity-100"
+                x-transition:leave="transition ease-in duration-150"
+                x-transition:leave-start="opacity-100"
+                x-transition:leave-end="opacity-0"
+                aria-label="{{ 'templates.page.page_toc' | t }}"
+              >
+                <div data-toc-target="menu">
+                  <p class="flex items-center gap-2 font-bold text-base-content mb-2">
+                    <svg class="size-4 text-base-content/50" fill="none" viewBox="0 0 24 24"
+                      stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M8.25 6.75h12M8.25 12h12m-12 5.25h12M3.75 6.75h.007v.008H3.75V6.75zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zM3.75 12h.007v.008H3.75V12zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm-.375 5.25h.007v.008H3.75v-.008zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+                    </svg>
+                    {{ 'templates.page.page_toc' | t }}
+                  </p>
+                  <div data-toc-target="links"></div>
+                </div>
+              </aside>
+            </div>
+          </div>
+        </turbo-frame>
+      </div>
+    </div>
+  </div>
+
+  {% comment %} AI Assistant 移动端弹出层 {% endcomment %}
+  <div class="fixed inset-0 z-[120] lg:hidden overscroll-none" x-show="isAiOpen"
+    x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0"
+    x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-200"
+    x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" style="display: none;">
+    <div class="absolute inset-0 bg-black/40 touch-none" @click="isAiOpen = false" @touchmove.prevent></div>
+    <div
+      class="absolute inset-x-0 bottom-0 h-[86vh] rounded-t-2xl bg-base-100 shadow-2xl flex flex-col overflow-hidden touch-pan-y">
+      <div x-data="{ touchStartY: 0, dragY: 0, dragging: false }" class="touch-none shrink-0"
+        @touchstart.passive="touchStartY = $event.touches[0].clientY; dragging = true"
+        @touchmove="if (!dragging) return; let moved = $event.touches[0].clientY - touchStartY; dragY = moved > 0 ? moved : 0; $event.preventDefault(); $el.parentElement.style.transform = `translateY(${dragY}px)`; $el.parentElement.style.transition = 'none';"
+        @touchend="if (dragY > 120) { isAiOpen = false }; dragging = false; dragY = 0; $el.parentElement.style.transform = ''; $el.parentElement.style.transition = 'transform 0.2s ease-out';"
+        @touchcancel="dragging = false; dragY = 0; $el.parentElement.style.transform = ''; $el.parentElement.style.transition = 'transform 0.2s ease-out';">
+        <div class="flex items-center justify-center pt-2 pb-1">
+          <div class="h-1 w-10 rounded-full bg-base-300"></div>
+        </div>
+        <div class="flex items-center justify-between px-4 py-3">
+          <div class="flex items-center gap-2 font-bold text-base-content text-[0.95rem]">
+            <i class="ri-sparkling-2-line size-4 text-primary leading-none" aria-hidden="true"></i>
+            {{ ai_assistant_title }}
+          </div>
+          <button type="button" class="btn btn-ghost btn-sm btn-square text-base-content/60" aria-label="Close"
+            @click="isAiOpen = false">
+            <i class="ri-close-line icon-thin text-base text-base-content/60 group-hover:text-base-content leading-none" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+      {% render 'index/mint/ai_chat_messages',
+        variant: 'drawer',
+        wrapper_class: 'flex-1 min-h-0 overflow-y-auto px-4 pb-2',
+        messages_class: 'flex flex-col gap-3'
+      %}
+      <div class="px-4 pb-4 shrink-0">
+        <div
+          class="flex flex-col w-full rounded-2xl bg-base-100 border border-base-200 focus-within:border-primary transition-colors">
+          <div class="relative flex items-end">
+            <textarea
+              data-ai-search-target="input"
+              data-action="input->ai-search#syncSendButton keydown->ai-search#onInputKeydown"
+              class="w-full bg-transparent border-0 text-base-content placeholder-base-content/50 focus:outline-none focus:ring-0 py-2.5 pl-3.5 pr-10 text-[0.85rem] !pb-0 resize-none"
+              placeholder="{{ ai_input_placeholder }}" style="height: 50px;"></textarea>
+          </div>
+          <div class="flex items-center justify-between px-2 pb-2">
+            <button type="button" class="btn btn-ghost btn-sm btn-square text-base-content/60"
+              aria-label="Add attachment">
+              <i class="ri-attachment-line leading-none" aria-hidden="true"></i>
+            </button>
+            <button class="btn btn-circle btn-ghost btn-sm bg-primary/10 text-primary"
+              data-ai-search-target="send"
+              data-action="click->ai-search#send"
+              aria-label="{{ ai_send_label }}" disabled>
+              <i class="ri-arrow-up-line leading-none" aria-hidden="true"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% comment %} AI Assistant 侧边栏（桌面） {% endcomment %}
+  <div
+    class="hidden lg:flex bg-base-200 overflow-hidden z-50 w-[var(--ai-sidebar-width,340px)] sticky top-0 max-h-screen overflow-y-auto transition-[width] duration-300 [.resize-bar-dragging_&]:transition-none"
+    x-show="isAiOpen"
+    x-transition:enter="transition ease-out duration-300"
+    x-transition:enter-start="opacity-0 translate-x-full"
+    x-transition:enter-end="opacity-100 translate-x-0"
+    x-transition:leave="transition ease-in duration-300"
+    x-transition:leave-start="opacity-100 translate-x-0"
+    x-transition:leave-end="opacity-0 translate-x-full"
+    style="display: none;"
+    x-ref="aiSidebar"
+    @resize-bar:resize="onAiSidebarResize($event)"
+    data-controller="resize-bar"
+    data-resize-bar-target="target"
+    data-resize-bar-dragging-class="bg-base-300 cursor-ew-resize !transition-none"
+    data-resize-bar-min-size-value="350"
+    data-resize-bar-max-size-value="600"
+    data-resize-bar-direction-value="left"
+    data-resize-bar-remember-value="true"
+    data-resize-bar-key-value="ai-sidebar-width"
+    data-resize-bar-css-var-value="--ai-sidebar-width">
+    <div class="transition bg-base-200 w-[6px] shrink-0 hover:bg-base-300 hover:cursor-ew-resize"
+      data-resize-bar-target="bar">
+    </div>
+    <div class="relative flex flex-col flex-1 bg-base-100 min-w-0">
+      <!-- AI Header -->
+      <div class="flex items-center justify-between px-4 py-3 border-b border-base-200">
+        <div class="flex items-center gap-2 font-bold text-base-content text-[0.95rem]">
+          <i class="ri-sparkling-2-line size-4 text-primary leading-none" aria-hidden="true"></i>
+          {{ ai_assistant_title }}
+        </div>
+        <div class="flex items-center gap-1">
+          {% comment %} 最大化/最小化， icon 也自动切换 {% endcomment %}
+          <button type="button" class="btn btn-ghost font-normal btn-sm btn-square group"
+            :aria-label="aiSidebarWidth >= aiSidebarMaxWidth ? 'Collapse' : 'Expand'"
+            @click="toggleAiSidebarWidth()">
+            <i class="icon-thin text-base text-base-content/60 group-hover:text-base-content leading-none"
+              :class="aiSidebarWidth >= aiSidebarMaxWidth ? 'ri-collapse-diagonal-line' : 'ri-expand-diagonal-line'"
+              aria-hidden="true"></i>
+          </button>
+          <button type="button" class="hidden btn btn-ghost font-normal btn-sm btn-square group"
+            aria-label="{{ 'snippets.mint.ai.clear_chat' | t: '清空对话' }}"
+            data-ai-search-target="clearButton"
+            data-action="click->ai-search#clearChat">
+            <i class="ri-delete-bin-line icon-thin text-base text-base-content/60 group-hover:text-base-content leading-none" aria-hidden="true"></i>
+          </button>
+          <div type="button" class="btn btn-ghost font-normal btn-sm btn-square group"
+            aria-label="Close" @click="isAiOpen = false">
+            <i class="ri-close-line icon-thin text-base text-base-content/60 group-hover:text-base-content leading-none" aria-hidden="true"></i>
+          </div>
+        </div>
+      </div>
+
+      <!-- AI Messages Area -->
+      {% render 'index/mint/ai_chat_messages',
+        variant: 'desktop',
+        wrapper_class: 'flex-1 min-h-0 overflow-y-auto px-5',
+        messages_class: 'flex flex-col gap-3 py-4'
+      %}
+
+      <!-- AI Input Area -->
+      <div class="px-4 pb-4 shrink-0 mt-2">
+        <div
+          class="flex flex-col w-full rounded-2xl pointer-events-auto bg-base-100 border border-base-200 focus-within:border-primary transition-colors">
+          <div class="relative flex items-end">
+            <textarea
+              data-ai-search-target="input"
+              data-action="input->ai-search#syncSendButton keydown->ai-search#onInputKeydown"
+              class="w-full bg-transparent border-0 text-base-content placeholder-base-content/50 focus:outline-none focus:ring-0 py-2.5 pl-3.5 pr-10 text-[0.85rem] !pb-0 resize-none"
+              placeholder="{{ ai_input_placeholder }}" style="height: 50px;"></textarea>
+          </div>
+          <div class="flex items-center justify-between px-2 pb-2">
+            <input type="file" class="hidden">
+            <button type="button"
+              class="btn btn-ghost btn-sm btn-square text-base-content/60 hover:text-base-content"
+              aria-label="Add attachment">
+              <i class="ri-attachment-line leading-none" aria-hidden="true"></i>
+            </button>
+            <button
+              class="btn btn-circle btn-ghost btn-sm bg-primary/10 text-primary"
+              data-ai-search-target="send"
+              data-action="click->ai-search#send"
+              aria-label="{{ ai_send_label }}" disabled>
+              <i class="ri-arrow-up-line leading-none" aria-hidden="true"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <template data-ai-search-target="userMessageTemplate">
+    <div class="ai-chat-user-round flex justify-end">
+      <div class="max-w-[88%] rounded-2xl bg-base-200 px-3 py-2">
+        <p class="ai-user-message break-words text-[0.875rem] leading-[1.65] text-base-content"></p>
+      </div>
+    </div>
+  </template>
+
+  <template data-ai-search-target="assistantMessageTemplate">
+    <div class="ai-chat-assistant-round flex flex-col gap-1">
+      <div
+        class="w-full rounded-2xl border border-base-200 bg-base-100 px-3 py-2"
+        data-controller="markdown"
+      >
+        <pre class="hidden" data-markdown-target="content"></pre>
+        <div class="chat-message max-w-none break-words text-base-content" data-markdown-target="renderedContent"></div>
+      </div>
+      <div class="ai-message-actions hidden items-center gap-1">
+        <button
+          class="btn btn-ghost btn-sm btn-square text-base-content/60 hover:text-base-content"
+          type="button"
+          data-action="click->ai-search#copyLastResponse"
+          aria-label="{{ 'snippets.mint.ai.copy_response' | t: '复制回答' }}"
+        >
+          <i class="ri-file-copy-line leading-none" aria-hidden="true"></i>
+        </button>
+        <button
+          class="btn btn-ghost btn-sm btn-square text-base-content/60 hover:text-base-content"
+          type="button"
+          data-action="click->ai-search#retryLastResponse"
+          aria-label="{{ 'snippets.mint.ai.retry_response' | t: '重新生成' }}"
+        >
+          <i class="ri-refresh-line leading-none" aria-hidden="true"></i>
+        </button>
+      </div>
+    </div>
+  </template>
+
+  <button
+    type="button"
+    class="hidden btn btn-ghost btn-xs btn-square align-middle text-base-content/70"
+    data-ai-search-target="retryButton"
+    data-action="click->ai-search#retryFromButton"
+    aria-label="{{ 'snippets.mint.ai.retry_response' | t: '重新生成' }}"
+  >
+    <i class="ri-refresh-line leading-none" aria-hidden="true"></i>
+  </button>
+  <div data-ai-search-target="error" class="hidden"></div>
+
+  {% comment %} 搜索弹窗 {% endcomment %}
+  {% assign mint_index = site.pages['/'] %}
+  {% assign mint_hot_keywords = mint_index.settings.search_hot_keywords | default: '' | reg_split: "/\n/" %}
+  {% render 'index/mint/search_modal', hot_keywords: mint_hot_keywords %}
+</div>

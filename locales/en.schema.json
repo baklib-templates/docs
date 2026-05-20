@@ -1,0 +1,165 @@
+{
+  "theme_label": "Docs",
+  "theme_description": "Ship documentation your users will actually read—clear information architecture, instant search, and AI-ready Q&A out of the box. Turn your knowledge base into polished product docs and API guides without hand-rolling a separate doc site.",
+  "recommendations": {
+    "fashion": {
+      "name": "Fashion"
+    },
+    "old_school": {
+      "name": "Retro"
+    }
+  },
+  "templates": {
+    "index": {
+      "mint": {
+        "name": "Classic Three-Column Docs",
+        "description": "Three-column doc site: top-bar search and Ask AI, top-bar tabs, left doc tree, right in-page TOC; article area supports feedback, prev/next, and bottom AI questions.",
+        "settings": {
+          "links_html": {
+            "label": "Custom HTML for left sidebar link list",
+            "info": "Supports HTML tags and limited TailwindCSS style code"
+          }
+        }
+      }
+    },
+    "page": {
+      "description": "Content page template",
+      "settings": {
+        "title": {
+          "label": "Page Title",
+          "info": "Synced from knowledge base, not editable"
+        },
+        "tags": {
+          "label": "Page Tags"
+        },
+        "description": {
+          "label": "Page Description"
+        },
+        "icon": {
+          "label": "Page Icon",
+          "info": "Used to display page icon, recommended 1:1 ratio"
+        },
+        "content": {
+          "label": "Page Content",
+          "info": "Synced from data source, not editable"
+        }
+      }
+    }
+  },
+  "generic": {
+    "name": "General Settings",
+    "settings": {
+      "logo_url": {
+        "label": "Logo Image",
+        "info": "If logo is set, it will be displayed in header, otherwise: website icon + site name"
+      },
+      "company_name": {
+        "label": "Company Name",
+        "default": "Baklib.cn",
+        "info": "Displayed in footer position at bottom of page"
+      },
+      "copyright_info": {
+        "label": "ICP/Copyright Information",
+        "default": "ICP xxxxxx"
+      },
+      "screen_width": {
+        "label": "Screen Width",
+        "choices": {
+          "narrow": "Narrow (1024px)",
+          "medium": "Medium (1280px)",
+          "wide": "Wide (1536px)",
+          "full": "Full Screen"
+        }
+      },
+      "left_sidebar_width": {
+        "label": "Left Sidebar Width (in detail pages)",
+        "info": "Recommended: 240px"
+      },
+      "right_sidebar_width": {
+        "label": "Right Sidebar Width (in detail pages)",
+        "info": "Recommended: 240px"
+      },
+      "show_published_at": {
+        "label": "Show Publication Time"
+      },
+      "show_author": {
+        "label": "Show Author"
+      },
+      "show_card_icon": {
+        "label": "Show Section Icons on Homepage",
+        "info": "Recommended to configure icons in page settings"
+      },
+      "ai_search_completed_text": {
+        "label": "AI Completion Text",
+        "info": "Add a sentence after AI completes the answer"
+      }
+    }
+  },
+  "page_config": {
+    "name": "Page Settings",
+    "settings": {
+      "show_page_tools_dropdown": {
+        "label": "Show Page Tools Dropdown"
+      },
+      "feedback_enabled": {
+        "label": ""
+      }
+    }
+  },
+  "custom_html": {
+    "name": "Custom HTML Code",
+    "settings": {
+      "head_html": {
+        "label": "Custom HTML in <head></head> tags",
+        "info": "Supports HTML tags and limited TailwindCSS style code",
+        "placeholder": "Usually used to insert analytics, customer service bot, etc."
+      },
+      "header_menu_html": {
+        "label": "Insert HTML code in top navigation area",
+        "info": "Supports HTML tags and limited TailwindCSS style code",
+        "placeholder": "Usually used to insert navigation links to company's other websites"
+      },
+      "footer_html": {
+        "label": "Insert HTML code in footer area",
+        "info": "Supports HTML tags and limited TailwindCSS style code; will completely replace the default footer content",
+        "placeholder": "If you need to keep the default footer content, please insert HTML code in footer_menu_html"
+      },
+      "footer_menu_html": {
+        "label": "Insert HTML code in bottom area (inside footer, footer_menu_html)",
+        "info": "Supports HTML tags and limited TailwindCSS style code",
+        "placeholder": "Usually used to insert external navigation links, friendly links, SEO optimization links to company's other websites"
+      },
+      "features_one_html": {
+        "label": "Insert HTML code in first homepage feature section",
+        "info": "Supports HTML tags and limited TailwindCSS style code",
+        "placeholder": "Usually used to insert navigation links to company's other websites"
+      },
+      "features_two_html": {
+        "label": "Insert HTML code in second homepage feature section",
+        "info": "Supports HTML tags and limited TailwindCSS style code",
+        "placeholder": "Usually used to insert navigation links to company's other websites"
+      }
+    }
+  },
+  "settings": {
+    "weixin_share": {
+      "title": "WeChat configuration",
+      "weixin_app_id": {
+        "label": "Developer ID (AppID)",
+        "info": "<a href='https://mp.weixin.qq.com/cgi-bin/frame'>WeChat official account/setting and development/development interface management</a>"
+      },
+      "weixin_app_secret": {
+        "label": "Developer Password (AppSecret)",
+        "info": ""
+      },
+      "weixin_enabled": {
+        "label": "Do you want to enable WeChat sharing",
+        "info": "Provide the ability to share site pages on WeChat</br>Please configure the IP whitelist (ip: ${service_ip}) in the WeChat official account. After configuration, there will be a period of delay in effectiveness. </br>Check whether WeChat sharing permission is enabled, WeChat official account/setting and development/development interface management:<a href='https://mp.weixin.qq.com/cgi-bin/frame> Web service/sharing interface</a>.</br>Whether the sharing link is a card: enter the sharing card form from the card form, and enter the sharing link form from the link form; The initial link sharing on the webpage can be done through the company's service account or by bookmarking and sharing cards (this rule is a WeChat sharing restriction)."
+      },
+      "weixin_debug": {
+        "label": "Do you want to enable debug prompt",
+        "info": "Please only enable this option during the configuration phase; If WeChat sharing is not configured correctly when accessing the front-end site after activation, an error message will be automatically prompted"
+      }
+    }
+  }
+}

@@ -1,0 +1,165 @@
+{
+  "theme_label": "Docs",
+  "theme_description": "Une documentation que vos utilisateurs lisent vraiment—architecture claire, recherche instantanée et réponses assistées par IA prêtes à l’emploi. Transformez votre base de connaissances en docs produit et guides API soignés, sans reconstruire un site de documentation à la main.",
+  "recommendations": {
+    "fashion": {
+      "name": "Tendance"
+    },
+    "old_school": {
+      "name": "Rétro"
+    }
+  },
+  "templates": {
+    "index": {
+      "mint": {
+        "name": "Documentation classique 3 colonnes",
+        "description": "Site de documentation à 3 colonnes : recherche et Ask AI en barre supérieure, onglets en tête, arborescence à gauche, sommaire à droite ; zone d’article avec retours, pagination et question IA en bas.",
+        "settings": {
+          "links_html": {
+            "label": "HTML personnalisé pour la liste de liens de la barre latérale gauche",
+            "info": "Prend en charge les balises HTML et un code de style TailwindCSS limité"
+          }
+        }
+      }
+    },
+    "page": {
+      "description": "Modèle de page de contenu",
+      "settings": {
+        "title": {
+          "label": "Titre de la page",
+          "info": "Synchronisé depuis la base de connaissances, non modifiable"
+        },
+        "tags": {
+          "label": "Tags de la page"
+        },
+        "description": {
+          "label": "Description de la page"
+        },
+        "icon": {
+          "label": "Icône de la page",
+          "info": "Pour afficher l’icône de la page, ratio 1:1 recommandé"
+        },
+        "content": {
+          "label": "Contenu de la page",
+          "info": "Synchronisé depuis la source, non modifiable"
+        }
+      }
+    }
+  },
+  "generic": {
+    "name": "Réglages généraux",
+    "settings": {
+      "logo_url": {
+        "label": "Image du logo",
+        "info": "Si un logo est défini, il s’affiche dans l’en-tête ; sinon : icône du site + nom du site"
+      },
+      "company_name": {
+        "label": "Nom de l’entreprise",
+        "default": "Baklib.cn",
+        "info": "Affiché dans le pied de page en bas de la page"
+      },
+      "copyright_info": {
+        "label": "ICP / Informations de copyright",
+        "default": "ICP xxxxxx"
+      },
+      "screen_width": {
+        "label": "Largeur d’écran",
+        "choices": {
+          "narrow": "Étroite (1024px)",
+          "medium": "Moyenne (1280px)",
+          "wide": "Large (1536px)",
+          "full": "Plein écran"
+        }
+      },
+      "left_sidebar_width": {
+        "label": "Largeur de la barre latérale gauche (pages détaillées)",
+        "info": "Recommandé : 240px"
+      },
+      "right_sidebar_width": {
+        "label": "Largeur de la barre latérale droite (pages détaillées)",
+        "info": "Recommandé : 240px"
+      },
+      "show_published_at": {
+        "label": "Afficher la date de publication"
+      },
+      "show_author": {
+        "label": "Afficher l’auteur"
+      },
+      "show_card_icon": {
+        "label": "Afficher les icônes de section sur l’accueil",
+        "info": "Recommandé de configurer les icônes dans les réglages de page"
+      },
+      "ai_search_completed_text": {
+        "label": "Texte de fin IA",
+        "info": "Ajoute une phrase après la réponse de l’IA"
+      }
+    }
+  },
+  "page_config": {
+    "name": "Réglages de page",
+    "settings": {
+      "show_page_tools_dropdown": {
+        "label": "Afficher le menu d’outils de page"
+      },
+      "feedback_enabled": {
+        "label": ""
+      }
+    }
+  },
+  "custom_html": {
+    "name": "Code HTML personnalisé",
+    "settings": {
+      "head_html": {
+        "label": "HTML personnalisé dans <head></head>",
+        "info": "Prend en charge les balises HTML et certaines classes TailwindCSS",
+        "placeholder": "Souvent utilisé pour insérer des analytics, un bot de support, etc."
+      },
+      "header_menu_html": {
+        "label": "Insérer du HTML dans la zone de navigation supérieure",
+        "info": "Prend en charge les balises HTML et certaines classes TailwindCSS",
+        "placeholder": "Souvent utilisé pour insérer des liens vers d’autres sites de l’entreprise"
+      },
+      "footer_html": {
+        "label": "Insérer du HTML dans la zone de pied de page",
+        "info": "Prend en charge les balises HTML et certaines classes TailwindCSS ; remplace complètement le pied de page par défaut",
+        "placeholder": "Si vous souhaitez conserver le pied de page par défaut, insérez le HTML dans footer_menu_html"
+      },
+      "footer_menu_html": {
+        "label": "Insérer du HTML en bas (à l’intérieur du footer)",
+        "info": "Prend en charge les balises HTML et certaines classes TailwindCSS",
+        "placeholder": "Souvent utilisé pour les liens externes, liens d’amitié et liens d’optimisation SEO"
+      },
+      "features_one_html": {
+        "label": "Insérer du HTML dans la première section feature de l’accueil",
+        "info": "Prend en charge les balises HTML et certaines classes TailwindCSS",
+        "placeholder": "Souvent utilisé pour insérer des liens vers d’autres sites de l’entreprise"
+      },
+      "features_two_html": {
+        "label": "Insérer du HTML dans la deuxième section feature de l’accueil",
+        "info": "Prend en charge les balises HTML et certaines classes TailwindCSS",
+        "placeholder": "Souvent utilisé pour insérer des liens vers d’autres sites de l’entreprise"
+      }
+    }
+  },
+  "settings": {
+    "weixin_share": {
+      "title": "Configuration WeChat",
+      "weixin_app_id": {
+        "label": "ID développeur (AppID)",
+        "info": "<a href='https://mp.weixin.qq.com/cgi-bin/frame'>Compte officiel WeChat / Paramètres & développement / Gestion des interfaces</a>"
+      },
+      "weixin_app_secret": {
+        "label": "Mot de passe développeur (AppSecret)",
+        "info": ""
+      },
+      "weixin_enabled": {
+        "label": "Activer le partage WeChat ?",
+        "info": "Permet de partager les pages du site sur WeChat.</br>Veuillez configurer la liste blanche d’IP (ip: ${service_ip}) dans le compte WeChat. Un délai de prise d’effet peut s’appliquer.</br>Vérifiez l’autorisation de partage WeChat dans Compte officiel / Paramètres & développement / Gestion des interfaces : <a href='https://mp.weixin.qq.com/cgi-bin/frame'>Service web / Interface de partage</a>."
+      },
+      "weixin_debug": {
+        "label": "Activer les invites de debug ?",
+        "info": "À activer uniquement pendant la configuration ; en cas d’activation, des messages d’erreur seront affichés si le partage WeChat n’est pas correctement configuré."
+      }
+    }
+  }
+}

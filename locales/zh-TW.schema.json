@@ -1,0 +1,165 @@
+{
+  "theme_label": "Docs",
+  "theme_description": "打造使用者願意閱讀的文件體驗：架構清楚、搜尋迅速，並可接入 AI 問答。將知識庫呈現為產品文件與 API 指南，無須從零自建文件站。",
+  "templates": {
+    "index": {
+      "mint": {
+        "name": "經典三欄文件",
+        "description": "三欄文件站：頂欄搜尋與 Ask AI、頂欄 Tab、左側文件樹、右側頁內目錄；正文區支援回饋、上下頁與底部 AI 提問。",
+        "settings": {
+          "links_html": {
+            "label": "頁面左側自定義連結列表 HTML 代碼",
+            "info": "支援 HTML 標籤和有限的 TailwindCSS 樣式代碼"
+          }
+        }
+      }
+    },
+    "page": {
+      "description": "內容頁面模板",
+      "settings": {
+        "title": {
+          "label": "頁面標題",
+          "info": "知識庫同步，不可編輯"
+        },
+        "tags": {
+          "label": "頁面標籤"
+        },
+        "description": {
+          "label": "頁面描述"
+        },
+        "icon": {
+          "label": "頁面圖標",
+          "info": "用於顯示頁面圖標，建議1:1比例"
+        },
+        "content": {
+          "label": "頁面內容",
+          "info": "同步自數據源，不可編輯"
+        }
+      }
+    }
+  },
+  "generic": {
+    "name": "通用設置",
+    "settings": {
+      "logo_url": {
+        "label": "Logo 圖片",
+        "info": "若設置了logo，則頁頭顯示 logo，否則顯示：網站圖標+站點名稱"
+      },
+      "company_name": {
+        "label": "公司名稱",
+        "default": "Baklib.cn",
+        "info": "顯示在頁面底部頁腳位置"
+      },
+      "copyright_info": {
+        "label": "備案/版權信息",
+        "default": "蜀ICP備xxxx號"
+      },
+      "screen_width": {
+        "label": "頁面寬度",
+        "choices": {
+          "narrow": "窄（1024像素）",
+          "medium": "適中（1280像素）",
+          "wide": "寬（1536像素）",
+          "full": "滿屏"
+        }
+      },
+      "left_sidebar_width": {
+        "label": "左側邊欄寬度(詳細頁面中)",
+        "info": "建議：240px"
+      },
+      "right_sidebar_width": {
+        "label": "右側邊欄寬度(詳細頁面中)",
+        "info": "建議：240px"
+      },
+      "show_published_at": {
+        "label": "顯示發布時間"
+      },
+      "show_author": {
+        "label": "顯示作者"
+      },
+      "show_card_icon": {
+        "label": "首頁是否顯示欄目ICON圖標",
+        "info": "建議自行在頁面設置中配置圖標"
+      },
+      "ai_search_completed_text": {
+        "label": "AI回答結束語",
+        "info": "AI回答結束後添加一句話"
+      }
+    }
+  },
+  "page_config": {
+    "name": "頁面配置",
+    "settings": {
+      "show_page_tools_dropdown": {
+        "label": "顯示頁面工具下拉選單"
+      },
+      "feedback_enabled": {
+        "label": ""
+      }
+    }
+  },
+  "custom_html": {
+    "name": "自定義 HTML 代碼",
+    "settings": {
+      "head_html": {
+        "label": "自定義 <head></head> 標籤中的 HTML",
+        "info": "支持HTML標籤和有限的TailwindCSS樣式代碼",
+        "placeholder": "通常在這裡插入訪問統計、客服機器人等嵌入代碼"
+      },
+      "header_menu_html": {
+        "label": "頂部導航區域插入 HTML 代碼",
+        "info": "支持HTML標籤和有限的TailwindCSS樣式代碼",
+        "placeholder": "通常在這裡插入公司其他網站的導航連結"
+      },
+      "footer_html": {
+        "label": "頁腳區域插入 HTML 代碼",
+        "info": "支持HTML標籤和有限的TailwindCSS樣式代碼; 將完全替換默認頁腳內容",
+        "placeholder": "若需要保留默認頁腳內容，請在 footer_menu_html 中插入 HTML 代碼"
+      },
+      "footer_menu_html": {
+        "label": "底部區域插入 HTML 代碼(footer 內，footer_menu_html)",
+        "info": "支持HTML標籤和有限的TailwindCSS樣式代碼",
+        "placeholder": "通常在這裡插入公司其他網站的外部導航連結、友情連結、SEO 優化連結等"
+      },
+      "features_one_html": {
+        "label": "首頁功能區域一插入 HTML 代碼",
+        "info": "支持HTML標籤和有限的TailwindCSS樣式代碼",
+        "placeholder": "通常在這裡插入公司其他網站的導航連結"
+      },
+      "features_two_html": {
+        "label": "首頁功能區域二插入 HTML 代碼",
+        "info": "支持HTML標籤和有限的TailwindCSS樣式代碼",
+        "placeholder": "通常在這裡插入公司其他網站的導航連結"
+      }
+    }
+  },
+  "settings": {
+    "weixin_share": {
+      "title": "微信配寘",
+      "weixin_app_id": {
+        "label": "開發者ID（AppID）",
+        "info": "<a href='https://mp.weixin.qq.com/cgi-bin/frame'>微信公眾號/設定與開發/開發介面管理</a>中獲取"
+      },
+      "weixin_app_secret": {
+        "label": "開發者密碼（AppSecret）",
+        "info": ""
+      },
+      "weixin_enabled": {
+        "label": "是否啟用微信分享",
+        "info": "提供網站頁面微信分享的能力</br>1.請在微信公眾號中配寘ip白名單（ip: ${service_ip}），配寘後將有一段時間的生效延遲。 </br>2.檢查是否開啟微信分享許可權，微信公眾號/設定與開發/開發介面管理：<a href='https://mp.weixin.qq.com/cgi-bin/frame'>網頁服務/分享介面</a>。</br>3.分享連結是否為卡片：從卡片形式進入分享卡片形式，連結形式進入分享連結形式； 網頁初始連結分享可由公司的服務號中或收藏後進行卡片分享（此規則為微信分享限制）。"
+      },
+      "weixin_debug": {
+        "label": "是否開啟debug提示",
+        "info": "請僅在配寘階段開啟此選項； 開啟後在訪問前端網站時若未正確配寘微信分享將自動提示錯誤資訊"
+      }
+    }
+  },
+  "recommendations": {
+    "fashion": {
+      "name": ""
+    },
+    "old_school": {
+      "name": ""
+    }
+  }
+}

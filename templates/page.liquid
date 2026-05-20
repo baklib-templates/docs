@@ -1,0 +1,51 @@
+{% render 'index/mint/container', page: page %}
+
+{% schema %}
+{
+	"name": "page_mint",
+	"description": "t:schema.templates.page.description",
+	"thumb_url": "images/schema/page.png",
+	"sub_page_templates": ["page"],
+	"force_sub_page_template": true,
+	"settings": [
+		{
+			"id": "icon",
+			"type": "image_picker",
+			"ratio": "1:1",
+			"width": 100,
+			"label": "t:schema.templates.page.settings.icon.label",
+			"info": "t:schema.templates.page.settings.icon.info"
+		},
+		{
+			"id": "title",
+			"type": "text",
+			"readonly": true,
+			"label": "t:schema.templates.page.settings.title.label",
+			"info": "t:schema.templates.page.settings.title.info",
+			"to_markdown": true
+		},
+		{
+			"id": "description",
+			"type": "textarea",
+			"label": "t:schema.templates.page.settings.description.label",
+			"to_markdown": true
+		},
+		{
+			"id": "tags",
+			"type": "tag_picker",
+			"multiple": true,
+			"label": "t:schema.templates.page.settings.tags.label",
+			"queryable": true,
+			"to_markdown": true
+		},
+		{
+			"id": "content",
+			"type": "richtext",
+			"label": "t:schema.templates.page.settings.content.label",
+			"readonly": true,
+			"info": "t:schema.templates.page.settings.content.info",
+			"to_markdown": true
+		}
+	]
+}
+{% endschema %}

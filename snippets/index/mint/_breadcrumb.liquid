@@ -1,0 +1,24 @@
+{% assign min_depth = min_depth | default: 1 %}
+{% assign depth = breadcrumb | size %}
+{% if depth > min_depth %}
+  <nav class="flex items-center gap-x-2 text-sm leading-normal" aria-label="{{ 'snippets.mint.breadcrumb.label' | t: '面包屑' }}">
+    {% for crumb in breadcrumb %}
+      {% if forloop.index0 != 0 %}
+        {% if forloop.index0 > 1 %}
+          <span class="shrink-0 text-base-content/40 select-none" aria-hidden="true">></span>
+        {% endif %}
+        {% if forloop.last %}
+          <span class="line-clamp-1 font-normal text-base-content">{{ crumb.link_text }}</span>
+        {% else %}
+          <a
+            href="{{ crumb.path }}"
+            data-turbo-frame="_top"
+            class="line-clamp-1 text-base-content/60 transition-colors hover:text-base-content"
+          >
+            {{- crumb.link_text -}}
+          </a>
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+  </nav>
+{% endif %}

@@ -1,0 +1,165 @@
+{
+  "theme_label": "Docs",
+  "theme_description": "Dokumentation, die Nutzer wirklich lesen—klare Informationsarchitektur, blitzschnelle Suche und KI-gestützte Antworten out of the box. Verwandeln Sie Ihre Wissensdatenbank in überzeugende Produkt-Docs und API-Guides, ohne eine eigene Doc-Site von Grund auf zu bauen.",
+  "recommendations": {
+    "fashion": {
+      "name": "Fashion"
+    },
+    "old_school": {
+      "name": "Retro"
+    }
+  },
+  "templates": {
+    "index": {
+      "mint": {
+        "name": "Klassische 3-Spalten-Doku",
+        "description": "3-Spalten-Dokumentationsseite: Suche und Ask AI in der Kopfzeile, Tabs oben, Dokumentenbaum links, Inhaltsverzeichnis rechts; Artikelbereich mit Feedback, Vor/Zurück und AI-Frage am Ende.",
+        "settings": {
+          "links_html": {
+            "label": "Benutzerdefiniertes HTML für linke Seitenleisten-Linkliste",
+            "info": "Unterstützt HTML-Tags und eingeschränkten TailwindCSS-Stilcode"
+          }
+        }
+      }
+    },
+    "page": {
+      "description": "Inhaltsseiten-Vorlage",
+      "settings": {
+        "title": {
+          "label": "Seitentitel",
+          "info": "Mit der Wissensdatenbank synchronisiert, nicht editierbar"
+        },
+        "tags": {
+          "label": "Seiten-Tags"
+        },
+        "description": {
+          "label": "Seitenbeschreibung"
+        },
+        "icon": {
+          "label": "Seitensymbol",
+          "info": "Zur Anzeige des Seitensymbols, empfohlenes Verhältnis 1:1"
+        },
+        "content": {
+          "label": "Seiteninhalt",
+          "info": "Aus der Datenquelle synchronisiert, nicht editierbar"
+        }
+      }
+    }
+  },
+  "generic": {
+    "name": "Allgemeine Einstellungen",
+    "settings": {
+      "logo_url": {
+        "label": "Logo-Bild",
+        "info": "Wenn ein Logo gesetzt ist, wird es im Header angezeigt; sonst: Website-Symbol + Site-Name"
+      },
+      "company_name": {
+        "label": "Firmenname",
+        "default": "Baklib.cn",
+        "info": "Wird im Footer am Seitenende angezeigt"
+      },
+      "copyright_info": {
+        "label": "ICP/Copyright-Information",
+        "default": "ICP xxxxxx"
+      },
+      "screen_width": {
+        "label": "Seitenbreite",
+        "choices": {
+          "narrow": "Schmal (1024px)",
+          "medium": "Mittel (1280px)",
+          "wide": "Breit (1536px)",
+          "full": "Vollbild"
+        }
+      },
+      "left_sidebar_width": {
+        "label": "Linke Seitenleisten-Breite (Detailseiten)",
+        "info": "Empfohlen: 240px"
+      },
+      "right_sidebar_width": {
+        "label": "Rechte Seitenleisten-Breite (Detailseiten)",
+        "info": "Empfohlen: 240px"
+      },
+      "show_published_at": {
+        "label": "Veröffentlichungszeit anzeigen"
+      },
+      "show_author": {
+        "label": "Autor anzeigen"
+      },
+      "show_card_icon": {
+        "label": "Sektions-Symbole auf der Startseite anzeigen",
+        "info": "Empfohlen, Symbole in den Seiteneinstellungen zu konfigurieren"
+      },
+      "ai_search_completed_text": {
+        "label": "KI-Abschlusstext",
+        "info": "Fügt nach der KI-Antwort einen Satz hinzu"
+      }
+    }
+  },
+  "page_config": {
+    "name": "Seiteneinstellungen",
+    "settings": {
+      "show_page_tools_dropdown": {
+        "label": "Seiten-Tools-Dropdown anzeigen"
+      },
+      "feedback_enabled": {
+        "label": ""
+      }
+    }
+  },
+  "custom_html": {
+    "name": "Benutzerdefinierter HTML-Code",
+    "settings": {
+      "head_html": {
+        "label": "Benutzerdefiniertes HTML in <head></head>",
+        "info": "Unterstützt HTML-Tags und eingeschränkte TailwindCSS-Klassen",
+        "placeholder": "Üblich für Analytics, Support-Bot etc."
+      },
+      "header_menu_html": {
+        "label": "HTML im oberen Navigationsbereich einfügen",
+        "info": "Unterstützt HTML-Tags und eingeschränkte TailwindCSS-Klassen",
+        "placeholder": "Üblich für Navigationslinks zu anderen Firmenwebsites"
+      },
+      "footer_html": {
+        "label": "HTML im Footer-Bereich einfügen",
+        "info": "Unterstützt HTML-Tags und eingeschränkte TailwindCSS-Klassen; ersetzt den Standard-Footer komplett",
+        "placeholder": "Wenn der Standard-Footer erhalten bleiben soll, bitte HTML in footer_menu_html einfügen"
+      },
+      "footer_menu_html": {
+        "label": "HTML im unteren Bereich einfügen (innerhalb des Footers)",
+        "info": "Unterstützt HTML-Tags und eingeschränkte TailwindCSS-Klassen",
+        "placeholder": "Üblich für externe Navigation, Partner-Links und SEO-Links"
+      },
+      "features_one_html": {
+        "label": "HTML in der ersten Feature-Sektion der Startseite einfügen",
+        "info": "Unterstützt HTML-Tags und eingeschränkte TailwindCSS-Klassen",
+        "placeholder": "Üblich für Navigationslinks zu anderen Firmenwebsites"
+      },
+      "features_two_html": {
+        "label": "HTML in der zweiten Feature-Sektion der Startseite einfügen",
+        "info": "Unterstützt HTML-Tags und eingeschränkte TailwindCSS-Klassen",
+        "placeholder": "Üblich für Navigationslinks zu anderen Firmenwebsites"
+      }
+    }
+  },
+  "settings": {
+    "weixin_share": {
+      "title": "WeChat-Konfiguration",
+      "weixin_app_id": {
+        "label": "Entwickler-ID (AppID)",
+        "info": "<a href='https://mp.weixin.qq.com/cgi-bin/frame'>WeChat-Konto / Einstellungen & Entwicklung / Entwicklungsschnittstelle</a>"
+      },
+      "weixin_app_secret": {
+        "label": "Entwicklerschlüssel (AppSecret)",
+        "info": ""
+      },
+      "weixin_enabled": {
+        "label": "WeChat-Sharing aktivieren?",
+        "info": "Stellt die Möglichkeit bereit, Seiten in WeChat zu teilen.</br>Bitte tragen Sie die IP-Whitelist (ip: ${service_ip}) im WeChat-Konto ein. Änderungen können verzögert wirksam werden.</br>Prüfen Sie die Sharing-Berechtigung im WeChat-Konto / Einstellungen & Entwicklung / Entwicklungsschnittstelle: <a href='https://mp.weixin.qq.com/cgi-bin/frame'>Webdienst / Sharing-Schnittstelle</a>."
+      },
+      "weixin_debug": {
+        "label": "Debug-Hinweise aktivieren?",
+        "info": "Bitte nur während der Konfigurationsphase aktivieren; bei aktivierter Debug-Anzeige werden Konfigurationsfehler beim Aufruf der Seite gemeldet."
+      }
+    }
+  }
+}

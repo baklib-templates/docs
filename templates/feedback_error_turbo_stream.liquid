@@ -1,0 +1,15 @@
+{% layout none %}
+
+{% assign toast_message = errors | presence %}
+{% unless toast_message %}
+  {% assign toast_message = 'templates.feedback.error_message' | t: '提交失败，请检查后重试。' %}
+{% endunless %}
+
+<turbo-stream action="remove" target="js--feedback-toast"></turbo-stream>
+<turbo-stream action="remove" target="js--feedback-error"></turbo-stream>
+
+<turbo-stream action="append" target="js--body">
+  <template>
+    {% render 'feedback_toast', variant: 'error', message: toast_message %}
+  </template>
+</turbo-stream>

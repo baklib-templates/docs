@@ -1,0 +1,23 @@
+{% layout none %}
+
+{% assign toast_message = success | presence %}
+{% unless toast_message %}
+  {% assign toast_message = 'templates.feedback.success_message' | t: '感谢您的反馈，我们会持续优化内容体验。' %}
+{% endunless %}
+
+<turbo-stream action="remove" target="js--feedback-modal"></turbo-stream>
+
+<turbo-stream action="replace" target="js--feedback-{{ page.id }}">
+  <template>
+    {% render 'feedback_button', page: page %}
+  </template>
+</turbo-stream>
+
+<turbo-stream action="remove" target="js--feedback-toast"></turbo-stream>
+<turbo-stream action="remove" target="js--feedback-error"></turbo-stream>
+
+<turbo-stream action="append" target="js--body">
+  <template>
+    {% render 'feedback_toast', variant: 'success', message: toast_message %}
+  </template>
+</turbo-stream>

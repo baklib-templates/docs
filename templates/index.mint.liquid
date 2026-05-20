@@ -1,0 +1,23 @@
+{% comment %} 可以用不同的theme模板来实现不同的风格，比如palm、willow、linden、luma、maple、almond、luma、maple、almond、luma、maple、almond {% endcomment %}
+{% render 'index/mint/container', page: page %}
+
+{% schema %}
+  {
+    "name": "t:schema.templates.index.mint.name",
+    "description": "t:schema.templates.index.mint.description",
+    "thumb_url": "images/schema/index-mint.png",
+    "preview_image_urls": [
+      "images/schema/index-mint.png"
+    ],
+    "sub_page_templates": ["page_mint"],
+    "force_sub_page_template": true,
+    "settings": [
+      {
+        "id": "links_html",
+        "type": "html",
+        "label": "t:schema.templates.index.mint.settings.links_html.label",
+        "info": "t:schema.templates.index.mint.settings.links_html.info"
+      }
+    ]
+  }
+{% endschema %}

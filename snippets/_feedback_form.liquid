@@ -1,0 +1,72 @@
+{% assign default_title = 'snippets.feedback_form.title' | t %}
+{% assign title = site.plugins.feedback.useful_label | presence | default: default_title %}
+{% assign message_enabled = site.plugins.feedback.message_enabled %}
+{% assign useful_types = site.plugins.feedback.useful_types %}
+{% assign posted_feedback = page.visitor_posted_feedback | default: {} %}
+
+{% form_tag 'feedback', page: page %}
+  <section class="space-y-5 p-4">
+    {% # 标题 %}
+    {% if title %}
+      <h1 class="text-center text-2xl font-bold">{{ title }}</h1>
+    {% endif %}
+
+    {% # 反馈类型 %}
+    <div
+      class="flex items-center justify-center flex-wrap gap-3"
+      x-data="{ selected: '{{ posted_feedback.emoji | default: "" | escape_once }}' }"
+    >
+      {% if message_enabled %}
+        {% for useful_type in useful_types %}
+          <label
+            class="badge badge-soft inline-flex py-4 cursor-pointer"
+            :class="{ '!bg-primary-200 dark:!bg-primary-700 !border-primary-200 dark:!border-primary-700': selected === '{{ useful_type.emoji |  escape_once }}' }"
+          >
+            <input
+              type="radio"
+              name="{{ form.feedback_emoji_field_name }}"
+              value="{{ useful_type.emoji |  escape_once }}"
+              x-model="selected"
+              class="hidden">
+            <span class="text-2xl">{{ useful_type.emoji }}</span>
+            <span>{{ useful_type.label }}</span>
+          </label>
+        {% endfor %}
+      {% else %}
+        {% for useful_type in useful_types %}
+          <button class="badge badge-soft inline-flex py-4" name="{{ form.feedback_emoji_field_name }}" value="{{ useful_type.emoji |  escape_once }}" :class="{ 'bg-gray-200': selected === '{{ useful_type.emoji | escape_once }}' }">
+            <span class="text-2xl">{{ useful_type.emoji }}</span>
+            <span>{{ useful_type.label }}</span>
+          </button>
+        {% endfor %}
+      {% endif %}
+    </div>
+
+    {% if message_enabled %}
+      {%# 反馈内容 %}
+      <fieldset class="fieldset">
+        <legend class="fieldset-legend">{{ 'snippets.feedback_form.message_label' | t }}</legend>
+        <textarea class="textarea h-24 w-full" name="{{ form.feedback_message_field_name }}" placeholder="{{ 'snippets.feedback_form.message_placeholder' | t }}"></textarea>
+        <div class="flex justify-between">
+          <div class="label">
+            {% if message_required %}
+              {{ 'snippets.feedback_form.message_required' | t }}
+            {% endif %}
+          </div>
+          <div class="label">
+            {% if page.visitor_posted_feedback %}
+              {{ 'generic.feedback_created_at' | t }} {{ posted_feedback.created_at | date: "%Y-%m-%d %H:%M:%S" }}
+            {% endif %}
+          </div>
+        </div>
+      </fieldset>
+    {% endif %}
+
+    {% # 提交按钮 %}
+    <div class="flex justify-center space-x-4">
+      <button type="submit" class="btn btn-primary">{{ 'snippets.feedback_form.submit' | t }}</button>
+      <button type="button" onclick="this.closest('dialog').close()" class="btn">{{ 'snippets.feedback_form.cancel' | t }}</button>
+    </div>
+  </section>
+{% endform_tag %}
+
