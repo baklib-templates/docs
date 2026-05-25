@@ -79,8 +79,8 @@
         }
       },
       "maple": {
-        "name": "Maple（Mintlify ドキュメントシェル）",
-        "description": "Mintlify Maple レイアウト：左サイドバーにロゴ・検索・サイト全体のグループナビ；本文はラベル・Copy page・ページ内 TOC；AI サイドバーと検索モーダルは Mint と同様。",
+        "name": "Maple（ドキュメントシェル）",
+        "description": "Maple レイアウト：左サイドバーにロゴ・検索・サイト全体のグループナビ；本文はラベル・Copy page・ページ内 TOC；AI サイドバーと検索モーダルは Mint と同様。",
         "settings": {
           "left_sidebar_width": {
             "info": "Maple サイドバーは狭め、推奨 280px"

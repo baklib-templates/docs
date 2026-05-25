@@ -79,8 +79,8 @@
         }
       },
       "maple": {
-        "name": "Maple (Mintlify docs shell)",
-        "description": "Mintlify Maple layout: left sidebar with logo, search, and grouped site navigation; document body with eyebrow, Copy page, and in-page TOC; AI sidebar and search modal match Mint.",
+        "name": "Maple (docs shell)",
+        "description": "Maple layout: left sidebar with logo, search, and grouped site navigation; document body with eyebrow, Copy page, and in-page TOC; AI sidebar and search modal match Mint.",
         "settings": {
           "left_sidebar_width": {
             "info": "Maple sidebar is narrower; recommended 280px"

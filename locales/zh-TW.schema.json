@@ -71,8 +71,8 @@
         }
       },
       "maple": {
-        "name": "Maple（Mintlify 文件殼）",
-        "description": "Mintlify Maple 版面：左側欄整合 Logo、搜尋與全站分組導覽；正文支援眉題、Copy page 與頁內目錄；AI 側欄與搜尋彈窗與 Mint 一致。",
+        "name": "Maple（文件殼）",
+        "description": "Maple 版面：左側欄整合 Logo、搜尋與全站分組導覽；正文支援眉題、Copy page 與頁內目錄；AI 側欄與搜尋彈窗與 Mint 一致。",
         "settings": {
           "left_sidebar_width": {
             "info": "Maple 側欄較窄，建議 280px"

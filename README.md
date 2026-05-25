@@ -40,8 +40,6 @@ Baklib **Wiki** theme focused on **product documentation** (Mintlify-inspired): 
 
 Shared partials live in [`snippets/index_themes/`](snippets/index_themes/) (`_decoration`, `_hero_search`, `_channels_grid`, `_topic_grid`, `_recent_list`, `_hottest_list`, `_features_html`). Add a new variant by creating one more `index.<theme>.liquid` that renders the same partials with different parameters and a `.theme-<theme>` wrapper class.
 
-> **Migration note**: the previous `index.docs.liquid` has been replaced by `index.mint.liquid`. If a Baklib site still references the old template, switch its home page template selection to **Mint** in the Baklib admin. Schema field IDs are unchanged, so existing settings (slogan, hero color, hot tags…) carry over verbatim.
-
 ## Supported locales
 
 Runtime translations and theme-editor (schema) translations ship for:

@@ -79,8 +79,8 @@
         }
       },
       "maple": {
-        "name": "Maple (shell doc Mintlify)",
-        "description": "Disposition Maple Mintlify : barre latérale avec logo, recherche et navigation groupée ; corps avec eyebrow, Copy page et TOC ; panneau IA et modal de recherche identiques à Mint.",
+        "name": "Maple (shell doc)",
+        "description": "Disposition Maple : barre latérale avec logo, recherche et navigation groupée ; corps avec eyebrow, Copy page et TOC ; panneau IA et modal de recherche identiques à Mint.",
         "settings": {
           "left_sidebar_width": {
             "info": "Barre latérale Maple plus étroite ; 280px recommandé"

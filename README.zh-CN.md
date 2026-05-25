@@ -2,7 +2,7 @@
 
 [English](README.md) | 简体中文
 
-面向 Baklib **Wiki**、对标 **Mintlify** 思路的 **纯文档** 主题：侧栏导航、页内目录、搜索与 AI 辅助、分享到 LLM、Turbo 导航——不包含「帮助中心 / FAQ 首页」等非文档模板。
+面向 Baklib **Wiki** **纯文档** 主题：侧栏导航、页内目录、搜索与 AI 辅助、分享到 LLM、Turbo 导航——不包含「帮助中心 / FAQ 首页」等非文档模板。
 
 ## 环境要求
 
@@ -15,16 +15,16 @@
 | ----------------------------- | ---------------------------------------- |
 | `config/settings_schema.json` | 主题元数据、可选语言与编辑器配置项                        |
 | `layout/`                     | 基础布局                                     |
-| `templates/`                  | 页面模板（9 套对标 Mintlify 的首页变体、目录列表、文章详情、搜索、标签、视频、导出等）  |
+| `templates/`                  | 页面模板  |
 | `snippets/`                   | 片段（页头、页脚、侧栏、页面工具、反馈、`index_themes/*` 等）   |
 | `locales/`                    | 前台文案（`*.json`）与主题编辑器文案（`*.schema.json`）  |
 | `src/`                        | 源码 CSS/JS（Tailwind、esbuild）              |
 | `assets/`                     | 构建后的样式、脚本与主题预览图                          |
 | `statics/`                    | 自定义静态 HTML 示例                            |
 
-## 首页模板（对标 Mintlify）
+## 首页模板
 
-`templates/index.<theme>.liquid` 提供 9 套对标 [Mintlify themes](https://www.mintlify.com/docs/customize/themes) 的首页变体，所有 schema 字段 ID 完全一致（后台已配置数据可平滑迁移），差异仅在布局密度、Hero 形态、装饰背景，由 [`src/stylesheets/themes.css`](src/stylesheets/themes.css) 中 `.theme-<name>` marker 类驱动。
+`templates/index.<theme>.liquid` 提供 9 套对标 [themes](https://www.mintlify.com/docs/customize/themes) 的首页变体，所有 schema 字段 ID 完全一致（后台已配置数据可平滑迁移），差异仅在布局密度、Hero 形态、装饰背景，由 [`src/stylesheets/themes.css`](src/stylesheets/themes.css) 中 `.theme-<name>` marker 类驱动。
 
 | 模板                    | 变体          | 一句话说明                                                       |
 | --------------------- | ----------- | ----------------------------------------------------------- |
@@ -39,8 +39,6 @@
 | `index.luma.liquid`   | Luma        | 最克制的一款：装饰极少，2 列扁平卡片。                                        |
 
 公共片段位于 [`snippets/index_themes/`](snippets/index_themes/)（`_decoration` / `_hero_search` / `_channels_grid` / `_topic_grid` / `_recent_list` / `_hottest_list` / `_features_html`）。新增主题只需再写一个 `index.<theme>.liquid`，渲染同样的 partial 但传不同参数，并加上 `.theme-<theme>` 包裹类。
-
-> **迁移提示**：原 `index.docs.liquid` 已被 `index.mint.liquid` 取代。如果某个 Baklib 站点仍绑定旧模板，请在后台首页模板下拉中改选 **Mint**。schema 字段 ID 不变，已配置的 slogan、hero 颜色、热门标签等会原样沿用。
 
 ## 支持的语言
 

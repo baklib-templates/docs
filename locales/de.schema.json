@@ -79,8 +79,8 @@
         }
       },
       "maple": {
-        "name": "Maple (Mintlify-Doku-Shell)",
-        "description": "Mintlify-Maple-Layout: linke Sidebar mit Logo, Suche und gruppiertem Navigationsbaum; Dokumentkörper mit Eyebrow, Copy page und Inhaltsverzeichnis; KI-Sidebar und Suchmodal wie bei Mint.",
+        "name": "Maple (Doku-Shell)",
+        "description": "Maple-Layout: linke Sidebar mit Logo, Suche und gruppiertem Navigationsbaum; Dokumentkörper mit Eyebrow, Copy page und Inhaltsverzeichnis; KI-Sidebar und Suchmodal wie bei Mint.",
         "settings": {
           "left_sidebar_width": {
             "info": "Maple-Seitenleiste schmaler; empfohlen 280px"
