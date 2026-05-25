@@ -23,27 +23,17 @@
       "title_posted": "感谢您的反馈",
       "title_unposted": "提交反馈"
     },
+    "page": {
+      "prev_page": "上一页",
+      "next_page": "下一页"
+    },
     "mint": {
       "search": {
         "ask_ai_section": "向 AI 助手提问",
         "ask_ai_lead": "帮我介绍一下",
         "ask_ai_trailing": "",
         "ask_ai_ellipsis": "…",
-        "ask_ai_query_display": "「%{query}」",
-        "ask_ai_message": "请介绍一下「%{query}」"
-      },
-      "ai": {
-        "assistant_title": "AI 助手",
-        "input_placeholder": "输入你的问题…",
-        "send": "发送",
-        "disclaimer": "内容由 AI 生成，可能存在错误，请自行核实。",
-        "network_error": "网络错误，请重试",
-        "timeout_error": "响应超时，请重试",
-        "reading": "正在阅读文档…",
-        "thinking_status": "正在思考…",
-        "copy_response": "复制回答",
-        "retry_response": "重新生成",
-        "clear_chat": "清空对话"
+        "ask_ai_query_display": "「%{query}」"
       },
       "breadcrumb": {
         "label": "面包屑"
@@ -84,6 +74,17 @@
           "update_docs": "更新文档",
           "update_docs_label": "更新此文档"
         }
+      },
+      "home": {
+        "search_placeholder": "搜索文档、指南与 API…",
+        "channel_card_fallback_desc": "浏览该频道下的文档与说明。",
+        "guide_card_fallback_desc": "进入该专题浏览相关文档。",
+        "recommended_title": "推荐阅读",
+        "view_all": "查看全部",
+        "tag_recent": "最近更新",
+        "rec_default_1": "快速开始：环境准备与首次部署",
+        "rec_default_2": "API 认证与调用示例",
+        "rec_default_3": "常见问题与排错指引"
       }
     },
     "page_tools": {
@@ -98,6 +99,91 @@
       "connect_to_cursor_description": "在 Cursor 中安装 MCP Server",
       "connect_to_vscode": "连接到 VS Code",
       "connect_to_vscode_description": "在 VS Code 中安装 MCP Server"
+    },
+    "maple": {
+      "home": {
+        "recommended_title": "推荐内容",
+        "search_placeholder": "输入关键词，搜索您需要的指南或文档...",
+        "channel_card_fallback_desc": "进入该专题浏览相关文档与说明。",
+        "view_all": "查看全部",
+        "tag_tech": "技术推荐",
+        "tag_official": "官方发布",
+        "rec_default_1": "【核心主线】行业规范执行细则与修订说明",
+        "rec_default_2": "【操作手册】检索、导出与批量处理指南",
+        "rec_default_3": "【最佳实践】团队协作与权限配置清单",
+        "rec_default_4": "【入门必读】第一次使用前需要完成的设置",
+        "rec_default_5": "系统配置与架构优化手册",
+        "rec_default_6": "常见错误提示与排查步骤汇总"
+      },
+      "breadcrumb": {
+        "label": "面包屑"
+      },
+      "nav": {
+        "open_sidebar": "打开导航菜单"
+      },
+      "page_feedback": {
+        "prompt": "这个页面对您有帮助吗？",
+        "yes_button": "是的",
+        "no_button": "不",
+        "follow_up_yes": "太棒了！什么方法对你最有效？",
+        "follow_up_no": "我们如何改进产品？",
+        "cancel": "取消",
+        "submit": "提交反馈",
+        "thanks": "感谢你的反馈，我们会持续优化内容体验。",
+        "other": "其他",
+        "other_prefix": "其他：",
+        "other_details_sr": "其他反馈详情",
+        "other_placeholder": "（可选）您能否分享一下您的经历？",
+        "yes": {
+          "works_as_expected": "按预期发挥作用",
+          "works_as_expected_label": "该指南按预期发挥作用。",
+          "easy_to_find": "很容易找到信息",
+          "easy_to_find_label": "我很容易就找到了我需要的信息。",
+          "easy_to_understand": "产品功能容易理解",
+          "easy_to_understand_label": "产品及其功能很容易理解。",
+          "docs_updated": "文档已更新",
+          "docs_updated_label": "文档已更新。"
+        },
+        "no": {
+          "faster_start": "帮助我更快开始",
+          "faster_start_label": "帮我更快开始",
+          "easier_find": "更容易找到内容",
+          "easier_find_label": "让我更容易找到我想要的东西",
+          "better_understand": "更好理解产品",
+          "better_understand_label": "让用户能够轻松理解产品及其功能。",
+          "update_docs": "更新文档",
+          "update_docs_label": "更新此文档"
+        }
+      },
+      "search": {
+        "ask_ai_section": "向 AI 助手提问",
+        "ask_ai_lead": "帮我介绍一下",
+        "ask_ai_ellipsis": "…",
+        "ask_ai_trailing": "",
+        "ask_ai_query_display": "「%{query}」"
+      }
+    },
+    "ai": {
+      "assistant_title": "AI 助手",
+      "send": "发送",
+      "pop_out_unsupported": "当前浏览器不支持独立窗口",
+      "pop_out_window": "独立窗口",
+      "dock_to_sidebar": "收回侧边栏",
+      "pip_active": "AI 助手已在独立窗口中打开",
+      "clear_chat": "清空对话",
+      "input_placeholder": "输入你的问题…",
+      "copy_response": "复制回答",
+      "retry_response": "重新生成"
+    },
+    "home_feedback": {
+      "title": "在线反馈",
+      "subtitle": "描述您遇到的问题、文档遗漏或改进建议，我们会尽快处理。",
+      "message_label": "详细说明",
+      "message_placeholder": "请尽量说明具体页面、场景或期望补充的内容…",
+      "type_label": "反馈类型"
+    },
+    "home": {
+      "feedback_btn": "在线反馈"
     }
   },
   "templates": {
@@ -120,9 +206,19 @@
     }
   },
   "ai": {
-    "completed": "AI 回答完毕."
+    "completed": "AI 回答完毕.",
+    "reading": "正在阅读文档…",
+    "thinking_status": "正在思考…",
+    "network_error": "网络错误，请重试",
+    "timeout_error": "响应超时，请重试",
+    "copy_success": "已复制",
+    "copy_error": "复制失败",
+    "ask_ai_message": "请介绍一下「%{query}」",
+    "input_placeholder": "输入你的问题…",
+    "disclaimer": "内容由 AI 生成，可能存在错误，请自行核实。"
   },
   "generic": {
+    "published_at": "发布时间",
     "feedback_created_at": "上次反馈于",
     "buttons": {
       "signout": "退出登录",
@@ -131,5 +227,13 @@
   },
   "search": {
     "placeholder": "搜索..."
+  },
+  "placeholders": {
+    "search": ""
+  },
+  "mint": {
+    "search": {
+      "ask_ai_message": "请介绍一下「%{query}」"
+    }
   }
 }

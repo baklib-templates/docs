@@ -8,7 +8,7 @@
 {% assign parent_path = parent_path | default: '/' %}
 
 <div
-  class="min-w-0 w-full max-w-full"
+  class="min-w-0 w-full max-w-full [&_li_ul]:relative [&_li_ul]:pl-6 [&_li_ul]:before:absolute [&_li_ul]:before:top-3 [&_li_ul]:before:bottom-3 [&_li_ul]:before:left-[1.125rem] [&_li_ul]:before:w-px [&_li_ul]:before:bg-base-content [&_li_ul]:before:opacity-10 [&_li_ul]:before:content-['']"
   data-controller="turbo-nav-tree"
   data-turbo-nav-tree-nav-tree-value='{{ nav_tree | to_json | escape }}'
   data-turbo-nav-tree-depth-value='{{ depth }}'

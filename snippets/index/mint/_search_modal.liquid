@@ -6,12 +6,12 @@
 {% assign search_ask_ai_query_display = "snippets.mint.search.ask_ai_query_display" | t: "「%{query}」" %}
 <dialog
   id="site-search-modal"
-  class="site-search-modal modal !items-start justify-center px-3 pt-12 pb-8 sm:px-4 sm:pt-16 sm:pb-10"
+  class="modal"
   data-header-search-target="modal"
-  aria-label="{{ 'search.placeholder' | t: '搜索' }}"
+  aria-label="{{ 'search.placeholder' | t: '搜索...' }}"
 >
   <div
-    class="modal-box flex max-h-[min(85vh,720px)] w-[min(100vw-1rem,36rem)] max-w-none flex-col gap-0 overflow-hidden rounded-2xl border border-base-200 bg-base-100 p-0 shadow-2xl sm:max-w-[min(100vw-2rem,36rem)]"
+    class="modal-box flex max-h-[min(85vh,720px)] w-[min(100vw-1rem,36rem)] max-w-none flex-col gap-0 overflow-hidden rounded-2xl border border-base-200 bg-base-100 p-0 shadow-2xl sm:max-w-[min(100vw-2rem,36rem)] fixed top-[5vh] left-1/2 -translate-x-1/2"
   >
     <div class="shrink-0 border-b border-base-200 bg-base-100 px-3 py-3 sm:px-4">
       <label class="border border-base-300 flex h-11 w-full items-center gap-2 rounded-xl bg-base-100 px-3 text-base-content focus-within:border-base-content">
@@ -20,7 +20,7 @@
           type="search"
           autocomplete="off"
           class="grow truncate border-0 bg-transparent p-0 text-sm outline-none focus:outline-none "
-          placeholder="{{ 'search.placeholder' | t: 'Search...' }}"
+          placeholder="{{ 'search.placeholder' | t: '搜索...' }}"
           data-header-search-target="modalInput"
           data-action="input->header-search#onModalInput keydown->header-search#onModalKeydown"
         />

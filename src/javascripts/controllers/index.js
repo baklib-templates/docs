@@ -14,6 +14,7 @@ import CopyPageController from "./copy_page_controller"
 import PageToolsController from "./page_tools_controller"
 import HeaderSearchController from "./header_search_controller"
 import ResizeBarController from "./resize_bar_controller"
+import AiPipController from "./ai_pip_controller"
 import CopyButtonController from "./copy_button_controller"
 
 if (!window.Stimulus) {
@@ -36,4 +37,5 @@ application.register("copy-page", CopyPageController)
 application.register("page-tools", PageToolsController)
 application.register("header-search", HeaderSearchController)
 application.register("resize-bar", ResizeBarController)
+application.register("ai-pip", AiPipController)
 application.register("copy-button", CopyButtonController)

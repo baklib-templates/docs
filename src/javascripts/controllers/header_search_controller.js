@@ -172,14 +172,28 @@ export default class extends Controller {
     const message = tpl.includes("%{query}") ? tpl.replace("%{query}", q) : `${tpl} ${q}`.trim();
 
     this.closeModal();
-    window.dispatchEvent(new CustomEvent("mint:ai-send", { detail: { message } }));
+    window.dispatchEvent(new CustomEvent("ai-send", { detail: { message } }));
   }
 
+  /** 首页 / 弹层内热门词：未打开弹层时先 openModal，再填入关键词并触发预览 */
   applyHotKeyword(event) {
-    const kw = event.currentTarget.dataset.kw;
+    event?.preventDefault();
+    const kw = (event.currentTarget?.dataset?.kw || "").trim();
     if (!kw || !this.hasModalInputTarget) return;
-    this.modalInputTarget.value = kw;
-    this.modalInputTarget.dispatchEvent(new Event("input", { bubbles: true }));
+
+    const fillKeyword = () => {
+      this.modalInputTarget.value = kw;
+      this.modalInputTarget.dispatchEvent(new Event("input", { bubbles: true }));
+      this.modalInputTarget.focus();
+    };
+
+    if (this.hasModalTarget && !this.modalTarget.open) {
+      this.openModal(event);
+      requestAnimationFrame(fillKeyword);
+      return;
+    }
+
+    fillKeyword();
   }
 
   /** ⌘/Ctrl+K：弹层已开则关，未开则开 */

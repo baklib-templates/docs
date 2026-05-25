@@ -11,13 +11,112 @@
   },
   "templates": {
     "index": {
-      "mint": {
-        "name": "クラシック 3 カラム",
-        "description": "3カラムのドキュメントサイト：上部バーの検索と Ask AI、上部タブ、左側ドキュメントツリー、右側ページ内目次。本文エリアはフィードバック、前後ページ、下部 AI 質問に対応。",
+      "shared": {
+        "groups": {
+          "home_config": "ホーム設定",
+          "home_config_info": "どちらか一方：①「ホームに表示するサイト内ページ」を指定 — / でそのページを表示；②空欄 — 下の項目で Maple 既定ホーム（ヒーロー・人気検索・クイックガイド等）。ページ設定でクイックガイドに掲載可能。",
+          "home_config_info_mint": "/ で指定したサイト内ページを表示。Mint に既定ホームレイアウトはなく、パス指定を推奨（例：入門ドキュメント）。空欄の場合はホーム本文エリアが空です。",
+          "chrome": "レイアウトとナビ"
+        },
         "settings": {
+          "home_page_path": {
+            "label": "ホームに表示するサイト内ページ",
+            "info": "例：/docs/getting-started、/guide/overview。/ でそのページのタイトルと本文を表示し、URL は / のまま。空欄時は Maple は下の既定ホーム項目を使用；Mint はパス指定を推奨。"
+          },
+          "search_hot_keywords": {
+            "label": "人気の検索",
+            "info": "Maple ホームの検索エリアとサイト全体の検索モーダル用。改行で複数キーワードを指定し、検索ボックスの下に表示。"
+          },
           "links_html": {
-            "label": "ページ左側のカスタムリンク一覧 HTML",
-            "info": "HTMLタグと限定的なTailwindCSSスタイルコードをサポート"
+            "label": "左サイドバー用カスタムリンクリスト HTML",
+            "info": "HTML タグと限定的な Tailwind CSS スタイルに対応"
+          }
+        }
+      },
+      "mint": {
+        "name": "Mint (Classic)",
+        "description": "親しみある定番レイアウト。柔らかなグラデーションのヒーローと 3 カラムの入門カードで、製品ドキュメントの安全な既定値。",
+        "settings": {
+          "left_sidebar_width": {
+            "info": "Mint 左サイドバー（チャンネルナビ含む）、推奨 400px"
+          },
+          "right_sidebar_width": {
+            "info": "ページ内目次サイドバー、推奨 240px"
+          },
+          "search_hot_keywords": {
+            "default": ""
+          },
+          "home_hero_title": {
+            "label": "",
+            "default": ""
+          },
+          "home_hero_description": {
+            "label": "",
+            "default": ""
+          },
+          "home_guide_section_title": {
+            "label": "",
+            "default": ""
+          },
+          "home_show_guide_section": {
+            "label": ""
+          },
+          "home_recommended_title": {
+            "label": "",
+            "default": ""
+          },
+          "home_show_recommended": {
+            "label": ""
+          },
+          "home_help_title": {
+            "label": "",
+            "default": ""
+          },
+          "home_help_description": {
+            "label": "",
+            "default": ""
+          }
+        }
+      },
+      "maple": {
+        "name": "Maple（Mintlify ドキュメントシェル）",
+        "description": "Mintlify Maple レイアウト：左サイドバーにロゴ・検索・サイト全体のグループナビ；本文はラベル・Copy page・ページ内 TOC；AI サイドバーと検索モーダルは Mint と同様。",
+        "settings": {
+          "left_sidebar_width": {
+            "info": "Maple サイドバーは狭め、推奨 280px"
+          },
+          "search_hot_keywords": {
+            "default": ""
+          },
+          "home_hero_title": {
+            "label": "",
+            "default": ""
+          },
+          "home_hero_description": {
+            "label": "",
+            "default": ""
+          },
+          "home_guide_section_title": {
+            "label": "",
+            "default": ""
+          },
+          "home_show_guide_section": {
+            "label": ""
+          },
+          "home_recommended_title": {
+            "label": "",
+            "default": ""
+          },
+          "home_show_recommended": {
+            "label": ""
+          },
+          "home_help_title": {
+            "label": "",
+            "default": ""
+          },
+          "home_help_description": {
+            "label": "",
+            "default": ""
           }
         }
       }
@@ -25,6 +124,14 @@
     "page": {
       "description": "コンテンツページテンプレート",
       "settings": {
+        "show_list": {
+          "label": "リストページを表示",
+          "info": "リストページは、現在のセクションのサブページをリスト形式で表示します"
+        },
+        "show_on_home_guide": {
+          "label": "",
+          "info": ""
+        },
         "title": {
           "label": "ページタイトル",
           "info": "ナレッジベースから同期、編集不可"
@@ -72,22 +179,10 @@
         }
       },
       "left_sidebar_width": {
-        "label": "左サイドバー幅（詳細ページ）",
-        "info": "推奨：240px"
+        "label": "左サイドバー幅（詳細ページ）"
       },
       "right_sidebar_width": {
-        "label": "右サイドバー幅（詳細ページ）",
-        "info": "推奨：240px"
-      },
-      "show_published_at": {
-        "label": "公開時間を表示"
-      },
-      "show_author": {
-        "label": "著者を表示"
-      },
-      "show_card_icon": {
-        "label": "ホームページにセクションアイコンを表示",
-        "info": "ページ設定でアイコンを設定することを推奨"
+        "label": "右サイドバー幅（詳細ページ）"
       },
       "ai_search_completed_text": {
         "label": "AI回答終了文",
@@ -98,6 +193,12 @@
   "page_config": {
     "name": "ページ設定",
     "settings": {
+      "show_published_at": {
+        "label": "公開時間を表示"
+      },
+      "show_author": {
+        "label": "著者を表示"
+      },
       "show_page_tools_dropdown": {
         "label": "ページツールのドロップダウンを表示"
       },
@@ -128,16 +229,6 @@
         "label": "フッター領域内にHTMLコードを挿入(footer内、footer_menu_html)",
         "info": "HTMLタグと限られたTailwindCSSスタイルコードをサポート",
         "placeholder": "通常、会社の他のウェブサイトへの外部リンク、相互リンク、SEO最適化リンクなどを挿入するために使用"
-      },
-      "features_one_html": {
-        "label": "ホームページの機能セクション1にHTMLコードを挿入",
-        "info": "HTMLタグと限られたTailwindCSSスタイルコードをサポート",
-        "placeholder": "通常、会社の他のウェブサイトへのナビゲーションリンクを挿入するために使用"
-      },
-      "features_two_html": {
-        "label": "ホームページの機能セクション2にHTMLコードを挿入",
-        "info": "HTMLタグと限られたTailwindCSSスタイルコードをサポート",
-        "placeholder": "通常、会社の他のウェブサイトへのナビゲーションリンクを挿入するために使用"
       }
     }
   },

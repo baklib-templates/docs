@@ -1,0 +1,53 @@
+{% layout none %}
+
+{% assign parent_path = params.parent_path | default: '/' %}
+<turbo-frame id="page_nav_tree_frame_{{ parent_path | replace: '/', '_' }}" class='w-full'>
+  {% assign page1 = site.pages[parent_path] %}
+  {% assign nav_tree = page1 | nav_tree: 1 %}
+  {% assign depth = params.depth | presence | default: page1.depth %}
+
+  <div
+    data-controller="turbo-nav-tree"
+    data-turbo-nav-tree-nav-tree-value='{{ nav_tree | to_json | escape }}'
+    data-turbo-nav-tree-depth-value='{{ depth }}'
+    data-turbo-nav-tree-root-container-value=".custom-menu"
+    data-turbo-nav-tree-parent-path-value='{{ parent_path }}'
+    data-turbo-nav-tree-url-value='{{ statics['page/nav_tree'] }}'
+    data-turbo-nav-tree-id-prefix-value='page_nav_tree_frame_'
+  >
+    <template data-turbo-nav-tree-target="itemTemplate">
+      {% raw %}
+        {{#hasChildren}}
+          <div class="flex items-center p-2 hover:bg-accent-100 rounded-sm w-full text-base-content break-all" data-action="click->turbo-nav-tree#toggle">
+            <a href="{{path}}"
+              data-turbo-frame="main-content-frame" data-turbo-action='advance'
+              class="line-clamp-2 hover:underline"
+              data-action="click->turbo-nav-tree#click"
+              data-turbo-nav-tree-only-open-param="true"
+              >
+              {{link_text}}
+            </a>
+            <!-- 有子节点时显示 toggle 按钮 -->
+            <div turbo-nav-tree-item-target-icon class="inline-block ml-auto mr-1 {{#open}}rotate-90{{/open}}">
+              <svg class="w-4 h-4 opacity-70 transition-transform duration-200"
+                  fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path d="M9 6l6 6-6 6"/>
+              </svg>
+            </div>
+          </div>
+        {{/hasChildren}}
+        {{^hasChildren}}
+          <div class="flex items-center p-2 hover:bg-accent-100 rounded-sm w-full text-base-content break-all">
+            <a href="{{path}}"
+              data-turbo-frame="main-content-frame" data-turbo-action='advance'
+              class="line-clamp-2 hover:underline"
+              data-action="click->turbo-nav-tree#click"
+              >
+              {{link_text}}
+            </a>
+          </div>
+        {{/hasChildren}}
+      {% endraw %}
+    </template>
+  </div>
+</turbo-frame>

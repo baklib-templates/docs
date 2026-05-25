@@ -9,9 +9,30 @@
 
 <turbo-stream action="replace" target="js--feedback-{{ page.id }}">
   <template>
-    {% render 'feedback_button', page: page %}
+    {% assign index_page = site.pages['/'] %}
+    {% if index_page.template_style == 'mint' %}
+      {% render 'index/mint/page_feedback', page: page %}
+    {% elsif index_page.template_style == 'maple' %}
+      {% render 'index/maple/page_feedback', page: page %}
+    {% endif %}
   </template>
 </turbo-stream>
+
+{% if page.path == '/' %}
+  <turbo-stream action="replace" target="js--home-feedback-{{ page.id }}">
+    <template>
+      {% render 'index/home_feedback_form', page: page %}
+    </template>
+  </turbo-stream>
+
+  <turbo-stream action="append" target="js--body">
+    <template>
+      <script>
+        document.getElementById('home-feedback-modal')?.close();
+      </script>
+    </template>
+  </turbo-stream>
+{% endif %}
 
 <turbo-stream action="remove" target="js--feedback-toast"></turbo-stream>
 <turbo-stream action="remove" target="js--feedback-error"></turbo-stream>

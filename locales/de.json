@@ -23,27 +23,17 @@
       "title_posted": "Vielen Dank für Ihr Feedback",
       "title_unposted": "Feedback senden"
     },
+    "page": {
+      "prev_page": "Zurück",
+      "next_page": "Weiter"
+    },
     "mint": {
       "search": {
         "ask_ai_section": "KI-Assistent fragen",
         "ask_ai_lead": "Kannst du mir etwas über ",
         "ask_ai_trailing": " erzählen?",
         "ask_ai_ellipsis": "…",
-        "ask_ai_query_display": "%{query}",
-        "ask_ai_message": "Kannst du mir etwas über %{query} erzählen?"
-      },
-      "ai": {
-        "assistant_title": "KI-Assistent",
-        "input_placeholder": "Stellen Sie eine Frage…",
-        "send": "Senden",
-        "disclaimer": "Antworten werden von KI generiert und können Fehler enthalten.",
-        "network_error": "Netzwerkfehler. Bitte erneut versuchen.",
-        "timeout_error": "Zeitüberschreitung. Bitte erneut versuchen.",
-        "reading": "Dokumentation wird gelesen…",
-        "thinking_status": "Denkt nach…",
-        "copy_response": "Antwort kopieren",
-        "retry_response": "Neu generieren",
-        "clear_chat": "Chat leeren"
+        "ask_ai_query_display": "%{query}"
       },
       "breadcrumb": {
         "label": "Brotkrumen"
@@ -84,6 +74,17 @@
           "update_docs": "Dokumentation aktualisieren",
           "update_docs_label": "Diese Dokumentation aktualisieren"
         }
+      },
+      "home": {
+        "search_placeholder": "Search docs, guides, and APIs…",
+        "channel_card_fallback_desc": "Browse docs and guides in this channel.",
+        "guide_card_fallback_desc": "Open this topic to browse related docs.",
+        "recommended_title": "Recommended reading",
+        "view_all": "View all",
+        "tag_recent": "Recently updated",
+        "rec_default_1": "Quick start: environment setup and first deploy",
+        "rec_default_2": "API authentication and examples",
+        "rec_default_3": "FAQ and troubleshooting"
       }
     },
     "page_tools": {
@@ -98,6 +99,91 @@
       "connect_to_cursor_description": "MCP Server in Cursor installieren",
       "connect_to_vscode": "Mit VS Code verbinden",
       "connect_to_vscode_description": "MCP Server in VS Code installieren"
+    },
+    "maple": {
+      "home": {
+        "recommended_title": "Recommended",
+        "search_placeholder": "Search guides and docs…",
+        "channel_card_fallback_desc": "Browse docs and guides in this topic.",
+        "view_all": "View all",
+        "tag_tech": "Tech picks",
+        "tag_official": "Official",
+        "rec_default_1": "[Core] Industry standards and revision notes",
+        "rec_default_2": "[Manual] Search, export, and batch processing",
+        "rec_default_3": "[Best practice] Team collaboration checklist",
+        "rec_default_4": "[Getting started] Setup before first use",
+        "rec_default_5": "System configuration and architecture",
+        "rec_default_6": "Common errors and troubleshooting"
+      },
+      "breadcrumb": {
+        "label": "Breadcrumb"
+      },
+      "nav": {
+        "open_sidebar": "Open navigation menu"
+      },
+      "page_feedback": {
+        "prompt": "Was this page helpful?",
+        "yes_button": "Yes",
+        "no_button": "No",
+        "follow_up_yes": "Great! What worked best for you?",
+        "follow_up_no": "How can we improve our product?",
+        "cancel": "Cancel",
+        "submit": "Submit feedback",
+        "thanks": "Thank you for your feedback. We will keep improving the experience.",
+        "other": "Other",
+        "other_prefix": "Other: ",
+        "other_details_sr": "Other feedback details",
+        "other_placeholder": "(Optional) Tell us more about your experience.",
+        "yes": {
+          "works_as_expected": "Worked as expected",
+          "works_as_expected_label": "This guide worked as expected.",
+          "easy_to_find": "Easy to find information",
+          "easy_to_find_label": "I found what I needed easily.",
+          "easy_to_understand": "Easy to understand",
+          "easy_to_understand_label": "The product and features were easy to understand.",
+          "docs_updated": "Docs are up to date",
+          "docs_updated_label": "The documentation is up to date."
+        },
+        "no": {
+          "faster_start": "Help me get started faster",
+          "faster_start_label": "Help me get started faster",
+          "easier_find": "Easier to find content",
+          "easier_find_label": "Make it easier to find what I need",
+          "better_understand": "Better product understanding",
+          "better_understand_label": "Help users understand the product and features.",
+          "update_docs": "Update documentation",
+          "update_docs_label": "Update this documentation"
+        }
+      },
+      "search": {
+        "ask_ai_section": "Ask the AI assistant",
+        "ask_ai_lead": "Tell me about ",
+        "ask_ai_ellipsis": "…",
+        "ask_ai_trailing": "",
+        "ask_ai_query_display": "%{query}"
+      }
+    },
+    "ai": {
+      "assistant_title": "AI assistant",
+      "send": "Send",
+      "pop_out_unsupported": "Picture-in-picture is not supported in this browser",
+      "pop_out_window": "Pop out",
+      "dock_to_sidebar": "Dock to sidebar",
+      "pip_active": "AI assistant is open in a separate window",
+      "clear_chat": "Clear chat",
+      "input_placeholder": "Ask your question…",
+      "copy_response": "Copy answer",
+      "retry_response": "Regenerate"
+    },
+    "home_feedback": {
+      "title": "Online-Feedback",
+      "subtitle": "Beschreiben Sie Probleme, fehlende Dokumentation oder Verbesserungsvorschläge – wir bearbeiten Ihr Feedback zeitnah.",
+      "message_label": "Details",
+      "message_placeholder": "Bitte Seite, Szenario oder erwartete Inhalte möglichst konkret angeben…",
+      "type_label": "Feedback-Typ"
+    },
+    "home": {
+      "feedback_btn": "Online-Feedback"
     }
   },
   "templates": {
@@ -120,9 +206,19 @@
     }
   },
   "ai": {
-    "completed": "KI-Antwort abgeschlossen."
+    "completed": "KI-Antwort abgeschlossen.",
+    "reading": "Reading documentation…",
+    "thinking_status": "Thinking…",
+    "network_error": "Network error. Please try again.",
+    "timeout_error": "Request timed out. Please try again.",
+    "copy_success": "Copied",
+    "copy_error": "Copy failed",
+    "ask_ai_message": "Tell me about \"%{query}\"",
+    "input_placeholder": "Ask your question…",
+    "disclaimer": "Content is AI-generated and may contain errors. Please verify."
   },
   "generic": {
+    "published_at": "Veröffentlicht am",
     "feedback_created_at": "Letztes Feedback am",
     "buttons": {
       "signout": "Abmelden",
@@ -131,5 +227,13 @@
   },
   "search": {
     "placeholder": "Suchen…"
+  },
+  "placeholders": {
+    "search": ""
+  },
+  "mint": {
+    "search": {
+      "ask_ai_message": "Tell me about \"%{query}\""
+    }
   }
 }

@@ -23,27 +23,17 @@
       "title_posted": "フィードバックありがとうございます",
       "title_unposted": "フィードバックを送信"
     },
+    "page": {
+      "prev_page": "前へ",
+      "next_page": "次へ"
+    },
     "mint": {
       "search": {
         "ask_ai_section": "AI アシスタントに質問",
         "ask_ai_lead": "次について教えてください：",
         "ask_ai_trailing": "",
         "ask_ai_ellipsis": "…",
-        "ask_ai_query_display": "「%{query}」",
-        "ask_ai_message": "「%{query}」について教えてください。"
-      },
-      "ai": {
-        "assistant_title": "AIアシスタント",
-        "input_placeholder": "質問を入力…",
-        "send": "送信",
-        "disclaimer": "回答はAIにより生成され、誤りが含まれる場合があります。",
-        "network_error": "ネットワークエラー。もう一度お試しください。",
-        "timeout_error": "タイムアウトしました。もう一度お試しください。",
-        "reading": "ドキュメントを読み込み中…",
-        "thinking_status": "考え中…",
-        "copy_response": "回答をコピー",
-        "retry_response": "再生成",
-        "clear_chat": "チャットをクリア"
+        "ask_ai_query_display": "「%{query}」"
       },
       "breadcrumb": {
         "label": "パンくずリスト"
@@ -84,6 +74,17 @@
           "update_docs": "ドキュメントを更新",
           "update_docs_label": "このドキュメントを更新してほしい"
         }
+      },
+      "home": {
+        "search_placeholder": "Search docs, guides, and APIs…",
+        "channel_card_fallback_desc": "Browse docs and guides in this channel.",
+        "guide_card_fallback_desc": "Open this topic to browse related docs.",
+        "recommended_title": "Recommended reading",
+        "view_all": "View all",
+        "tag_recent": "Recently updated",
+        "rec_default_1": "Quick start: environment setup and first deploy",
+        "rec_default_2": "API authentication and examples",
+        "rec_default_3": "FAQ and troubleshooting"
       }
     },
     "page_tools": {
@@ -98,6 +99,91 @@
       "connect_to_cursor_description": "Cursor に MCP Server をインストール",
       "connect_to_vscode": "VS Code に接続",
       "connect_to_vscode_description": "VS Code に MCP Server をインストール"
+    },
+    "maple": {
+      "home": {
+        "recommended_title": "Recommended",
+        "search_placeholder": "Search guides and docs…",
+        "channel_card_fallback_desc": "Browse docs and guides in this topic.",
+        "view_all": "View all",
+        "tag_tech": "Tech picks",
+        "tag_official": "Official",
+        "rec_default_1": "[Core] Industry standards and revision notes",
+        "rec_default_2": "[Manual] Search, export, and batch processing",
+        "rec_default_3": "[Best practice] Team collaboration checklist",
+        "rec_default_4": "[Getting started] Setup before first use",
+        "rec_default_5": "System configuration and architecture",
+        "rec_default_6": "Common errors and troubleshooting"
+      },
+      "breadcrumb": {
+        "label": "Breadcrumb"
+      },
+      "nav": {
+        "open_sidebar": "Open navigation menu"
+      },
+      "page_feedback": {
+        "prompt": "Was this page helpful?",
+        "yes_button": "Yes",
+        "no_button": "No",
+        "follow_up_yes": "Great! What worked best for you?",
+        "follow_up_no": "How can we improve our product?",
+        "cancel": "Cancel",
+        "submit": "Submit feedback",
+        "thanks": "Thank you for your feedback. We will keep improving the experience.",
+        "other": "Other",
+        "other_prefix": "Other: ",
+        "other_details_sr": "Other feedback details",
+        "other_placeholder": "(Optional) Tell us more about your experience.",
+        "yes": {
+          "works_as_expected": "Worked as expected",
+          "works_as_expected_label": "This guide worked as expected.",
+          "easy_to_find": "Easy to find information",
+          "easy_to_find_label": "I found what I needed easily.",
+          "easy_to_understand": "Easy to understand",
+          "easy_to_understand_label": "The product and features were easy to understand.",
+          "docs_updated": "Docs are up to date",
+          "docs_updated_label": "The documentation is up to date."
+        },
+        "no": {
+          "faster_start": "Help me get started faster",
+          "faster_start_label": "Help me get started faster",
+          "easier_find": "Easier to find content",
+          "easier_find_label": "Make it easier to find what I need",
+          "better_understand": "Better product understanding",
+          "better_understand_label": "Help users understand the product and features.",
+          "update_docs": "Update documentation",
+          "update_docs_label": "Update this documentation"
+        }
+      },
+      "search": {
+        "ask_ai_section": "Ask the AI assistant",
+        "ask_ai_lead": "Tell me about ",
+        "ask_ai_ellipsis": "…",
+        "ask_ai_trailing": "",
+        "ask_ai_query_display": "%{query}"
+      }
+    },
+    "ai": {
+      "assistant_title": "AI アシスタント",
+      "send": "Send",
+      "pop_out_unsupported": "Picture-in-picture is not supported in this browser",
+      "pop_out_window": "Pop out",
+      "dock_to_sidebar": "Dock to sidebar",
+      "pip_active": "AI assistant is open in a separate window",
+      "clear_chat": "Clear chat",
+      "input_placeholder": "Ask your question…",
+      "copy_response": "Copy answer",
+      "retry_response": "Regenerate"
+    },
+    "home_feedback": {
+      "title": "オンラインフィードバック",
+      "subtitle": "問題、ドキュメントの不足、改善提案をご記入ください。できるだけ早く対応します。",
+      "message_label": "詳細",
+      "message_placeholder": "ページ、状況、追加してほしい内容などを具体的に…",
+      "type_label": "フィードバック種別"
+    },
+    "home": {
+      "feedback_btn": "オンラインフィードバック"
     }
   },
   "templates": {
@@ -120,9 +206,19 @@
     }
   },
   "ai": {
-    "completed": "AI 応答完了."
+    "completed": "AI 応答完了.",
+    "reading": "Reading documentation…",
+    "thinking_status": "Thinking…",
+    "network_error": "Network error. Please try again.",
+    "timeout_error": "Request timed out. Please try again.",
+    "copy_success": "Copied",
+    "copy_error": "Copy failed",
+    "ask_ai_message": "Tell me about \"%{query}\"",
+    "input_placeholder": "Ask your question…",
+    "disclaimer": "コンテンツは AI 生成です。誤りがある場合があります。ご確認ください。"
   },
   "generic": {
+    "published_at": "公開日時",
     "feedback_created_at": "最終フィードバック",
     "buttons": {
       "signout": "ログアウト",
@@ -131,5 +227,13 @@
   },
   "search": {
     "placeholder": "検索.."
+  },
+  "placeholders": {
+    "search": ""
+  },
+  "mint": {
+    "search": {
+      "ask_ai_message": "Tell me about \"%{query}\""
+    }
   }
 }

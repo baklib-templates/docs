@@ -11,13 +11,112 @@
   },
   "templates": {
     "index": {
-      "mint": {
-        "name": "Classic Three-Column Docs",
-        "description": "Three-column doc site: top-bar search and Ask AI, top-bar tabs, left doc tree, right in-page TOC; article area supports feedback, prev/next, and bottom AI questions.",
+      "shared": {
+        "groups": {
+          "home_config": "Home settings",
+          "home_config_info": "Choose one: ① Set “Site page shown on home” to display that page at /; ② Leave empty to use the Maple default home fields below (hero, hot keywords, quick guide, etc.). Pages can join Quick guide via page settings.",
+          "home_config_info_mint": "Choose one: ① Set “Site page shown on home” at /; ② Leave empty to use the Mint default home below (gradient hero, channel cards, etc.).",
+          "chrome": "Layout & navigation"
+        },
         "settings": {
+          "home_page_path": {
+            "label": "Site page shown on home",
+            "info": "Site page path, e.g. /docs/getting-started, /guide/overview. Shows that page’s title and body at / while the URL stays /. If empty, Maple uses the default home fields below; Mint should usually set a path."
+          },
+          "search_hot_keywords": {
+            "label": "Popular Searches",
+            "info": "For the Maple home search area and the site-wide search modal. Use line breaks for multiple keywords shown below the search box."
+          },
           "links_html": {
-            "label": "Custom HTML for left sidebar link list",
-            "info": "Supports HTML tags and limited TailwindCSS style code"
+            "label": "Custom link list HTML (left sidebar)",
+            "info": "Supports HTML tags and limited Tailwind CSS styles"
+          }
+        }
+      },
+      "mint": {
+        "name": "Mint (Classic)",
+        "description": "Familiar layout with a gentle gradient hero and a 3-column getting-started grid—the safest default for product docs.",
+        "settings": {
+          "left_sidebar_width": {
+            "info": "Mint left rail includes channel nav; recommended 400px"
+          },
+          "right_sidebar_width": {
+            "info": "In-page TOC sidebar; recommended 240px"
+          },
+          "search_hot_keywords": {
+            "default": ""
+          },
+          "home_hero_title": {
+            "label": "",
+            "default": ""
+          },
+          "home_hero_description": {
+            "label": "",
+            "default": ""
+          },
+          "home_guide_section_title": {
+            "label": "",
+            "default": ""
+          },
+          "home_show_guide_section": {
+            "label": ""
+          },
+          "home_recommended_title": {
+            "label": "",
+            "default": ""
+          },
+          "home_show_recommended": {
+            "label": ""
+          },
+          "home_help_title": {
+            "label": "",
+            "default": ""
+          },
+          "home_help_description": {
+            "label": "",
+            "default": ""
+          }
+        }
+      },
+      "maple": {
+        "name": "Maple (Mintlify docs shell)",
+        "description": "Mintlify Maple layout: left sidebar with logo, search, and grouped site navigation; document body with eyebrow, Copy page, and in-page TOC; AI sidebar and search modal match Mint.",
+        "settings": {
+          "left_sidebar_width": {
+            "info": "Maple sidebar is narrower; recommended 280px"
+          },
+          "search_hot_keywords": {
+            "default": ""
+          },
+          "home_hero_title": {
+            "label": "",
+            "default": ""
+          },
+          "home_hero_description": {
+            "label": "",
+            "default": ""
+          },
+          "home_guide_section_title": {
+            "label": "",
+            "default": ""
+          },
+          "home_show_guide_section": {
+            "label": ""
+          },
+          "home_recommended_title": {
+            "label": "",
+            "default": ""
+          },
+          "home_show_recommended": {
+            "label": ""
+          },
+          "home_help_title": {
+            "label": "",
+            "default": ""
+          },
+          "home_help_description": {
+            "label": "",
+            "default": ""
           }
         }
       }
@@ -25,6 +124,14 @@
     "page": {
       "description": "Content page template",
       "settings": {
+        "show_list": {
+          "label": "Show Sub-page List",
+          "info": "If checked, the sub-page list will be displayed on the page"
+        },
+        "show_on_home_guide": {
+          "label": "Show on homepage quick guide",
+          "info": "When checked, appears in Maple default home Quick guide cards (up to 3, when home path is empty). If none are selected, pages are chosen by visit count."
+        },
         "title": {
           "label": "Page Title",
           "info": "Synced from knowledge base, not editable"
@@ -72,22 +179,10 @@
         }
       },
       "left_sidebar_width": {
-        "label": "Left Sidebar Width (in detail pages)",
-        "info": "Recommended: 240px"
+        "label": "Left Sidebar Width (in detail pages)"
       },
       "right_sidebar_width": {
-        "label": "Right Sidebar Width (in detail pages)",
-        "info": "Recommended: 240px"
-      },
-      "show_published_at": {
-        "label": "Show Publication Time"
-      },
-      "show_author": {
-        "label": "Show Author"
-      },
-      "show_card_icon": {
-        "label": "Show Section Icons on Homepage",
-        "info": "Recommended to configure icons in page settings"
+        "label": "Right Sidebar Width (in detail pages)"
       },
       "ai_search_completed_text": {
         "label": "AI Completion Text",
@@ -98,6 +193,12 @@
   "page_config": {
     "name": "Page Settings",
     "settings": {
+      "show_published_at": {
+        "label": "Show Publication Time"
+      },
+      "show_author": {
+        "label": "Show Author"
+      },
       "show_page_tools_dropdown": {
         "label": "Show Page Tools Dropdown"
       },
@@ -128,16 +229,6 @@
         "label": "Insert HTML code in bottom area (inside footer, footer_menu_html)",
         "info": "Supports HTML tags and limited TailwindCSS style code",
         "placeholder": "Usually used to insert external navigation links, friendly links, SEO optimization links to company's other websites"
-      },
-      "features_one_html": {
-        "label": "Insert HTML code in first homepage feature section",
-        "info": "Supports HTML tags and limited TailwindCSS style code",
-        "placeholder": "Usually used to insert navigation links to company's other websites"
-      },
-      "features_two_html": {
-        "label": "Insert HTML code in second homepage feature section",
-        "info": "Supports HTML tags and limited TailwindCSS style code",
-        "placeholder": "Usually used to insert navigation links to company's other websites"
       }
     }
   },

@@ -1,0 +1,62 @@
+{% comment %} Maple 顶栏（仅移动端，PC 仍用侧栏 Logo/搜索）； {% endcomment %}
+<header
+  class="js--header sticky top-0 z-40 h-[calc(var(--header-height)+1.5rem)] bg-base-100/90 backdrop-blur-md supports-[backdrop-filter]:bg-base-100/80 lg:hidden"
+>
+  <div
+    class="mx-auto grid h-full max-w-[var(--max-content-width)] grid-cols-[minmax(0,1fr)_auto] items-center gap-3 border-b border-base-200 px-4"
+  >
+    {% assign default_site_icon = 'images/default-site-icon.svg' | asset_url %}
+    <a
+      href="{{ site.index_path }}"
+      class="flex min-w-0 items-center gap-2 justify-self-start font-semibold tracking-tight text-base-content"
+    >
+      {% assign logo_url = site.settings.logo_url | presence %}
+      {% if logo_url %}
+        <span class="inline-flex h-8 max-h-8 shrink-0 items-center justify-center">
+          <img src="{{ logo_url }}" class="h-full w-auto max-w-[10rem] rounded-md object-contain" width="160" height="32" alt="{{ site.name | escape_once }}">
+        </span>
+      {% else %}
+        {% assign favicon_url = site.favicon_url | presence | default: default_site_icon %}
+        {% if favicon_url %}
+          <span class="inline-flex size-8 shrink-0 items-center justify-center overflow-hidden rounded-md bg-base-200" aria-hidden="true">
+            <img src="{{ favicon_url }}" class="size-6 object-contain" width="24" height="24" alt="">
+          </span>
+        {% endif %}
+        <span class="truncate text-2xl md:text-3xl font-extrabold tracking-tight">{{ site.name }}</span>
+      {% endif %}
+    </a>
+
+    <div class="flex items-center gap-3">
+      <button
+        type="button"
+        class="btn btn-ghost btn-sm btn-square text-base-content/60"
+        data-action="click->header-search#openModal"
+        aria-label="{{ 'search.placeholder' | t: '搜索...' }}"
+        aria-haspopup="dialog"
+      >
+        <span class="sr-only">{{ 'search.placeholder' | t: '搜索...' }}</span>
+        <i class="ri-search-line text-base leading-none" aria-hidden="true"></i>
+      </button>
+      <button
+        type="button"
+        class="btn btn-ghost btn-sm btn-square text-base-content/60"
+        @click="toggleAiAssistant()"
+        aria-label="{{ 'snippets.header.ask_ai' | t: '问 AI' }}"
+      >
+        <i class="ri-sparkling-2-line text-base leading-none text-primary" aria-hidden="true"></i>
+      </button>
+
+      {% assign header_menu_html = site.settings.header_menu_html | presence %}
+      {% if header_menu_html %}
+        <div class="dropdown dropdown-end">
+          <div tabindex="0" role="button" class="btn btn-ghost btn-sm btn-square h-7 w-7 min-h-0 p-0">
+            <i class="ri-more-2-line text-base leading-none" aria-hidden="true"></i>
+          </div>
+          <div tabindex="0" class="dropdown-content menu z-[60] mt-2 w-52 rounded-box bg-base-100 p-2 shadow-sm">
+            {{ header_menu_html }}
+          </div>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</header>

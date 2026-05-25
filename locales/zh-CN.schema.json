@@ -11,13 +11,112 @@
   },
   "templates": {
     "index": {
-      "mint": {
-        "name": "Mint（经典款）",
-        "description": "三栏文档站：顶栏搜索与 Ask AI、顶栏Tab、左侧文档树、右侧页内目录；正文区支持反馈、上下页与底部 AI 提问。",
+      "shared": {
+        "groups": {
+          "home_config": "首页配置",
+          "home_config_info": "二选一：① 填写「首页展示的站内页面」— 访问首页时展示该页内容；② 路径留空 — 使用本组下方主标题、热门搜索、快速指引等项作为 Maple 默认首页。子页面可在页面设置中勾选「显示在首页快速指引」。",
+          "home_config_info_mint": "二选一：① 填写「首页展示的站内页面」— 访问 / 时展示该页内容；② 路径留空 — 使用本组下方配置生成 Mint 默认首页（渐变 Hero、频道入门卡片等）。",
+          "chrome": "布局与导航"
+        },
         "settings": {
+          "home_page_path": {
+            "label": "首页展示的站内页面",
+            "info": "站内页面路径，如 /docs/getting-started、/guide/overview。访问 / 时展示该页标题与正文，地址栏仍为首页。留空时启用本组下方默认首页（Maple / Mint）。"
+          },
+          "search_hot_keywords": {
+            "label": "热门搜索",
+            "info": "用于首页搜索区与全站搜索弹窗。换行填写多个关键词，显示在搜索框下方。"
+          },
           "links_html": {
             "label": "页面左侧自定义链接列表 HTML 代码",
-            "info": "支持HTML标签和有限的TailwindCSS样式代码"
+            "info": "支持 HTML 标签和有限的 Tailwind CSS 样式代码"
+          }
+        }
+      },
+      "mint": {
+        "name": "Mint（经典款）",
+        "description": "经典文档站布局，柔色渐变 hero + 三列入门卡片，是产品文档最稳的默认款。",
+        "settings": {
+          "left_sidebar_width": {
+            "info": "Mint 左栏含频道导航，建议 400px"
+          },
+          "right_sidebar_width": {
+            "info": "页内目录侧栏，建议 240px"
+          },
+          "search_hot_keywords": {
+            "default": "快速开始\nAPI 文档\n常见问题"
+          },
+          "home_hero_title": {
+            "label": "首页主标题",
+            "default": "欢迎使用产品文档"
+          },
+          "home_hero_description": {
+            "label": "首页副标题 / 导语",
+            "default": "搜索、浏览频道或直接向 AI 提问，快速找到你需要的指南与 API 说明。"
+          },
+          "home_guide_section_title": {
+            "label": "入门板块标题",
+            "default": "从频道开始"
+          },
+          "home_show_guide_section": {
+            "label": "显示入门卡片（优先展示首页子频道，最多 3 个）"
+          },
+          "home_recommended_title": {
+            "label": "推荐阅读标题",
+            "default": "推荐阅读"
+          },
+          "home_show_recommended": {
+            "label": "显示推荐阅读列表"
+          },
+          "home_help_title": {
+            "label": "底部求助标题",
+            "default": "还有疑问？"
+          },
+          "home_help_description": {
+            "label": "底部求助说明",
+            "default": "没找到想要的文档？欢迎提交反馈，帮助我们改进知识库。"
+          }
+        }
+      },
+      "maple": {
+        "name": "Maple",
+        "description": "Maple 文档布局：左侧栏集成 Logo、搜索与全站分组导航；正文支持眉题、Copy page 与页内目录；AI 侧栏与搜索弹窗与 Mint 一致。",
+        "settings": {
+          "left_sidebar_width": {
+            "info": "建议 280px"
+          },
+          "search_hot_keywords": {
+            "default": "快速开始\n常见问题\n配置指南\n新手指南"
+          },
+          "home_hero_title": {
+            "label": "首页主标题",
+            "default": "欢迎查阅产品标准技术文档"
+          },
+          "home_hero_description": {
+            "label": "首页副标题 / 导语",
+            "default": "在这里您可以找到关于系统配置、标准规范、行业标准及商业应用的全部参考指引与核心技术文档。"
+          },
+          "home_guide_section_title": {
+            "label": "指引板块标题",
+            "default": "快速指引"
+          },
+          "home_show_guide_section": {
+            "label": "显示快速指引板块"
+          },
+          "home_recommended_title": {
+            "label": "推荐内容标题",
+            "default": "推荐内容"
+          },
+          "home_show_recommended": {
+            "label": "显示推荐内容板块"
+          },
+          "home_help_title": {
+            "label": "底部求助标题",
+            "default": "没有找到需要的资料？"
+          },
+          "home_help_description": {
+            "label": "底部求助说明",
+            "default": "如果您发现了文档内容遗漏、描述含糊或者有新的文档贡献想法，欢迎随时发起反馈。"
           }
         }
       }
@@ -25,6 +124,14 @@
     "page": {
       "description": "内容页面模板",
       "settings": {
+        "show_list": {
+          "label": "是否为栏目页面",
+          "info": "作为栏目页面，页面显示子页面列表"
+        },
+        "show_on_home_guide": {
+          "label": "显示在首页快速指引",
+          "info": "勾选后出现在默认首页的「快速指引 / 入门」"
+        },
         "title": {
           "label": "页面标题",
           "info": "知识库同步，不可编辑"
@@ -72,22 +179,10 @@
         }
       },
       "left_sidebar_width": {
-        "label": "左侧边栏宽度(详细页面中)",
-        "info": "建议：240px"
+        "label": "左侧边栏宽度(详细页面中)"
       },
       "right_sidebar_width": {
-        "label": "右侧边栏宽度(详细页面中)",
-        "info": "建议：240px"
-      },
-      "show_published_at": {
-        "label": "显示发布时间"
-      },
-      "show_author": {
-        "label": "显示作者"
-      },
-      "show_card_icon": {
-        "label": "首页是否显示栏目ICON图标",
-        "info": "建议自行在页面设置中配置图标"
+        "label": "右侧边栏宽度(详细页面中)"
       },
       "ai_search_completed_text": {
         "label": "AI回答结束语",
@@ -98,11 +193,17 @@
   "page_config": {
     "name": "页面配置",
     "settings": {
+      "show_published_at": {
+        "label": "显示发布时间"
+      },
+      "show_author": {
+        "label": "显示作者"
+      },
       "show_page_tools_dropdown": {
         "label": "显示页面工具下拉菜单"
       },
       "feedback_enabled": {
-        "label": ""
+        "label": "是否启用页面反馈"
       }
     }
   },
@@ -128,16 +229,6 @@
         "label": "底部区域插入 HTML 代码(footer 内，footer_menu_html)",
         "info": "支持HTML标签和有限的TailwindCSS样式代码",
         "placeholder": "通常在这里插入公司其他网站的外部导航链接、友情链接、SEO 优化链接等"
-      },
-      "features_one_html": {
-        "label": "首页顶部功能区 HTML",
-        "info": "支持HTML标签和有限的TailwindCSS样式代码",
-        "placeholder": "通常在这里插入公司产品介绍、服务介绍等"
-      },
-      "features_two_html": {
-        "label": "首页底部功能区 HTML",
-        "info": "支持HTML标签和有限的TailwindCSS样式代码",
-        "placeholder": "通常在这里插入公司产品介绍、服务介绍等"
       }
     }
   },

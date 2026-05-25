@@ -11,13 +11,112 @@
   },
   "templates": {
     "index": {
-      "mint": {
-        "name": "Documentation classique 3 colonnes",
-        "description": "Site de documentation à 3 colonnes : recherche et Ask AI en barre supérieure, onglets en tête, arborescence à gauche, sommaire à droite ; zone d’article avec retours, pagination et question IA en bas.",
+      "shared": {
+        "groups": {
+          "home_config": "Configuration de l’accueil",
+          "home_config_info": "Au choix : ① renseigner « Page du site affichée à l’accueil » — contenu de cette page sur / ; ② laisser vide — accueil Maple par défaut via les champs ci-dessous (hero, guide rapide, etc.). Les pages peuvent rejoindre le guide rapide dans leurs paramètres.",
+          "home_config_info_mint": "Affiche une page du site sur /. Mint n’a pas de mise en page d’accueil par défaut — indiquez un chemin (ex. page de démarrage). Vide = zone de contenu vide.",
+          "chrome": "Mise en page & navigation"
+        },
         "settings": {
+          "home_page_path": {
+            "label": "Page du site affichée à l’accueil",
+            "info": "ex. /docs/getting-started, /guide/overview. Affiche le titre et le contenu de cette page sur /, l’URL reste /. Vide : Maple utilise les champs d’accueil par défaut ci-dessous ; Mint : chemin recommandé."
+          },
+          "search_hot_keywords": {
+            "label": "Recherches populaires",
+            "info": "Pour la zone de recherche Maple à l’accueil et la modale de recherche globale. Mots-clés séparés par retour à la ligne, affichés sous le champ de recherche."
+          },
           "links_html": {
-            "label": "HTML personnalisé pour la liste de liens de la barre latérale gauche",
-            "info": "Prend en charge les balises HTML et un code de style TailwindCSS limité"
+            "label": "HTML de liste de liens personnalisée (barre latérale gauche)",
+            "info": "Prend en charge les balises HTML et un sous-ensemble de styles Tailwind CSS"
+          }
+        }
+      },
+      "mint": {
+        "name": "Mint (Classique)",
+        "description": "Mise en page documentaire familière avec un hero en dégradé doux et une grille de démarrage à 3 colonnes — la valeur par défaut la plus sûre.",
+        "settings": {
+          "left_sidebar_width": {
+            "info": "Barre latérale Mint (navigation des canaux) ; 400px recommandé"
+          },
+          "right_sidebar_width": {
+            "info": "Sommaire dans la page ; 240px recommandé"
+          },
+          "search_hot_keywords": {
+            "default": ""
+          },
+          "home_hero_title": {
+            "label": "",
+            "default": ""
+          },
+          "home_hero_description": {
+            "label": "",
+            "default": ""
+          },
+          "home_guide_section_title": {
+            "label": "",
+            "default": ""
+          },
+          "home_show_guide_section": {
+            "label": ""
+          },
+          "home_recommended_title": {
+            "label": "",
+            "default": ""
+          },
+          "home_show_recommended": {
+            "label": ""
+          },
+          "home_help_title": {
+            "label": "",
+            "default": ""
+          },
+          "home_help_description": {
+            "label": "",
+            "default": ""
+          }
+        }
+      },
+      "maple": {
+        "name": "Maple (shell doc Mintlify)",
+        "description": "Disposition Maple Mintlify : barre latérale avec logo, recherche et navigation groupée ; corps avec eyebrow, Copy page et TOC ; panneau IA et modal de recherche identiques à Mint.",
+        "settings": {
+          "left_sidebar_width": {
+            "info": "Barre latérale Maple plus étroite ; 280px recommandé"
+          },
+          "search_hot_keywords": {
+            "default": ""
+          },
+          "home_hero_title": {
+            "label": "",
+            "default": ""
+          },
+          "home_hero_description": {
+            "label": "",
+            "default": ""
+          },
+          "home_guide_section_title": {
+            "label": "",
+            "default": ""
+          },
+          "home_show_guide_section": {
+            "label": ""
+          },
+          "home_recommended_title": {
+            "label": "",
+            "default": ""
+          },
+          "home_show_recommended": {
+            "label": ""
+          },
+          "home_help_title": {
+            "label": "",
+            "default": ""
+          },
+          "home_help_description": {
+            "label": "",
+            "default": ""
           }
         }
       }
@@ -25,6 +124,14 @@
     "page": {
       "description": "Modèle de page de contenu",
       "settings": {
+        "show_list": {
+          "label": "Afficher la liste des sous-pages",
+          "info": "Si coché, la liste des sous-pages s’affiche sur la page"
+        },
+        "show_on_home_guide": {
+          "label": "",
+          "info": ""
+        },
         "title": {
           "label": "Titre de la page",
           "info": "Synchronisé depuis la base de connaissances, non modifiable"
@@ -72,22 +179,10 @@
         }
       },
       "left_sidebar_width": {
-        "label": "Largeur de la barre latérale gauche (pages détaillées)",
-        "info": "Recommandé : 240px"
+        "label": "Largeur de la barre latérale gauche (pages détaillées)"
       },
       "right_sidebar_width": {
-        "label": "Largeur de la barre latérale droite (pages détaillées)",
-        "info": "Recommandé : 240px"
-      },
-      "show_published_at": {
-        "label": "Afficher la date de publication"
-      },
-      "show_author": {
-        "label": "Afficher l’auteur"
-      },
-      "show_card_icon": {
-        "label": "Afficher les icônes de section sur l’accueil",
-        "info": "Recommandé de configurer les icônes dans les réglages de page"
+        "label": "Largeur de la barre latérale droite (pages détaillées)"
       },
       "ai_search_completed_text": {
         "label": "Texte de fin IA",
@@ -98,6 +193,12 @@
   "page_config": {
     "name": "Réglages de page",
     "settings": {
+      "show_published_at": {
+        "label": "Afficher la date de publication"
+      },
+      "show_author": {
+        "label": "Afficher l’auteur"
+      },
       "show_page_tools_dropdown": {
         "label": "Afficher le menu d’outils de page"
       },
@@ -128,16 +229,6 @@
         "label": "Insérer du HTML en bas (à l’intérieur du footer)",
         "info": "Prend en charge les balises HTML et certaines classes TailwindCSS",
         "placeholder": "Souvent utilisé pour les liens externes, liens d’amitié et liens d’optimisation SEO"
-      },
-      "features_one_html": {
-        "label": "Insérer du HTML dans la première section feature de l’accueil",
-        "info": "Prend en charge les balises HTML et certaines classes TailwindCSS",
-        "placeholder": "Souvent utilisé pour insérer des liens vers d’autres sites de l’entreprise"
-      },
-      "features_two_html": {
-        "label": "Insérer du HTML dans la deuxième section feature de l’accueil",
-        "info": "Prend en charge les balises HTML et certaines classes TailwindCSS",
-        "placeholder": "Souvent utilisé pour insérer des liens vers d’autres sites de l’entreprise"
       }
     }
   },

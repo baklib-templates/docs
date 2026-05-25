@@ -1,0 +1,12 @@
+{% assign count = site.pages | size %}
+{% if count > 500 %}
+  {% assign parent_path = '/' %}
+  <turbo-frame class='w-full' id="index_list_nav_tree_frame_{{ parent_path | replace: '/', '_' }}" src="{{ statics['index_list/nav_tree'] }}?parent_path={{ parent_path }}">
+    <div class="flex items-center justify-center h-20 text-base-content/60 bg-none">
+      <span class="loading loading-spinner loading-md"></span>
+    </div>
+  </turbo-frame>
+{% else %}
+  {% assign data = site.nav_tree %}
+  {% render 'index_list/nav_tree', nav_tree: data %}
+{% endif %}

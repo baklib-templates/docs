@@ -3,13 +3,112 @@
   "theme_description": "사용자가 실제로 읽는 문서 경험을 제공합니다. 명확한 정보 구조, 빠른 검색, AI 기반 Q&A까지 지원합니다. 지식베이스를 제품 문서·API 가이드로 바로 공개하고, 문서 사이트를 처음부터 만들 필요가 없습니다.",
   "templates": {
     "index": {
-      "mint": {
-        "name": "클래식 3단 문서",
-        "description": "3단 문서 사이트: 상단 검색 및 Ask AI, 상단 탭, 왼쪽 문서 트리, 오른쪽 페이지 목차. 본문 영역에서 피드백, 이전/다음, 하단 AI 질문 지원.",
+      "shared": {
+        "groups": {
+          "home_config": "홈 설정",
+          "home_config_info": "둘 중 하나: ① 「홈에 표시할 사이트 내 페이지」 지정 — / 에서 해당 페이지 표시；② 비움 — 아래 항목으로 Maple 기본 홈(히어로·인기 검색·빠른 안내 등). 페이지 설정에서 빠른 안내 노출 가능.",
+          "home_config_info_mint": "/ 에서 지정한 사이트 내 페이지를 표시. Mint는 기본 홈 레이아웃이 없으므로 경로 지정 권장(예: 시작 문서). 비우면 홈 본문 영역이 비어 있습니다.",
+          "chrome": "레이아웃 및 내비"
+        },
         "settings": {
+          "home_page_path": {
+            "label": "홈에 표시할 사이트 내 페이지",
+            "info": "예: /docs/getting-started, /guide/overview. / 에서 해당 페이지 제목·본문 표시, URL은 / 유지. 비우면 Maple은 아래 기본 홈 항목 사용；Mint는 경로 지정 권장."
+          },
+          "search_hot_keywords": {
+            "label": "인기 검색어",
+            "info": "Maple 홈 검색 영역 및 전체 검색 모달용. 줄바꿈으로 여러 키워드를 입력하면 검색창 아래에 표시됩니다."
+          },
           "links_html": {
-            "label": "페이지 왼쪽 사용자 정의 링크 목록 HTML 코드",
-            "info": "HTML 태그 및 제한된 TailwindCSS 스타일 코드 지원"
+            "label": "왼쪽 사이드바 사용자 지정 링크 목록 HTML",
+            "info": "HTML 태그 및 제한된 Tailwind CSS 스타일 지원"
+          }
+        }
+      },
+      "mint": {
+        "name": "Mint (Classic)",
+        "description": "친숙한 레이아웃에 부드러운 그라디언트 히어로와 3열 시작 카드 — 가장 무난한 제품 문서 기본값.",
+        "settings": {
+          "left_sidebar_width": {
+            "info": "Mint 왼쪽 사이드바(채널 탐색 포함), 권장 400px"
+          },
+          "right_sidebar_width": {
+            "info": "본문 목차 사이드바, 권장 240px"
+          },
+          "search_hot_keywords": {
+            "default": ""
+          },
+          "home_hero_title": {
+            "label": "",
+            "default": ""
+          },
+          "home_hero_description": {
+            "label": "",
+            "default": ""
+          },
+          "home_guide_section_title": {
+            "label": "",
+            "default": ""
+          },
+          "home_show_guide_section": {
+            "label": ""
+          },
+          "home_recommended_title": {
+            "label": "",
+            "default": ""
+          },
+          "home_show_recommended": {
+            "label": ""
+          },
+          "home_help_title": {
+            "label": "",
+            "default": ""
+          },
+          "home_help_description": {
+            "label": "",
+            "default": ""
+          }
+        }
+      },
+      "maple": {
+        "name": "Maple (Mintlify 문서 셸)",
+        "description": "Mintlify Maple 레이아웃: 왼쪽 사이드바에 로고·검색·전체 사이트 그룹 내비; 본문은 라벨·Copy page·페이지 내 목차; AI 사이드바와 검색 모달은 Mint와 동일.",
+        "settings": {
+          "left_sidebar_width": {
+            "info": "Maple 사이드바는 더 좁음, 권장 280px"
+          },
+          "search_hot_keywords": {
+            "default": ""
+          },
+          "home_hero_title": {
+            "label": "",
+            "default": ""
+          },
+          "home_hero_description": {
+            "label": "",
+            "default": ""
+          },
+          "home_guide_section_title": {
+            "label": "",
+            "default": ""
+          },
+          "home_show_guide_section": {
+            "label": ""
+          },
+          "home_recommended_title": {
+            "label": "",
+            "default": ""
+          },
+          "home_show_recommended": {
+            "label": ""
+          },
+          "home_help_title": {
+            "label": "",
+            "default": ""
+          },
+          "home_help_description": {
+            "label": "",
+            "default": ""
           }
         }
       }
@@ -17,6 +116,14 @@
     "page": {
       "description": "콘텐츠 페이지 템플릿",
       "settings": {
+        "show_list": {
+          "label": "목록 페이지 여부",
+          "info": "목록 페이지는 하위 페이지의 콘텐츠를 표시하는 데 사용됩니다; 하위 페이지가 목록 템플릿을 사용하는지 확인하세요"
+        },
+        "show_on_home_guide": {
+          "label": "",
+          "info": ""
+        },
         "title": {
           "label": "페이지 제목",
           "info": "지식베이스에서 동기화, 편집 불가"
@@ -64,22 +171,10 @@
         }
       },
       "left_sidebar_width": {
-        "label": "좌측 사이드바 너비(상세 페이지)",
-        "info": "권장: 240px"
+        "label": "좌측 사이드바 너비(상세 페이지)"
       },
       "right_sidebar_width": {
-        "label": "우측 사이드바 너비(상세 페이지)",
-        "info": "권장: 240px"
-      },
-      "show_published_at": {
-        "label": "게시일 표시"
-      },
-      "show_author": {
-        "label": "작성자 표시"
-      },
-      "show_card_icon": {
-        "label": "홈페이지에 섹션 아이콘 표시",
-        "info": "페이지 설정에서 아이콘을 설정하는 것을 권장"
+        "label": "우측 사이드바 너비(상세 페이지)"
       },
       "ai_search_completed_text": {
         "label": "AI 답변 종료 문구",
@@ -90,6 +185,12 @@
   "page_config": {
     "name": "페이지 설정",
     "settings": {
+      "show_published_at": {
+        "label": "게시일 표시"
+      },
+      "show_author": {
+        "label": "작성자 표시"
+      },
       "show_page_tools_dropdown": {
         "label": "페이지 도구 드롭다운 표시"
       },
@@ -120,16 +221,6 @@
         "label": "하단 영역에 HTML 코드 삽입(footer 내, footer_menu_html)",
         "info": "HTML 태그와 제한된 TailwindCSS 스타일 코드 지원",
         "placeholder": "일반적으로 회사의 다른 웹사이트로의 외부 네비게이션 링크, 친구 링크, SEO 최적화 링크 등을 삽입하는 데 사용"
-      },
-      "features_one_html": {
-        "label": "첫 번째 기능 섹션에 HTML 코드 삽입",
-        "info": "HTML 태그와 제한된 TailwindCSS 스타일 코드 지원",
-        "placeholder": "일반적으로 회사의 첫 번째 기능 섹션에 대한 HTML 코드를 삽입하는 데 사용"
-      },
-      "features_two_html": {
-        "label": "두 번째 기능 섹션에 HTML 코드 삽입",
-        "info": "HTML 태그와 제한된 TailwindCSS 스타일 코드 지원",
-        "placeholder": "일반적으로 회사의 두 번째 기능 섹션에 대한 HTML 코드를 삽입하는 데 사용"
       }
     }
   },

@@ -23,27 +23,17 @@
       "title_posted": "感謝您的反饋",
       "title_unposted": "提交反饋"
     },
+    "page": {
+      "prev_page": "上一頁",
+      "next_page": "下一頁"
+    },
     "mint": {
       "search": {
         "ask_ai_section": "向 AI 助手提問",
         "ask_ai_lead": "幫我介紹一下",
         "ask_ai_trailing": "",
         "ask_ai_ellipsis": "…",
-        "ask_ai_query_display": "「%{query}」",
-        "ask_ai_message": "請介紹一下「%{query}」"
-      },
-      "ai": {
-        "assistant_title": "AI 助手",
-        "input_placeholder": "輸入你的問題…",
-        "send": "傳送",
-        "disclaimer": "內容由 AI 生成，可能存在錯誤，請自行核實。",
-        "network_error": "網路錯誤，請重試",
-        "timeout_error": "回應逾時，請重試",
-        "reading": "正在閱讀文件…",
-        "thinking_status": "正在思考…",
-        "copy_response": "複製回答",
-        "retry_response": "重新產生",
-        "clear_chat": "清空對話"
+        "ask_ai_query_display": "「%{query}」"
       },
       "breadcrumb": {
         "label": "麵包屑"
@@ -84,6 +74,17 @@
           "update_docs": "更新文件",
           "update_docs_label": "更新此文件"
         }
+      },
+      "home": {
+        "search_placeholder": "搜尋文件、指南與 API…",
+        "channel_card_fallback_desc": "瀏覽該頻道下的文件與說明。",
+        "guide_card_fallback_desc": "進入該專題瀏覽相關文件。",
+        "recommended_title": "推薦閱讀",
+        "view_all": "查看全部",
+        "tag_recent": "最近更新",
+        "rec_default_1": "快速開始：環境準備與首次部署",
+        "rec_default_2": "API 認證與呼叫範例",
+        "rec_default_3": "常見問題與排錯指引"
       }
     },
     "page_tools": {
@@ -98,6 +99,91 @@
       "connect_to_cursor_description": "在 Cursor 中安裝 MCP Server",
       "connect_to_vscode": "連接到 VS Code",
       "connect_to_vscode_description": "在 VS Code 中安裝 MCP Server"
+    },
+    "maple": {
+      "home": {
+        "recommended_title": "推薦內容",
+        "search_placeholder": "輸入關鍵字，搜尋您需要的指南或文件…",
+        "channel_card_fallback_desc": "進入該專題瀏覽相關文件與說明。",
+        "view_all": "查看全部",
+        "tag_tech": "技術推薦",
+        "tag_official": "官方發布",
+        "rec_default_1": "【核心主線】行業規範執行細則與修訂說明",
+        "rec_default_2": "【操作手冊】檢索、匯出與批次處理指南",
+        "rec_default_3": "【最佳實踐】團隊協作與權限配置清單",
+        "rec_default_4": "【入門必讀】第一次使用前需要完成的設定",
+        "rec_default_5": "系統配置與架構優化手冊",
+        "rec_default_6": "常見錯誤提示與排查步驟匯總"
+      },
+      "breadcrumb": {
+        "label": "麵包屑"
+      },
+      "nav": {
+        "open_sidebar": "開啟導覽選單"
+      },
+      "page_feedback": {
+        "prompt": "這個頁面對您有幫助嗎？",
+        "yes_button": "是的",
+        "no_button": "不",
+        "follow_up_yes": "太棒了！什麼方法對你最有效？",
+        "follow_up_no": "我們如何改進產品？",
+        "cancel": "取消",
+        "submit": "提交回饋",
+        "thanks": "感謝你的回饋，我們會持續優化內容體驗。",
+        "other": "其他",
+        "other_prefix": "其他：",
+        "other_details_sr": "其他回饋詳情",
+        "other_placeholder": "（可選）您能否分享一下您的經歷？",
+        "yes": {
+          "works_as_expected": "按預期發揮作用",
+          "works_as_expected_label": "該指南按預期發揮作用。",
+          "easy_to_find": "很容易找到資訊",
+          "easy_to_find_label": "我很容易就找到了我需要的資訊。",
+          "easy_to_understand": "產品功能容易理解",
+          "easy_to_understand_label": "產品及其功能很容易理解。",
+          "docs_updated": "文件已更新",
+          "docs_updated_label": "文件已更新。"
+        },
+        "no": {
+          "faster_start": "幫助我更快開始",
+          "faster_start_label": "幫我更快開始",
+          "easier_find": "更容易找到內容",
+          "easier_find_label": "讓我更容易找到我想要的東西",
+          "better_understand": "更好理解產品",
+          "better_understand_label": "讓使用者能夠輕鬆理解產品及其功能。",
+          "update_docs": "更新文件",
+          "update_docs_label": "更新此文件"
+        }
+      },
+      "search": {
+        "ask_ai_section": "向 AI 助手提問",
+        "ask_ai_lead": "幫我介紹一下",
+        "ask_ai_ellipsis": "…",
+        "ask_ai_trailing": "",
+        "ask_ai_query_display": "「%{query}」"
+      }
+    },
+    "ai": {
+      "assistant_title": "AI 助手",
+      "send": "傳送",
+      "pop_out_unsupported": "目前瀏覽器不支援獨立視窗",
+      "pop_out_window": "獨立視窗",
+      "dock_to_sidebar": "收回側邊欄",
+      "pip_active": "AI 助手已在獨立視窗中開啟",
+      "clear_chat": "清空對話",
+      "input_placeholder": "輸入你的問題…",
+      "copy_response": "複製回答",
+      "retry_response": "重新產生"
+    },
+    "home_feedback": {
+      "title": "線上回饋",
+      "subtitle": "描述您遇到的問題、文件遺漏或改進建議，我們會盡快處理。",
+      "message_label": "詳細說明",
+      "message_placeholder": "請盡量說明具體頁面、場景或期望補充的內容…",
+      "type_label": "回饋類型"
+    },
+    "home": {
+      "feedback_btn": "線上回饋"
     }
   },
   "templates": {
@@ -120,9 +206,19 @@
     }
   },
   "ai": {
-    "completed": "AI 回答完畢."
+    "completed": "AI 回答完畢.",
+    "reading": "正在閱讀文件…",
+    "thinking_status": "正在思考…",
+    "network_error": "網路錯誤，請重試",
+    "timeout_error": "回應逾時，請重試",
+    "copy_success": "已複製",
+    "copy_error": "複製失敗",
+    "ask_ai_message": "請介紹一下「%{query}」",
+    "input_placeholder": "輸入你的問題…",
+    "disclaimer": "內容由 AI 產生，可能存在錯誤，請自行核實。"
   },
   "generic": {
+    "published_at": "發布時間",
     "feedback_created_at": "上次反饋於",
     "buttons": {
       "signout": "登出",
@@ -131,5 +227,13 @@
   },
   "search": {
     "placeholder": "搜尋 .."
+  },
+  "placeholders": {
+    "search": ""
+  },
+  "mint": {
+    "search": {
+      "ask_ai_message": "請介紹一下「%{query}」"
+    }
   }
 }

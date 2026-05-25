@@ -343,23 +343,6 @@
     align-items: stretch;
     width: 100%;
   }
-
-  :where(li ul) {
-    position: relative;
-    padding-left: calc(0.25rem * 6);
-
-    &:before {
-      position: absolute;
-      inset-inline-start: calc(0.25rem * 0);
-      top: calc(0.25rem * 3);
-      bottom: calc(0.25rem * 3);
-      left: calc(0.25rem * 4.5);
-      background-color: var(--color-base-content);
-      opacity: 10%;
-      width: var(--border);
-      content: "";
-    }
-  }
 }
 
 .search-highlight-block {

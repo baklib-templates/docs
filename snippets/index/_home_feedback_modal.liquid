@@ -1,0 +1,16 @@
+{% comment %} locals: (page:) {% endcomment %}
+<dialog id="home-feedback-modal" class="modal" aria-labelledby="home-feedback-title">
+  <div class="modal-box w-[min(100vw-1.5rem,32rem)] max-w-none rounded-2xl border border-base-200 bg-base-100 p-0 shadow-2xl sm:w-[32rem]">
+    <div class="flex items-center justify-end border-b border-base-200 px-4 py-3">
+      <form method="dialog">
+        <button class="btn btn-ghost btn-sm btn-circle" aria-label="{{ 'generic.buttons.close' | t: '关闭' }}">
+          <i class="ri-close-line text-lg" aria-hidden="true"></i>
+        </button>
+      </form>
+    </div>
+    {% render 'index/home_feedback_form', page: page %}
+  </div>
+  <form method="dialog" class="modal-backdrop">
+    <button>{{ 'generic.buttons.close' | t: '关闭' }}</button>
+  </form>
+</dialog>

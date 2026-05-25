@@ -1,0 +1,11 @@
+{% # 头像 %}
+
+{% assign name = name | presence %}
+{% if name %}
+  <div class="flex items-center space-x-1">
+    {% render 'avatar', url: url, name: name %}
+    <span class="text-sm">{{ name | escape_once }}</span>
+  </div>
+{% else %}
+  {% render 'avatar', url: url %}
+{% endif %}

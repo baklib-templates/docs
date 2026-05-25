@@ -1,4 +1,6 @@
 import { Controller } from "@hotwired/stimulus";
+import tippy from "tippy.js";
+import { copyToClipboard } from "../utils/copyToClipboard";
 
 export default class extends Controller {
   static targets = [
@@ -21,7 +23,7 @@ export default class extends Controller {
     autoSubmit: { type: Boolean, default: false },
     message: String,
     messages: Object,
-    query: Object,
+    query: Object // 搜索查询参数
   };
 
   connect() {
@@ -31,6 +33,47 @@ export default class extends Controller {
     this.#hydrateFromDom();
     this.syncSendButton();
     this.#syncClearButtonVisibility();
+  }
+
+  exportState() {
+    const messagesEl =
+      this.#messagesElForVariant("desktop") ||
+      this.#messagesElForVariant("pip") ||
+      this.messagesTargets[0];
+    const hasMessages =
+      messagesEl &&
+      messagesEl.querySelector(".ai-chat-user-round, .ai-chat-assistant-round");
+    return {
+      chatId: this.chatIdValue || "",
+      messagesHtml: messagesEl?.innerHTML || "",
+      showEmptyHint: !hasMessages,
+    };
+  }
+
+  importState({ chatId, messagesHtml, showEmptyHint }) {
+    const targets = this.messagesTargets.length
+      ? this.messagesTargets
+      : [this.#messagesElForVariant("desktop")].filter(Boolean);
+
+    if (chatId) this.chatIdValue = chatId;
+    else this.chatIdValue = "";
+
+    targets.forEach((el) => {
+      if (el && messagesHtml != null) el.innerHTML = messagesHtml;
+    });
+
+    this.chatHistory = [];
+    this.currentRound = null;
+    this.#hydrateFromDom();
+    this.#toggleEmptyHint(showEmptyHint ?? this.chatHistory.length === 0);
+    this.#syncClearButtonVisibility();
+    this.syncSendButton();
+  }
+
+  #messagesElForVariant(variant) {
+    return (
+      this.messagesTargets.find((el) => el.dataset.aiSearchVariant === variant) || null
+    );
   }
 
   disconnect() {
@@ -88,15 +131,60 @@ export default class extends Controller {
     void this.#resendRound(idx);
   }
 
-  async copyLastResponse() {
-    const idx = this.chatHistory.length - 1;
-    const text = this.chatHistory[idx]?.ai;
+  async copyResponse(event) {
+    event?.preventDefault();
+    const text = this.#assistantTextForCopy(event.currentTarget);
     if (!text) return;
+
+    const button = event.currentTarget;
+    const successText = this.messagesValue?.copy_success;
+    const errorText = this.messagesValue?.copy_error;
+    if (!successText || !errorText) return;
+
     try {
-      await navigator.clipboard.writeText(text);
+      await copyToClipboard(text);
+      this.#showCopyToast(button, successText);
     } catch {
-      /* clipboard may be unavailable */
+      this.#showCopyToast(button, errorText);
     }
+  }
+
+  #showCopyToast(anchor, message) {
+    if (!anchor || !message) return;
+
+    this._copyTippy?.destroy();
+    this._copyTippy = tippy(anchor, {
+      theme: "material",
+      content: message,
+      trigger: "manual",
+      arrow: true,
+      placement: "top",
+    });
+    this._copyTippy.show();
+    window.clearTimeout(this._copyTippyTimer);
+    this._copyTippyTimer = window.setTimeout(() => {
+      this._copyTippy?.hide();
+      this._copyTippy?.destroy();
+      this._copyTippy = null;
+    }, 1200);
+  }
+
+  #assistantTextForCopy(triggerEl) {
+    const roundEl = triggerEl?.closest?.(".ai-chat-assistant-round");
+    if (!roundEl) return "";
+
+    const idx = Number(roundEl.dataset.roundIdx);
+    if (Number.isFinite(idx) && this.chatHistory[idx]?.ai) {
+      return this.chatHistory[idx].ai.trim();
+    }
+
+    const contentEl = roundEl.querySelector("[data-markdown-target='content']");
+    const fromPre = contentEl?.textContent?.trim();
+    if (fromPre) return fromPre;
+
+    return (
+      roundEl.querySelector("[data-markdown-target='renderedContent']")?.innerText?.trim() || ""
+    );
   }
 
   async clearChat() {
@@ -299,6 +387,8 @@ export default class extends Controller {
       } else if (el.matches(".ai-chat-assistant-round") && pendingUser != null) {
         const contentEl = el.querySelector("[data-markdown-target='content']");
         const ai = contentEl?.textContent?.trim() || "";
+        const idx = rounds.length;
+        el.dataset.roundIdx = String(idx);
         rounds.push({
           user: pendingUser,
           ai,
@@ -316,6 +406,7 @@ export default class extends Controller {
     this.chatHistory = rounds;
     this.#toggleEmptyHint(false);
     this.#syncClearButtonVisibility();
+    this.#showAssistantActions(rounds.length - 1);
   }
 
   appendUserMessage(content) {
@@ -351,6 +442,12 @@ export default class extends Controller {
   }
 
   #fillAssistantNode(node, content, status, idx, retryFn) {
+    const roundEl =
+      node instanceof Element && node.matches(".ai-chat-assistant-round")
+        ? node
+        : node.querySelector?.(".ai-chat-assistant-round");
+    if (roundEl) roundEl.dataset.roundIdx = String(idx);
+
     const markdownRoot = node.querySelector("[data-controller~='markdown']");
     const contentEl = node.querySelector("[data-markdown-target='content']");
     const renderedEl = node.querySelector("[data-markdown-target='renderedContent']");

@@ -11,13 +11,112 @@
   },
   "templates": {
     "index": {
-      "mint": {
-        "name": "Klassische 3-Spalten-Doku",
-        "description": "3-Spalten-Dokumentationsseite: Suche und Ask AI in der Kopfzeile, Tabs oben, Dokumentenbaum links, Inhaltsverzeichnis rechts; Artikelbereich mit Feedback, Vor/Zurück und AI-Frage am Ende.",
+      "shared": {
+        "groups": {
+          "home_config": "Startseiten-Konfiguration",
+          "home_config_info": "Entweder: ① „Site-Seite auf der Startseite“ setzen — Inhalt dieser Seite bei /; ② leer lassen — Maple-Standardstartseite aus den Feldern unten (Hero, Schnellstart usw.). Seiten können in den Seiteneinstellungen für den Schnellstart aktiviert werden.",
+          "home_config_info_mint": "Zeigt eine Site-Seite bei /. Mint hat kein Standard-Startseiten-Layout — Pfad angeben (z. B. Einstiegsseite). Leer = leerer Startseiten-Inhalt.",
+          "chrome": "Layout & Navigation"
+        },
         "settings": {
+          "home_page_path": {
+            "label": "Site-Seite auf der Startseite",
+            "info": "z. B. /docs/getting-started, /guide/overview. Zeigt Titel und Inhalt dieser Seite bei /, URL bleibt /. Leer: Maple nutzt die Standard-Startseiten-Felder unten; Mint: Pfad angeben."
+          },
+          "search_hot_keywords": {
+            "label": "Beliebte Suchen",
+            "info": "Für Maple-Startseiten-Suche und globales Suchmodal. Mehrere Stichwörter mit Zeilenumbruch, Anzeige unter dem Suchfeld."
+          },
           "links_html": {
-            "label": "Benutzerdefiniertes HTML für linke Seitenleisten-Linkliste",
-            "info": "Unterstützt HTML-Tags und eingeschränkten TailwindCSS-Stilcode"
+            "label": "Benutzerdefinierte Linkliste HTML (linke Seitenleiste)",
+            "info": "Unterstützt HTML-Tags und begrenzte Tailwind-CSS-Stile"
+          }
+        }
+      },
+      "mint": {
+        "name": "Mint (Klassisch)",
+        "description": "Klassisches Doku-Layout mit sanftem Hero-Verlauf und 3-spaltigem Einstiegsraster – die sicherste Voreinstellung.",
+        "settings": {
+          "left_sidebar_width": {
+            "info": "Mint-Seitenleiste mit Kanalnavigation; empfohlen 400px"
+          },
+          "right_sidebar_width": {
+            "info": "In-Seite-TOC; empfohlen 240px"
+          },
+          "search_hot_keywords": {
+            "default": ""
+          },
+          "home_hero_title": {
+            "label": "",
+            "default": ""
+          },
+          "home_hero_description": {
+            "label": "",
+            "default": ""
+          },
+          "home_guide_section_title": {
+            "label": "",
+            "default": ""
+          },
+          "home_show_guide_section": {
+            "label": ""
+          },
+          "home_recommended_title": {
+            "label": "",
+            "default": ""
+          },
+          "home_show_recommended": {
+            "label": ""
+          },
+          "home_help_title": {
+            "label": "",
+            "default": ""
+          },
+          "home_help_description": {
+            "label": "",
+            "default": ""
+          }
+        }
+      },
+      "maple": {
+        "name": "Maple (Mintlify-Doku-Shell)",
+        "description": "Mintlify-Maple-Layout: linke Sidebar mit Logo, Suche und gruppiertem Navigationsbaum; Dokumentkörper mit Eyebrow, Copy page und Inhaltsverzeichnis; KI-Sidebar und Suchmodal wie bei Mint.",
+        "settings": {
+          "left_sidebar_width": {
+            "info": "Maple-Seitenleiste schmaler; empfohlen 280px"
+          },
+          "search_hot_keywords": {
+            "default": ""
+          },
+          "home_hero_title": {
+            "label": "",
+            "default": ""
+          },
+          "home_hero_description": {
+            "label": "",
+            "default": ""
+          },
+          "home_guide_section_title": {
+            "label": "",
+            "default": ""
+          },
+          "home_show_guide_section": {
+            "label": ""
+          },
+          "home_recommended_title": {
+            "label": "",
+            "default": ""
+          },
+          "home_show_recommended": {
+            "label": ""
+          },
+          "home_help_title": {
+            "label": "",
+            "default": ""
+          },
+          "home_help_description": {
+            "label": "",
+            "default": ""
           }
         }
       }
@@ -25,6 +124,14 @@
     "page": {
       "description": "Inhaltsseiten-Vorlage",
       "settings": {
+        "show_list": {
+          "label": "Unterseiten-Liste anzeigen",
+          "info": "Wenn aktiviert, wird die Liste der Unterseiten auf der Seite angezeigt"
+        },
+        "show_on_home_guide": {
+          "label": "",
+          "info": ""
+        },
         "title": {
           "label": "Seitentitel",
           "info": "Mit der Wissensdatenbank synchronisiert, nicht editierbar"
@@ -72,22 +179,10 @@
         }
       },
       "left_sidebar_width": {
-        "label": "Linke Seitenleisten-Breite (Detailseiten)",
-        "info": "Empfohlen: 240px"
+        "label": "Linke Seitenleisten-Breite (Detailseiten)"
       },
       "right_sidebar_width": {
-        "label": "Rechte Seitenleisten-Breite (Detailseiten)",
-        "info": "Empfohlen: 240px"
-      },
-      "show_published_at": {
-        "label": "Veröffentlichungszeit anzeigen"
-      },
-      "show_author": {
-        "label": "Autor anzeigen"
-      },
-      "show_card_icon": {
-        "label": "Sektions-Symbole auf der Startseite anzeigen",
-        "info": "Empfohlen, Symbole in den Seiteneinstellungen zu konfigurieren"
+        "label": "Rechte Seitenleisten-Breite (Detailseiten)"
       },
       "ai_search_completed_text": {
         "label": "KI-Abschlusstext",
@@ -98,6 +193,12 @@
   "page_config": {
     "name": "Seiteneinstellungen",
     "settings": {
+      "show_published_at": {
+        "label": "Veröffentlichungszeit anzeigen"
+      },
+      "show_author": {
+        "label": "Autor anzeigen"
+      },
       "show_page_tools_dropdown": {
         "label": "Seiten-Tools-Dropdown anzeigen"
       },
@@ -128,16 +229,6 @@
         "label": "HTML im unteren Bereich einfügen (innerhalb des Footers)",
         "info": "Unterstützt HTML-Tags und eingeschränkte TailwindCSS-Klassen",
         "placeholder": "Üblich für externe Navigation, Partner-Links und SEO-Links"
-      },
-      "features_one_html": {
-        "label": "HTML in der ersten Feature-Sektion der Startseite einfügen",
-        "info": "Unterstützt HTML-Tags und eingeschränkte TailwindCSS-Klassen",
-        "placeholder": "Üblich für Navigationslinks zu anderen Firmenwebsites"
-      },
-      "features_two_html": {
-        "label": "HTML in der zweiten Feature-Sektion der Startseite einfügen",
-        "info": "Unterstützt HTML-Tags und eingeschränkte TailwindCSS-Klassen",
-        "placeholder": "Üblich für Navigationslinks zu anderen Firmenwebsites"
       }
     }
   },

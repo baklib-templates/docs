@@ -1,0 +1,9 @@
+{% # 头像 %}
+
+{% assign default_avatar_url = 'images/avatar.svg' | asset_url %}
+
+<div class="avatar">
+  <div class="w-8 rounded-xl">
+    <img src="{{ url | default: default_avatar_url }}" title="{{ name | escape_once }}" />
+  </div>
+</div>

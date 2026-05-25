@@ -30,7 +30,8 @@ export default class extends Controller {
     linkTurboFrame: String,
     linkTurboFrameAction: String,
     linkTurbo: Boolean, // 新增参数
-    expand: { type: Boolean, default: false } // 是否默认展开下级
+    // expand: false | 0 — 仅路径相关展开；true | "all" — 全部展开；正整数 N — 展开 depth < N 的层级（0 起算）
+    expand: { type: String, default: "false" },
   }
 
   static targets = [
@@ -133,6 +134,36 @@ export default class extends Controller {
     return best
   }
 
+  /**
+   * expand 配置：off | all | depth(N)
+   * @returns {{ mode: 'off' | 'all' | 'depth', depth?: number }}
+   */
+  #expandConfig() {
+    if (!this.hasExpandValue) return { mode: "off" }
+
+    const raw = this.expandValue
+    if (raw === true || raw === false) {
+      return raw ? { mode: "all" } : { mode: "off" }
+    }
+
+    const v = String(raw).trim().toLowerCase()
+    if (v === "" || v === "false" || v === "0" || v === "off") return { mode: "off" }
+    if (v === "true" || v === "all" || v === "yes") return { mode: "all" }
+
+    const n = Number.parseInt(v, 10)
+    if (!Number.isNaN(n) && n > 0) return { mode: "depth", depth: n }
+
+    return { mode: "off" }
+  }
+
+  /** 是否按 expand 规则在 depth 层默认展开（与当前 URL 路径无关） */
+  #shouldExpandAtDepth(depth) {
+    const cfg = this.#expandConfig()
+    if (cfg.mode === "all") return true
+    if (cfg.mode === "depth") return depth < cfg.depth
+    return false
+  }
+
   /** 当前页是否落在该 href 对应路径下（含自身，不含用「/」吞掉所有页） */
   #hrefCoversCurrent(hrefPath, current) {
     if (!current) return false
@@ -158,8 +189,8 @@ export default class extends Controller {
         const isOnPath = this.isPathActive(node)
         // 是否就是当前页（传给 Mustache 的 isActive，仅自定义模板使用；mint 高亮靠 [active] + CSS）
         const isCurrent = this.isPathActive(node, false)
-        // expand：默认展开有子级的节点；路径上的分支也应展开
-        const shouldOpen = this.expandValue || isOnPath || this.hasActiveChild(node)
+        // expand：可指定展开层数；路径上的分支始终展开
+        const shouldOpen = this.#shouldExpandAtDepth(depth) || isOnPath || this.hasActiveChild(node)
         const useRenderChildren = node.children?.length > 0
         const useRenderTurboFrame = node.children?.length == 0 && node.children_count > 0 && this.hasUrlValue
 
@@ -213,6 +244,9 @@ export default class extends Controller {
     const params = new URLSearchParams()
     params.set("parent_path", node.path)
     params.set("depth", depth)
+    if (this.hasExpandValue) {
+      params.set("expand", this.expandValue)
+    }
     tf.src = `${urlBase}?${params.toString()}`
     tf.loading = "lazy"
 
@@ -333,6 +367,16 @@ export default class extends Controller {
     return this.#nodeIconUrl(node).length > 0
   }
 
+  /** @param {string} linkText */
+  #parseMethodBadge(linkText) {
+    if (!linkText || typeof linkText !== "string") return null
+    const match = linkText.match(/^(GET|POST|PUT|PATCH|DELETE|DEL)\b\s*/i)
+    if (!match) return null
+    let type = match[1].toUpperCase()
+    if (type === "DEL") type = "DELETE"
+    return { type, title: linkText.slice(match[0].length).trim() || linkText }
+  }
+
   // 单个 item 渲染；open：子级是否展开；isActive：是否为当前 URL 对应页（与 expand 无关）
   renderItem(node, depth, open = false, isActive = false, showIconColumn = false) {
     const hasChildren = this.hasUrlValue ? node.children_count : node.children?.length > 0
@@ -384,6 +428,9 @@ export default class extends Controller {
       }
     }
 
+    const methodBadge = this.#parseMethodBadge(node.link_text)
+    const display_link_text = methodBadge?.title ?? node.link_text
+
     return Mustache.render(template, {
       ...node,
       depth,
@@ -392,7 +439,14 @@ export default class extends Controller {
       open,
       isActive,
       show_icon_column: showIconColumn,
+      show_nav_icon: showIconColumn && !methodBadge,
       icon_url: this.#nodeIconUrl(node),
+      display_link_text,
+      method_get: methodBadge?.type === "GET",
+      method_post: methodBadge?.type === "POST",
+      method_put: methodBadge?.type === "PUT",
+      method_patch: methodBadge?.type === "PATCH",
+      method_delete: methodBadge?.type === "DELETE",
     })
   }
 

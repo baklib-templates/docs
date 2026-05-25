@@ -47,6 +47,7 @@
 {% assign fb_no_update_label = 'snippets.mint.page_feedback.no.update_docs_label' | t: '更新此文档' %}
 
 <div
+  id="js--feedback-{{ page.id }}"
   x-data="{
     state: '{{ default_state }}',
     reason: '',
@@ -57,7 +58,7 @@
     followUpYes: '{{ fb_follow_up_yes }}',
     followUpNo: '{{ fb_follow_up_no }}',
     closeAiSidebar() {
-      window.dispatchEvent(new CustomEvent('mint:ai-close'));
+      window.dispatchEvent(new CustomEvent('ai-close'));
     },
     scrollToFollowUp() {
       this.closeAiSidebar();
@@ -191,10 +192,6 @@
 
       {% if page.visitor_posted_feedback %}
         <div class="mt-4 rounded-xl border border-base-200 bg-base-200/50 px-4 py-3 text-xs text-base-content/80">
-          {{ fb_thanks }}
-        </div>
-      {% else %}
-        <div x-show="submitted" class="mt-4 rounded-xl border border-base-200 bg-base-200/50 px-4 py-3 text-xs text-base-content/80" x-cloak>
           {{ fb_thanks }}
         </div>
       {% endif %}

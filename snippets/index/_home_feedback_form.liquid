@@ -1,0 +1,102 @@
+{% comment %} locals: (page:) — 首页专用反馈表单（提交方式与全站 feedback 一致） {% endcomment %}
+{% assign default_title = 'snippets.home_feedback.title' | t: '在线反馈' %}
+{% assign title = site.plugins.feedback.useful_label | presence | default: default_title %}
+{% assign message_enabled = site.plugins.feedback.message_enabled %}
+{% assign message_required = site.plugins.feedback.message_required %}
+{% assign useful_types = site.plugins.feedback.useful_types %}
+{% assign default_emoji_sel = useful_types.first.emoji | default: '' | escape_once %}
+{% assign fb_subtitle = 'snippets.home_feedback.subtitle' | t: '描述您遇到的问题、文档遗漏或改进建议，我们会尽快处理。' %}
+{% assign fb_message_label = 'snippets.home_feedback.message_label' | t: '详细说明' %}
+{% assign fb_message_placeholder = 'snippets.home_feedback.message_placeholder' | t: '请尽量说明具体页面、场景或期望补充的内容…' %}
+{% assign fb_submit = 'snippets.feedback_form.submit' | t: '提交' %}
+{% assign fb_cancel = 'snippets.feedback_form.cancel' | t: '取消' %}
+<div id="js--home-feedback-{{ page.id }}">
+  {% form_tag 'feedback', page: page %}
+    <div
+      class="px-5 py-6 sm:px-7 sm:py-7"
+      x-data="{ selected: '{{ default_emoji_sel }}' }"
+    >
+        <div class="mb-6 border-b border-base-200 pb-5">
+          <div class="flex items-start gap-3">
+            <span class="flex size-10 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
+              <i class="ri-feedback-line text-xl" aria-hidden="true"></i>
+            </span>
+            <div class="min-w-0 text-left">
+              {% if title %}
+                <h2 class="text-lg font-bold tracking-tight text-base-content">{{ title }}</h2>
+              {% endif %}
+              <p class="mt-1 text-sm leading-relaxed text-base-content/60">{{ fb_subtitle }}</p>
+            </div>
+          </div>
+        </div>
+
+        {% if useful_types.size > 0 %}
+          <p class="mb-3 text-xs font-semibold uppercase tracking-wide text-base-content/45">
+            {{ 'snippets.home_feedback.type_label' | t: '反馈类型' }}
+          </p>
+          <div class="mb-5 flex flex-wrap gap-2">
+            {% for useful_type in useful_types %}
+              <label
+                class="inline-flex cursor-pointer items-center gap-2 rounded-xl border px-3 py-2.5 text-sm transition-colors"
+                :class="selected === '{{ useful_type.emoji | escape_once }}' ? 'border-primary bg-primary/10 text-primary' : 'border-base-200 bg-base-100 text-base-content/80 hover:border-base-300'"
+              >
+                <input
+                  type="radio"
+                  name="{{ form.feedback_emoji_field_name }}"
+                  value="{{ useful_type.emoji | escape_once }}"
+                  x-model="selected"
+                  class="hidden"
+                  required
+                >
+                <span class="text-xl leading-none">{{ useful_type.emoji }}</span>
+                <span class="font-medium">{{ useful_type.label }}</span>
+              </label>
+            {% endfor %}
+          </div>
+        {% endif %}
+
+        {% if message_enabled %}
+          <fieldset class="mb-6">
+            <legend class="mb-2 text-xs font-semibold uppercase tracking-wide text-base-content/45">{{ fb_message_label }}</legend>
+            <textarea
+              name="{{ form.feedback_message_field_name }}"
+              rows="5"
+              class="textarea w-full resize-y rounded-xl border-base-300 bg-base-100 text-sm leading-relaxed focus:border-primary focus:outline-none"
+              placeholder="{{ fb_message_placeholder | escape_once }}"
+              {% if message_required %}required{% endif %}
+            ></textarea>
+            {% if message_required %}
+              <p class="mt-1.5 text-xs text-base-content/45">{{ 'snippets.feedback_form.message_required' | t: '反馈内容不能为空' }}</p>
+            {% endif %}
+          </fieldset>
+        {% endif %}
+
+        <div class="flex flex-col-reverse gap-2 sm:flex-row sm:justify-end sm:gap-3">
+          <button type="button" class="btn btn-ghost rounded-xl" onclick="this.closest('dialog')?.close()">
+            {{ fb_cancel }}
+          </button>
+          {% if message_enabled %}
+            <button
+              type="submit"
+              class="btn btn-primary rounded-xl px-6"
+              {% if useful_types.size > 0 %}:disabled="!selected"{% endif %}
+            >
+              {{ fb_submit }}
+            </button>
+          {% else %}
+            {% for useful_type in useful_types %}
+              <button
+                type="submit"
+                name="{{ form.feedback_emoji_field_name }}"
+                value="{{ useful_type.emoji | escape_once }}"
+                class="btn btn-primary rounded-xl gap-2 px-4"
+              >
+                <span class="text-lg">{{ useful_type.emoji }}</span>
+                <span>{{ useful_type.label }}</span>
+              </button>
+            {% endfor %}
+          {% endif %}
+        </div>
+    </div>
+  {% endform_tag %}
+</div>
