@@ -41,50 +41,15 @@
       "nav_tree": {
         "toggle_submenu": "하위 메뉴 펼치기/접기"
       },
-      "page_feedback": {
-        "prompt": "이 페이지가 도움이 되었나요?",
-        "yes_button": "예",
-        "no_button": "아니요",
-        "follow_up_yes": "좋습니다! 어떤 점이 가장 도움이 되었나요?",
-        "follow_up_no": "제품을 어떻게 개선할 수 있을까요?",
-        "cancel": "취소",
-        "submit": "피드백 제출",
-        "thanks": "피드백 감사합니다. 계속해서 경험을 개선하겠습니다.",
-        "other": "기타",
-        "other_prefix": "기타: ",
-        "other_details_sr": "기타 피드백 상세",
-        "other_placeholder": "(선택) 경험에 대해 더 공유해 주시겠어요?",
-        "yes": {
-          "works_as_expected": "예상대로 작동",
-          "works_as_expected_label": "이 가이드는 예상대로 작동했습니다.",
-          "easy_to_find": "정보를 쉽게 찾음",
-          "easy_to_find_label": "필요한 정보를 쉽게 찾았습니다.",
-          "easy_to_understand": "기능 이해가 쉬움",
-          "easy_to_understand_label": "제품과 기능을 이해하기 쉬웠습니다.",
-          "docs_updated": "문서 업데이트됨",
-          "docs_updated_label": "문서가 최신 상태입니다."
-        },
-        "no": {
-          "faster_start": "더 빠른 시작",
-          "faster_start_label": "더 빠르게 시작할 수 있게 도와주세요",
-          "easier_find": "콘텐츠 찾기 쉬움",
-          "easier_find_label": "필요한 것을 더 쉽게 찾을 수 있게 해주세요",
-          "better_understand": "제품 이해 개선",
-          "better_understand_label": "사용자가 제품과 기능을 더 쉽게 이해할 수 있게 해주세요.",
-          "update_docs": "문서 업데이트",
-          "update_docs_label": "이 문서를 업데이트해 주세요"
-        }
-      },
       "home": {
-        "search_placeholder": "Search docs, guides, and APIs…",
-        "channel_card_fallback_desc": "Browse docs and guides in this channel.",
-        "guide_card_fallback_desc": "Open this topic to browse related docs.",
-        "recommended_title": "Recommended reading",
-        "view_all": "View all",
-        "tag_recent": "Recently updated",
-        "rec_default_1": "Quick start: environment setup and first deploy",
-        "rec_default_2": "API authentication and examples",
-        "rec_default_3": "FAQ and troubleshooting"
+        "search_placeholder": "문서, 가이드 및 API 검색…",
+        "channel_card_fallback_desc": "이 채널의 문서와 가이드를 둘러봅니다.",
+        "guide_card_fallback_desc": "이 주제의 관련 문서를 둘러봅니다.",
+        "view_all": "전체 보기",
+        "tag_recent": "최근 업데이트",
+        "rec_default_1": "빠른 시작: 환경 설정 및 첫 배포",
+        "rec_default_2": "API 인증 및 호출 예제",
+        "rec_default_3": "FAQ 및 문제 해결"
       }
     },
     "page_tools": {
@@ -102,78 +67,43 @@
     },
     "maple": {
       "home": {
-        "recommended_title": "Recommended",
-        "search_placeholder": "Search guides and docs…",
-        "channel_card_fallback_desc": "Browse docs and guides in this topic.",
-        "view_all": "View all",
-        "tag_tech": "Tech picks",
-        "tag_official": "Official",
-        "rec_default_1": "[Core] Industry standards and revision notes",
-        "rec_default_2": "[Manual] Search, export, and batch processing",
-        "rec_default_3": "[Best practice] Team collaboration checklist",
-        "rec_default_4": "[Getting started] Setup before first use",
-        "rec_default_5": "System configuration and architecture",
-        "rec_default_6": "Common errors and troubleshooting"
+        "search_placeholder": "키워드를 입력해 필요한 가이드나 문서를 검색하세요…",
+        "channel_card_fallback_desc": "이 주제의 문서와 가이드를 둘러봅니다.",
+        "view_all": "전체 보기",
+        "tag_tech": "기술 추천",
+        "tag_official": "공식",
+        "rec_default_1": "【핵심】 업계 표준 시행 세칙 및 개정 안내",
+        "rec_default_2": "【매뉴얼】 검색,보내기 및 일괄 처리 가이드",
+        "rec_default_3": "【모범 사례】 팀 협업 및 권한 설정 체크리스트",
+        "rec_default_4": "【입문】 첫 사용 전 완료할 설정",
+        "rec_default_5": "시스템 구성 및 아키텍처 최적화 매뉴얼",
+        "rec_default_6": "일반 오류 및 문제 해결 단계 요약"
       },
       "breadcrumb": {
-        "label": "Breadcrumb"
+        "label": "이동 경로"
       },
       "nav": {
-        "open_sidebar": "Open navigation menu"
-      },
-      "page_feedback": {
-        "prompt": "Was this page helpful?",
-        "yes_button": "Yes",
-        "no_button": "No",
-        "follow_up_yes": "Great! What worked best for you?",
-        "follow_up_no": "How can we improve our product?",
-        "cancel": "Cancel",
-        "submit": "Submit feedback",
-        "thanks": "Thank you for your feedback. We will keep improving the experience.",
-        "other": "Other",
-        "other_prefix": "Other: ",
-        "other_details_sr": "Other feedback details",
-        "other_placeholder": "(Optional) Tell us more about your experience.",
-        "yes": {
-          "works_as_expected": "Worked as expected",
-          "works_as_expected_label": "This guide worked as expected.",
-          "easy_to_find": "Easy to find information",
-          "easy_to_find_label": "I found what I needed easily.",
-          "easy_to_understand": "Easy to understand",
-          "easy_to_understand_label": "The product and features were easy to understand.",
-          "docs_updated": "Docs are up to date",
-          "docs_updated_label": "The documentation is up to date."
-        },
-        "no": {
-          "faster_start": "Help me get started faster",
-          "faster_start_label": "Help me get started faster",
-          "easier_find": "Easier to find content",
-          "easier_find_label": "Make it easier to find what I need",
-          "better_understand": "Better product understanding",
-          "better_understand_label": "Help users understand the product and features.",
-          "update_docs": "Update documentation",
-          "update_docs_label": "Update this documentation"
-        }
+        "open_sidebar": "내비게이션 열기"
       },
       "search": {
-        "ask_ai_section": "Ask the AI assistant",
-        "ask_ai_lead": "Tell me about ",
+        "ask_ai_section": "AI 어시스턴트에게 질문",
+        "ask_ai_lead": "다음에 대해 알려 주세요: ",
         "ask_ai_ellipsis": "…",
         "ask_ai_trailing": "",
-        "ask_ai_query_display": "%{query}"
+        "ask_ai_query_display": "「%{query}」"
       }
     },
     "ai": {
       "assistant_title": "AI 어시스턴트",
-      "send": "Send",
-      "pop_out_unsupported": "Picture-in-picture is not supported in this browser",
-      "pop_out_window": "Pop out",
-      "dock_to_sidebar": "Dock to sidebar",
-      "pip_active": "AI assistant is open in a separate window",
-      "clear_chat": "Clear chat",
-      "input_placeholder": "Ask your question…",
-      "copy_response": "Copy answer",
-      "retry_response": "Regenerate"
+      "send": "보내기",
+      "pop_out_unsupported": "이 브라우저에서는 별도 창을 지원하지 않습니다",
+      "pop_out_window": "별도 창",
+      "dock_to_sidebar": "사이드바로 돌아가기",
+      "pip_active": "AI 어시스턴트가 별도 창에서 열려 있습니다",
+      "clear_chat": "대화 지우기",
+      "input_placeholder": "질문을 입력하세요…",
+      "copy_response": "답변 복사",
+      "retry_response": "다시 생성"
     },
     "home_feedback": {
       "title": "온라인 피드백",
@@ -184,6 +114,40 @@
     },
     "home": {
       "feedback_btn": "온라인 피드백"
+    },
+    "almond": {
+      "search": {
+        "ask_ai_section": "AI 어시스턴트에게 질문",
+        "ask_ai_lead": "다음에 대해 알려줘: ",
+        "ask_ai_trailing": "",
+        "ask_ai_ellipsis": "…",
+        "ask_ai_query_display": "「%{query}」"
+      },
+      "breadcrumb": {
+        "label": "이동 경로"
+      },
+      "nav": {
+        "open_sidebar": "내비게이션 열기"
+      },
+      "nav_tree": {
+        "toggle_submenu": "하위 메뉴 펼치기/접기"
+      },
+      "home": {
+        "search_placeholder": "문서 검색 또는 질문 입력…",
+        "guide_card_fallback_desc": "이 주제의 문서와 가이드를 둘러봅니다.",
+        "view_all": "전체 보기",
+        "rec_default_1": "Markdown 문법 및 서식 가이드",
+        "rec_default_2": "코드 블록 렌더링 규격",
+        "rec_default_3": "미디어 임베드 및 에셋 허용 목록"
+      }
+    },
+    "page_feedback": {
+      "cancel": "취소",
+      "submit": "피드백 제출",
+      "thanks": "피드백 감사합니다. 계속해서 콘텐츠 경험을 개선하겠습니다.",
+      "other": "기타",
+      "other_prefix": "기타: ",
+      "other_details_sr": "기타 피드백 상세"
     }
   },
   "templates": {
@@ -207,14 +171,14 @@
   },
   "ai": {
     "completed": "AI 응답 완료.",
-    "reading": "Reading documentation…",
-    "thinking_status": "Thinking…",
-    "network_error": "Network error. Please try again.",
-    "timeout_error": "Request timed out. Please try again.",
-    "copy_success": "Copied",
-    "copy_error": "Copy failed",
-    "ask_ai_message": "Tell me about \"%{query}\"",
-    "input_placeholder": "Ask your question…",
+    "reading": "문서를 읽는 중…",
+    "thinking_status": "생각하는 중…",
+    "network_error": "네트워크 오류입니다. 다시 시도해 주세요.",
+    "timeout_error": "응답 시간이 초과되었습니다. 다시 시도해 주세요.",
+    "copy_success": "복사됨",
+    "copy_error": "복사 실패",
+    "ask_ai_message": "「%{query}」에 대해 알려줘",
+    "input_placeholder": "질문을 입력하세요…",
     "disclaimer": "AI가 생성한 콘텐츠이며 오류가 있을 수 있습니다. 직접 확인해 주세요."
   },
   "generic": {
@@ -233,7 +197,12 @@
   },
   "mint": {
     "search": {
-      "ask_ai_message": "Tell me about \"%{query}\""
+      "ask_ai_message": "「%{query}」에 대해 알려줘"
+    }
+  },
+  "almond": {
+    "search": {
+      "ask_ai_message": "「%{query}」에 대해 알려줘"
     }
   }
 }

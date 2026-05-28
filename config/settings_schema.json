@@ -10,20 +10,13 @@
     "theme_author": "Baklib",
     "theme_documentation_url": "https://help.baklib.cn/themes/docs",
     "theme_support_url": "https://help.baklib.cn/themes/docs/settings",
-    "theme_thumb_url": "images/theme/${lang}/thumb.png",
+    "theme_thumb_url": "images/theme/thumb-indigo.png",
     "theme_preview_images": [
-      "images/theme/${lang}/index.png",
       "images/theme/${lang}/index-mint.png",
       "images/theme/${lang}/index-maple.png",
-      "images/theme/${lang}/index-palm.png",
-      "images/theme/${lang}/index-willow.png",
-      "images/theme/${lang}/index-linden.png",
       "images/theme/${lang}/index-almond.png",
-      "images/theme/${lang}/index-aspen.png",
-      "images/theme/${lang}/index-sequoia.png",
-      "images/theme/${lang}/index-luma.png",
-      "images/theme/${lang}/index-list.png",
-      "images/theme/${lang}/page.png"
+      "images/theme/${lang}/page.png",
+      "images/theme/${lang}/page-ai.png"
     ],
     "theme_languages": [
       {
@@ -112,6 +105,14 @@
         "type": "text",
         "label": "t:schema.generic.settings.ai_search_completed_text.label",
         "info": "t:schema.generic.settings.ai_search_completed_text.info"
+      },
+      {
+        "id": "feedback_helper_text",
+        "type": "textarea",
+        "label": "t:schema.generic.settings.feedback_helper_text.label",
+        "rows": 3,
+        "info": "t:schema.generic.settings.feedback_helper_text.info",
+        "default": "t:schema.generic.settings.feedback_helper_text.default"
       }
     ]
   },

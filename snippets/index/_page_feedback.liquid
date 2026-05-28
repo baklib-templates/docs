@@ -1,0 +1,189 @@
+{% comment %}
+  页面反馈选项由站点设置 feedback_helper_text（JSON 字符串）驱动，在 Alpine 中解析与校验。
+  结构：{ "yes": { "label": "…", "title": "…", "items": ["…"] }, "no": { … } }
+  解析失败或结构不合法时不展示反馈内容。
+{% endcomment %}
+{% assign posted_feedback = page.visitor_posted_feedback | default: {} %}
+{% assign posted_emoji = posted_feedback.useful_type | default: '' %}
+{% comment %} 与站点反馈配置中的 useful_type 固定一致：有用 😊、无用 😞 {% endcomment %}
+{% assign useful_yes_emoji = '😊' %}
+{% assign useful_no_emoji = '😞' %}
+
+{% assign default_state = '' %}
+{% assign has_posted_feedback = false %}
+{% if posted_emoji == useful_yes_emoji %}
+  {% assign default_state = 'yes' %}
+{% elsif posted_emoji == useful_no_emoji %}
+  {% assign default_state = 'no' %}
+{% endif %}
+{% if page.visitor_posted_feedback %}
+  {% assign has_posted_feedback = true %}
+{% endif %}
+
+{% assign fb_config_raw = site.settings.feedback_helper_text | default: '' %}
+{% assign fb_cancel = 'snippets.page_feedback.cancel' | t: '取消' %}
+{% assign fb_submit = 'snippets.page_feedback.submit' | t: '提交反馈' %}
+{% assign fb_thanks = 'snippets.page_feedback.thanks' | t: '感谢你的反馈，我们会持续优化内容体验。' %}
+{% assign fb_other = 'snippets.page_feedback.other' | t: '其他' %}
+{% assign fb_other_prefix = 'snippets.page_feedback.other_prefix' | t: '其他：' %}
+{% assign fb_other_details_sr = 'snippets.page_feedback.other_details_sr' | t: '其他反馈详情' %}
+
+<div
+  id="js--feedback-{{ page.id }}"
+  x-data="{
+    configValid: false,
+    yesBranch: null,
+    noBranch: null,
+    state: '{{ default_state }}',
+    reason: '',
+    details: '',
+    submitted: {% if has_posted_feedback %}true{% else %}false{% endif %},
+    otherLabel: '{{ fb_other }}',
+    otherPrefix: '{{ fb_other_prefix }}',
+    init() {
+      const parsed = this.parseConfig(`{{ fb_config_raw }}`);
+      if (!parsed) return;
+      this.configValid = true;
+      this.yesBranch = parsed.yes;
+      this.noBranch = parsed.no;
+    },
+    parseConfig(raw) {
+      if (!raw || !String(raw).trim()) return null;
+      let data;
+      try {
+        data = JSON.parse(raw);
+      } catch {
+        return null;
+      }
+      const validBranch = (branch) => {
+        if (!branch || typeof branch !== 'object') return false;
+        const label = String(branch.label ?? '').trim();
+        const title = String(branch.title ?? '').trim();
+        const items = branch.items;
+        if (!label || !title || !Array.isArray(items) || items.length === 0) return false;
+        return items.every((item) => typeof item === 'string' && item.trim());
+      };
+      const yes = data?.yes;
+      const no = data?.no;
+      if (!validBranch(yes) || !validBranch(no)) return null;
+      return { yes, no };
+    },
+    get followUpTitle() {
+      if (this.state === 'yes') return this.yesBranch?.title ?? '';
+      if (this.state === 'no') return this.noBranch?.title ?? '';
+      return '';
+    },
+    get currentItems() {
+      if (this.state === 'yes') return this.yesBranch?.items ?? [];
+      if (this.state === 'no') return this.noBranch?.items ?? [];
+      return [];
+    },
+    closeAiSidebar() {
+      window.dispatchEvent(new CustomEvent('ai-close'));
+    },
+    scrollToFollowUp() {
+      this.closeAiSidebar();
+      this.$nextTick(() => {
+        requestAnimationFrame(() => {
+          this.$refs.followUp?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+      });
+    },
+    feedbackMessage() {
+      if (this.reason === this.otherLabel && this.details.trim()) {
+        return this.otherPrefix + this.details.trim();
+      }
+      return this.reason;
+    }
+  }"
+>
+  <template x-if="configValid">
+    <div>
+      {% form_tag 'feedback', page: page %}
+        <section class="mt-6">
+          <div class="flex flex-col gap-4 sm:flex-row sm:items-center">
+            <p class="text-[0.92rem] text-base-content/70">{{ site.plugins.feedback.useful_label }}</p>
+            <div class="flex items-center gap-2">
+              <button
+                type="button"
+                class="btn btn-sm h-9 min-w-22 rounded-xl px-4 text-md font-medium shadow-none"
+                :class="state === 'yes' ? 'btn-primary' : 'btn-outline border-base-300'"
+                @click="state = 'yes'; reason = ''; details = ''; submitted = false; scrollToFollowUp()"
+              >
+                <i class="ri-thumb-up-line text-base leading-none" aria-hidden="true"></i>
+                <span x-text="yesBranch.label"></span>
+              </button>
+              <button
+                type="button"
+                class="btn btn-sm h-9 min-w-18 rounded-xl px-4 text-md font-medium shadow-none"
+                :class="state === 'no' ? 'btn-primary' : 'btn-outline border-base-300'"
+                @click="state = 'no'; reason = ''; details = ''; submitted = false; scrollToFollowUp()"
+              >
+                <i class="ri-thumb-down-line text-base leading-none" aria-hidden="true"></i>
+                <span x-text="noBranch.label"></span>
+              </button>
+            </div>
+          </div>
+
+          <input type="hidden" name="{{ form.feedback_emoji_field_name }}" :value="state === 'yes' ? '{{ useful_yes_emoji | escape_once }}' : (state === 'no' ? '{{ useful_no_emoji | escape_once }}' : '')">
+          <textarea
+            name="{{ form.feedback_message_field_name }}"
+            class="hidden"
+            :value="feedbackMessage()"
+          ></textarea>
+
+          <div
+            x-show="state && !submitted"
+            x-ref="followUp"
+            class="mt-4 scroll-mt-[calc(var(--header-height)+0.75rem)] border-t border-base-200 pt-4"
+            x-cloak
+          >
+            <h3 class="text-md font-semibold tracking-tight text-base-content" x-text="followUpTitle"></h3>
+
+            <fieldset class="mt-5 space-y-3">
+              <template x-if="state === 'yes' || state === 'no'">
+                <div class="space-y-3">
+                  <template x-for="item in currentItems" :key="item">
+                    <label class="flex cursor-pointer items-center gap-3 text-xs text-base-content/70">
+                      <input type="radio" name="page-feedback-reason" class="radio radio-sm radio-primary" :value="item" x-model="reason">
+                      <span x-text="item"></span>
+                    </label>
+                  </template>
+                  <label class="flex cursor-pointer items-center gap-3 text-xs text-base-content/70">
+                    <input type="radio" name="page-feedback-reason" class="radio radio-sm radio-primary" :value="otherLabel" x-model="reason">
+                    <span x-text="otherLabel"></span>
+                  </label>
+                </div>
+              </template>
+            </fieldset>
+
+            <div x-show="reason === otherLabel" class="mt-2" x-cloak>
+              <label for="feedback-other-details-{{ page.id }}" class="sr-only">{{ fb_other_details_sr }}</label>
+              <input
+                id="feedback-other-details-{{ page.id }}"
+                type="text"
+                x-model="details"
+                class="input input-bordered input-sm h-10 w-full rounded-xl border-base-300 bg-base-100 text-xs text-base-content placeholder-base-content/50 focus:border-primary focus:outline-none"
+              >
+            </div>
+
+            <div class="mt-6 flex items-center gap-3">
+              <button type="button" class="btn btn-sm btn-outline h-10 rounded-2xl border-base-300 px-4" @click="state = ''; reason = ''; details = ''">
+                {{ fb_cancel }}
+              </button>
+              <button type="submit" class="btn btn-sm btn-primary h-10 rounded-2xl px-5" :disabled="!state || !reason || (reason === otherLabel && !details.trim())" @click="submitted = true">
+                {{ fb_submit }}
+              </button>
+            </div>
+          </div>
+
+          {% if page.visitor_posted_feedback %}
+            <div class="mt-4 rounded-xl border border-base-200 bg-base-200/50 px-4 py-3 text-xs text-base-content/80">
+              {{ fb_thanks }}
+            </div>
+          {% endif %}
+        </section>
+      {% endform_tag %}
+    </div>
+  </template>
+</div>

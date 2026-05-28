@@ -1,0 +1,42 @@
+{%# locals: (page:) %}
+{% assign prev_page = page.prev_page %}
+{% assign next_page = page.next_page %}
+
+{% if prev_page or next_page %}
+  <section class="my-8 print:hidden">
+    <div
+      id="pagination"
+      class="px-0.5 grid grid-cols-2 items-center gap-x-6 sm:gap-x-10 text-sm font-semibold"
+    >
+      {% if prev_page %}
+        <a
+          class="group/prev flex min-w-0 max-w-full items-center justify-self-start space-x-3 text-base-content/80 no-underline hover:text-base-content"
+          href="{{ prev_page.path }}"
+          data-turbo-frame="main-content-frame"
+          data-turbo-action="advance"
+        >
+          <i
+            class="ri-arrow-left-s-line shrink-0 text-xs leading-none text-base-content/50 group-hover/prev:text-base-content"
+            aria-hidden="true"
+          ></i>
+          <span class="truncate">{{ prev_page.link_text }}</span>
+        </a>
+      {% endif %}
+
+      {% if next_page %}
+        <a
+          class="group/next flex min-w-0 max-w-full items-center justify-self-end space-x-3 text-base-content/80 no-underline hover:text-base-content {% unless prev_page %}col-start-2{% endunless %}"
+          href="{{ next_page.path }}"
+          data-turbo-frame="main-content-frame"
+          data-turbo-action="advance"
+        >
+          <span class="truncate">{{ next_page.link_text }}</span>
+          <i
+              class="ri-arrow-right-s-line shrink-0 text-xs leading-none text-base-content/50 group-hover/next:text-base-content"
+              aria-hidden="true"
+            ></i>
+        </a>
+      {% endif %}
+    </div>
+  </section>
+{% endif %}

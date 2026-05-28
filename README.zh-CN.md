@@ -2,51 +2,70 @@
 
 [English](README.md) | 简体中文
 
-面向 Baklib **Wiki** **纯文档** 主题：侧栏导航、页内目录、搜索与 AI 辅助、分享到 LLM、Turbo 导航——不包含「帮助中心 / FAQ 首页」等非文档模板。
+Baklib **Wiki** 纯文档主题（`theme_scope`: `wiki`，版本 **1.2.1**）：侧栏导航、页内目录、搜索与 AI 问答侧栏、页面工具（含分享到 LLM）、反馈与 Turbo 导航，面向产品文档与 API 指南，而非通用帮助中心 / FAQ 门户。
+
+## 特性
+
+- **三套首页布局** — Mint、Maple、Almond；字段 ID 一致，后台配置可在变体间迁移
+- **正文与首页同族** — `page.liquid` 按站点首页模板样式（`mint` | `maple` | `almond`）复用对应片段
+- **AI 与搜索** — AI 侧栏、搜索弹窗、可配置热门关键词与 AI 回答结束语
+- **七种语言** — 前台文案（`*.json`）与主题编辑器文案（`*.schema.json`）
+- **前端技术栈** — Tailwind CSS 4、daisyUI、Stimulus、Alpine.js、Turbo（由 `src/` 构建至 `assets/`）
 
 ## 环境要求
 
-- Node.js（用于构建前端资源）
-- Baklib 站点使用 **Wiki** 范围并启用本主题（`config/settings_schema.json` 中 `theme_scope` 为 `wiki`）
+- Node.js（用于 `yarn build` / `yarn dev`）
+- Baklib 站点使用 **Wiki** 范围并安装本主题
 
 ## 目录说明
 
-| 路径                            | 说明                                       |
-| ----------------------------- | ---------------------------------------- |
-| `config/settings_schema.json` | 主题元数据、可选语言与编辑器配置项                        |
-| `layout/`                     | 基础布局                                     |
-| `templates/`                  | 页面模板  |
-| `snippets/`                   | 片段（页头、页脚、侧栏、页面工具、反馈、`index_themes/*` 等）   |
-| `locales/`                    | 前台文案（`*.json`）与主题编辑器文案（`*.schema.json`）  |
-| `src/`                        | 源码 CSS/JS（Tailwind、esbuild）              |
-| `assets/`                     | 构建后的样式、脚本与主题预览图                          |
-| `statics/`                    | 自定义静态 HTML 示例                            |
+| 路径 | 说明 |
+| --- | --- |
+| `config/settings_schema.json` | 主题元数据、全局设置、预览图路径 |
+| `layout/` | 基础布局（`theme.liquid`、`error.liquid`） |
+| `templates/` | 首页变体、内容页、反馈 Turbo Stream、搜索 |
+| `snippets/` | 公共片段；`index/` 下为各变体首页/正文外壳及 AI、反馈片段 |
+| `locales/` | 前台文案（`*.json`）与编辑器文案（`*.schema.json`） |
+| `src/` | 源码 CSS/JS（Tailwind CLI、esbuild） |
+| `assets/` | 构建产物与按语言存放的预览截图 |
+| `statics/` | 可选静态 Liquid 端点 |
 
-## 首页模板
+## 模板
 
-`templates/index.<theme>.liquid` 提供 9 套对标 [themes](https://www.mintlify.com/docs/customize/themes) 的首页变体，所有 schema 字段 ID 完全一致（后台已配置数据可平滑迁移），差异仅在布局密度、Hero 形态、装饰背景，由 [`src/stylesheets/themes.css`](src/stylesheets/themes.css) 中 `.theme-<name>` marker 类驱动。
+### 首页
 
-| 模板                    | 变体          | 一句话说明                                                       |
-| --------------------- | ----------- | ----------------------------------------------------------- |
-| `index.mint.liquid`   | Mint        | 经典 3 列渐变卡片；最稳的默认款，原 `index.docs` 由它替代。                       |
-| `index.maple.liquid`  | Maple       | 描边卡片 + Pill 搜索，适合 AI / SaaS 文档。                              |
-| `index.palm.liquid`   | Palm        | 冷峻 mesh 背景 + 衬线标题 + 两列大卡，企业 / 金融取向。                          |
-| `index.willow.liquid` | Willow      | 极简零干扰，纯文字卡片，默认关闭最新 / 热门。                                    |
-| `index.linden.liquid` | Linden      | 复古终端：等宽字体 + 网格背景 + 虚线描边。                                    |
-| `index.almond.liquid` | Almond      | 暖色渐变 + 大圆角卡片，所有板块默认开启。                                      |
-| `index.aspen.liquid`  | Aspen       | 等高线背景 + 4 格入门 tile，面向 SDK / AI 工程文档。                          |
-| `index.sequoia.liquid`| Sequoia     | 大留白 4 列，适合体量庞大的 API 与开发者平台文档。                                |
-| `index.luma.liquid`   | Luma        | 最克制的一款：装饰极少，2 列扁平卡片。                                        |
+`templates/index.<variant>.liquid` — 在 Baklib 后台将其中一套设为站点首页模板。
 
-公共片段位于 [`snippets/index_themes/`](snippets/index_themes/)（`_decoration` / `_hero_search` / `_channels_grid` / `_topic_grid` / `_recent_list` / `_hottest_list` / `_features_html`）。新增主题只需再写一个 `index.<theme>.liquid`，渲染同样的 partial 但传不同参数，并加上 `.theme-<theme>` 包裹类。
+| 模板 | 变体 | 说明 |
+| --- | --- | --- |
+| `index.mint.liquid` | Mint | 渐变 Hero、频道入门卡片、推荐阅读；产品文档默认推荐 |
+| `index.maple.liquid` | Maple | 左侧栏集成 Logo、搜索与全站导航；描边卡片与 Pill 搜索 |
+| `index.almond.liquid` | Almond | Hero、快速指引卡片、推荐列表与底部求助/反馈横幅 |
+
+**首页逻辑：** 填写 `home_page_path`（如 `/docs/getting-started`）可在 `/` 展示指定站内页面；留空则使用当前变体的默认首页区块（主标题、热门搜索、快速指引等）。子页面可在页面设置中勾选 **显示在首页快速指引**。
+
+各变体片段位于 `snippets/index/<variant>/`；共用片段包括 `snippets/index/_ai_sidebar.liquid`、`_ai_chat_messages.liquid` 及首页反馈相关 partial。
+
+### 内容页
+
+`templates/page.liquid` — 文档正文页；布局随 `site.pages['/'].template_style` 与首页一致（`mint`、`maple` 或 `almond`）。
+
+### 其他
+
+| 文件 | 作用 |
+| --- | --- |
+| `templates/search.liquid` | 预留 |
+| `templates/feedback_*_turbo_stream.liquid` | 页面反馈的 Turbo Stream 响应 |
+| `statics/about.liquid` | 静态页示例 |
+| `statics/page/nav_tree.liquid` | 导航树静态端点 |
 
 ## 支持的语言
 
 前台与 schema 已包含：
 
-- `en`、`zh-CN`、`zh-TW`、`ko`、`ja`、`de`、`fr`
+`en` · `zh-CN` · `zh-TW` · `ko` · `ja` · `de` · `fr`
 
-新增/修改文案请编辑 `locales/<locale>.json`（前台）与 `locales/<locale>.schema.json`（主题编辑器）。新增语言时请在 [`config/settings_schema.json`](config/settings_schema.json) 的 `theme_info.theme_languages` 中登记。
+修改 `locales/<locale>.json`（前台）与 `locales/<locale>.schema.json`（编辑器）。新增语言请在 `config/settings_schema.json` 的 `theme_info.theme_languages` 中登记。
 
 ## 构建资源
 
@@ -55,67 +74,45 @@ yarn install
 yarn build
 ```
 
-开发监听：
+开发监听（CSS/JS）：
 
 ```bash
 yarn dev
 ```
 
-本地浏览器自动刷新（需要本地 Ruby 环境 + 浏览器 livereload 插件）：
+可选：编辑 Liquid / 文案时自动刷新（需 Ruby，依赖见 `Gemfile`）：
 
 ```bash
 bundle install
-bundle exec guard
+yarn livereload
 ```
 
-## 按语言切换的预览图
+## 预览图
 
-主题卡片与后台示意图按语言解析。请把不同语言的截图放到 `assets/images/theme/<lang>/`，后台会自动按当前语言加载：
+**主题卡片缩略图**（全语言共用）：
+
+```text
+assets/images/theme/thumb-indigo.png
+```
+
+**按语言截图** — 放入 `assets/images/theme/<lang>/`：
 
 ```text
 assets/images/theme/<lang>/
-├── thumb.png            # 主题卡缩略图
-├── index.png            # 主预览图
 ├── index-mint.png
 ├── index-maple.png
-├── index-palm.png
-├── index-willow.png
-├── index-linden.png
 ├── index-almond.png
-├── index-aspen.png
-├── index-sequoia.png
-├── index-luma.png
-├── index-list.png
-└── page.png
+├── page.png
+└── page-ai.png
 ```
 
-`config/settings_schema.json` 中的 `${lang}` 占位会被自动替换：
-
-```json
-"theme_thumb_url": "images/theme/${lang}/thumb.png",
-"theme_preview_images": [
-  "images/theme/${lang}/index.png",
-  "images/theme/${lang}/index-mint.png",
-  "images/theme/${lang}/index-maple.png",
-  "images/theme/${lang}/index-palm.png",
-  "images/theme/${lang}/index-willow.png",
-  "images/theme/${lang}/index-linden.png",
-  "images/theme/${lang}/index-almond.png",
-  "images/theme/${lang}/index-aspen.png",
-  "images/theme/${lang}/index-sequoia.png",
-  "images/theme/${lang}/index-luma.png",
-  "images/theme/${lang}/index-list.png",
-  "images/theme/${lang}/page.png"
-]
-```
-
-若某语言下缺图，Baklib 会回退到默认语言目录。首版会把同一张占位图复制为 9 个 theme 的预览，后续逐一替换为真实截图。
+路径在 `config/settings_schema.json` 的 `theme_thumb_url`、`theme_preview_images` 中配置；`${lang}` 随后台界面语言解析。缺图时回退到站点默认语言目录。
 
 ## 文档
 
 - 主题使用说明：<https://help.baklib.cn/themes/docs>
 - 设置项参考：<https://help.baklib.cn/themes/docs/settings>
-- Baklib 模板开发指南：<https://dev.baklib.cn/guide/git>
+- 模板开发指南：<https://dev.baklib.cn/guide/git>
 
 ## 许可
 

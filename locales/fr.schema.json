@@ -1,6 +1,6 @@
 {
   "theme_label": "Docs",
-  "theme_description": "Une documentation que vos utilisateurs lisent vraiment—architecture claire, recherche instantanée et réponses assistées par IA prêtes à l’emploi. Transformez votre base de connaissances en docs produit et guides API soignés, sans reconstruire un site de documentation à la main.",
+  "theme_description": "Une documentation que vos utilisateurs lisent vraiment—architecture claire, recherche instantanée et réponses assistées par IA prêtes à l’emploi. Transformez votre base de connaissances en docs produit soignés, sans reconstruire un site de documentation à la main.",
   "recommendations": {
     "fashion": {
       "name": "Tendance"
@@ -16,7 +16,8 @@
           "home_config": "Configuration de l’accueil",
           "home_config_info": "Au choix : ① renseigner « Page du site affichée à l’accueil » — contenu de cette page sur / ; ② laisser vide — accueil Maple par défaut via les champs ci-dessous (hero, guide rapide, etc.). Les pages peuvent rejoindre le guide rapide dans leurs paramètres.",
           "home_config_info_mint": "Affiche une page du site sur /. Mint n’a pas de mise en page d’accueil par défaut — indiquez un chemin (ex. page de démarrage). Vide = zone de contenu vide.",
-          "chrome": "Mise en page & navigation"
+          "chrome": "Mise en page & navigation",
+          "home_config_info_almond": "Choisissez : ① définir la « page d’accueil du site » sur / ; ② laisser vide — page d’accueil Almond par défaut ci-dessous (titre, guides rapides, recommandations, bannière d’aide)."
         },
         "settings": {
           "home_page_path": {
@@ -44,37 +45,37 @@
             "info": "Sommaire dans la page ; 240px recommandé"
           },
           "search_hot_keywords": {
-            "default": ""
+            "default": "Démarrage\nDocumentation API\nFAQ"
           },
           "home_hero_title": {
-            "label": "",
-            "default": ""
+            "label": "Titre d’accueil",
+            "default": "Bienvenue dans la documentation produit"
           },
           "home_hero_description": {
-            "label": "",
-            "default": ""
+            "label": "Sous-titre / chapô",
+            "default": "Recherchez, parcourez les canaux ou demandez à l’IA pour trouver guides et docs API."
           },
           "home_guide_section_title": {
-            "label": "",
-            "default": ""
+            "label": "Titre section démarrage",
+            "default": "Commencer par un canal"
           },
           "home_show_guide_section": {
-            "label": ""
+            "label": "Afficher les cartes de démarrage (jusqu’à 3 sous-canaux)"
           },
           "home_recommended_title": {
-            "label": "",
-            "default": ""
+            "label": "Titre lecture recommandée",
+            "default": "Lecture recommandée"
           },
           "home_show_recommended": {
-            "label": ""
+            "label": "Afficher la liste recommandée"
           },
           "home_help_title": {
-            "label": "",
-            "default": ""
+            "label": "Titre d’aide en bas de page",
+            "default": "Encore des questions ?"
           },
           "home_help_description": {
-            "label": "",
-            "default": ""
+            "label": "Description d’aide en bas de page",
+            "default": "Document introuvable ? Envoyez un retour pour améliorer la base de connaissances."
           }
         }
       },
@@ -86,37 +87,83 @@
             "info": "Barre latérale Maple plus étroite ; 280px recommandé"
           },
           "search_hot_keywords": {
-            "default": ""
+            "default": "Démarrage\nFAQ\nConfiguration\nGuide débutant"
           },
           "home_hero_title": {
-            "label": "",
-            "default": ""
+            "label": "Titre d’accueil",
+            "default": "Normes produit et documentation technique"
           },
           "home_hero_description": {
-            "label": "",
-            "default": ""
+            "label": "Sous-titre / chapô",
+            "default": "Configuration système, normes, standards sectoriels et références techniques au même endroit."
           },
           "home_guide_section_title": {
-            "label": "",
-            "default": ""
+            "label": "Titre guide rapide",
+            "default": "Guide rapide"
           },
           "home_show_guide_section": {
-            "label": ""
+            "label": "Afficher la section guide rapide"
           },
           "home_recommended_title": {
-            "label": "",
-            "default": ""
+            "label": "Titre recommandations",
+            "default": "Recommandé"
           },
           "home_show_recommended": {
-            "label": ""
+            "label": "Afficher la section recommandations"
           },
           "home_help_title": {
-            "label": "",
-            "default": ""
+            "label": "Titre section aide",
+            "default": "Vous ne trouvez pas ce qu’il vous faut ?"
           },
           "home_help_description": {
-            "label": "",
-            "default": ""
+            "label": "Description section aide",
+            "default": "Lacune, formulation floue ou idée de nouveau doc ? Envoyez un retour à tout moment."
+          }
+        }
+      },
+      "almond": {
+        "name": "Almond",
+        "description": "Page d’accueil avec titre principal, cartes guide rapide, liste recommandée et bannière de retour en bas ; panneau IA et modal de recherche identiques à Mint.",
+        "settings": {
+          "left_sidebar_width": {
+            "info": "Barre latérale Almond recommandée : 264px (16,5rem)"
+          },
+          "right_sidebar_width": {
+            "info": "TOC latéral, recommandé 240px"
+          },
+          "search_hot_keywords": {
+            "default": "Premiers pas\nRéférence API\nFAQ"
+          },
+          "home_hero_title": {
+            "label": "Titre d’accueil",
+            "default": "Bienvenue dans la documentation"
+          },
+          "home_hero_description": {
+            "label": "Description d’accueil",
+            "default": "Le hub de connaissances de votre équipe—normes, guides API et bonnes pratiques pour livrer plus vite."
+          },
+          "home_guide_section_title": {
+            "label": "Titre guide rapide",
+            "default": "Guide rapide",
+            "placeholder": "Guide rapide"
+          },
+          "home_show_guide_section": {
+            "label": "Afficher le guide rapide"
+          },
+          "home_recommended_title": {
+            "label": "Titre recommandations",
+            "default": "Recommandé"
+          },
+          "home_show_recommended": {
+            "label": "Afficher les recommandations"
+          },
+          "home_help_title": {
+            "label": "Titre section aide",
+            "default": "Vous ne trouvez pas ce qu’il vous faut ?"
+          },
+          "home_help_description": {
+            "label": "Description section aide",
+            "default": "Un manque, une formulation floue ou une idée de doc ? Envoyez un retour—améliorons la base de connaissances ensemble."
           }
         }
       }
@@ -129,8 +176,8 @@
           "info": "Si coché, la liste des sous-pages s’affiche sur la page"
         },
         "show_on_home_guide": {
-          "label": "",
-          "info": ""
+          "label": "Afficher dans le guide rapide de l’accueil",
+          "info": "Si coché, la page apparaît dans les cartes « guide rapide » de l’accueil Maple par défaut (max. 3, chemin d’accueil vide). Sinon sélection par visites."
         },
         "title": {
           "label": "Titre de la page",
@@ -187,6 +234,11 @@
       "ai_search_completed_text": {
         "label": "Texte de fin IA",
         "info": "Ajoute une phrase après la réponse de l’IA"
+      },
+      "feedback_helper_text": {
+        "label": "Textes d’aide pour le retour sur la page",
+        "info": "JSON : yes / no avec label, title, items",
+        "default": "{\"yes\":{\"label\":\"Oui\",\"title\":\"Super ! Qu’est-ce qui a le mieux fonctionné ?\",\"items\":[\"Le guide a fonctionné comme prévu.\",\"J’ai facilement trouvé les informations dont j’avais besoin.\",\"Le produit et ses fonctionnalités étaient faciles à comprendre.\",\"La documentation est à jour.\"]},\"no\":{\"label\":\"Non\",\"title\":\"Comment pouvons-nous nous améliorer ?\",\"items\":[\"M’aider à démarrer plus vite.\",\"Faciliter la recherche de ce dont j’ai besoin.\",\"Aider les utilisateurs à comprendre le produit et ses fonctionnalités.\",\"Mettre à jour cette documentation.\"]}}"
       }
     }
   },
@@ -203,7 +255,7 @@
         "label": "Afficher le menu d’outils de page"
       },
       "feedback_enabled": {
-        "label": ""
+        "label": "Activer les retours sur la page"
       }
     }
   },
@@ -241,7 +293,7 @@
       },
       "weixin_app_secret": {
         "label": "Mot de passe développeur (AppSecret)",
-        "info": ""
+        "info": "Obtenir sur <a href='https://mp.weixin.qq.com/cgi-bin/frame'>Compte officiel WeChat / Paramètres et développement / Gestion des interfaces</a>"
       },
       "weixin_enabled": {
         "label": "Activer le partage WeChat ?",

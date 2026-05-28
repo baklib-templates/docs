@@ -1,0 +1,100 @@
+{%# locals:(nav_tree:, depth: 0, current_path: '', parent_path: '/', tree_url: '', id_prefix: 'index_list_nav_tree_frame_', root_container: '.custom-menu') %}
+{% assign depth = depth | default: 0 %}
+{% assign root_container = root_container | default: '.custom-menu' %}
+{% assign id_prefix = id_prefix | default: 'index_almond_nav_tree_frame_' %}
+{% assign tree_url = tree_url | default: statics['index/almond/nav_tree'] %}
+{% assign nav_tree_toggle_aria = 'snippets.almond.nav_tree.toggle_submenu' | t: '展开或收起子菜单' %}
+{% assign current_path = current_path | default: '' %}
+{% assign parent_path = parent_path | default: '/' %}
+
+<div
+  class="min-w-0 w-full max-w-full [&_li_ul]:relative [&_li_ul]:pl-6 [&_li_ul]:before:absolute [&_li_ul]:before:top-3 [&_li_ul]:before:bottom-3 [&_li_ul]:before:left-[1.125rem] [&_li_ul]:before:w-px [&_li_ul]:before:bg-base-content [&_li_ul]:before:opacity-10 [&_li_ul]:before:content-['']"
+  data-controller="turbo-nav-tree"
+  data-turbo-nav-tree-nav-tree-value='{{ nav_tree | to_json | escape }}'
+  data-turbo-nav-tree-depth-value='{{ depth }}'
+  data-turbo-nav-tree-parent-path-value='{{ parent_path }}'
+  data-turbo-nav-tree-current-path-value="{{ current_path }}"
+  data-turbo-nav-tree-url-value='{{ tree_url }}'
+  data-turbo-nav-tree-id-prefix-value='{{ id_prefix }}'
+  data-turbo-nav-tree-root-container-value='{{ root_container }}'>
+  <template data-turbo-nav-tree-target="itemTemplate">
+    {% raw %}
+      {{#hasChildren}}
+      <div
+        class="group/menu-row relative flex min-w-0 max-w-full w-full scroll-m-4 items-stretch gap-0.5 first:scroll-m-20 rounded-xl [&[active]]:bg-primary/10 [&[active]>a]:font-semibold [&[active]>*]:text-primary hover:bg-base-200/50"
+        data-title="{{link_text}}"
+      >
+        <a
+          class="group/minilink flex min-w-0 flex-1 items-start gap-x-3 rounded-xl px-3 py-1.5 text-left outline-offset-[-1px] text-base-content/80 hover:text-base-content"
+          href="{{path}}"
+          data-turbo-frame="main-content-frame"
+          data-turbo-action="advance"
+          data-turbo-nav-tree-only-open-param="true"
+          data-action="click->turbo-nav-tree#click"
+        >
+          {{#show_icon_column}}
+          <div class="h-[1lh] flex shrink-0 items-center">
+            {{#icon_url}}
+            <span class="relative inline-flex size-4 shrink-0 items-center justify-center rounded">
+              <img src="{{icon_url}}" alt="" class="size-4 rounded object-cover" loading="lazy" decoding="async" onerror="this.classList.add('hidden'); this.nextElementSibling.classList.remove('hidden')" />
+              <span class="hidden size-4 shrink-0 rounded" aria-hidden="true"></span>
+            </span>
+            {{/icon_url}}
+            {{^icon_url}}
+            <span class="size-4 shrink-0 rounded" aria-hidden="true"></span>
+            {{/icon_url}}
+          </div>
+          {{/show_icon_column}}
+          <div class="flex min-w-0 flex-1 items-start gap-x-2.5">
+            <span class="line-clamp-1 hyphens-auto">{{link_text}}</span>
+          </div>
+        </a>
+        <button
+          type="button"
+          class="px-3 my-0.5 shrink-0 text-base-content/80 group-hover/menu-row:text-base-content hover:bg-transparent hover:border-none cursor-pointer"
+          data-action="click->turbo-nav-tree#toggle"
+          aria-expanded="{{#open}}true{{/open}}{{^open}}false{{/open}}"
+{% endraw %}
+          aria-label="{{ nav_tree_toggle_aria | escape_once }}"
+{% raw %}
+        >
+          <span turbo-nav-tree-item-target-icon class="inline-flex transition-transform {{#open}}rotate-90{{/open}} text-md">
+            <i class="ri-arrow-right-s-line leading-none" aria-hidden="true"></i>
+          </span>
+        </button>
+      </div>
+      {{/hasChildren}}
+      {{^hasChildren}}
+      <div
+        class="group/menu-row relative min-w-0 max-w-full w-full scroll-m-4 first:scroll-m-20 rounded-xl [&[active]]:bg-primary/10 [&[active]>a]:font-semibold [&[active]>a]:text-primary hover:bg-base-200/50"
+        data-title="{{link_text}}"
+      >
+        <a
+          class="group flex min-w-0 flex-1 cursor-pointer items-start gap-x-3 rounded-xl px-3 py-1.5 text-left w-full outline-offset-[-1px] text-base-content/80"
+          href="{{path}}"
+          data-turbo-frame="main-content-frame"
+          data-turbo-action="advance"
+          data-action="click->turbo-nav-tree#click"
+        >
+          {{#show_icon_column}}
+          <div class="h-[1lh] flex shrink-0 items-center">
+            {{#icon_url}}
+            <span class="relative inline-flex size-4 shrink-0 items-center justify-center rounded">
+              <img src="{{icon_url}}" alt="" class="size-4 rounded object-cover" loading="lazy" decoding="async" onerror="this.classList.add('hidden'); this.nextElementSibling.classList.remove('hidden')" />
+              <span class="hidden size-4 shrink-0 rounded" aria-hidden="true"></span>
+            </span>
+            {{/icon_url}}
+            {{^icon_url}}
+            <span class="size-4 shrink-0 rounded" aria-hidden="true"></span>
+            {{/icon_url}}
+          </div>
+          {{/show_icon_column}}
+          <div class="flex min-w-0 flex-1 items-start gap-x-2.5">
+            <span class="line-clamp-1 hyphens-auto">{{link_text}}</span>
+          </div>
+        </a>
+      </div>
+      {{/hasChildren}}
+    {% endraw %}
+  </template>
+</div>

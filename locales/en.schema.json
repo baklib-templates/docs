@@ -1,6 +1,6 @@
 {
   "theme_label": "Docs",
-  "theme_description": "Ship documentation your users will actually read—clear information architecture, instant search, and AI-ready Q&A out of the box. Turn your knowledge base into polished product docs and API guides without hand-rolling a separate doc site.",
+  "theme_description": "Ship documentation your users will actually read—clear information architecture, instant search, and AI-ready Q&A out of the box. Turn your knowledge base into polished product docs without hand-rolling a separate doc site.",
   "recommendations": {
     "fashion": {
       "name": "Fashion"
@@ -16,6 +16,7 @@
           "home_config": "Home settings",
           "home_config_info": "Choose one: ① Set “Site page shown on home” to display that page at /; ② Leave empty to use the Maple default home fields below (hero, hot keywords, quick guide, etc.). Pages can join Quick guide via page settings.",
           "home_config_info_mint": "Choose one: ① Set “Site page shown on home” at /; ② Leave empty to use the Mint default home below (gradient hero, channel cards, etc.).",
+          "home_config_info_almond": "Choose one: ① Set “Site page shown on home” at /; ② Leave empty to use the Almond default home below (hero, quick guide cards, recommended list, help banner).",
           "chrome": "Layout & navigation"
         },
         "settings": {
@@ -44,37 +45,37 @@
             "info": "In-page TOC sidebar; recommended 240px"
           },
           "search_hot_keywords": {
-            "default": ""
+            "default": "Getting started\nAPI docs\nFAQ"
           },
           "home_hero_title": {
-            "label": "",
-            "default": ""
+            "label": "Home title",
+            "default": "Welcome to the product docs"
           },
           "home_hero_description": {
-            "label": "",
-            "default": ""
+            "label": "Home subtitle / lead",
+            "default": "Search, browse channels, or ask AI to find guides and API docs quickly."
           },
           "home_guide_section_title": {
-            "label": "",
-            "default": ""
+            "label": "Getting started section title",
+            "default": "Start from a channel"
           },
           "home_show_guide_section": {
-            "label": ""
+            "label": "Show getting-started cards (up to 3 home sub-channels)"
           },
           "home_recommended_title": {
-            "label": "",
-            "default": ""
+            "label": "Recommended reading title",
+            "default": "Recommended reading"
           },
           "home_show_recommended": {
-            "label": ""
+            "label": "Show recommended reading list"
           },
           "home_help_title": {
-            "label": "",
-            "default": ""
+            "label": "Footer help title",
+            "default": "Still have questions?"
           },
           "home_help_description": {
-            "label": "",
-            "default": ""
+            "label": "Footer help description",
+            "default": "Can't find the doc you need? Send feedback to help us improve the knowledge base."
           }
         }
       },
@@ -86,37 +87,83 @@
             "info": "Maple sidebar is narrower; recommended 280px"
           },
           "search_hot_keywords": {
-            "default": ""
+            "default": "Getting started\nFAQ\nConfiguration\nBeginner guide"
           },
           "home_hero_title": {
-            "label": "",
-            "default": ""
+            "label": "Home title",
+            "default": "Product standards & technical documentation"
           },
           "home_hero_description": {
-            "label": "",
-            "default": ""
+            "label": "Home subtitle / lead",
+            "default": "Find system configuration, standards, industry norms, and core technical references in one place."
           },
           "home_guide_section_title": {
-            "label": "",
-            "default": ""
+            "label": "Quick guide section title",
+            "default": "Quick guide"
           },
           "home_show_guide_section": {
-            "label": ""
+            "label": "Show quick guide section"
           },
           "home_recommended_title": {
-            "label": "",
-            "default": ""
+            "label": "Recommended section title",
+            "default": "Recommended"
           },
           "home_show_recommended": {
-            "label": ""
+            "label": "Show recommended section"
           },
           "home_help_title": {
-            "label": "",
-            "default": ""
+            "label": "Help section title",
+            "default": "Can't find what you need?"
           },
           "home_help_description": {
-            "label": "",
-            "default": ""
+            "label": "Help section description",
+            "default": "Found a gap, unclear wording, or an idea for new docs? Send feedback anytime."
+          }
+        }
+      },
+      "almond": {
+        "name": "Almond",
+        "description": "Homepage includes hero title, quick-guide cards, recommended list, and bottom feedback banner; AI sidebar and search modal match Mint.",
+        "settings": {
+          "left_sidebar_width": {
+            "info": "Almond sidebar recommended 264px (16.5rem)"
+          },
+          "right_sidebar_width": {
+            "info": "In-page TOC sidebar; recommended 240px"
+          },
+          "search_hot_keywords": {
+            "default": "Getting started\nAPI reference\nFAQ"
+          },
+          "home_hero_title": {
+            "label": "Home title",
+            "default": "Welcome to the docs"
+          },
+          "home_hero_description": {
+            "label": "Home description",
+            "default": "Your team’s knowledge hub—browse standards, API guides, and best practices to ship faster."
+          },
+          "home_guide_section_title": {
+            "label": "Quick guide section title",
+            "default": "Quick guide",
+            "placeholder": "Quick guide"
+          },
+          "home_show_guide_section": {
+            "label": "Show quick guide section"
+          },
+          "home_recommended_title": {
+            "label": "Recommended section title",
+            "default": "Recommended"
+          },
+          "home_show_recommended": {
+            "label": "Show recommended section"
+          },
+          "home_help_title": {
+            "label": "Help section title",
+            "default": "Can’t find what you need?"
+          },
+          "home_help_description": {
+            "label": "Help section description",
+            "default": "Spot a gap, unclear wording, or an idea for new docs? Send feedback—we’ll improve the knowledge base together."
           }
         }
       }
@@ -187,6 +234,11 @@
       "ai_search_completed_text": {
         "label": "AI Completion Text",
         "info": "Add a sentence after AI completes the answer"
+      },
+      "feedback_helper_text": {
+        "label": "Page feedback helper prompts",
+        "info": "JSON: yes / no each with label (button text), title, items",
+        "default": "{\"yes\":{\"label\":\"Yes\",\"title\":\"Great! What worked best for you?\",\"items\":[\"The guide worked as expected.\",\"I easily found the information I needed.\",\"The product and its features were easy to understand.\",\"The documentation is up to date.\"]},\"no\":{\"label\":\"No\",\"title\":\"How can we improve?\",\"items\":[\"Help me get started faster.\",\"Make it easier to find what I need.\",\"Help users understand the product and its features.\",\"Update this documentation.\"]}}"
       }
     }
   },
@@ -203,7 +255,7 @@
         "label": "Show Page Tools Dropdown"
       },
       "feedback_enabled": {
-        "label": ""
+        "label": "Enable page feedback"
       }
     }
   },
@@ -241,7 +293,7 @@
       },
       "weixin_app_secret": {
         "label": "Developer Password (AppSecret)",
-        "info": ""
+        "info": "Obtain from <a href='https://mp.weixin.qq.com/cgi-bin/frame'>WeChat Official Account / Settings & Development / Development Interface Management</a>"
       },
       "weixin_enabled": {
         "label": "Do you want to enable WeChat sharing",

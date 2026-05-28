@@ -41,45 +41,10 @@
       "nav_tree": {
         "toggle_submenu": "Expand or collapse submenu"
       },
-      "page_feedback": {
-        "prompt": "Was this page helpful to you?",
-        "yes_button": "Yes",
-        "no_button": "No",
-        "follow_up_yes": "Great! What worked best for you?",
-        "follow_up_no": "How can we improve our product?",
-        "cancel": "Cancel",
-        "submit": "Submit feedback",
-        "thanks": "Thank you for your feedback. We will keep improving the experience.",
-        "other": "Other",
-        "other_prefix": "Other: ",
-        "other_details_sr": "Other feedback details",
-        "other_placeholder": "(Optional) Can you share more about your experience?",
-        "yes": {
-          "works_as_expected": "Worked as expected",
-          "works_as_expected_label": "This guide worked as expected.",
-          "easy_to_find": "Easy to find information",
-          "easy_to_find_label": "I easily found the information I needed.",
-          "easy_to_understand": "Easy to understand features",
-          "easy_to_understand_label": "The product and its features were easy to understand.",
-          "docs_updated": "Documentation updated",
-          "docs_updated_label": "The documentation is up to date."
-        },
-        "no": {
-          "faster_start": "Help me get started faster",
-          "faster_start_label": "Help me get started faster",
-          "easier_find": "Easier to find content",
-          "easier_find_label": "Make it easier for me to find what I need",
-          "better_understand": "Better product understanding",
-          "better_understand_label": "Help users understand the product and its features more easily.",
-          "update_docs": "Update documentation",
-          "update_docs_label": "Update this documentation"
-        }
-      },
       "home": {
         "search_placeholder": "Search docs, guides, and APIs…",
         "channel_card_fallback_desc": "Browse docs and guides in this channel.",
         "guide_card_fallback_desc": "Open this topic to browse related docs.",
-        "recommended_title": "Recommended reading",
         "view_all": "View all",
         "tag_recent": "Recently updated",
         "rec_default_1": "Quick start: environment setup and first deploy",
@@ -102,7 +67,6 @@
     },
     "maple": {
       "home": {
-        "recommended_title": "Recommended",
         "search_placeholder": "Search guides and docs…",
         "channel_card_fallback_desc": "Browse docs and guides in this topic.",
         "view_all": "View all",
@@ -121,46 +85,38 @@
       "nav": {
         "open_sidebar": "Open navigation menu"
       },
-      "page_feedback": {
-        "prompt": "Was this page helpful?",
-        "yes_button": "Yes",
-        "no_button": "No",
-        "follow_up_yes": "Great! What worked best for you?",
-        "follow_up_no": "How can we improve our product?",
-        "cancel": "Cancel",
-        "submit": "Submit feedback",
-        "thanks": "Thank you for your feedback. We will keep improving the experience.",
-        "other": "Other",
-        "other_prefix": "Other: ",
-        "other_details_sr": "Other feedback details",
-        "other_placeholder": "(Optional) Tell us more about your experience.",
-        "yes": {
-          "works_as_expected": "Worked as expected",
-          "works_as_expected_label": "This guide worked as expected.",
-          "easy_to_find": "Easy to find information",
-          "easy_to_find_label": "I found what I needed easily.",
-          "easy_to_understand": "Easy to understand",
-          "easy_to_understand_label": "The product and features were easy to understand.",
-          "docs_updated": "Docs are up to date",
-          "docs_updated_label": "The documentation is up to date."
-        },
-        "no": {
-          "faster_start": "Help me get started faster",
-          "faster_start_label": "Help me get started faster",
-          "easier_find": "Easier to find content",
-          "easier_find_label": "Make it easier to find what I need",
-          "better_understand": "Better product understanding",
-          "better_understand_label": "Help users understand the product and features.",
-          "update_docs": "Update documentation",
-          "update_docs_label": "Update this documentation"
-        }
-      },
       "search": {
         "ask_ai_section": "Ask the AI assistant",
         "ask_ai_lead": "Tell me about ",
         "ask_ai_ellipsis": "…",
         "ask_ai_trailing": "",
         "ask_ai_query_display": "%{query}"
+      }
+    },
+    "almond": {
+      "search": {
+        "ask_ai_section": "Ask the AI assistant",
+        "ask_ai_lead": "Tell me about ",
+        "ask_ai_trailing": "",
+        "ask_ai_ellipsis": "…",
+        "ask_ai_query_display": "\"%{query}\""
+      },
+      "breadcrumb": {
+        "label": "Breadcrumb"
+      },
+      "nav": {
+        "open_sidebar": "Open navigation"
+      },
+      "nav_tree": {
+        "toggle_submenu": "Expand or collapse submenu"
+      },
+      "home": {
+        "search_placeholder": "Search docs or ask a question…",
+        "guide_card_fallback_desc": "Browse docs and guides in this topic.",
+        "view_all": "View all",
+        "rec_default_1": "Markdown syntax and formatting guide",
+        "rec_default_2": "Code blocks rendering reference",
+        "rec_default_3": "Media embed and asset allowlist"
       }
     },
     "ai": {
@@ -184,6 +140,14 @@
     },
     "home": {
       "feedback_btn": "Feedback"
+    },
+    "page_feedback": {
+      "cancel": "Cancel",
+      "submit": "Submit feedback",
+      "thanks": "Thank you for your feedback. We will keep improving the content experience.",
+      "other": "Other",
+      "other_prefix": "Other: ",
+      "other_details_sr": "Other feedback details"
     }
   },
   "templates": {
@@ -232,6 +196,11 @@
     "search": ""
   },
   "mint": {
+    "search": {
+      "ask_ai_message": "Tell me about \"%{query}\""
+    }
+  },
+  "almond": {
     "search": {
       "ask_ai_message": "Tell me about \"%{query}\""
     }

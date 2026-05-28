@@ -1,6 +1,6 @@
 {
   "theme_label": "Docs",
-  "theme_description": "打造用户愿意阅读的文档体验：结构清晰、检索迅捷，并可接入 AI 问答。将知识库呈现为产品文档与 API 指南，无需从零自建文档站。",
+  "theme_description": "打造用户愿意阅读的文档体验：结构清晰、检索迅捷，并可接入 AI 问答。将知识库呈现为产品文档，无需从零自建文档站。",
   "recommendations": {
     "fashion": {
       "name": "时尚"
@@ -16,7 +16,8 @@
           "home_config": "首页配置",
           "home_config_info": "二选一：① 填写「首页展示的站内页面」— 访问首页时展示该页内容；② 路径留空 — 使用本组下方主标题、热门搜索、快速指引等项作为 Maple 默认首页。子页面可在页面设置中勾选「显示在首页快速指引」。",
           "home_config_info_mint": "二选一：① 填写「首页展示的站内页面」— 访问 / 时展示该页内容；② 路径留空 — 使用本组下方配置生成 Mint 默认首页（渐变 Hero、频道入门卡片等）。",
-          "chrome": "布局与导航"
+          "chrome": "布局与导航",
+          "home_config_info_almond": "二选一：① 填写「首页展示的站内页面」— 访问 / 时展示该页内容；② 路径留空 — 使用本组下方配置生成 Almond 默认首页（主标题、快速指引卡片、推荐内容列表、反馈横幅）。"
         },
         "settings": {
           "home_page_path": {
@@ -119,6 +120,52 @@
             "default": "如果您发现了文档内容遗漏、描述含糊或者有新的文档贡献想法，欢迎随时发起反馈。"
           }
         }
+      },
+      "almond": {
+        "name": "Almond",
+        "description": "首页含主标题、快速指引卡片、推荐列表与底部反馈横幅; AI 侧栏与搜索弹窗与 Mint 一致。",
+        "settings": {
+          "left_sidebar_width": {
+            "info": "Almond 左栏建议 264px（16.5rem）"
+          },
+          "right_sidebar_width": {
+            "info": "页内目录侧栏，建议 240px"
+          },
+          "search_hot_keywords": {
+            "default": "快速开始\nAPI 文档\n常见问题"
+          },
+          "home_hero_title": {
+            "label": "首页主标题",
+            "default": "欢迎来到产品文档"
+          },
+          "home_hero_description": {
+            "label": "首页描述",
+            "default": "这里是团队的知识集成中心。您可以快速查阅开发规范、API 说明与最佳实践，助力研发提效。"
+          },
+          "home_guide_section_title": {
+            "label": "快速指引区块标题",
+            "default": "快速指引与方向",
+            "placeholder": "快速指引与方向"
+          },
+          "home_show_guide_section": {
+            "label": "显示快速指引区块"
+          },
+          "home_recommended_title": {
+            "label": "推荐内容区块标题",
+            "default": "推荐内容"
+          },
+          "home_show_recommended": {
+            "label": "显示推荐内容区块"
+          },
+          "home_help_title": {
+            "label": "底部帮助区标题",
+            "default": "没有找到需要的资料？"
+          },
+          "home_help_description": {
+            "label": "底部帮助区描述",
+            "default": "如果您发现了文档内容遗漏、描述含糊或者有新的文档贡献想法，欢迎随时发起反馈，共建知识库。"
+          }
+        }
       }
     },
     "page": {
@@ -187,6 +234,11 @@
       "ai_search_completed_text": {
         "label": "AI回答结束语",
         "info": "AI回答结束后添加一句话"
+      },
+      "feedback_helper_text": {
+        "label": "页面反馈辅助提示语",
+        "info": "JSON：yes / no 各含 label（按钮文案）、title、items",
+        "default": "{\"yes\":{\"label\":\"是的\",\"title\":\"太棒了！什么方法对你最有效？\",\"items\":[\"该指南按预期发挥作用。\",\"我很容易就找到了我需要的信息。\",\"产品及其功能很容易理解。\",\"文档已更新。\"]},\"no\":{\"label\":\"不是\",\"title\":\"我们如何改进产品？\",\"items\":[\"帮我更快开始。\",\"让我更容易找到我想要的东西。\",\"让用户能够轻松理解产品及其功能。\",\"更新此文档。\"]}}"
       }
     }
   },
@@ -241,7 +293,7 @@
       },
       "weixin_app_secret": {
         "label": "开发者密码(AppSecret)",
-        "info": ""
+        "info": "<a href='https://mp.weixin.qq.com/cgi-bin/frame'>微信公众号/设置与开发/开发接口管理</a>中获取"
       },
       "weixin_enabled": {
         "label": "是否启用微信分享",

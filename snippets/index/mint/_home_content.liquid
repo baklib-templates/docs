@@ -35,7 +35,7 @@
 {% endif %}
 
 {% assign show_recommended = page.settings.home_show_recommended %}
-{% assign recommended_title = page.settings.home_recommended_title | default: 'snippets.mint.home.recommended_title' | t: '推荐阅读' %}
+{% assign recommended_title = page.settings.home_recommended_title %}
 {% assign recommended_limit = 6 %}
 {% assign first_channel = page.children_in_list | first %}
 {% if first_channel %}
@@ -113,7 +113,7 @@
   {% if show_guide_section %}
     <div class="mb-10 md:mb-12">
       {% if guide_section_title != blank %}
-        <h2 class="mb-5 text-[0.75rem] font-bold uppercase tracking-widest text-base-content/50">
+        <h2 class="mb-5 text-[0.75rem] font-bold tracking-widest text-base-content/50">
           {{ guide_section_title }}
         </h2>
       {% endif %}
@@ -204,7 +204,7 @@
                 <p class="line-clamp-3 text-sm text-base-content/60">{{ card_desc }}</p>
               {% else %}
                 <p class="line-clamp-3 text-sm text-base-content/60">
-                  {{ 'snippets.mint.home.guide_card_fallback_desc' | t: '进入该专题浏览相关文档。' }}
+                  {{ 'snippets.mint.home.guide_card_fallback_desc' | t }}
                 </p>
               {% endif %}
             </a>
@@ -259,14 +259,14 @@
     </div>
   {% endif %}
 
-  <section class="rounded-2xl border border-primary/20 bg-gradient-to-r from-primary/5 to-secondary/5 px-6 py-8 text-center">
-    {% if help_title != blank %}
-      <h3 class="mb-2 text-lg font-bold text-base-content">{{ help_title }}</h3>
-    {% endif %}
-    {% if help_desc != blank %}
-      <p class="mx-auto mb-5 max-w-lg text-sm leading-relaxed text-base-content/65">{{ help_desc }}</p>
-    {% endif %}
-    {% if site.settings.feedback_enabled %}
+  {% if site.settings.feedback_enabled %}
+    <section class="rounded-2xl border border-primary/20 bg-gradient-to-r from-primary/5 to-secondary/5 px-6 py-8 text-center">
+      {% if help_title != blank %}
+        <h3 class="mb-2 text-lg font-bold text-base-content">{{ help_title }}</h3>
+      {% endif %}
+      {% if help_desc != blank %}
+        <p class="mx-auto mb-5 max-w-lg text-sm leading-relaxed text-base-content/65">{{ help_desc }}</p>
+      {% endif %}
       <button
         type="button"
         class="btn btn-primary btn-sm rounded-lg px-5"
@@ -275,8 +275,8 @@
         <i class="ri-feedback-line text-base" aria-hidden="true"></i>
         {{ 'snippets.home.feedback_btn' | t: '在线反馈' }}
       </button>
-    {% endif %}
-  </section>
+    </section>
+  {% endif %}
 </div>
 
 {% if site.settings.feedback_enabled %}

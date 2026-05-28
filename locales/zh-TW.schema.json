@@ -1,6 +1,6 @@
 {
   "theme_label": "Docs",
-  "theme_description": "打造使用者願意閱讀的文件體驗：架構清楚、搜尋迅速，並可接入 AI 問答。將知識庫呈現為產品文件與 API 指南，無須從零自建文件站。",
+  "theme_description": "打造使用者願意閱讀的文件體驗：架構清楚、搜尋迅速，並可接入 AI 問答。將知識庫呈現為產品文件，無須從零自建文件站。",
   "templates": {
     "index": {
       "shared": {
@@ -8,6 +8,7 @@
           "home_config": "首頁配置",
           "home_config_info": "二選一：① 填寫「首頁展示的站內頁面」— 訪問 / 時展示該頁內容；② 路徑留空 — 使用本組下方主標題、熱門搜尋、快速指引等項作為 Maple 預設首頁。子頁面可在頁面設置中勾選「顯示在首頁快速指引」。",
           "home_config_info_mint": "二選一：① 填寫「首頁展示的站內頁面」— 訪問 / 時展示該頁內容；② 路徑留空 — 使用本組下方配置生成 Mint 預設首頁（漸層 Hero、頻道入門卡片等）。",
+          "home_config_info_almond": "二選一：① 填寫「首頁展示的站內頁面」— 訪問 / 時展示該頁內容；② 路徑留空 — 使用本組下方配置生成 Almond 預設首頁（主標題、快速指引卡片、推薦內容列表、反饋橫幅）。",
           "chrome": "佈局與導覽"
         },
         "settings": {
@@ -36,37 +37,37 @@
             "info": "頁內目錄側欄，建議 240px"
           },
           "search_hot_keywords": {
-            "default": ""
+            "default": "快速開始\nAPI 文件\n常見問題"
           },
           "home_hero_title": {
-            "label": "",
-            "default": ""
+            "label": "首頁主標題",
+            "default": "歡迎使用產品文件"
           },
           "home_hero_description": {
-            "label": "",
-            "default": ""
+            "label": "首頁副標題 / 導語",
+            "default": "搜尋、瀏覽頻道或直接向 AI 提問，快速找到你需要的指南與 API 說明。"
           },
           "home_guide_section_title": {
-            "label": "",
-            "default": ""
+            "label": "入門區塊標題",
+            "default": "從頻道開始"
           },
           "home_show_guide_section": {
-            "label": ""
+            "label": "顯示入門卡片（優先展示首頁子頻道，最多 3 個）"
           },
           "home_recommended_title": {
-            "label": "",
-            "default": ""
+            "label": "推薦閱讀標題",
+            "default": "推薦閱讀"
           },
           "home_show_recommended": {
-            "label": ""
+            "label": "顯示推薦閱讀列表"
           },
           "home_help_title": {
-            "label": "",
-            "default": ""
+            "label": "底部求助標題",
+            "default": "還有疑問？"
           },
           "home_help_description": {
-            "label": "",
-            "default": ""
+            "label": "底部求助說明",
+            "default": "沒找到想要的文件？歡迎提交回饋，幫助我們改進知識庫。"
           }
         }
       },
@@ -78,37 +79,83 @@
             "info": "Maple 側欄較窄，建議 280px"
           },
           "search_hot_keywords": {
-            "default": ""
+            "default": "快速開始\n常見問題\n配置指南\n新手指南"
           },
           "home_hero_title": {
-            "label": "",
-            "default": ""
+            "label": "首頁主標題",
+            "default": "歡迎查閱產品標準技術文件"
           },
           "home_hero_description": {
-            "label": "",
-            "default": ""
+            "label": "首頁副標題 / 導語",
+            "default": "在這裡您可以找到關於系統配置、標準規範、行業標準及商業應用的全部參考指引與核心技術文件。"
           },
           "home_guide_section_title": {
-            "label": "",
-            "default": ""
+            "label": "指引區塊標題",
+            "default": "快速指引"
           },
           "home_show_guide_section": {
             "label": "顯示快速指引板塊"
           },
           "home_recommended_title": {
-            "label": "",
-            "default": ""
+            "label": "推薦內容標題",
+            "default": "推薦內容"
           },
           "home_show_recommended": {
-            "label": ""
+            "label": "顯示推薦內容區塊"
           },
           "home_help_title": {
-            "label": "",
-            "default": ""
+            "label": "底部求助標題",
+            "default": "沒有找到需要的資料？"
           },
           "home_help_description": {
-            "label": "",
-            "default": ""
+            "label": "底部求助說明",
+            "default": "如果您發現了文件內容遺漏、描述含糊或者有新的文件貢獻想法，歡迎隨時發起回饋。"
+          }
+        }
+      },
+      "almond": {
+        "name": "Almond",
+        "description": "首頁含主標題、快速指引卡片、推薦列表與底部回饋橫幅；AI 側欄與搜尋彈窗與 Mint 一致。",
+        "settings": {
+          "left_sidebar_width": {
+            "info": "Almond 左欄建議 264px（16.5rem）"
+          },
+          "right_sidebar_width": {
+            "info": "頁內目錄側欄，建議 240px"
+          },
+          "search_hot_keywords": {
+            "default": "快速開始\nAPI 文件\n常見問題"
+          },
+          "home_hero_title": {
+            "label": "首頁主標題",
+            "default": "歡迎來到產品文件"
+          },
+          "home_hero_description": {
+            "label": "首頁描述",
+            "default": "這裡是團隊的知識整合中心。您可以快速查閱開發規範、API 說明與最佳實踐，助力研發提效。"
+          },
+          "home_guide_section_title": {
+            "label": "快速指引區塊標題",
+            "default": "快速指引與方向",
+            "placeholder": "快速指引與方向"
+          },
+          "home_show_guide_section": {
+            "label": "顯示快速指引區塊"
+          },
+          "home_recommended_title": {
+            "label": "推薦內容區塊標題",
+            "default": "推薦內容"
+          },
+          "home_show_recommended": {
+            "label": "顯示推薦內容區塊"
+          },
+          "home_help_title": {
+            "label": "底部幫助區標題",
+            "default": "沒有找到需要的資料？"
+          },
+          "home_help_description": {
+            "label": "底部幫助區描述",
+            "default": "如果您發現了文件內容遺漏、描述含糊或者有新的文件貢獻想法，歡迎隨時發起反饋，共建知識庫。"
           }
         }
       }
@@ -179,6 +226,11 @@
       "ai_search_completed_text": {
         "label": "AI回答結束語",
         "info": "AI回答結束後添加一句話"
+      },
+      "feedback_helper_text": {
+        "label": "頁面回饋輔助提示語",
+        "info": "JSON：yes / no 各含 label（按鈕文案）、title、items",
+        "default": "{\"yes\":{\"label\":\"是\",\"title\":\"太棒了！什麼對你最有幫助？\",\"items\":[\"該指南按預期運作。\",\"我很容易就找到需要的資訊。\",\"產品與功能很容易理解。\",\"文件已是最新。\"]},\"no\":{\"label\":\"否\",\"title\":\"我們可以如何改進？\",\"items\":[\"幫我更快上手。\",\"讓我更容易找到想要的內容。\",\"讓使用者更容易理解產品與功能。\",\"請更新這份文件。\"]}}"
       }
     }
   },
@@ -195,7 +247,7 @@
         "label": "顯示頁面工具下拉選單"
       },
       "feedback_enabled": {
-        "label": ""
+        "label": "是否啟用頁面回饋"
       }
     }
   },
@@ -233,7 +285,7 @@
       },
       "weixin_app_secret": {
         "label": "開發者密碼（AppSecret）",
-        "info": ""
+        "info": "在<a href='https://mp.weixin.qq.com/cgi-bin/frame'>微信公眾號/設定與開發/開發介面管理</a>取得"
       },
       "weixin_enabled": {
         "label": "是否啟用微信分享",
@@ -247,10 +299,10 @@
   },
   "recommendations": {
     "fashion": {
-      "name": ""
+      "name": "時尚"
     },
     "old_school": {
-      "name": ""
+      "name": "復古"
     }
   }
 }

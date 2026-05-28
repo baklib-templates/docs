@@ -41,50 +41,15 @@
       "nav_tree": {
         "toggle_submenu": "Développer ou réduire le sous-menu"
       },
-      "page_feedback": {
-        "prompt": "Cette page vous a-t-elle été utile ?",
-        "yes_button": "Oui",
-        "no_button": "Non",
-        "follow_up_yes": "Super ! Qu'est-ce qui vous a le plus aidé ?",
-        "follow_up_no": "Comment pouvons-nous améliorer notre produit ?",
-        "cancel": "Annuler",
-        "submit": "Envoyer le commentaire",
-        "thanks": "Merci pour votre retour. Nous continuerons d'améliorer l'expérience.",
-        "other": "Autre",
-        "other_prefix": "Autre : ",
-        "other_details_sr": "Détails du commentaire",
-        "other_placeholder": "(Facultatif) Pouvez-vous partager votre expérience ?",
-        "yes": {
-          "works_as_expected": "Conforme aux attentes",
-          "works_as_expected_label": "Ce guide a fonctionné comme prévu.",
-          "easy_to_find": "Informations faciles à trouver",
-          "easy_to_find_label": "J'ai facilement trouvé les informations dont j'avais besoin.",
-          "easy_to_understand": "Fonctionnalités faciles à comprendre",
-          "easy_to_understand_label": "Le produit et ses fonctionnalités étaient faciles à comprendre.",
-          "docs_updated": "Documentation à jour",
-          "docs_updated_label": "La documentation est à jour."
-        },
-        "no": {
-          "faster_start": "Démarrage plus rapide",
-          "faster_start_label": "M'aider à démarrer plus vite",
-          "easier_find": "Contenu plus facile à trouver",
-          "easier_find_label": "Faciliter la recherche de ce dont j'ai besoin",
-          "better_understand": "Mieux comprendre le produit",
-          "better_understand_label": "Aider les utilisateurs à comprendre le produit et ses fonctionnalités.",
-          "update_docs": "Mettre à jour la documentation",
-          "update_docs_label": "Mettre à jour cette documentation"
-        }
-      },
       "home": {
-        "search_placeholder": "Search docs, guides, and APIs…",
-        "channel_card_fallback_desc": "Browse docs and guides in this channel.",
-        "guide_card_fallback_desc": "Open this topic to browse related docs.",
-        "recommended_title": "Recommended reading",
-        "view_all": "View all",
-        "tag_recent": "Recently updated",
-        "rec_default_1": "Quick start: environment setup and first deploy",
-        "rec_default_2": "API authentication and examples",
-        "rec_default_3": "FAQ and troubleshooting"
+        "search_placeholder": "Rechercher docs, guides et API…",
+        "channel_card_fallback_desc": "Parcourir la documentation de ce canal.",
+        "guide_card_fallback_desc": "Ouvrir ce sujet pour parcourir les docs associées.",
+        "view_all": "Tout afficher",
+        "tag_recent": "Mis à jour récemment",
+        "rec_default_1": "Démarrage rapide : environnement et premier déploiement",
+        "rec_default_2": "Authentification API et exemples",
+        "rec_default_3": "FAQ et dépannage"
       }
     },
     "page_tools": {
@@ -102,78 +67,43 @@
     },
     "maple": {
       "home": {
-        "recommended_title": "Recommended",
-        "search_placeholder": "Search guides and docs…",
-        "channel_card_fallback_desc": "Browse docs and guides in this topic.",
-        "view_all": "View all",
-        "tag_tech": "Tech picks",
-        "tag_official": "Official",
-        "rec_default_1": "[Core] Industry standards and revision notes",
-        "rec_default_2": "[Manual] Search, export, and batch processing",
-        "rec_default_3": "[Best practice] Team collaboration checklist",
-        "rec_default_4": "[Getting started] Setup before first use",
-        "rec_default_5": "System configuration and architecture",
-        "rec_default_6": "Common errors and troubleshooting"
+        "search_placeholder": "Saisissez un mot-clé pour chercher guides ou docs…",
+        "channel_card_fallback_desc": "Parcourir la documentation de ce sujet.",
+        "view_all": "Tout afficher",
+        "tag_tech": "Sélection tech",
+        "tag_official": "Officiel",
+        "rec_default_1": "【Cœur】 Normes sectorielles et notes de révision",
+        "rec_default_2": "【Manuel】 Recherche, export et traitement par lots",
+        "rec_default_3": "【Bonnes pratiques】 Collaboration et permissions d’équipe",
+        "rec_default_4": "【Premiers pas】 Configuration avant la première utilisation",
+        "rec_default_5": "Configuration système et architecture",
+        "rec_default_6": "Erreurs courantes et dépannage"
       },
       "breadcrumb": {
-        "label": "Breadcrumb"
+        "label": "Fil d’Ariane"
       },
       "nav": {
-        "open_sidebar": "Open navigation menu"
-      },
-      "page_feedback": {
-        "prompt": "Was this page helpful?",
-        "yes_button": "Yes",
-        "no_button": "No",
-        "follow_up_yes": "Great! What worked best for you?",
-        "follow_up_no": "How can we improve our product?",
-        "cancel": "Cancel",
-        "submit": "Submit feedback",
-        "thanks": "Thank you for your feedback. We will keep improving the experience.",
-        "other": "Other",
-        "other_prefix": "Other: ",
-        "other_details_sr": "Other feedback details",
-        "other_placeholder": "(Optional) Tell us more about your experience.",
-        "yes": {
-          "works_as_expected": "Worked as expected",
-          "works_as_expected_label": "This guide worked as expected.",
-          "easy_to_find": "Easy to find information",
-          "easy_to_find_label": "I found what I needed easily.",
-          "easy_to_understand": "Easy to understand",
-          "easy_to_understand_label": "The product and features were easy to understand.",
-          "docs_updated": "Docs are up to date",
-          "docs_updated_label": "The documentation is up to date."
-        },
-        "no": {
-          "faster_start": "Help me get started faster",
-          "faster_start_label": "Help me get started faster",
-          "easier_find": "Easier to find content",
-          "easier_find_label": "Make it easier to find what I need",
-          "better_understand": "Better product understanding",
-          "better_understand_label": "Help users understand the product and features.",
-          "update_docs": "Update documentation",
-          "update_docs_label": "Update this documentation"
-        }
+        "open_sidebar": "Ouvrir le menu de navigation"
       },
       "search": {
-        "ask_ai_section": "Ask the AI assistant",
-        "ask_ai_lead": "Tell me about ",
+        "ask_ai_section": "Demander à l'assistant IA",
+        "ask_ai_lead": "Peux-tu me parler de ",
         "ask_ai_ellipsis": "…",
-        "ask_ai_trailing": "",
-        "ask_ai_query_display": "%{query}"
+        "ask_ai_trailing": " ?",
+        "ask_ai_query_display": "« %{query} »"
       }
     },
     "ai": {
-      "assistant_title": "AI assistant",
-      "send": "Send",
-      "pop_out_unsupported": "Picture-in-picture is not supported in this browser",
-      "pop_out_window": "Pop out",
-      "dock_to_sidebar": "Dock to sidebar",
-      "pip_active": "AI assistant is open in a separate window",
-      "clear_chat": "Clear chat",
-      "input_placeholder": "Ask your question…",
-      "copy_response": "Copy answer",
-      "retry_response": "Regenerate"
+      "assistant_title": "Assistant IA",
+      "send": "Envoyer",
+      "pop_out_unsupported": "Cette fenêtre séparée n'est pas prise en charge par ce navigateur",
+      "pop_out_window": "Fenêtre séparée",
+      "dock_to_sidebar": "Revenir au panneau latéral",
+      "pip_active": "L'assistant IA est ouvert dans une fenêtre séparée",
+      "clear_chat": "Effacer la conversation",
+      "input_placeholder": "Posez votre question…",
+      "copy_response": "Copier la réponse",
+      "retry_response": "Régénérer"
     },
     "home_feedback": {
       "title": "Commentaires en ligne",
@@ -184,6 +114,40 @@
     },
     "home": {
       "feedback_btn": "Commentaires"
+    },
+    "almond": {
+      "search": {
+        "ask_ai_section": "Demander à l’assistant IA",
+        "ask_ai_lead": "Parle-moi de ",
+        "ask_ai_trailing": "",
+        "ask_ai_ellipsis": "…",
+        "ask_ai_query_display": "« %{query} »"
+      },
+      "breadcrumb": {
+        "label": "Fil d’Ariane"
+      },
+      "nav": {
+        "open_sidebar": "Ouvrir la navigation"
+      },
+      "nav_tree": {
+        "toggle_submenu": "Développer ou réduire le sous-menu"
+      },
+      "home": {
+        "search_placeholder": "Rechercher dans la doc ou poser une question…",
+        "guide_card_fallback_desc": "Parcourir la documentation et les guides de ce sujet.",
+        "view_all": "Tout voir",
+        "rec_default_1": "Syntaxe Markdown et mise en forme",
+        "rec_default_2": "Blocs de code et rendu",
+        "rec_default_3": "Intégration média et liste d’assets autorisés"
+      }
+    },
+    "page_feedback": {
+      "cancel": "Annuler",
+      "submit": "Envoyer le retour",
+      "thanks": "Merci pour votre retour. Nous continuerons à améliorer l'expérience de contenu.",
+      "other": "Autre",
+      "other_prefix": "Autre : ",
+      "other_details_sr": "Détails du retour (autre)"
     }
   },
   "templates": {
@@ -207,15 +171,15 @@
   },
   "ai": {
     "completed": "Réponse de l’IA terminée.",
-    "reading": "Reading documentation…",
-    "thinking_status": "Thinking…",
-    "network_error": "Network error. Please try again.",
-    "timeout_error": "Request timed out. Please try again.",
-    "copy_success": "Copied",
-    "copy_error": "Copy failed",
-    "ask_ai_message": "Tell me about \"%{query}\"",
-    "input_placeholder": "Ask your question…",
-    "disclaimer": "Content is AI-generated and may contain errors. Please verify."
+    "reading": "Lecture de la documentation…",
+    "thinking_status": "Réflexion…",
+    "network_error": "Erreur réseau. Veuillez réessayer.",
+    "timeout_error": "Délai dépassé. Veuillez réessayer.",
+    "copy_success": "Copié",
+    "copy_error": "Échec de la copie",
+    "ask_ai_message": "Parle-moi de « %{query} »",
+    "input_placeholder": "Posez votre question…",
+    "disclaimer": "Contenu généré par l’IA, susceptible d’erreurs. Veuillez vérifier."
   },
   "generic": {
     "published_at": "Publié le",
@@ -233,7 +197,12 @@
   },
   "mint": {
     "search": {
-      "ask_ai_message": "Tell me about \"%{query}\""
+      "ask_ai_message": "Parle-moi de « %{query} »"
+    }
+  },
+  "almond": {
+    "search": {
+      "ask_ai_message": "Parle-moi de « %{query} »"
     }
   }
 }

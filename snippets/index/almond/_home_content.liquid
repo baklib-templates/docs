@@ -1,0 +1,235 @@
+{% assign hero_title = page.settings.home_hero_title | presence %}
+{% assign hero_desc = page.settings.home_hero_description | presence %}
+{% assign hero_tag = page.settings.home_hero_tag | presence %}
+
+{% assign home_guide_limit = 4 %}
+{% assign recommended_limit = 8 %}
+{% assign list_display_limit = 6 %}
+
+{% assign show_guide_section = true %}
+{% if page.settings.home_show_guide_section == false %}
+  {% assign show_guide_section = false %}
+{% endif %}
+{% assign guide_section_title = page.settings.home_guide_section_title %}
+
+{% assign show_recommended_section = page.settings.home_show_recommended %}
+{% assign recommended_section_title = page.settings.home_recommended_title %}
+{% assign recommended_view_all_path = '' %}
+
+{% assign channel_cards = page.children_in_list %}
+{% assign first_channel = channel_cards | first %}
+
+{% comment %} 快速指引：勾选首页指引的页面，否则按访问量 {% endcomment %}
+{% if show_guide_section %}
+  {% query home_guide_pages from site.pages %}
+    {
+      "where": {
+        "settings.show_on_home_guide_eq": true
+      },
+      "limit": {{ home_guide_limit }}
+    }
+  {% endquery %}
+  {% assign guide_pages = home_guide_pages %}
+  {% assign guide_use_fallback = true %}
+  {% for _p in guide_pages %}
+    {% assign guide_use_fallback = false %}
+    {% break %}
+  {% endfor %}
+  {% if guide_use_fallback %}
+    {% assign guide_pages = site.pages | order_by: '-visits_count' %}
+  {% endif %}
+{% endif %}
+
+{% comment %} 推荐内容：首页直属页面 → 否则首个频道子页 {% endcomment %}
+{% assign recommended_pages = page.pages | order_by: '-visits_count' | limit: recommended_limit %}
+{% assign recommended_has_pages = false %}
+{% for _doc in recommended_pages %}
+  {% assign recommended_has_pages = true %}
+  {% break %}
+{% endfor %}
+{% unless recommended_has_pages %}
+  {% if first_channel %}
+    {% assign recommended_pages = first_channel.pages | order_by: '-visits_count' | limit: recommended_limit %}
+    {% assign recommended_view_all_path = first_channel.path %}
+    {% for _doc in recommended_pages %}
+      {% assign recommended_has_pages = true %}
+      {% break %}
+    {% endfor %}
+  {% endif %}
+{% else %}
+  {% if first_channel %}
+    {% assign recommended_view_all_path = first_channel.path %}
+  {% endif %}
+{% endunless %}
+
+{% assign help_title = page.settings.home_help_title %}
+{% assign help_desc = page.settings.home_help_description %}
+{% assign show_help_banner = false %}
+{% if help_title != blank or help_desc != blank or site.settings.feedback_enabled %}
+  {% assign show_help_banner = true %}
+{% endif %}
+
+<div class="mx-auto w-full max-w-none space-y-10 md:space-y-12">
+  {% if hero_title != blank or hero_desc != blank or hero_tag != blank %}
+    <section>
+      {% if hero_tag != blank %}
+        <span class="mb-2 block text-xs font-bold uppercase tracking-widest text-primary">
+          {{ hero_tag }}
+        </span>
+      {% endif %}
+      {% if hero_title != blank %}
+        <h1 class="mb-4 text-3xl font-extrabold tracking-tight text-base-content md:text-4xl">
+          {{ hero_title }}
+        </h1>
+      {% endif %}
+      {% if hero_desc != blank %}
+        <p class="max-w-3xl text-base leading-relaxed text-base-content/60 md:text-lg">
+          {{ hero_desc }}
+        </p>
+      {% endif %}
+    </section>
+  {% endif %}
+
+  {% if show_guide_section %}
+    {% assign guide_cards_shown = 0 %}
+    {% capture guide_cards_markup %}
+      <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        {% for card_page in guide_pages %}
+          {% if guide_cards_shown >= home_guide_limit %}{% break %}{% endif %}
+          {% if card_page.path == '/' %}{% continue %}{% endif %}
+          {% assign mod = guide_cards_shown | modulo: 4 %}
+          {% case mod %}
+            {% when 0 %}
+              {% assign accent_bg = 'bg-blue-50' %}
+              {% assign accent_text = 'text-blue-600' %}
+              {% assign accent_hover = 'group-hover:text-blue-600' %}
+              {% assign fallback_icon = 'ri-book-open-line' %}
+            {% when 1 %}
+              {% assign accent_bg = 'bg-emerald-50' %}
+              {% assign accent_text = 'text-emerald-600' %}
+              {% assign accent_hover = 'group-hover:text-emerald-600' %}
+              {% assign fallback_icon = 'ri-terminal-box-line' %}
+            {% when 2 %}
+              {% assign accent_bg = 'bg-purple-50' %}
+              {% assign accent_text = 'text-purple-600' %}
+              {% assign accent_hover = 'group-hover:text-purple-600' %}
+              {% assign fallback_icon = 'ri-code-s-slash-line' %}
+            {% else %}
+              {% assign accent_bg = 'bg-amber-50' %}
+              {% assign accent_text = 'text-amber-600' %}
+              {% assign accent_hover = 'group-hover:text-amber-600' %}
+              {% assign fallback_icon = 'ri-flag-line' %}
+          {% endcase %}
+          {% assign card_desc = card_page.settings.description | presence %}
+          {% assign icon_url = card_page.settings.icon | presence %}
+          <a
+            href="{{ card_page.path }}"
+            data-turbo-frame="main-content-frame"
+            data-turbo-action="advance"
+            class="group flex cursor-pointer flex-col justify-between rounded-xl border border-base-200/80 bg-base-100 p-6 shadow-sm transition-all duration-300 hover:border-base-300 hover:shadow-md"
+          >
+            <div>
+              <div class="mb-4 w-fit rounded-lg p-2.5 {{ accent_bg }} {{ accent_text }}">
+                {% if icon_url %}
+                  <img src="{{ icon_url }}" alt="" class="size-5 rounded object-cover" width="20" height="20" loading="lazy" decoding="async" />
+                {% else %}
+                  <i class="{{ fallback_icon }} text-xl leading-none" aria-hidden="true"></i>
+                {% endif %}
+              </div>
+              <h3 class="mb-1 font-bold text-base-content transition-colors {{ accent_hover }}">
+                {{ card_page.link_text }}
+              </h3>
+              <p class="text-xs leading-relaxed text-base-content/55">
+                {% if card_desc %}
+                  {{ card_desc }}
+                {% else %}
+                  {{ 'snippets.almond.home.guide_card_fallback_desc' | t }}
+                {% endif %}
+              </p>
+            </div>
+          </a>
+          {% assign guide_cards_shown = guide_cards_shown | plus: 1 %}
+        {% endfor %}
+      </div>
+    {% endcapture %}
+    {% if guide_cards_shown > 0 %}
+      <section>
+        <h2 class="mb-4 flex items-center text-lg font-bold text-base-content">
+          <i class="ri-rocket-line mr-2 text-xl text-primary" aria-hidden="true"></i>
+          {{ guide_section_title }}
+        </h2>
+        {{ guide_cards_markup }}
+      </section>
+    {% endif %}
+  {% endif %}
+
+  {% if show_recommended_section %}
+    <section>
+      <div class="mb-4 flex flex-wrap items-center justify-between gap-3">
+        <h2 class="flex items-center text-lg font-bold text-base-content">
+          <i class="ri-bookmark-line mr-2 text-xl text-primary" aria-hidden="true"></i>
+          {{ recommended_section_title }}
+        </h2>
+        {% if recommended_view_all_path != blank %}
+          <a
+            href="{{ recommended_view_all_path }}"
+            data-turbo-frame="main-content-frame"
+            data-turbo-action="advance"
+            class="text-sm font-medium text-primary hover:underline"
+          >
+            {{ 'snippets.almond.home.view_all' | t: '查看全部' }}
+          </a>
+        {% endif %}
+      </div>
+
+      <div class="space-y-2.5">
+        {% if recommended_has_pages %}
+          {% assign list_shown = 0 %}
+          {% for doc in recommended_pages %}
+            {% if list_shown >= list_display_limit %}{% break %}{% endif %}
+            <a
+              href="{{ doc.path }}"
+              data-turbo-frame="main-content-frame"
+              data-turbo-action="advance"
+              class="group flex items-center justify-between gap-3 rounded-lg border border-base-200 bg-base-100 p-3 transition-all hover:border-primary hover:shadow-sm"
+            >
+              <div class="flex min-w-0 items-center gap-3 overflow-hidden">
+                <i class="ri-file-text-line size-4 shrink-0 text-base-content/40" aria-hidden="true"></i>
+                <span class="truncate text-sm font-medium text-base-content/80 group-hover:text-base-content">
+                  {{ doc.link_text }}
+                </span>
+              </div>
+              <i class="ri-arrow-right-line size-4 shrink-0 text-base-content/40 transition-transform group-hover:translate-x-0.5 group-hover:text-primary" aria-hidden="true"></i>
+            </a>
+            {% assign list_shown = list_shown | plus: 1 %}
+          {% endfor %}
+        {% else %}
+          {% render 'index/almond/home_recommended_defaults', limit: 3 %}
+        {% endif %}
+      </div>
+    </section>
+  {% endif %}
+
+  {% if show_help_banner and site.settings.feedback_enabled %}
+    <section class="relative overflow-hidden rounded-xl border border-slate-800 bg-gradient-to-br from-slate-900 to-slate-800 p-8 text-center text-white shadow-sm">
+      <div class="pointer-events-none absolute -bottom-10 -right-10 size-40 rounded-full bg-primary/10 blur-2xl" aria-hidden="true"></div>
+      <h3 class="relative z-10 mb-2 text-lg font-bold">{{ help_title }}</h3>
+      <p class="relative z-10 mx-auto mb-5 max-w-xl text-xs leading-relaxed text-slate-400">
+        {{ help_desc }}
+      </p>
+      <div class="relative z-10 flex flex-wrap items-center justify-center gap-3">
+        <button
+          type="button"
+          class="cursor-pointer rounded-lg bg-primary px-4 py-1.5 text-xs font-medium text-primary-content shadow-sm shadow-primary/20 transition-colors hover:bg-primary/90"
+          onclick="document.getElementById('home-feedback-modal')?.showModal()"
+        >
+          {{ 'snippets.home.feedback_btn' | t: '在线反馈' }}
+        </button>
+      </div>
+    </section>
+  {% endif %}
+</div>
+
+{% if site.settings.feedback_enabled %}
+  {% render 'index/home_feedback_modal', page: page %}
+{% endif %}

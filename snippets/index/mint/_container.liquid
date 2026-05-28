@@ -11,7 +11,7 @@
 {% assign ai_timeout_error = "ai.timeout_error" | t: "响应超时，请重试" | presence %}
 {% assign ai_copy_success = "ai.copy_success" | t: "已复制" | presence %}
 {% assign ai_copy_error = "ai.copy_error" | t: "复制失败" | presence %}
-{% assign search_ask_ai_message_tpl = "mint.search.ask_ai_message" | t: "请介绍一下「%{query}」" %}
+{% assign search_ask_ai_message_tpl = "search.ask_ai_message" | t: "请介绍一下「%{query}」" %}
 {% assign ai_completed_text = site.settings.ai_search_completed_text | presence %}
 {% unless ai_completed_text %}
   {% assign ai_completed_text = "ai.completed" | t: "AI 回答完毕." | presence %}
@@ -177,7 +177,7 @@
               </div>
             {% endif %}
 
-            {% render 'index/mint/nav_tree_list', page: current_root_channel, current_path: page.path %}
+            {% render 'index/mint/nav_tree_list', page: current_root_channel, current_path: base_page.path %}
           </aside>
         </div>
 

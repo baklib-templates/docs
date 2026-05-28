@@ -2,122 +2,117 @@
 
 English | [简体中文](README.zh-CN.md)
 
-Baklib **Wiki** theme focused on **product documentation** (Mintlify-inspired): a docs-first layout with sidebar navigation, in-page TOC, search, AI-assisted answers, share-to-LLM tools, and Turbo-powered navigation—not a generic support or FAQ portal.
+Baklib **Wiki** documentation theme (`theme_scope`: `wiki`, version **1.2.1**): product docs with sidebar navigation, in-page TOC, search, AI Q&A sidebar, page tools (including share-to-LLM), feedback, and Turbo-driven navigation—not a generic help-center or FAQ portal.
+
+## Features
+
+- **Three home layouts** — Mint, Maple, and Almond; shared setting field IDs so admin data carries across variants
+- **Unified article chrome** — `page.liquid` reuses the same layout family as the site home (`mint` | `maple` | `almond`)
+- **AI & search** — AI sidebar, search modal, configurable hot keywords and post-AI completion text
+- **Seven locales** — Runtime UI (`*.json`) and theme-editor copy (`*.schema.json`)
+- **Frontend stack** — Tailwind CSS 4, daisyUI, Stimulus, Alpine.js, Turbo (built from `src/` into `assets/`)
 
 ## Requirements
 
-- Node.js (for asset builds)
-- Baklib site using the **Wiki** scope with this theme installed (`theme_scope`: `wiki` in `config/settings_schema.json`)
+- Node.js (for `yarn build` / `yarn dev`)
+- Baklib site on **Wiki** scope with this theme installed
 
-## Repository layout
+## Project layout
 
-| Path                          | Purpose                                                                 |
-| ----------------------------- | ----------------------------------------------------------------------- |
-| `config/settings_schema.json` | Theme metadata, languages, and editor settings                          |
-| `layout/`                     | Base layouts                                                            |
-| `templates/`                  | Page templates (9 Mintlify-inspired home variants, directory list, article page, search, tag, video, export, …) |
-| `snippets/`                   | Partials (header, footer, sidebar, page tools, feedback, `index_themes/*`, …) |
-| `locales/`                    | Runtime UI strings (`*.json`) and theme-editor labels (`*.schema.json`) |
-| `src/`                        | Source CSS/JS (Tailwind, esbuild)                                       |
-| `assets/`                     | Compiled stylesheets, scripts, and theme preview images                 |
-| `statics/`                    | Static custom HTML examples                                             |
+| Path | Purpose |
+| --- | --- |
+| `config/settings_schema.json` | Theme metadata, global settings, preview image paths |
+| `layout/` | Base layouts (`theme.liquid`, `error.liquid`) |
+| `templates/` | Home variants, article page, feedback Turbo Streams, search |
+| `snippets/` | Shared chrome; `index/` holds per-variant home & page shells and AI/feedback partials |
+| `locales/` | Storefront strings (`*.json`) and editor labels (`*.schema.json`) |
+| `src/` | Source CSS/JS (Tailwind CLI, esbuild) |
+| `assets/` | Built stylesheets, scripts, and localized preview screenshots |
+| `statics/` | Optional static Liquid endpoints |
 
-## Home templates (Mintlify-inspired)
+## Templates
 
-`templates/index.<theme>.liquid` provides nine home-page variants modelled after [Mintlify themes](https://www.mintlify.com/docs/customize/themes). They share the same field IDs (so admin data carries over) and only differ in layout density, hero shape, and decorative backdrop driven by the `.theme-<name>` marker class in [`src/stylesheets/themes.css`](src/stylesheets/themes.css).
+### Home
 
-| Template              | Variant       | At a glance                                                                                  |
-| --------------------- | ------------- | -------------------------------------------------------------------------------------------- |
-| `index.mint.liquid`   | Mint          | Classic 3-column gradient cards; the safest default and the spiritual successor to `index.docs`. |
-| `index.maple.liquid`  | Maple         | Outline cards + pill search, geared toward AI/SaaS docs.                                     |
-| `index.palm.liquid`   | Palm          | Sober mesh background, serif headings, 2-column enterprise feel.                             |
-| `index.willow.liquid` | Willow        | Distraction-free; plain text cards, no decoration, latest/hottest off by default.            |
-| `index.linden.liquid` | Linden        | Retro terminal: monospace + grid backdrop + dashed borders.                                  |
-| `index.almond.liquid` | Almond        | Warm gradient with rounded cards; all sections enabled.                                      |
-| `index.aspen.liquid`  | Aspen         | Contour-line backdrop, 4-tile getting-started grid for SDK references.                       |
-| `index.sequoia.liquid`| Sequoia       | Spacious 4-column grid for large-scale API and platform docs.                                |
-| `index.luma.liquid`   | Luma          | Lightest variant: minimal decoration, 2-column flat cards.                                   |
+`templates/index.<variant>.liquid` — pick one as the site home template in Baklib.
 
-Shared partials live in [`snippets/index_themes/`](snippets/index_themes/) (`_decoration`, `_hero_search`, `_channels_grid`, `_topic_grid`, `_recent_list`, `_hottest_list`, `_features_html`). Add a new variant by creating one more `index.<theme>.liquid` that renders the same partials with different parameters and a `.theme-<theme>` wrapper class.
+| Template | Variant | At a glance |
+| --- | --- | --- |
+| `index.mint.liquid` | Mint | Gradient hero, channel entry cards, recommended list; the safest default for product docs |
+| `index.maple.liquid` | Maple | Left sidebar with logo, search, and site nav; outline cards and pill-style search |
+| `index.almond.liquid` | Almond | Hero, quick-guide cards, recommended list, and bottom help / feedback banner |
 
-## Supported locales
+**Home behavior:** set `home_page_path` to a site page path (e.g. `/docs/getting-started`) to show that page at `/`, or leave it empty to render the variant’s default home sections (hero, hot keywords, quick guide, etc.). Pages can join the home quick guide via **Show on home quick guide** in page settings.
 
-Runtime translations and theme-editor (schema) translations ship for:
+Variant-specific markup lives under `snippets/index/<variant>/`. Shared pieces include `snippets/index/_ai_sidebar.liquid`, `_ai_chat_messages.liquid`, and home feedback modals.
 
-- `en`, `zh-CN`, `zh-TW`, `ko`, `ja`, `de`, `fr`
+### Article
 
-Add or edit keys in `locales/<locale>.json` (UI) and `locales/<locale>.schema.json` (theme-editor labels). When introducing a new locale, register it under `theme_info.theme_languages` in [`config/settings_schema.json`](config/settings_schema.json).
+`templates/page.liquid` — documentation content pages; layout follows `site.pages['/'].template_style` (`mint`, `maple`, or `almond`).
 
-## Build assets
+### Other
+
+| File | Role |
+| --- | --- |
+| `templates/search.liquid` | Reserved |
+| `templates/feedback_*_turbo_stream.liquid` | Turbo Stream responses for in-page feedback |
+| `statics/about.liquid` | Example static page |
+| `statics/page/nav_tree.liquid` | Nav tree static endpoint |
+
+## Locales
+
+Shipped for storefront and schema:
+
+`en` · `zh-CN` · `zh-TW` · `ko` · `ja` · `de` · `fr`
+
+Edit `locales/<locale>.json` (UI) and `locales/<locale>.schema.json` (editor). Register new languages under `theme_info.theme_languages` in `config/settings_schema.json`.
+
+## Build
 
 ```bash
 yarn install
 yarn build
 ```
 
-During development:
+Development (watch CSS/JS):
 
 ```bash
 yarn dev
 ```
 
-Optional live reload (requires Ruby + livereload browser extension):
+Optional live reload for Liquid/locale edits (Ruby + `guard-livereload` from `Gemfile`):
 
 ```bash
 bundle install
-bundle exec guard
+yarn livereload
 ```
 
-## Per-language preview images
+## Preview images
 
-The theme card and screenshots in the Baklib admin are resolved by language. Drop localized previews into `assets/images/theme/<lang>/` so admins see them in their UI language:
+**Theme card thumbnail** (all languages):
+
+```text
+assets/images/theme/thumb-indigo.png
+```
+
+**Per-locale screenshots** — place under `assets/images/theme/<lang>/`:
 
 ```text
 assets/images/theme/<lang>/
-├── thumb.png            # theme card thumbnail
-├── index.png            # primary preview
 ├── index-mint.png
 ├── index-maple.png
-├── index-palm.png
-├── index-willow.png
-├── index-linden.png
 ├── index-almond.png
-├── index-aspen.png
-├── index-sequoia.png
-├── index-luma.png
-├── index-list.png
-└── page.png
+├── page.png
+└── page-ai.png
 ```
 
-The `${lang}` placeholder used in `config/settings_schema.json` is resolved automatically:
-
-```json
-"theme_thumb_url": "images/theme/${lang}/thumb.png",
-"theme_preview_images": [
-  "images/theme/${lang}/index.png",
-  "images/theme/${lang}/index-mint.png",
-  "images/theme/${lang}/index-maple.png",
-  "images/theme/${lang}/index-palm.png",
-  "images/theme/${lang}/index-willow.png",
-  "images/theme/${lang}/index-linden.png",
-  "images/theme/${lang}/index-almond.png",
-  "images/theme/${lang}/index-aspen.png",
-  "images/theme/${lang}/index-sequoia.png",
-  "images/theme/${lang}/index-luma.png",
-  "images/theme/${lang}/index-list.png",
-  "images/theme/${lang}/page.png"
-]
-```
-
-> Initial commit ships the same placeholder image for every theme; replace each `index-<theme>.png` with a real screenshot when ready.
-
-If a localized image is missing, Baklib falls back to the default language directory.
+Configured in `config/settings_schema.json` (`theme_thumb_url`, `theme_preview_images`). The `${lang}` segment is resolved from the admin UI language. Missing files fall back to the site default language directory.
 
 ## Documentation
 
 - Theme guide: <https://help.baklib.cn/themes/docs>
 - Settings reference: <https://help.baklib.cn/themes/docs/settings>
-- Baklib template development guide: <https://dev.baklib.cn/guide/git>
+- Template development: <https://dev.baklib.cn/guide/git>
 
 ## License
 

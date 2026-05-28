@@ -28,7 +28,7 @@
 {% endif %}
 
 {% assign show_recommended = page.settings.home_show_recommended %}
-{% assign recommended_title = page.settings.home_recommended_title | default: 'snippets.maple.home.recommended_title' | t: '推荐内容' %}
+{% assign recommended_title = page.settings.home_recommended_title %}
 {% assign recommended_limit = 8 %}
 {% assign recommended_pages = page.pages | order_by: '-visits_count' | limit: recommended_limit %}
 
@@ -80,7 +80,7 @@
   {% if show_guide_section %}
     <div class="mb-12">
       {% if guide_section_title != blank %}
-        <h2 class="mb-6 flex items-center text-xs font-bold uppercase tracking-widest text-slate-400">
+        <h2 class="mb-6 flex items-center text-xs font-bold tracking-widest text-slate-400">
           <span class="mr-2 h-px w-4 bg-slate-300"></span>
           {{ guide_section_title }}
         </h2>
@@ -179,11 +179,11 @@
     </div>
   {% endif %}
 
-  <section class="relative overflow-hidden rounded-xl border border-slate-800 bg-gradient-to-br from-slate-900 to-slate-800 p-8 text-center text-white shadow-sm">
-    <div class="absolute -right-10 -bottom-10 h-40 w-40 rounded-full bg-emerald-500/10 blur-2xl"></div>
-    <h3 class="relative z-10 mb-2 text-lg font-bold">{{ help_title }}</h3>
-    <p class="relative z-10 mx-auto mb-5 max-w-xl text-xs leading-relaxed text-slate-400">{{ help_desc }}</p>
-    {% if site.settings.feedback_enabled %}
+  {% if site.settings.feedback_enabled %}
+    <section class="relative overflow-hidden rounded-xl border border-slate-800 bg-gradient-to-br from-slate-900 to-slate-800 p-8 text-center text-white shadow-sm">
+      <div class="absolute -right-10 -bottom-10 h-40 w-40 rounded-full bg-emerald-500/10 blur-2xl"></div>
+      <h3 class="relative z-10 mb-2 text-lg font-bold">{{ help_title }}</h3>
+      <p class="relative z-10 mx-auto mb-5 max-w-xl text-xs leading-relaxed text-slate-400">{{ help_desc }}</p>
       <div class="relative z-10 flex justify-center gap-3">
         <button
           type="button"
@@ -193,8 +193,8 @@
           {{ 'snippets.home.feedback_btn' | t: '在线反馈' }}
         </button>
       </div>
-    {% endif %}
-  </section>
+    </section>
+  {% endif %}
 </div>
 
 {% if site.settings.feedback_enabled %}

@@ -161,12 +161,15 @@
               placeholder="{{ "snippets.ai.input_placeholder" | t: "输入你的问题…" }}" style="height: 50px;"></textarea>
           </div>
           <div class="flex items-center justify-between px-2 pb-2">
-            <input type="file" class="hidden">
-            <button type="button"
-              class="btn btn-ghost btn-sm btn-square text-base-content/60 hover:text-base-content"
-              aria-label="Add attachment">
-              <i class="ri-attachment-line leading-none" aria-hidden="true"></i>
-            </button>
+            {% if false %}
+              <input type="file" class="hidden">
+              <button type="button"
+                class="btn btn-ghost btn-sm btn-square text-base-content/60 hover:text-base-content"
+                aria-label="Add attachment">
+                <i class="ri-attachment-line leading-none" aria-hidden="true"></i>
+              </button>
+            {% endif %}
+            <span class="flex-1"></span>
             <button
               class="btn btn-circle btn-ghost btn-sm bg-primary/10 text-primary"
               data-ai-search-target="send"

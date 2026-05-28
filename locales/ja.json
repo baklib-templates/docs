@@ -41,50 +41,15 @@
       "nav_tree": {
         "toggle_submenu": "サブメニューを開閉"
       },
-      "page_feedback": {
-        "prompt": "このページは役に立ちましたか？",
-        "yes_button": "はい",
-        "no_button": "いいえ",
-        "follow_up_yes": "よかったです！何が最も役立ちましたか？",
-        "follow_up_no": "製品をどのように改善できますか？",
-        "cancel": "キャンセル",
-        "submit": "フィードバックを送信",
-        "thanks": "フィードバックありがとうございます。引き続き体験を改善します。",
-        "other": "その他",
-        "other_prefix": "その他：",
-        "other_details_sr": "その他のフィードバック詳細",
-        "other_placeholder": "（任意）体験について詳しく教えてください。",
-        "yes": {
-          "works_as_expected": "期待どおりに機能",
-          "works_as_expected_label": "このガイドは期待どおりに機能しました。",
-          "easy_to_find": "情報を見つけやすい",
-          "easy_to_find_label": "必要な情報を簡単に見つけられました。",
-          "easy_to_understand": "機能が理解しやすい",
-          "easy_to_understand_label": "製品とその機能は理解しやすかったです。",
-          "docs_updated": "ドキュメントが更新済み",
-          "docs_updated_label": "ドキュメントは最新です。"
-        },
-        "no": {
-          "faster_start": "より早く始められる",
-          "faster_start_label": "より早く始められるようにしてほしい",
-          "easier_find": "コンテンツを見つけやすく",
-          "easier_find_label": "必要なものを見つけやすくしてほしい",
-          "better_understand": "製品をより理解しやすく",
-          "better_understand_label": "ユーザーが製品と機能を理解しやすくしてほしい。",
-          "update_docs": "ドキュメントを更新",
-          "update_docs_label": "このドキュメントを更新してほしい"
-        }
-      },
       "home": {
-        "search_placeholder": "Search docs, guides, and APIs…",
-        "channel_card_fallback_desc": "Browse docs and guides in this channel.",
-        "guide_card_fallback_desc": "Open this topic to browse related docs.",
-        "recommended_title": "Recommended reading",
-        "view_all": "View all",
-        "tag_recent": "Recently updated",
-        "rec_default_1": "Quick start: environment setup and first deploy",
-        "rec_default_2": "API authentication and examples",
-        "rec_default_3": "FAQ and troubleshooting"
+        "search_placeholder": "ドキュメント、ガイド、API を検索…",
+        "channel_card_fallback_desc": "このチャンネルのドキュメントとガイドを閲覧します。",
+        "guide_card_fallback_desc": "このトピックの関連ドキュメントを閲覧します。",
+        "view_all": "すべて表示",
+        "tag_recent": "最近の更新",
+        "rec_default_1": "クイックスタート：環境構築と初回デプロイ",
+        "rec_default_2": "API 認証と呼び出し例",
+        "rec_default_3": "FAQ とトラブルシューティング"
       }
     },
     "page_tools": {
@@ -102,78 +67,43 @@
     },
     "maple": {
       "home": {
-        "recommended_title": "Recommended",
-        "search_placeholder": "Search guides and docs…",
-        "channel_card_fallback_desc": "Browse docs and guides in this topic.",
-        "view_all": "View all",
-        "tag_tech": "Tech picks",
-        "tag_official": "Official",
-        "rec_default_1": "[Core] Industry standards and revision notes",
-        "rec_default_2": "[Manual] Search, export, and batch processing",
-        "rec_default_3": "[Best practice] Team collaboration checklist",
-        "rec_default_4": "[Getting started] Setup before first use",
-        "rec_default_5": "System configuration and architecture",
-        "rec_default_6": "Common errors and troubleshooting"
+        "search_placeholder": "キーワードを入力してガイドやドキュメントを検索…",
+        "channel_card_fallback_desc": "このトピックのドキュメントとガイドを閲覧します。",
+        "view_all": "すべて表示",
+        "tag_tech": "技術おすすめ",
+        "tag_official": "公式",
+        "rec_default_1": "【コア】業界標準の実施細則と改訂説明",
+        "rec_default_2": "【マニュアル】検索・エクスポート・一括処理ガイド",
+        "rec_default_3": "【ベストプラクティス】チーム協業と権限設定",
+        "rec_default_4": "【入門】初回利用前のセットアップ",
+        "rec_default_5": "システム構成とアーキテクチャ最適化",
+        "rec_default_6": "よくあるエラーとトラブルシューティング"
       },
       "breadcrumb": {
-        "label": "Breadcrumb"
+        "label": "パンくずリスト"
       },
       "nav": {
-        "open_sidebar": "Open navigation menu"
-      },
-      "page_feedback": {
-        "prompt": "Was this page helpful?",
-        "yes_button": "Yes",
-        "no_button": "No",
-        "follow_up_yes": "Great! What worked best for you?",
-        "follow_up_no": "How can we improve our product?",
-        "cancel": "Cancel",
-        "submit": "Submit feedback",
-        "thanks": "Thank you for your feedback. We will keep improving the experience.",
-        "other": "Other",
-        "other_prefix": "Other: ",
-        "other_details_sr": "Other feedback details",
-        "other_placeholder": "(Optional) Tell us more about your experience.",
-        "yes": {
-          "works_as_expected": "Worked as expected",
-          "works_as_expected_label": "This guide worked as expected.",
-          "easy_to_find": "Easy to find information",
-          "easy_to_find_label": "I found what I needed easily.",
-          "easy_to_understand": "Easy to understand",
-          "easy_to_understand_label": "The product and features were easy to understand.",
-          "docs_updated": "Docs are up to date",
-          "docs_updated_label": "The documentation is up to date."
-        },
-        "no": {
-          "faster_start": "Help me get started faster",
-          "faster_start_label": "Help me get started faster",
-          "easier_find": "Easier to find content",
-          "easier_find_label": "Make it easier to find what I need",
-          "better_understand": "Better product understanding",
-          "better_understand_label": "Help users understand the product and features.",
-          "update_docs": "Update documentation",
-          "update_docs_label": "Update this documentation"
-        }
+        "open_sidebar": "ナビゲーションを開く"
       },
       "search": {
-        "ask_ai_section": "Ask the AI assistant",
-        "ask_ai_lead": "Tell me about ",
+        "ask_ai_section": "AI アシスタントに質問",
+        "ask_ai_lead": "次について教えてください：",
         "ask_ai_ellipsis": "…",
         "ask_ai_trailing": "",
-        "ask_ai_query_display": "%{query}"
+        "ask_ai_query_display": "「%{query}」"
       }
     },
     "ai": {
       "assistant_title": "AI アシスタント",
-      "send": "Send",
-      "pop_out_unsupported": "Picture-in-picture is not supported in this browser",
-      "pop_out_window": "Pop out",
-      "dock_to_sidebar": "Dock to sidebar",
-      "pip_active": "AI assistant is open in a separate window",
-      "clear_chat": "Clear chat",
-      "input_placeholder": "Ask your question…",
-      "copy_response": "Copy answer",
-      "retry_response": "Regenerate"
+      "send": "送信",
+      "pop_out_unsupported": "このブラウザでは別ウィンドウに対応していません",
+      "pop_out_window": "別ウィンドウ",
+      "dock_to_sidebar": "サイドバーに戻す",
+      "pip_active": "AI アシスタントは別ウィンドウで開いています",
+      "clear_chat": "会話をクリア",
+      "input_placeholder": "質問を入力…",
+      "copy_response": "回答をコピー",
+      "retry_response": "再生成"
     },
     "home_feedback": {
       "title": "オンラインフィードバック",
@@ -184,6 +114,40 @@
     },
     "home": {
       "feedback_btn": "オンラインフィードバック"
+    },
+    "almond": {
+      "search": {
+        "ask_ai_section": "AI アシスタントに質問",
+        "ask_ai_lead": "次について教えて：",
+        "ask_ai_trailing": "",
+        "ask_ai_ellipsis": "…",
+        "ask_ai_query_display": "「%{query}」"
+      },
+      "breadcrumb": {
+        "label": "パンくず"
+      },
+      "nav": {
+        "open_sidebar": "ナビゲーションを開く"
+      },
+      "nav_tree": {
+        "toggle_submenu": "サブメニューを展開／折りたたむ"
+      },
+      "home": {
+        "search_placeholder": "ドキュメントを検索、または質問を入力…",
+        "guide_card_fallback_desc": "このトピックのドキュメントとガイドを閲覧します。",
+        "view_all": "すべて表示",
+        "rec_default_1": "Markdown の構文と書式ガイド",
+        "rec_default_2": "コードブロックのレンダリング仕様",
+        "rec_default_3": "メディア埋め込みとアセット許可リスト"
+      }
+    },
+    "page_feedback": {
+      "cancel": "キャンセル",
+      "submit": "フィードバックを送信",
+      "thanks": "ごフィードバックありがとうございます。今後もコンテンツ体験の改善に努めます。",
+      "other": "その他",
+      "other_prefix": "その他：",
+      "other_details_sr": "その他のフィードバック詳細"
     }
   },
   "templates": {
@@ -207,14 +171,14 @@
   },
   "ai": {
     "completed": "AI 応答完了.",
-    "reading": "Reading documentation…",
-    "thinking_status": "Thinking…",
-    "network_error": "Network error. Please try again.",
-    "timeout_error": "Request timed out. Please try again.",
-    "copy_success": "Copied",
-    "copy_error": "Copy failed",
-    "ask_ai_message": "Tell me about \"%{query}\"",
-    "input_placeholder": "Ask your question…",
+    "reading": "ドキュメントを読み込み中…",
+    "thinking_status": "考え中…",
+    "network_error": "ネットワークエラーです。もう一度お試しください。",
+    "timeout_error": "タイムアウトしました。もう一度お試しください。",
+    "copy_success": "コピーしました",
+    "copy_error": "コピーに失敗しました",
+    "ask_ai_message": "「%{query}」について教えて",
+    "input_placeholder": "質問を入力…",
     "disclaimer": "コンテンツは AI 生成です。誤りがある場合があります。ご確認ください。"
   },
   "generic": {
@@ -233,7 +197,12 @@
   },
   "mint": {
     "search": {
-      "ask_ai_message": "Tell me about \"%{query}\""
+      "ask_ai_message": "「%{query}」について教えて"
+    }
+  },
+  "almond": {
+    "search": {
+      "ask_ai_message": "「%{query}」について教えて"
     }
   }
 }

@@ -1,6 +1,6 @@
 {
   "theme_label": "Docs",
-  "theme_description": "Dokumentation, die Nutzer wirklich lesen—klare Informationsarchitektur, blitzschnelle Suche und KI-gestützte Antworten out of the box. Verwandeln Sie Ihre Wissensdatenbank in überzeugende Produkt-Docs und API-Guides, ohne eine eigene Doc-Site von Grund auf zu bauen.",
+  "theme_description": "Dokumentation, die Nutzer wirklich lesen—klare Informationsarchitektur, blitzschnelle Suche und KI-gestützte Antworten out of the box. Verwandeln Sie Ihre Wissensdatenbank in überzeugende Produkt-Docs, ohne eine eigene Doc-Site von Grund auf zu bauen.",
   "recommendations": {
     "fashion": {
       "name": "Fashion"
@@ -16,7 +16,8 @@
           "home_config": "Startseiten-Konfiguration",
           "home_config_info": "Entweder: ① „Site-Seite auf der Startseite“ setzen — Inhalt dieser Seite bei /; ② leer lassen — Maple-Standardstartseite aus den Feldern unten (Hero, Schnellstart usw.). Seiten können in den Seiteneinstellungen für den Schnellstart aktiviert werden.",
           "home_config_info_mint": "Zeigt eine Site-Seite bei /. Mint hat kein Standard-Startseiten-Layout — Pfad angeben (z. B. Einstiegsseite). Leer = leerer Startseiten-Inhalt.",
-          "chrome": "Layout & Navigation"
+          "chrome": "Layout & Navigation",
+          "home_config_info_almond": "Wählen Sie: ① „Startseiten-Seite“ unter / setzen; ② leer lassen — Almond-Standardstartseite unten (Titel, Schnellführer, Empfehlungen, Hilfe-Banner)."
         },
         "settings": {
           "home_page_path": {
@@ -44,37 +45,37 @@
             "info": "In-Seite-TOC; empfohlen 240px"
           },
           "search_hot_keywords": {
-            "default": ""
+            "default": "Schnellstart\nAPI-Dokumentation\nFAQ"
           },
           "home_hero_title": {
-            "label": "",
-            "default": ""
+            "label": "Startseitentitel",
+            "default": "Willkommen in der Produktdokumentation"
           },
           "home_hero_description": {
-            "label": "",
-            "default": ""
+            "label": "Untertitel / Einleitung",
+            "default": "Suchen, Kanäle durchsuchen oder die KI fragen, um Leitfäden und API-Dokumentation schnell zu finden."
           },
           "home_guide_section_title": {
-            "label": "",
-            "default": ""
+            "label": "Einstiegstitel",
+            "default": "Von einem Kanal starten"
           },
           "home_show_guide_section": {
-            "label": ""
+            "label": "Einstiegskarten anzeigen (bis zu 3 Unterkanäle der Startseite)"
           },
           "home_recommended_title": {
-            "label": "",
-            "default": ""
+            "label": "Empfohlene Lektüre",
+            "default": "Empfohlene Lektüre"
           },
           "home_show_recommended": {
-            "label": ""
+            "label": "Empfohlene Liste anzeigen"
           },
           "home_help_title": {
-            "label": "",
-            "default": ""
+            "label": "Hilfe-Titel unten",
+            "default": "Noch Fragen?"
           },
           "home_help_description": {
-            "label": "",
-            "default": ""
+            "label": "Hilfe-Beschreibung unten",
+            "default": "Dokument nicht gefunden? Feedback senden, um die Wissensdatenbank zu verbessern."
           }
         }
       },
@@ -86,37 +87,83 @@
             "info": "Maple-Seitenleiste schmaler; empfohlen 280px"
           },
           "search_hot_keywords": {
-            "default": ""
+            "default": "Schnellstart\nFAQ\nKonfiguration\nEinsteigerleitfaden"
           },
           "home_hero_title": {
-            "label": "",
-            "default": ""
+            "label": "Startseitentitel",
+            "default": "Produktstandards & technische Dokumentation"
           },
           "home_hero_description": {
-            "label": "",
-            "default": ""
+            "label": "Untertitel / Einleitung",
+            "default": "Systemkonfiguration, Normen, Branchenstandards und technische Referenzen an einem Ort."
           },
           "home_guide_section_title": {
-            "label": "",
-            "default": ""
+            "label": "Schnellführer-Titel",
+            "default": "Schnellführer"
           },
           "home_show_guide_section": {
-            "label": ""
+            "label": "Schnellführer-Bereich anzeigen"
           },
           "home_recommended_title": {
-            "label": "",
-            "default": ""
+            "label": "Empfehlungen-Titel",
+            "default": "Empfehlungen"
           },
           "home_show_recommended": {
-            "label": ""
+            "label": "Empfehlungsbereich anzeigen"
           },
           "home_help_title": {
-            "label": "",
-            "default": ""
+            "label": "Hilfe-Titel",
+            "default": "Nicht gefunden, was Sie brauchen?"
           },
           "home_help_description": {
-            "label": "",
-            "default": ""
+            "label": "Hilfe-Beschreibung",
+            "default": "Lücke, unklare Formulierung oder Idee für neue Docs? Jederzeit Feedback senden."
+          }
+        }
+      },
+      "almond": {
+        "name": "Almond",
+        "description": "Startseite mit Haupttitel, Schnellführer-Karten, Empfehlungsliste und Feedback-Banner unten; KI-Seitenleiste und Suchmodal wie bei Mint.",
+        "settings": {
+          "left_sidebar_width": {
+            "info": "Almond-Seitenleiste empfohlen 264px (16,5rem)"
+          },
+          "right_sidebar_width": {
+            "info": "TOC-Seitenleiste, empfohlen 240px"
+          },
+          "search_hot_keywords": {
+            "default": "Erste Schritte\nAPI-Referenz\nFAQ"
+          },
+          "home_hero_title": {
+            "label": "Startseitentitel",
+            "default": "Willkommen in der Dokumentation"
+          },
+          "home_hero_description": {
+            "label": "Startseitenbeschreibung",
+            "default": "Das Wissenszentrum Ihres Teams—Standards, API-Leitfäden und Best Practices für schnelleres Arbeiten."
+          },
+          "home_guide_section_title": {
+            "label": "Titel Schnellführer",
+            "default": "Schnellführer",
+            "placeholder": "Schnellführer"
+          },
+          "home_show_guide_section": {
+            "label": "Schnellführer anzeigen"
+          },
+          "home_recommended_title": {
+            "label": "Titel Empfehlungen",
+            "default": "Empfohlen"
+          },
+          "home_show_recommended": {
+            "label": "Empfehlungen anzeigen"
+          },
+          "home_help_title": {
+            "label": "Titel Hilfebereich",
+            "default": "Nicht gefunden, was Sie brauchen?"
+          },
+          "home_help_description": {
+            "label": "Beschreibung Hilfebereich",
+            "default": "Lücke, unklare Formulierung oder Idee für neue Docs? Feedback senden—gemeinsam verbessern wir die Wissensbasis."
           }
         }
       }
@@ -129,8 +176,8 @@
           "info": "Wenn aktiviert, wird die Liste der Unterseiten auf der Seite angezeigt"
         },
         "show_on_home_guide": {
-          "label": "",
-          "info": ""
+          "label": "Auf der Startseite im Schnellführer anzeigen",
+          "info": "Wenn aktiviert, erscheint die Seite in den Schnellführer-Karten der Maple-Standardstartseite (max. 3, wenn der Startpfad leer ist). Sonst Auswahl nach Besuchszahl."
         },
         "title": {
           "label": "Seitentitel",
@@ -187,6 +234,11 @@
       "ai_search_completed_text": {
         "label": "KI-Abschlusstext",
         "info": "Fügt nach der KI-Antwort einen Satz hinzu"
+      },
+      "feedback_helper_text": {
+        "label": "Hilfetexte für Seitenfeedback",
+        "info": "JSON: yes / no jeweils mit label, title, items",
+        "default": "{\"yes\":{\"label\":\"Ja\",\"title\":\"Super! Was hat am besten funktioniert?\",\"items\":[\"Die Anleitung hat wie erwartet funktioniert.\",\"Ich habe die benötigten Informationen leicht gefunden.\",\"Das Produkt und seine Funktionen waren leicht verständlich.\",\"Die Dokumentation ist auf dem neuesten Stand.\"]},\"no\":{\"label\":\"Nein\",\"title\":\"Wie können wir uns verbessern?\",\"items\":[\"Helfen Sie mir, schneller loszulegen.\",\"Machen Sie es einfacher, das Richtige zu finden.\",\"Helfen Sie Nutzern, Produkt und Funktionen zu verstehen.\",\"Diese Dokumentation aktualisieren.\"]}}"
       }
     }
   },
@@ -203,7 +255,7 @@
         "label": "Seiten-Tools-Dropdown anzeigen"
       },
       "feedback_enabled": {
-        "label": ""
+        "label": "Seiten-Feedback aktivieren"
       }
     }
   },
@@ -241,7 +293,7 @@
       },
       "weixin_app_secret": {
         "label": "Entwicklerschlüssel (AppSecret)",
-        "info": ""
+        "info": "Erhältlich unter <a href='https://mp.weixin.qq.com/cgi-bin/frame'>WeChat Official Account / Einstellungen & Entwicklung / Entwicklungsschnittstellen</a>"
       },
       "weixin_enabled": {
         "label": "WeChat-Sharing aktivieren?",

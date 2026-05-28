@@ -41,50 +41,15 @@
       "nav_tree": {
         "toggle_submenu": "Untermenü ein- oder ausklappen"
       },
-      "page_feedback": {
-        "prompt": "War diese Seite hilfreich?",
-        "yes_button": "Ja",
-        "no_button": "Nein",
-        "follow_up_yes": "Super! Was hat am besten funktioniert?",
-        "follow_up_no": "Wie können wir unser Produkt verbessern?",
-        "cancel": "Abbrechen",
-        "submit": "Feedback senden",
-        "thanks": "Vielen Dank für Ihr Feedback. Wir verbessern das Erlebnis kontinuierlich.",
-        "other": "Sonstiges",
-        "other_prefix": "Sonstiges: ",
-        "other_details_sr": "Weitere Feedback-Details",
-        "other_placeholder": "(Optional) Können Sie mehr über Ihre Erfahrung teilen?",
-        "yes": {
-          "works_as_expected": "Wie erwartet",
-          "works_as_expected_label": "Diese Anleitung hat wie erwartet funktioniert.",
-          "easy_to_find": "Informationen leicht gefunden",
-          "easy_to_find_label": "Ich habe die benötigten Informationen leicht gefunden.",
-          "easy_to_understand": "Funktionen leicht verständlich",
-          "easy_to_understand_label": "Das Produkt und seine Funktionen waren leicht verständlich.",
-          "docs_updated": "Dokumentation aktualisiert",
-          "docs_updated_label": "Die Dokumentation ist auf dem neuesten Stand."
-        },
-        "no": {
-          "faster_start": "Schnellerer Einstieg",
-          "faster_start_label": "Helfen Sie mir, schneller loszulegen",
-          "easier_find": "Inhalte leichter finden",
-          "easier_find_label": "Machen Sie es mir leichter, das Richtige zu finden",
-          "better_understand": "Produkt besser verstehen",
-          "better_understand_label": "Helfen Sie Nutzern, Produkt und Funktionen leichter zu verstehen.",
-          "update_docs": "Dokumentation aktualisieren",
-          "update_docs_label": "Diese Dokumentation aktualisieren"
-        }
-      },
       "home": {
-        "search_placeholder": "Search docs, guides, and APIs…",
-        "channel_card_fallback_desc": "Browse docs and guides in this channel.",
-        "guide_card_fallback_desc": "Open this topic to browse related docs.",
-        "recommended_title": "Recommended reading",
-        "view_all": "View all",
-        "tag_recent": "Recently updated",
-        "rec_default_1": "Quick start: environment setup and first deploy",
-        "rec_default_2": "API authentication and examples",
-        "rec_default_3": "FAQ and troubleshooting"
+        "search_placeholder": "Dokumente, Leitfäden und APIs durchsuchen…",
+        "channel_card_fallback_desc": "Dokumentation und Anleitungen in diesem Kanal durchsuchen.",
+        "guide_card_fallback_desc": "Dieses Thema öffnen, um verwandte Dokumente zu durchsuchen.",
+        "view_all": "Alle anzeigen",
+        "tag_recent": "Kürzlich aktualisiert",
+        "rec_default_1": "Schnellstart: Umgebung einrichten und erstes Deployment",
+        "rec_default_2": "API-Authentifizierung und Beispiele",
+        "rec_default_3": "FAQ und Fehlerbehebung"
       }
     },
     "page_tools": {
@@ -102,78 +67,43 @@
     },
     "maple": {
       "home": {
-        "recommended_title": "Recommended",
-        "search_placeholder": "Search guides and docs…",
-        "channel_card_fallback_desc": "Browse docs and guides in this topic.",
-        "view_all": "View all",
-        "tag_tech": "Tech picks",
-        "tag_official": "Official",
-        "rec_default_1": "[Core] Industry standards and revision notes",
-        "rec_default_2": "[Manual] Search, export, and batch processing",
-        "rec_default_3": "[Best practice] Team collaboration checklist",
-        "rec_default_4": "[Getting started] Setup before first use",
-        "rec_default_5": "System configuration and architecture",
-        "rec_default_6": "Common errors and troubleshooting"
+        "search_placeholder": "Stichwort eingeben, um Leitfäden oder Dokumente zu finden…",
+        "channel_card_fallback_desc": "Dokumentation und Anleitungen zu diesem Thema durchsuchen.",
+        "view_all": "Alle anzeigen",
+        "tag_tech": "Technik-Tipps",
+        "tag_official": "Offiziell",
+        "rec_default_1": "【Kern】 Branchenstandards und Änderungshinweise",
+        "rec_default_2": "【Handbuch】 Suche, Export und Stapelverarbeitung",
+        "rec_default_3": "【Best Practice】 Teamzusammenarbeit und Berechtigungen",
+        "rec_default_4": "【Einstieg】 Einrichtung vor der ersten Nutzung",
+        "rec_default_5": "Systemkonfiguration und Architektur",
+        "rec_default_6": "Häufige Fehler und Fehlerbehebung"
       },
       "breadcrumb": {
-        "label": "Breadcrumb"
+        "label": "Brotkrumen"
       },
       "nav": {
-        "open_sidebar": "Open navigation menu"
-      },
-      "page_feedback": {
-        "prompt": "Was this page helpful?",
-        "yes_button": "Yes",
-        "no_button": "No",
-        "follow_up_yes": "Great! What worked best for you?",
-        "follow_up_no": "How can we improve our product?",
-        "cancel": "Cancel",
-        "submit": "Submit feedback",
-        "thanks": "Thank you for your feedback. We will keep improving the experience.",
-        "other": "Other",
-        "other_prefix": "Other: ",
-        "other_details_sr": "Other feedback details",
-        "other_placeholder": "(Optional) Tell us more about your experience.",
-        "yes": {
-          "works_as_expected": "Worked as expected",
-          "works_as_expected_label": "This guide worked as expected.",
-          "easy_to_find": "Easy to find information",
-          "easy_to_find_label": "I found what I needed easily.",
-          "easy_to_understand": "Easy to understand",
-          "easy_to_understand_label": "The product and features were easy to understand.",
-          "docs_updated": "Docs are up to date",
-          "docs_updated_label": "The documentation is up to date."
-        },
-        "no": {
-          "faster_start": "Help me get started faster",
-          "faster_start_label": "Help me get started faster",
-          "easier_find": "Easier to find content",
-          "easier_find_label": "Make it easier to find what I need",
-          "better_understand": "Better product understanding",
-          "better_understand_label": "Help users understand the product and features.",
-          "update_docs": "Update documentation",
-          "update_docs_label": "Update this documentation"
-        }
+        "open_sidebar": "Navigation öffnen"
       },
       "search": {
-        "ask_ai_section": "Ask the AI assistant",
-        "ask_ai_lead": "Tell me about ",
+        "ask_ai_section": "KI-Assistent fragen",
+        "ask_ai_lead": "Kannst du mir etwas über ",
         "ask_ai_ellipsis": "…",
-        "ask_ai_trailing": "",
-        "ask_ai_query_display": "%{query}"
+        "ask_ai_trailing": " erzählen?",
+        "ask_ai_query_display": "„%{query}“"
       }
     },
     "ai": {
-      "assistant_title": "AI assistant",
-      "send": "Send",
-      "pop_out_unsupported": "Picture-in-picture is not supported in this browser",
-      "pop_out_window": "Pop out",
-      "dock_to_sidebar": "Dock to sidebar",
-      "pip_active": "AI assistant is open in a separate window",
-      "clear_chat": "Clear chat",
-      "input_placeholder": "Ask your question…",
-      "copy_response": "Copy answer",
-      "retry_response": "Regenerate"
+      "assistant_title": "KI-Assistent",
+      "send": "Senden",
+      "pop_out_unsupported": "Dieser Browser unterstützt kein separates Fenster",
+      "pop_out_window": "Eigenes Fenster",
+      "dock_to_sidebar": "Zur Seitenleiste zurück",
+      "pip_active": "KI-Assistent ist in einem separaten Fenster geöffnet",
+      "clear_chat": "Chat leeren",
+      "input_placeholder": "Frage eingeben…",
+      "copy_response": "Antwort kopieren",
+      "retry_response": "Neu generieren"
     },
     "home_feedback": {
       "title": "Online-Feedback",
@@ -184,6 +114,40 @@
     },
     "home": {
       "feedback_btn": "Online-Feedback"
+    },
+    "almond": {
+      "search": {
+        "ask_ai_section": "KI-Assistenten fragen",
+        "ask_ai_lead": "Erzähle mir von ",
+        "ask_ai_trailing": "",
+        "ask_ai_ellipsis": "…",
+        "ask_ai_query_display": "\"%{query}\""
+      },
+      "breadcrumb": {
+        "label": "Brotkrumen"
+      },
+      "nav": {
+        "open_sidebar": "Navigation öffnen"
+      },
+      "nav_tree": {
+        "toggle_submenu": "Untermenü ein- oder ausklappen"
+      },
+      "home": {
+        "search_placeholder": "Dokumentation durchsuchen oder Frage stellen…",
+        "guide_card_fallback_desc": "Dokumentation und Anleitungen zu diesem Thema durchsuchen.",
+        "view_all": "Alle anzeigen",
+        "rec_default_1": "Markdown-Syntax und Formatierung",
+        "rec_default_2": "Codeblöcke und Rendering",
+        "rec_default_3": "Medien-Einbettung und Asset-Allowlist"
+      }
+    },
+    "page_feedback": {
+      "cancel": "Abbrechen",
+      "submit": "Feedback senden",
+      "thanks": "Vielen Dank für Ihr Feedback. Wir verbessern das Inhaltserlebnis kontinuierlich.",
+      "other": "Sonstiges",
+      "other_prefix": "Sonstiges: ",
+      "other_details_sr": "Weitere Feedback-Angaben"
     }
   },
   "templates": {
@@ -207,15 +171,15 @@
   },
   "ai": {
     "completed": "KI-Antwort abgeschlossen.",
-    "reading": "Reading documentation…",
-    "thinking_status": "Thinking…",
-    "network_error": "Network error. Please try again.",
-    "timeout_error": "Request timed out. Please try again.",
-    "copy_success": "Copied",
-    "copy_error": "Copy failed",
-    "ask_ai_message": "Tell me about \"%{query}\"",
-    "input_placeholder": "Ask your question…",
-    "disclaimer": "Content is AI-generated and may contain errors. Please verify."
+    "reading": "Dokumentation wird gelesen…",
+    "thinking_status": "Denke nach…",
+    "network_error": "Netzwerkfehler. Bitte erneut versuchen.",
+    "timeout_error": "Zeitüberschreitung. Bitte erneut versuchen.",
+    "copy_success": "Kopiert",
+    "copy_error": "Kopieren fehlgeschlagen",
+    "ask_ai_message": "Erzähl mir von „%{query}“",
+    "input_placeholder": "Frage eingeben…",
+    "disclaimer": "Inhalt KI-generiert und kann Fehler enthalten. Bitte selbst prüfen."
   },
   "generic": {
     "published_at": "Veröffentlicht am",
@@ -233,7 +197,12 @@
   },
   "mint": {
     "search": {
-      "ask_ai_message": "Tell me about \"%{query}\""
+      "ask_ai_message": "Erzähl mir von „%{query}“"
+    }
+  },
+  "almond": {
+    "search": {
+      "ask_ai_message": "Erzähle mir von \"%{query}\""
     }
   }
 }

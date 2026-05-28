@@ -41,45 +41,10 @@
       "nav_tree": {
         "toggle_submenu": "展開或收合子選單"
       },
-      "page_feedback": {
-        "prompt": "這個頁面對您有幫助嗎？",
-        "yes_button": "是的",
-        "no_button": "不",
-        "follow_up_yes": "太棒了！什麼方法對你最有效？",
-        "follow_up_no": "我們如何改進產品？",
-        "cancel": "取消",
-        "submit": "提交回饋",
-        "thanks": "感謝你的回饋，我們會持續優化內容體驗。",
-        "other": "其他",
-        "other_prefix": "其他：",
-        "other_details_sr": "其他回饋詳情",
-        "other_placeholder": "（可選）您能否分享一下您的經歷？",
-        "yes": {
-          "works_as_expected": "按預期發揮作用",
-          "works_as_expected_label": "該指南按預期發揮作用。",
-          "easy_to_find": "很容易找到資訊",
-          "easy_to_find_label": "我很容易就找到了我需要的資訊。",
-          "easy_to_understand": "產品功能容易理解",
-          "easy_to_understand_label": "產品及其功能很容易理解。",
-          "docs_updated": "文件已更新",
-          "docs_updated_label": "文件已更新。"
-        },
-        "no": {
-          "faster_start": "幫助我更快開始",
-          "faster_start_label": "幫我更快開始",
-          "easier_find": "更容易找到內容",
-          "easier_find_label": "讓我更容易找到我想要的東西",
-          "better_understand": "更好理解產品",
-          "better_understand_label": "讓使用者能夠輕鬆理解產品及其功能。",
-          "update_docs": "更新文件",
-          "update_docs_label": "更新此文件"
-        }
-      },
       "home": {
         "search_placeholder": "搜尋文件、指南與 API…",
         "channel_card_fallback_desc": "瀏覽該頻道下的文件與說明。",
         "guide_card_fallback_desc": "進入該專題瀏覽相關文件。",
-        "recommended_title": "推薦閱讀",
         "view_all": "查看全部",
         "tag_recent": "最近更新",
         "rec_default_1": "快速開始：環境準備與首次部署",
@@ -102,7 +67,6 @@
     },
     "maple": {
       "home": {
-        "recommended_title": "推薦內容",
         "search_placeholder": "輸入關鍵字，搜尋您需要的指南或文件…",
         "channel_card_fallback_desc": "進入該專題瀏覽相關文件與說明。",
         "view_all": "查看全部",
@@ -121,46 +85,38 @@
       "nav": {
         "open_sidebar": "開啟導覽選單"
       },
-      "page_feedback": {
-        "prompt": "這個頁面對您有幫助嗎？",
-        "yes_button": "是的",
-        "no_button": "不",
-        "follow_up_yes": "太棒了！什麼方法對你最有效？",
-        "follow_up_no": "我們如何改進產品？",
-        "cancel": "取消",
-        "submit": "提交回饋",
-        "thanks": "感謝你的回饋，我們會持續優化內容體驗。",
-        "other": "其他",
-        "other_prefix": "其他：",
-        "other_details_sr": "其他回饋詳情",
-        "other_placeholder": "（可選）您能否分享一下您的經歷？",
-        "yes": {
-          "works_as_expected": "按預期發揮作用",
-          "works_as_expected_label": "該指南按預期發揮作用。",
-          "easy_to_find": "很容易找到資訊",
-          "easy_to_find_label": "我很容易就找到了我需要的資訊。",
-          "easy_to_understand": "產品功能容易理解",
-          "easy_to_understand_label": "產品及其功能很容易理解。",
-          "docs_updated": "文件已更新",
-          "docs_updated_label": "文件已更新。"
-        },
-        "no": {
-          "faster_start": "幫助我更快開始",
-          "faster_start_label": "幫我更快開始",
-          "easier_find": "更容易找到內容",
-          "easier_find_label": "讓我更容易找到我想要的東西",
-          "better_understand": "更好理解產品",
-          "better_understand_label": "讓使用者能夠輕鬆理解產品及其功能。",
-          "update_docs": "更新文件",
-          "update_docs_label": "更新此文件"
-        }
-      },
       "search": {
         "ask_ai_section": "向 AI 助手提問",
         "ask_ai_lead": "幫我介紹一下",
         "ask_ai_ellipsis": "…",
         "ask_ai_trailing": "",
         "ask_ai_query_display": "「%{query}」"
+      }
+    },
+    "almond": {
+      "search": {
+        "ask_ai_section": "向 AI 助手提問",
+        "ask_ai_lead": "幫我介紹一下",
+        "ask_ai_trailing": "",
+        "ask_ai_ellipsis": "…",
+        "ask_ai_query_display": "「%{query}」"
+      },
+      "breadcrumb": {
+        "label": "麵包屑"
+      },
+      "nav": {
+        "open_sidebar": "開啟導覽選單"
+      },
+      "nav_tree": {
+        "toggle_submenu": "展開或收合子選單"
+      },
+      "home": {
+        "search_placeholder": "搜尋文件或輸入問題…",
+        "guide_card_fallback_desc": "進入該專題瀏覽相關文件與說明。",
+        "view_all": "查看全部",
+        "rec_default_1": "Markdown 文檔編寫語法與排版指南",
+        "rec_default_2": "代碼高亮塊（Code Blocks）擴展渲染規範",
+        "rec_default_3": "全局公共音視頻、圖片嵌入資源白名單"
       }
     },
     "ai": {
@@ -184,6 +140,14 @@
     },
     "home": {
       "feedback_btn": "線上回饋"
+    },
+    "page_feedback": {
+      "cancel": "取消",
+      "submit": "提交回饋",
+      "thanks": "感謝你的回饋，我們會持續優化內容體驗。",
+      "other": "其他",
+      "other_prefix": "其他：",
+      "other_details_sr": "其他回饋詳情"
     }
   },
   "templates": {
@@ -232,6 +196,11 @@
     "search": ""
   },
   "mint": {
+    "search": {
+      "ask_ai_message": "請介紹一下「%{query}」"
+    }
+  },
+  "almond": {
     "search": {
       "ask_ai_message": "請介紹一下「%{query}」"
     }

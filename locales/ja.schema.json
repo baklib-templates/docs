@@ -1,6 +1,6 @@
 {
   "theme_label": "Docs",
-  "theme_description": "ユーザーが読みたくなるドキュメント体験を届けます。情報設計が明快で検索が速く、AI による回答にも対応。ナレッジベースを製品ドキュメントや API ガイドとして公開でき、ゼロからドキュメントサイトを構築する必要はありません。",
+  "theme_description": "ユーザーが読みたくなるドキュメント体験を届けます。情報設計が明快で検索が速く、AI による回答にも対応。ナレッジベースを製品ドキュメントとして公開でき、ゼロからドキュメントサイトを構築する必要はありません。",
   "recommendations": {
     "fashion": {
       "name": "ファッション"
@@ -16,7 +16,8 @@
           "home_config": "ホーム設定",
           "home_config_info": "どちらか一方：①「ホームに表示するサイト内ページ」を指定 — / でそのページを表示；②空欄 — 下の項目で Maple 既定ホーム（ヒーロー・人気検索・クイックガイド等）。ページ設定でクイックガイドに掲載可能。",
           "home_config_info_mint": "/ で指定したサイト内ページを表示。Mint に既定ホームレイアウトはなく、パス指定を推奨（例：入門ドキュメント）。空欄の場合はホーム本文エリアが空です。",
-          "chrome": "レイアウトとナビ"
+          "chrome": "レイアウトとナビ",
+          "home_config_info_almond": "どちらか一方：①「ホームに表示するサイト内ページ」を / に設定；② 空欄 — 下の Almond デフォルトホーム（ヒーロー、クイックガイド、おすすめ、ヘルプバナー）。"
         },
         "settings": {
           "home_page_path": {
@@ -44,37 +45,37 @@
             "info": "ページ内目次サイドバー、推奨 240px"
           },
           "search_hot_keywords": {
-            "default": ""
+            "default": "はじめに\nAPI ドキュメント\nFAQ"
           },
           "home_hero_title": {
-            "label": "",
-            "default": ""
+            "label": "ホーム主タイトル",
+            "default": "製品ドキュメントへようこそ"
           },
           "home_hero_description": {
-            "label": "",
-            "default": ""
+            "label": "ホーム副タイトル / リード",
+            "default": "検索、チャンネル閲覧、または AI に質問してガイドと API ドキュメントを素早く見つけます。"
           },
           "home_guide_section_title": {
-            "label": "",
-            "default": ""
+            "label": "入門セクション見出し",
+            "default": "チャンネルから始める"
           },
           "home_show_guide_section": {
-            "label": ""
+            "label": "入門カードを表示（ホーム子チャンネル最大 3 件）"
           },
           "home_recommended_title": {
-            "label": "",
-            "default": ""
+            "label": "おすすめ読書見出し",
+            "default": "おすすめ"
           },
           "home_show_recommended": {
-            "label": ""
+            "label": "おすすめリストを表示"
           },
           "home_help_title": {
-            "label": "",
-            "default": ""
+            "label": "フッターお問い合わせ見出し",
+            "default": "まだ疑問がありますか？"
           },
           "home_help_description": {
-            "label": "",
-            "default": ""
+            "label": "フッターお問い合わせ説明",
+            "default": "欲しいドキュメントが見つかりませんか？フィードバックでナレッジベースの改善にご協力ください。"
           }
         }
       },
@@ -86,37 +87,83 @@
             "info": "Maple サイドバーは狭め、推奨 280px"
           },
           "search_hot_keywords": {
-            "default": ""
+            "default": "はじめに\nFAQ\n設定ガイド\n初心者ガイド"
           },
           "home_hero_title": {
-            "label": "",
-            "default": ""
+            "label": "ホーム主タイトル",
+            "default": "製品標準・技術ドキュメントへようこそ"
           },
           "home_hero_description": {
-            "label": "",
-            "default": ""
+            "label": "ホーム副タイトル / リード",
+            "default": "システム構成、標準規格、業界標準、技術リファレンスをここで参照できます。"
           },
           "home_guide_section_title": {
-            "label": "",
-            "default": ""
+            "label": "ガイドセクション見出し",
+            "default": "クイックガイド"
           },
           "home_show_guide_section": {
-            "label": ""
+            "label": "クイックガイドセクションを表示"
           },
           "home_recommended_title": {
-            "label": "",
-            "default": ""
+            "label": "おすすめ見出し",
+            "default": "おすすめ"
           },
           "home_show_recommended": {
-            "label": ""
+            "label": "おすすめセクションを表示"
           },
           "home_help_title": {
-            "label": "",
-            "default": ""
+            "label": "ヘルプ見出し",
+            "default": "お探しの情報が見つかりませんか？"
           },
           "home_help_description": {
-            "label": "",
-            "default": ""
+            "label": "ヘルプ説明",
+            "default": "抜け、不明瞭な表現、新しいドキュメントの提案があればフィードバックを—一緒にナレッジベースを改善しましょう。"
+          }
+        }
+      },
+      "almond": {
+        "name": "Almond",
+        "description": "ホームにメインタイトル、クイックガイドカード、おすすめリスト、下部フィードバックバナー。AI サイドバーと検索モーダルは Mint と同様。",
+        "settings": {
+          "left_sidebar_width": {
+            "info": "Almond 左サイドバー推奨 264px（16.5rem）"
+          },
+          "right_sidebar_width": {
+            "info": "ページ内 TOC サイドバー、推奨 240px"
+          },
+          "search_hot_keywords": {
+            "default": "はじめに\nAPI リファレンス\nFAQ"
+          },
+          "home_hero_title": {
+            "label": "ホームタイトル",
+            "default": "ドキュメントへようこそ"
+          },
+          "home_hero_description": {
+            "label": "ホーム説明",
+            "default": "チームのナレッジハブ—規格、API ガイド、ベストプラクティスをすばやく参照できます。"
+          },
+          "home_guide_section_title": {
+            "label": "クイックガイド見出し",
+            "default": "クイックガイド",
+            "placeholder": "クイックガイド"
+          },
+          "home_show_guide_section": {
+            "label": "クイックガイドを表示"
+          },
+          "home_recommended_title": {
+            "label": "おすすめ見出し",
+            "default": "おすすめ"
+          },
+          "home_show_recommended": {
+            "label": "おすすめを表示"
+          },
+          "home_help_title": {
+            "label": "ヘルプ見出し",
+            "default": "お探しの情報が見つかりませんか？"
+          },
+          "home_help_description": {
+            "label": "ヘルプ説明",
+            "default": "抜け、不明瞭な表現、新しいドキュメントの提案があればフィードバックを—一緒にナレッジベースを改善しましょう。"
           }
         }
       }
@@ -129,8 +176,8 @@
           "info": "リストページは、現在のセクションのサブページをリスト形式で表示します"
         },
         "show_on_home_guide": {
-          "label": "",
-          "info": ""
+          "label": "ホームのクイックガイドに表示",
+          "info": "オンにすると Maple 既定ホームの「クイックガイド」カードに表示されます（最大 3 件、ホームパス空欄時）。未選択時は閲覧数で自動選定。"
         },
         "title": {
           "label": "ページタイトル",
@@ -187,6 +234,11 @@
       "ai_search_completed_text": {
         "label": "AI回答終了文",
         "info": "AIの回答が終了した後に一文を追加"
+      },
+      "feedback_helper_text": {
+        "label": "ページフィードバックの補助文言",
+        "info": "JSON：yes / no に label、title、items",
+        "default": "{\"yes\":{\"label\":\"はい\",\"title\":\"素晴らしい！何が最も役立ちましたか？\",\"items\":[\"ガイドは期待どおりに機能しました。\",\"必要な情報をすぐに見つけられました。\",\"製品とその機能は理解しやすかったです。\",\"ドキュメントは最新です。\"]},\"no\":{\"label\":\"いいえ\",\"title\":\"どう改善できますか？\",\"items\":[\"より早く始められるようにしてください。\",\"欲しいものを見つけやすくしてください。\",\"製品と機能を理解しやすくしてください。\",\"このドキュメントを更新してください。\"]}}"
       }
     }
   },
@@ -203,7 +255,7 @@
         "label": "ページツールのドロップダウンを表示"
       },
       "feedback_enabled": {
-        "label": ""
+        "label": "ページフィードバックを有効にする"
       }
     }
   },
@@ -241,7 +293,7 @@
       },
       "weixin_app_secret": {
         "label": "開発者パスワード（AppSecret）",
-        "info": ""
+        "info": "<a href='https://mp.weixin.qq.com/cgi-bin/frame'>WeChat公式アカウント/設定と開発/開発インターフェース管理</a>で取得"
       },
       "weixin_enabled": {
         "label": "ウィチャット共有を有効にするかどうか",

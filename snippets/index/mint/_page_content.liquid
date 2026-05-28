@@ -30,7 +30,7 @@
         {% assign show_list = true %}
       {% endif %}
       <div class="max-w-none min-h-[40vh]">
-        <div class="prose ProseMirror max-w-none " data-toc-target="content">
+        <div class="prose ProseMirror max-w-none " data-toc-target="content" data-controller="link-target images-viewer">
           {{ page_content }}
         </div>
 
@@ -75,7 +75,7 @@
 
     {% comment %} 是否有帮助的反馈区域 {% endcomment %}
     {% if site.settings.feedback_enabled %}
-      {% render 'index/mint/page_feedback', page: page %}
+      {% render 'index/page_feedback', page: page %}
     {% endif %}
 
     {% comment %} 上一页、下一页 {% endcomment %}
