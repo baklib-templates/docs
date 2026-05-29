@@ -22,7 +22,9 @@ export default class extends Controller {
 
   disconnect() {
     this.#closePip({ restore: true });
-    documentPictureInPicture?.removeEventListener("pagehide", this.#onDocumentPipPageHide);
+    if (window.documentPictureInPicture) {
+      documentPictureInPicture.removeEventListener("pagehide", this.#onDocumentPipPageHide);
+    }
   }
 
   #onDocumentPipPageHide = () => {
