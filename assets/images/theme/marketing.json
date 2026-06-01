@@ -1,0 +1,11 @@
+{
+  "keywords": {
+    "en": ["Documentation", "Search", "AI Q&A", "Sidebar nav", "Product docs"],
+    "zh-CN": ["产品文档", "全文检索", "AI 问答", "侧栏导航", "知识库"],
+    "zh-TW": ["產品文件", "全文檢索", "AI 問答", "側欄導覽", "知識庫"],
+    "ja": ["ドキュメント", "検索", "AI Q&A", "サイドバー", "ナレッジベース"],
+    "ko": ["문서", "검색", "AI Q&A", "사이드바", "지식 베이스"],
+    "de": ["Dokumentation", "Suche", "KI-Q&A", "Seitenleiste", "Wissensbasis"],
+    "fr": ["Documentation", "Recherche", "IA Q&R", "Navigation", "Base de connaissances"]
+  }
+}
