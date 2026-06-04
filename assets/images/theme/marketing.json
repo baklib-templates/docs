@@ -1,4 +1,34 @@
 {
+  "copy": {
+    "en": {
+      "title": "Docs",
+      "subtitle": "Ship documentation your users will actually read—clear information architecture, instant search, and AI-ready Q&A out of the box. Turn your knowledge base into polished product docs without hand-rolling a separate doc site."
+    },
+    "zh-CN": {
+      "title": "文档中心",
+      "subtitle": "打造用户愿意阅读的文档体验：结构清晰、检索迅捷，并可接入 AI 问答。将知识库呈现为产品文档，无需从零自建文档站。"
+    },
+    "zh-TW": {
+      "title": "Docs",
+      "subtitle": "打造使用者願意閱讀的文件體驗：架構清楚、搜尋迅速，並可接入 AI 問答。將知識庫呈現為產品文件，無須從零自建文件站。"
+    },
+    "ja": {
+      "title": "Docs",
+      "subtitle": "ユーザーが読みたくなるドキュメント体験を届けます。情報設計が明快で検索が速く、AI による回答にも対応。ナレッジベースを製品ドキュメントとして公開でき、ゼロからドキュメントサイトを構築する必要はありません。"
+    },
+    "ko": {
+      "title": "Docs",
+      "subtitle": "사용자가 실제로 읽는 문서 경험을 제공합니다. 명확한 정보 구조, 빠른 검색, AI 기반 Q&A까지 지원합니다. 지식베이스를 제품 문서로 바로 공개하고, 문서 사이트를 처음부터 만들 필요가 없습니다."
+    },
+    "de": {
+      "title": "Docs",
+      "subtitle": "Dokumentation, die Nutzer wirklich lesen—klare Informationsarchitektur, blitzschnelle Suche und KI-gestützte Antworten out of the box. Verwandeln Sie Ihre Wissensdatenbank in überzeugende Produkt-Docs, ohne eine eigene Doc-Site von Grund auf zu bauen."
+    },
+    "fr": {
+      "title": "Docs",
+      "subtitle": "Une documentation que vos utilisateurs lisent vraiment—architecture claire, recherche instantanée et réponses assistées par IA prêtes à l’emploi. Transformez votre base de connaissances en docs produit soignés, sans reconstruire un site de documentation à la main."
+    }
+  },
   "keywords": {
     "en": ["Documentation", "Search", "AI Q&A", "Sidebar nav", "Product docs"],
     "zh-CN": ["产品文档", "全文检索", "AI 问答", "侧栏导航", "知识库"],
@@ -7,5 +37,16 @@
     "ko": ["문서", "검색", "AI Q&A", "사이드바", "지식 베이스"],
     "de": ["Dokumentation", "Suche", "KI-Q&A", "Seitenleiste", "Wissensbasis"],
     "fr": ["Documentation", "Recherche", "IA Q&R", "Navigation", "Base de connaissances"]
+  },
+  "cover": {
+    "gradient_left": [[242, 252, 249], [224, 242, 235]],
+    "gradient_right": [[255, 248, 242], [248, 232, 220]],
+    "blob_palette": [[13, 148, 136], [20, 184, 166], [45, 212, 191], [234, 88, 12], [251, 146, 60], [253, 186, 116]],
+    "liquid_glass": {
+      "blobs": 6,
+      "blob_alpha": 30,
+      "blob_blur": 120,
+      "grain_amount": 0.025
+    }
   }
 }
