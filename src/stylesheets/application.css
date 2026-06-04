@@ -166,6 +166,10 @@ summary:has(.menu-active) {
   --bke-content-h6-size: 0.75rem;
 }
 
+.prose.ProseMirror figure {
+  height: auto !important;
+}
+
 
 .ProseMirror {
   *+div[bke-role=paragraph], *+p, div[bke-role=paragraph]+*, p+* {
