@@ -26,7 +26,7 @@
       {% comment %} 正文 {% endcomment %}
       {% assign page_content = page.settings.content | presence %}
       {% assign show_list = false %}
-      {% if page.settings.show_list or page.path == '/' %}
+      {% if page.settings.show_list or page.full_slug == '/' %}
         {% assign show_list = true %}
       {% endif %}
       <div class="max-w-none min-h-[40vh]">

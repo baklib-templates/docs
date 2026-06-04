@@ -197,7 +197,8 @@
           "label": "Seiteninhalt",
           "info": "Aus der Datenquelle synchronisiert, nicht editierbar"
         }
-      }
+      },
+      "name": "Inhaltsseite"
     }
   },
   "generic": {

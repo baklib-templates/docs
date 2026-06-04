@@ -50,6 +50,10 @@
         "rec_default_1": "Démarrage rapide : environnement et premier déploiement",
         "rec_default_2": "Authentification API et exemples",
         "rec_default_3": "FAQ et dépannage"
+      },
+      "nav": {
+        "open_sidebar": "Ouvrir le menu de navigation",
+        "close_sidebar": "Fermer le menu de navigation"
       }
     },
     "page_tools": {
@@ -83,7 +87,8 @@
         "label": "Fil d’Ariane"
       },
       "nav": {
-        "open_sidebar": "Ouvrir le menu de navigation"
+        "open_sidebar": "Ouvrir le menu de navigation",
+        "close_sidebar": "Fermer le menu de navigation"
       },
       "search": {
         "ask_ai_section": "Demander à l'assistant IA",
@@ -103,7 +108,10 @@
       "clear_chat": "Effacer la conversation",
       "input_placeholder": "Posez votre question…",
       "copy_response": "Copier la réponse",
-      "retry_response": "Régénérer"
+      "retry_response": "Régénérer",
+      "add_attachment": "Ajouter une pièce jointe",
+      "collapse": "Réduire",
+      "expand": "Développer"
     },
     "home_feedback": {
       "title": "Commentaires en ligne",
@@ -127,7 +135,8 @@
         "label": "Fil d’Ariane"
       },
       "nav": {
-        "open_sidebar": "Ouvrir la navigation"
+        "open_sidebar": "Ouvrir la navigation",
+        "close_sidebar": "Fermer le menu de navigation"
       },
       "nav_tree": {
         "toggle_submenu": "Développer ou réduire le sous-menu"
@@ -148,6 +157,11 @@
       "other": "Autre",
       "other_prefix": "Autre : ",
       "other_details_sr": "Détails du retour (autre)"
+    },
+    "paginate": {
+      "previous": "Précédent",
+      "next": "Suivant",
+      "aria_label": "Pagination"
     }
   },
   "templates": {
@@ -190,7 +204,9 @@
     }
   },
   "search": {
-    "placeholder": "Rechercher…"
+    "placeholder": "Rechercher…",
+    "esc_key": "ESC",
+    "ask_ai_message": "Parlez-moi de « %{query} »"
   },
   "placeholders": {
     "search": ""

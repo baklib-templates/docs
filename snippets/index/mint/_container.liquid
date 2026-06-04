@@ -20,7 +20,7 @@
 {% comment %} 指定首页路由时，由哪个页面渲染首页内容 {% endcomment %}
 {% assign base_page = page %}
 {% assign home_page_path = index_page.settings.home_page_path | presence %}
-{% if home_page_path and page.path == '/' %}
+{% if home_page_path and page.full_slug == '/' %}
   {% assign home_page = site.pages[home_page_path] %}
   {% if home_page %}
     {% assign page = home_page %}
@@ -33,12 +33,12 @@
   data-header-search-search-url-value="{{ site.search_path }}"
   data-header-search-preview-url-value="{{ statics['index/mint/search_preview'] }}"
   data-header-search-ask-ai-message-template-value="{{ search_ask_ai_message_tpl | escape }}"
-  data-ai-search-url-value="/-/ai-search-completion"
-  data-ai-search-chats-url-value="/-/ai_chats"
+  data-ai-search-url-value="{{ site.index_path }}-/ai-search-completion"
+  data-ai-search-chats-url-value="{{ site.index_path }}-/ai_chats"
   data-ai-search-timeout-value="60"
   data-ai-search-messages-value='{"thinking":"{{ ai_thinking_status | escape }}","reading":"{{ ai_reading_text | escape }}","thinking_status":"{{ ai_thinking_status | escape }}","completed":"{{ ai_completed_text | escape }}","network_error":"{{ ai_network_error | escape }}","timeout_error":"{{ ai_timeout_error | escape }}","copy_success":"{{ ai_copy_success | escape }}","copy_error":"{{ ai_copy_error | escape }}"}'
   data-ai-search-query-value='{"path":"{{ page.path | escape }}"}'
-  class="flex flex-grow relative bg-base-100 text-base-content"
+  class="flex relative flex-grow bg-base-100 text-base-content"
   x-data="{
     docTab: 'guides',
     isAtBottom: false,
@@ -47,12 +47,15 @@
     aiSidebarMinWidth: 350,
     aiSidebarMaxWidth: 600,
     currentPath: '{{ page.path }}',
+    indexPath: (() => { let p = '{{ site.index_path }}'; if (p.length > 1 && p.endsWith('/')) p = p.slice(0, -1); return p || '/'; })(),
     channelPathActive(href, index, is_full_match = false) {
-      if (index === 1 && this.currentPath == '/') return true;
+      if (index === 1 && this.currentPath === this.indexPath) return true;
       if (!href) return false;
-      if (href === '/') return this.currentPath === '/';
-      if (is_full_match) return this.currentPath === href;
-      return this.currentPath === href || (this.currentPath && this.currentPath.startsWith(href + '/'));
+      let normalizedHref = href;
+      if (normalizedHref.length > 1 && normalizedHref.endsWith('/')) normalizedHref = normalizedHref.slice(0, -1);
+      if (normalizedHref === this.indexPath) return this.currentPath === this.indexPath;
+      if (is_full_match) return this.currentPath === normalizedHref;
+      return this.currentPath === normalizedHref || (this.currentPath && this.currentPath.startsWith(normalizedHref + '/'));
     },
     onAiSidebarResize(event) {
       const { size, minSize, maxSize } = event.detail || {};
@@ -123,8 +126,8 @@
     <div class="sticky top-[var(--header-height)] w-full bg-base-100 z-30 border-b border-base-200">
       <div class="mx-auto max-w-[var(--max-content-width)] h-12 px-2 lg:px-6">
         {% comment %} 面包屑 {% endcomment %}
-        <div class="h-full flex items-center space-x-2 lg:hidden overflow-hidden">
-          <label for="my-drawer-3" class="btn btn-ghost btn-sm btn-square text-base-content/60" aria-label="Open sidebar">
+        <div class="flex overflow-hidden items-center space-x-2 h-full lg:hidden">
+          <label for="my-drawer-3" class="btn btn-ghost btn-sm btn-square text-base-content/60" aria-label="{{ 'snippets.mint.nav.open_sidebar' | t: '打开导航菜单' }}">
             <svg class="size-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
               <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
             </svg>
@@ -182,7 +185,7 @@
           </aside>
         </div>
 
-        <div class="drawer-content flex min-w-0 flex-1 flex-col">
+        <div class="flex flex-col flex-1 min-w-0 drawer-content">
           <turbo-frame id="main-content-frame" class='w-full' x-init="
                                 $el.addEventListener('turbo:before-fetch-request', () => {
                                   $el.scrollTop = 0
@@ -197,11 +200,11 @@
               data-toc-clipboard-success-value="{{ 'templates.page.copy_success' | t: '链接已复制' }}"
               class="w-full min-w-0 group"
             >
-              <div class="grid grid-cols-1 gap-6 transition-all duration-300 px-0 md:px-4 lg:px-6 w-full"
+              <div class="grid grid-cols-1 gap-6 px-0 w-full transition-all duration-300 md:px-4 lg:px-6"
                 :class="isAiOpen ? 'lg:grid-cols-1' : 'lg:grid-cols-1 lg:group-[.has-toc]:grid-cols-[minmax(0,1fr)_minmax(11rem,15rem)]'">
                 {% comment %} 主内容 {% endcomment %}
-                <main class="min-w-0 flex flex-col">
-                  {% if page.path == '/' %}
+                <main class="flex flex-col min-w-0">
+                  {% if page.path == site.index_path %}
                     {% render 'index/mint/home_content', page: page %}
                   {% else %}
                     {% render 'index/mint/page_content', page: page %}
@@ -223,7 +226,7 @@
                   aria-label="{{ 'templates.page.page_toc' | t }}"
                 >
                   <div data-toc-target="menu">
-                    <p class="flex items-center gap-2 font-bold text-base-content mb-2">
+                    <p class="flex gap-2 items-center mb-2 font-bold text-base-content">
                       <svg class="size-4 text-base-content/50" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor" stroke-width="1.5" aria-hidden="true">
                         <path stroke-linecap="round" stroke-linejoin="round"

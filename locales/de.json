@@ -50,6 +50,10 @@
         "rec_default_1": "Schnellstart: Umgebung einrichten und erstes Deployment",
         "rec_default_2": "API-Authentifizierung und Beispiele",
         "rec_default_3": "FAQ und Fehlerbehebung"
+      },
+      "nav": {
+        "open_sidebar": "Navigationsmenü öffnen",
+        "close_sidebar": "Navigationsmenü schließen"
       }
     },
     "page_tools": {
@@ -83,7 +87,8 @@
         "label": "Brotkrumen"
       },
       "nav": {
-        "open_sidebar": "Navigation öffnen"
+        "open_sidebar": "Navigation öffnen",
+        "close_sidebar": "Navigationsmenü schließen"
       },
       "search": {
         "ask_ai_section": "KI-Assistent fragen",
@@ -103,7 +108,10 @@
       "clear_chat": "Chat leeren",
       "input_placeholder": "Frage eingeben…",
       "copy_response": "Antwort kopieren",
-      "retry_response": "Neu generieren"
+      "retry_response": "Neu generieren",
+      "add_attachment": "Anhang hinzufügen",
+      "collapse": "Einklappen",
+      "expand": "Ausklappen"
     },
     "home_feedback": {
       "title": "Online-Feedback",
@@ -127,7 +135,8 @@
         "label": "Brotkrumen"
       },
       "nav": {
-        "open_sidebar": "Navigation öffnen"
+        "open_sidebar": "Navigation öffnen",
+        "close_sidebar": "Navigationsmenü schließen"
       },
       "nav_tree": {
         "toggle_submenu": "Untermenü ein- oder ausklappen"
@@ -148,6 +157,11 @@
       "other": "Sonstiges",
       "other_prefix": "Sonstiges: ",
       "other_details_sr": "Weitere Feedback-Angaben"
+    },
+    "paginate": {
+      "previous": "Zurück",
+      "next": "Weiter",
+      "aria_label": "Seitennummerierung"
     }
   },
   "templates": {
@@ -190,7 +204,9 @@
     }
   },
   "search": {
-    "placeholder": "Suchen…"
+    "placeholder": "Suchen…",
+    "esc_key": "ESC",
+    "ask_ai_message": "Erzählen Sie mir etwas über „%{query}“"
   },
   "placeholders": {
     "search": ""
