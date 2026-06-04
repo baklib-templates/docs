@@ -16,6 +16,8 @@ import { Controller } from "@hotwired/stimulus"
 import Mustache from "mustache"
 
 export default class extends Controller {
+  static currentPathAttr = "data-turbo-nav-tree-current-path"
+
   static values = {
     navTree: Array,
     depth: Number,
@@ -39,26 +41,17 @@ export default class extends Controller {
   ]
 
   connect() {
-    this.currentPath = this.#normalizePathname(
-      this.hasCurrentPathValue ? this.currentPathValue : window.location.pathname,
-    )
     this.menuContainer = this.rootContainer();
     if (!this.menuContainer) {
       console.log('turbo_nav_tree_controller: menuContainer null')
       return
     }
 
-    this.boundSyncNavFromUrl = () => {
-      if (!this.element?.isConnected || !this.menuContainer) return
-      this.refreshActiveState()
+    if (!this.#getStoredCurrentPath()) {
+      this.#setStoredCurrentPath(this.#initialCurrentPath())
     }
-    document.addEventListener("turbo:load", this.boundSyncNavFromUrl)
-    document.addEventListener("turbo:render", this.boundSyncNavFromUrl)
-    document.addEventListener("turbo:frame-load", this.boundSyncNavFromUrl)
-    window.addEventListener("popstate", this.boundSyncNavFromUrl)
 
     if (this.element.dataset.rendered === "true") {
-      this.refreshActiveState();
       return;
     }
 
@@ -70,68 +63,13 @@ export default class extends Controller {
   }
 
   disconnect() {
-    if (this.boundSyncNavFromUrl) {
-      document.removeEventListener("turbo:load", this.boundSyncNavFromUrl)
-      document.removeEventListener("turbo:render", this.boundSyncNavFromUrl)
-      document.removeEventListener("turbo:frame-load", this.boundSyncNavFromUrl)
-      window.removeEventListener("popstate", this.boundSyncNavFromUrl)
-    }
   }
-
-  /** 与当前地址栏同步高亮（模板不会重跑 Mustache，只靠 [active] + CSS） */
-  refreshActiveState = () => {
-    if (!this.menuContainer) return
-    this.#syncCurrentPathFromWindow()
-
-    const current = this.#normalizePathname(this.currentPath)
-    const aDom = this.#resolveActiveAnchorForPath(current)
-
-    // 当前 URL 在侧栏没有任何对应链接时，必须清掉上次点击留在树上的 [active]，否则会与外层 Alpine 高亮不一致
-    if (!aDom) {
-      this.#clearTreeActiveState()
-      return
-    }
-
-    this.menuContainer.querySelectorAll('li[active]').forEach((li) => {
-      li.querySelector("[turbo-nav-tree-children-container]")?.classList.remove('opacity-0')
-    });
-
-    this.getParents(aDom, "li", this.menuContainer).forEach((li) => {
-      this.treeContainerToggle(li, true);
-    });
-    this.click({ currentTarget: aDom });
-  };
 
   /** 去掉树上所有 [active]（含 li 与行容器），不触发导航 */
   #clearTreeActiveState() {
     this.menuContainer?.querySelectorAll("[active]").forEach((el) => {
       el.removeAttribute("active")
     })
-  }
-
-  /**
-   * 在 `.custom-menu` 内根据当前 pathname 找到应对高亮的 a：先精确匹配，再最长前缀匹配（与 channelPathActive 语义一致）。
-   * @param {string} current normalize 后的 pathname
-   * @returns {HTMLAnchorElement | null}
-   */
-  #resolveActiveAnchorForPath(current) {
-    const links = [...this.menuContainer.querySelectorAll("a[href]")]
-    const norm = (a) => this.#normalizePathname(a.getAttribute("href"))
-
-    const exact = links.find((a) => norm(a) === current)
-    if (exact) return exact
-
-    let best = null
-    let bestLen = -1
-    for (const a of links) {
-      const h = norm(a)
-      if (!this.#hrefCoversCurrent(h, current)) continue
-      if (h.length > bestLen) {
-        bestLen = h.length
-        best = a
-      }
-    }
-    return best
   }
 
   /**
@@ -162,14 +100,6 @@ export default class extends Controller {
     if (cfg.mode === "all") return true
     if (cfg.mode === "depth") return depth < cfg.depth
     return false
-  }
-
-  /** 当前页是否落在该 href 对应路径下（含自身，不含用「/」吞掉所有页） */
-  #hrefCoversCurrent(hrefPath, current) {
-    if (!current) return false
-    if (current === hrefPath) return true
-    if (hrefPath === "/") return false
-    return current.startsWith(hrefPath + "/")
   }
 
   renderTree(nodes, depth, container) {
@@ -222,7 +152,7 @@ export default class extends Controller {
 
         // --- 没有 children 数据，但 children_count > 0，使用 turbo-frame 懒加载 ---
         if (useRenderTurboFrame) {
-          this.appendTurboFrame(childrenContainer, node, depth + 1)
+          this.appendTurboFrame(childrenContainer, node, depth + 1, isOnPath)
         }
 
         liDom.appendChild(childrenContainer)
@@ -234,7 +164,7 @@ export default class extends Controller {
   }
 
   // 懒加载 turbo-frame
-  appendTurboFrame(container, node, depth) {
+  appendTurboFrame(container, node, depth, eager = false) {
     const tf = document.createElement("turbo-frame")
     tf.classList.add("w-full")
     const idPrefix = this.hasIdPrefixValue ? this.idPrefixValue : "nav_tree_frame_"
@@ -244,11 +174,15 @@ export default class extends Controller {
     const params = new URLSearchParams()
     params.set("parent_path", node.path)
     params.set("depth", depth)
+    const currentPath = this.#getCurrentPath()
+    if (currentPath) {
+      params.set("current_path", currentPath)
+    }
     if (this.hasExpandValue) {
       params.set("expand", this.expandValue)
     }
     tf.src = `${urlBase}?${params.toString()}`
-    tf.loading = "lazy"
+    tf.loading = eager ? "eager" : "lazy"
 
     tf.innerHTML = `
       <div class="flex items-center justify-center h-12 text-base-content/60">
@@ -287,10 +221,8 @@ export default class extends Controller {
     // 添加过渡动画
     if (status) {
       childrenContainer.hidden = false;
-      childrenContainer.classList.remove("opacity-0");
     } else {
       childrenContainer.hidden = true;
-      childrenContainer.classList.add("opacity-0");
     }
 
     const itemTargetIcon = li.querySelector("[turbo-nav-tree-item-target-icon]");
@@ -303,7 +235,7 @@ export default class extends Controller {
   // 作用：点击 item 后，激活当前 item 和其所有祖先 item（高亮仅依赖 [active]，不依赖 Mustache 初次渲染）
   click(event) {
     const target = event.currentTarget
-    this.currentPath = this.#pathnameFromAnchor(target)
+    this.#setStoredCurrentPath(this.#pathnameFromAnchor(target))
 
     const turboFrameTarget = target.getAttribute("data-turbo-frame")
     if (turboFrameTarget && turboFrameTarget !== "_top" && !document.getElementById(turboFrameTarget)) {
@@ -311,12 +243,17 @@ export default class extends Controller {
       target.setAttribute("data-turbo-frame", "_top")
     }
 
+    this.focusItem(target)
+  }
+
+  focusItem(target) {
     if (!this.menuContainer) return
 
     // 必须先清掉树上的 [active]：refreshActiveState 可能把「仅在外层分组 a 上」的链接交给本方法，此时没有 li，但仍要清树
     this.menuContainer.querySelectorAll("[active]").forEach((el) => {
       el.removeAttribute("active")
     })
+    this.#clearTreeActiveState()
 
     const li = target.closest("li")
     if (!li) return
@@ -350,8 +287,34 @@ export default class extends Controller {
     return this.#normalizePathname(anchor?.getAttribute?.("href") || "")
   }
 
-  #syncCurrentPathFromWindow() {
-    this.currentPath = this.#normalizePathname(window.location.pathname)
+  #getStoredCurrentPath() {
+    const container = this.menuContainer ?? this.rootContainer()
+    if (!container) return null
+
+    const stored = container.getAttribute(this.constructor.currentPathAttr)
+    if (!stored?.trim()) return null
+    return this.#normalizePathname(stored)
+  }
+
+  #setStoredCurrentPath(path) {
+    const container = this.menuContainer ?? this.rootContainer()
+    if (!container) return
+    container.setAttribute(this.constructor.currentPathAttr, this.#normalizePathname(path))
+  }
+
+  /** 优先 rootContainer，其次 Liquid current_path，最后地址栏 */
+  #initialCurrentPath() {
+    const fromRoot = this.#getStoredCurrentPath()
+    if (fromRoot) return fromRoot
+
+    const fromValue = this.hasCurrentPathValue ? String(this.currentPathValue || "").trim() : ""
+    if (fromValue) return this.#normalizePathname(fromValue)
+
+    return this.#normalizePathname(window.location.pathname)
+  }
+
+  #getCurrentPath() {
+    return this.#initialCurrentPath()
   }
 
   /** @param {Record<string, unknown>} node */
@@ -452,7 +415,7 @@ export default class extends Controller {
 
   // 激活判断
   isPathActive(node, isPrefix = true) {
-    const current = this.#normalizePathname(this.currentPath)
+    const current = this.#getCurrentPath()
     const nodePath = this.#normalizePathname(node.path)
     if (!current) return false
 
