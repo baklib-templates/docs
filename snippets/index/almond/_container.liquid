@@ -179,12 +179,8 @@
                 :class="isAiOpen ? 'lg:grid-cols-1' : 'lg:grid-cols-1 lg:group-[.has-toc]:grid-cols-[minmax(0,var(--container-3xl))_minmax(11rem,15rem)]'"
               >
                 <main class="min-w-0 flex flex-col">
-                  {% if base_page.full_slug == '/' %}
-                    {% if home_page_path %}
-                      {% render 'index/almond/page_content', page: page, current_root_channel: current_root_channel %}
-                    {% else %}
-                      {% render 'index/almond/home_content', page: page %}
-                    {% endif %}
+                  {% if page.path == site.index_path %}
+                    {% render 'index/almond/home_content', page: page %}
                   {% else %}
                     {% render 'index/almond/page_content', page: page, current_root_channel: current_root_channel %}
                   {% endif %}
