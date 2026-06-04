@@ -1,7 +1,7 @@
 <article class="flex mx-auto max-w-3xl flex-1 flex-col w-full min-h-[calc(100vh-var(--header-height)-3.1rem)]">
   <div class="min-h-0 w-full flex-1">
     {% assign parent_page = page.parent %}
-    {% if parent_page.path == '/' %}
+    {% if parent_page.full_slug == '/' %}
       {% assign parent_page = '' %}
     {% endif %}
     {% if parent_page %}
@@ -28,7 +28,7 @@
 
     {% assign page_content = page.settings.content | presence %}
     {% assign show_list = false %}
-    {% if page.settings.show_list or page.path == '/' %}
+    {% if page.settings.show_list or page.full_slug == '/' %}
       {% assign show_list = true %}
     {% endif %}
 

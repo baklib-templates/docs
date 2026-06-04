@@ -19,7 +19,7 @@
 {% comment %} 指定首页路由时，由哪个页面渲染首页内容 {% endcomment %}
 {% assign base_page = page %}
 {% assign home_page_path = index_page.settings.home_page_path | presence %}
-{% if home_page_path and page.path == '/' %}
+{% if home_page_path and page.full_slug == '/' %}
   {% assign home_page = site.pages[home_page_path] %}
   {% if home_page %}
     {% assign page = home_page %}
@@ -32,8 +32,8 @@
   data-header-search-search-url-value="{{ site.search_path }}"
   data-header-search-preview-url-value="{{ statics['index/maple/search_preview'] }}"
   data-header-search-ask-ai-message-template-value="{{ search_ask_ai_message_tpl | escape }}"
-  data-ai-search-url-value="/-/ai-search-completion"
-  data-ai-search-chats-url-value="/-/ai_chats"
+  data-ai-search-url-value="{{ site.index_path }}-/ai-search-completion"
+  data-ai-search-chats-url-value="{{ site.index_path }}-/ai_chats"
   data-ai-search-timeout-value="60"
   data-ai-search-messages-value='{"thinking":"{{ ai_thinking_status | escape }}","reading":"{{ ai_reading_text | escape }}","thinking_status":"{{ ai_thinking_status | escape }}","completed":"{{ ai_completed_text | escape }}","network_error":"{{ ai_network_error | escape }}","timeout_error":"{{ ai_timeout_error | escape }}","copy_success":"{{ ai_copy_success | escape }}","copy_error":"{{ ai_copy_error | escape }}"}'
   data-ai-search-query-value='{"path":"{{ page.path | escape }}"}'
@@ -46,12 +46,15 @@
     aiSidebarMinWidth: 350,
     aiSidebarMaxWidth: 600,
     currentPath: '{{ page.path }}',
+    indexPath: (() => { let p = '{{ site.index_path }}'; if (p.length > 1 && p.endsWith('/')) p = p.slice(0, -1); return p || '/'; })(),
     channelPathActive(href, index, is_full_match = false) {
-      if (index === 1 && this.currentPath == '/') return true;
+      if (index === 1 && this.currentPath === this.indexPath) return true;
       if (!href) return false;
-      if (href === '/') return this.currentPath === '/';
-      if (is_full_match) return this.currentPath === href;
-      return this.currentPath === href || (this.currentPath && this.currentPath.startsWith(href + '/'));
+      let normalizedHref = href;
+      if (normalizedHref.length > 1 && normalizedHref.endsWith('/')) normalizedHref = normalizedHref.slice(0, -1);
+      if (normalizedHref === this.indexPath) return this.currentPath === this.indexPath;
+      if (is_full_match) return this.currentPath === normalizedHref;
+      return this.currentPath === normalizedHref || (this.currentPath && this.currentPath.startsWith(normalizedHref + '/'));
     },
     onAiSidebarResize(event) {
       const { size, minSize, maxSize } = event.detail || {};
@@ -131,7 +134,7 @@
     <div class="drawer lg:drawer-open flex min-h-0 min-w-0 flex-1">
     <input id="my-drawer-3" type="checkbox" class="drawer-toggle" />
     <div class="drawer-side z-50 lg:sticky lg:top-0 lg:max-h-screen">
-      <label for="my-drawer-3" aria-label="close sidebar" class="drawer-overlay"></label>
+      <label for="my-drawer-3" aria-label="{{ 'snippets.maple.nav.close_sidebar' | t: '关闭导航菜单' }}" class="drawer-overlay"></label>
       <aside
         class="flex h-full w-[var(--left-sidebar-width)] flex-col border-r border-base-200 bg-base-100 lg:h-screen lg:max-h-screen"
         @click="
@@ -176,8 +179,12 @@
               :class="isAiOpen ? 'lg:grid-cols-1' : 'lg:grid-cols-1 lg:group-[.has-toc]:grid-cols-[minmax(0,1fr)_minmax(11rem,15rem)]'">
               {% comment %} 主内容 {% endcomment %}
               <main class="min-w-0 flex flex-col">
-                {% if page.path == '/' %}
-                  {% render 'index/maple/home_content', page: page %}
+                {% if base_page.full_slug == '/' %}
+                  {% if home_page_path %}
+                    {% render 'index/maple/page_content', page: page %}
+                  {% else %}
+                    {% render 'index/maple/home_content', page: page %}
+                  {% endif %}
                 {% else %}
                   {% render 'index/maple/page_content', page: page %}
                 {% endif %}
