@@ -42,7 +42,7 @@
         "toggle_submenu": "展開或收合子選單"
       },
       "home": {
-        "search_placeholder": "搜尋文件、指南與 API…",
+        "search_placeholder": "搜尋...",
         "channel_card_fallback_desc": "瀏覽該頻道下的文件與說明。",
         "guide_card_fallback_desc": "進入該專題瀏覽相關文件。",
         "view_all": "查看全部",
@@ -67,7 +67,7 @@
     },
     "maple": {
       "home": {
-        "search_placeholder": "輸入關鍵字，搜尋您需要的指南或文件…",
+        "search_placeholder": "搜尋...",
         "channel_card_fallback_desc": "進入該專題瀏覽相關文件與說明。",
         "view_all": "查看全部",
         "tag_tech": "技術推薦",
@@ -190,7 +190,7 @@
     }
   },
   "search": {
-    "placeholder": "搜尋 .."
+    "placeholder": "搜尋 ..."
   },
   "placeholders": {
     "search": ""
