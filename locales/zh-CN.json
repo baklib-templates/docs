@@ -51,7 +51,7 @@
         "close_sidebar": "关闭导航菜单"
       },
       "home": {
-        "search_placeholder": "搜索文档、指南与 API…",
+        "search_placeholder": "搜索...",
         "channel_card_fallback_desc": "浏览该频道下的文档与说明。",
         "guide_card_fallback_desc": "进入该专题浏览相关文档。",
         "view_all": "查看全部",
@@ -76,7 +76,7 @@
     },
     "maple": {
       "home": {
-        "search_placeholder": "输入关键词，搜索您需要的指南或文档...",
+        "search_placeholder": "搜索...",
         "channel_card_fallback_desc": "进入该专题浏览相关文档与说明。",
         "view_all": "查看全部",
         "tag_tech": "技术推荐",

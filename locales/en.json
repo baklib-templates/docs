@@ -42,7 +42,7 @@
         "toggle_submenu": "Expand or collapse submenu"
       },
       "home": {
-        "search_placeholder": "Search docs, guides, and APIs…",
+        "search_placeholder": "Searching...",
         "channel_card_fallback_desc": "Browse docs and guides in this channel.",
         "guide_card_fallback_desc": "Open this topic to browse related docs.",
         "view_all": "View all",
@@ -71,7 +71,7 @@
     },
     "maple": {
       "home": {
-        "search_placeholder": "Search guides and docs…",
+        "search_placeholder": "Searching...",
         "channel_card_fallback_desc": "Browse docs and guides in this topic.",
         "view_all": "View all",
         "tag_tech": "Tech picks",
@@ -204,7 +204,7 @@
     }
   },
   "search": {
-    "placeholder": "Search ..",
+    "placeholder": "Searching...",
     "esc_key": "ESC",
     "ask_ai_message": "Tell me about \"%{query}\""
   },
