@@ -89,7 +89,7 @@
         {% assign guide_cards_shown = 0 %}
         {% for card_page in home_guide_pages %}
           {% if guide_cards_shown >= home_guide_limit %}{% break %}{% endif %}
-          {% if card_page.path == '/' %}{% continue %}{% endif %}
+            {% if card_page.full_slug == '/' %}{% continue %}{% endif %}
           {% assign mod = guide_cards_shown | modulo: 3 %}
           {% case mod %}
             {% when 0 %}

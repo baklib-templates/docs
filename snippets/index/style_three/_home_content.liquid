@@ -96,7 +96,7 @@
       <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
         {% for card_page in guide_pages %}
           {% if guide_cards_shown >= home_guide_limit %}{% break %}{% endif %}
-          {% if card_page.path == '/' %}{% continue %}{% endif %}
+          {% if card_page.full_slug == '/' %}{% continue %}{% endif %}
           {% assign mod = guide_cards_shown | modulo: 4 %}
           {% case mod %}
             {% when 0 %}

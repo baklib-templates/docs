@@ -169,6 +169,7 @@
       }
     },
     "page": {
+      "name": "内容页面",
       "description": "内容页面模板",
       "settings": {
         "show_list": {

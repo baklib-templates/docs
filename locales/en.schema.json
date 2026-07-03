@@ -197,7 +197,8 @@
           "label": "Page Content",
           "info": "Synced from data source, not editable"
         }
-      }
+      },
+      "name": "Content page"
     }
   },
   "generic": {

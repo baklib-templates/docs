@@ -197,7 +197,8 @@
           "label": "Contenu de la page",
           "info": "Synchronisé depuis la source, non modifiable"
         }
-      }
+      },
+      "name": "Page de contenu"
     }
   },
   "generic": {

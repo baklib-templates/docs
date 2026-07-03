@@ -50,6 +50,10 @@
         "rec_default_1": "빠른 시작: 환경 설정 및 첫 배포",
         "rec_default_2": "API 인증 및 호출 예제",
         "rec_default_3": "FAQ 및 문제 해결"
+      },
+      "nav": {
+        "open_sidebar": "내비게이션 메뉴 열기",
+        "close_sidebar": "내비게이션 메뉴 닫기"
       }
     },
     "page_tools": {
@@ -83,7 +87,8 @@
         "label": "이동 경로"
       },
       "nav": {
-        "open_sidebar": "내비게이션 열기"
+        "open_sidebar": "내비게이션 열기",
+        "close_sidebar": "내비게이션 메뉴 닫기"
       },
       "search": {
         "ask_ai_section": "AI 어시스턴트에게 질문",
@@ -103,7 +108,10 @@
       "clear_chat": "대화 지우기",
       "input_placeholder": "질문을 입력하세요…",
       "copy_response": "답변 복사",
-      "retry_response": "다시 생성"
+      "retry_response": "다시 생성",
+      "add_attachment": "첨부 파일 추가",
+      "collapse": "접기",
+      "expand": "펼치기"
     },
     "home_feedback": {
       "title": "온라인 피드백",
@@ -127,7 +135,8 @@
         "label": "이동 경로"
       },
       "nav": {
-        "open_sidebar": "내비게이션 열기"
+        "open_sidebar": "내비게이션 열기",
+        "close_sidebar": "내비게이션 메뉴 닫기"
       },
       "nav_tree": {
         "toggle_submenu": "하위 메뉴 펼치기/접기"
@@ -148,6 +157,11 @@
       "other": "기타",
       "other_prefix": "기타: ",
       "other_details_sr": "기타 피드백 상세"
+    },
+    "paginate": {
+      "previous": "이전",
+      "next": "다음",
+      "aria_label": "페이지 매김"
     }
   },
   "templates": {
@@ -190,7 +204,9 @@
     }
   },
   "search": {
-    "placeholder": "검색..."
+    "placeholder": "검색...",
+    "esc_key": "ESC",
+    "ask_ai_message": "「%{query}」에 대해 알려 주세요"
   },
   "placeholders": {
     "search": ""

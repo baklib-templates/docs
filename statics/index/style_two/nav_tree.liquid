@@ -1,6 +1,7 @@
 {% layout none %}
 
 {% assign parent_path = params.parent_path | default: '/' %}
+{% assign current_path = params.current_path | default: '' %}
 {% assign expand = params.expand | default: false %}
 <turbo-frame id="index_style_two_nav_tree_frame_{{ parent_path | replace: '/', '_' }}" class="w-full">
   {% assign root_page = site.pages[parent_path] %}
@@ -12,7 +13,7 @@
   {% render 'index/style_two/nav_tree',
       nav_tree: nav_tree,
       depth: depth,
-      current_path: '',
+      current_path: current_path,
       parent_path: parent_path,
       expand: expand
   %}

@@ -50,6 +50,10 @@
         "rec_default_1": "Quick start: environment setup and first deploy",
         "rec_default_2": "API authentication and examples",
         "rec_default_3": "FAQ and troubleshooting"
+      },
+      "nav": {
+        "open_sidebar": "Open navigation menu",
+        "close_sidebar": "Close navigation menu"
       }
     },
     "page_tools": {
@@ -83,7 +87,8 @@
         "label": "Breadcrumb"
       },
       "nav": {
-        "open_sidebar": "Open navigation menu"
+        "open_sidebar": "Open navigation menu",
+        "close_sidebar": "Close navigation menu"
       },
       "search": {
         "ask_ai_section": "Ask the AI assistant",
@@ -105,7 +110,8 @@
         "label": "Breadcrumb"
       },
       "nav": {
-        "open_sidebar": "Open navigation"
+        "open_sidebar": "Open navigation",
+        "close_sidebar": "Close navigation menu"
       },
       "nav_tree": {
         "toggle_submenu": "Expand or collapse submenu"
@@ -129,7 +135,10 @@
       "clear_chat": "Clear chat",
       "input_placeholder": "Ask your question…",
       "copy_response": "Copy answer",
-      "retry_response": "Regenerate"
+      "retry_response": "Regenerate",
+      "add_attachment": "Add attachment",
+      "collapse": "Collapse",
+      "expand": "Expand"
     },
     "home_feedback": {
       "title": "Feedback",
@@ -148,6 +157,11 @@
       "other": "Other",
       "other_prefix": "Other: ",
       "other_details_sr": "Other feedback details"
+    },
+    "paginate": {
+      "previous": "Previous",
+      "next": "Next",
+      "aria_label": "Pagination"
     }
   },
   "templates": {
@@ -190,6 +204,7 @@
     }
   },
   "search": {
+    "esc_key": "ESC",
     "placeholder": "Searching..."
   },
   "placeholders": {

@@ -1,6 +1,7 @@
 {% layout none %}
 
 {% assign parent_path = params.parent_path | default: '/' %}
+{% assign current_path = params.current_path | default: '' %}
 <turbo-frame id="page_nav_tree_frame_{{ parent_path | replace: '/', '_' }}" class='w-full'>
   {% assign page1 = site.pages[parent_path] %}
   {% assign nav_tree = page1 | nav_tree: 1 %}
@@ -14,6 +15,7 @@
     data-turbo-nav-tree-parent-path-value='{{ parent_path }}'
     data-turbo-nav-tree-url-value='{{ statics['page/nav_tree'] }}'
     data-turbo-nav-tree-id-prefix-value='page_nav_tree_frame_'
+    data-turbo-nav-tree-current-path-value="{{ current_path }}"
   >
     <template data-turbo-nav-tree-target="itemTemplate">
       {% raw %}

@@ -13,7 +13,7 @@
   </template>
 </turbo-stream>
 
-{% if page.path == '/' %}
+{% if page.full_slug == '/' %}
   <turbo-stream action="replace" target="js--home-feedback-{{ page.id }}">
     <template>
       {% render 'index/home_feedback_form', page: page %}
