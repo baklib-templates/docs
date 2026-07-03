@@ -42,7 +42,7 @@
         "toggle_submenu": "Untermenü ein- oder ausklappen"
       },
       "home": {
-        "search_placeholder": "Dokumente, Leitfäden und APIs durchsuchen…",
+        "search_placeholder": "Dokumente…",
         "channel_card_fallback_desc": "Dokumentation und Anleitungen in diesem Kanal durchsuchen.",
         "guide_card_fallback_desc": "Dieses Thema öffnen, um verwandte Dokumente zu durchsuchen.",
         "view_all": "Alle anzeigen",
@@ -71,7 +71,7 @@
     },
     "maple": {
       "home": {
-        "search_placeholder": "Stichwort eingeben, um Leitfäden oder Dokumente zu finden…",
+        "search_placeholder": "Stichwort…",
         "channel_card_fallback_desc": "Dokumentation und Anleitungen zu diesem Thema durchsuchen.",
         "view_all": "Alle anzeigen",
         "tag_tech": "Technik-Tipps",
