@@ -14,15 +14,15 @@
       "shared": {
         "groups": {
           "home_config": "首页配置",
-          "home_config_info": "二选一：① 填写「首页展示的站内页面」— 访问首页时展示该页内容；② 路径留空 — 使用本组下方主标题、热门搜索、快速指引等项作为 Maple 默认首页。子页面可在页面设置中勾选「显示在首页快速指引」。",
-          "home_config_info_mint": "二选一：① 填写「首页展示的站内页面」— 访问 / 时展示该页内容；② 路径留空 — 使用本组下方配置生成 Mint 默认首页（渐变 Hero、频道入门卡片等）。",
+          "home_config_info": "二选一：① 填写「首页展示的站内页面」— 访问首页时展示该页内容；② 路径留空 — 使用本组下方主标题、热门搜索、快速指引等项作为 Card文档布局 默认首页。子页面可在页面设置中勾选「显示在首页快速指引」。",
+          "home_config_info_style_one": "二选一：① 填写「首页展示的站内页面」— 访问 / 时展示该页内容；② 路径留空 — 使用本组下方配置生成 Class经典布局 默认首页（渐变 Hero、频道入门卡片等）。",
           "chrome": "布局与导航",
-          "home_config_info_almond": "二选一：① 填写「首页展示的站内页面」— 访问 / 时展示该页内容；② 路径留空 — 使用本组下方配置生成 Almond 默认首页（主标题、快速指引卡片、推荐内容列表、反馈横幅）。"
+          "home_config_info_style_three": "二选一：① 填写「首页展示的站内页面」— 访问 / 时展示该页内容；② 路径留空 — 使用本组下方配置生成 Tree文档布局 默认首页（主标题、快速指引卡片、推荐内容列表、反馈横幅）。"
         },
         "settings": {
           "home_page_path": {
             "label": "首页展示的站内页面",
-            "info": "站内页面路径，如 /docs/getting-started、/guide/overview。访问 / 时展示该页标题与正文，地址栏仍为首页。留空时启用本组下方默认首页（Maple / Mint）。"
+            "info": "站内页面路径，如 /docs/getting-started、/guide/overview。访问 / 时展示该页标题与正文，地址栏仍为首页。留空时启用本组下方默认首页（Card文档布局 / Class经典布局）。"
           },
           "search_hot_keywords": {
             "label": "热门搜索",
@@ -34,12 +34,12 @@
           }
         }
       },
-      "mint": {
-        "name": "Mint（经典款）",
-        "description": "经典文档站布局，柔色渐变 hero + 三列入门卡片，是产品文档最稳的默认款。",
+      "style_one": {
+        "name": "Class经典布局",
+        "description": "经典文档站布局，柔色渐变 Hero + 三列入门卡片，是产品文档最稳的默认款。",
         "settings": {
           "left_sidebar_width": {
-            "info": "Mint 左栏含频道导航，建议 400px"
+            "info": "Class经典布局左栏含频道导航，建议 400px"
           },
           "right_sidebar_width": {
             "info": "页内目录侧栏，建议 240px"
@@ -79,9 +79,9 @@
           }
         }
       },
-      "maple": {
-        "name": "Maple",
-        "description": "Maple 文档布局：左侧栏集成 Logo、搜索与全站分组导航；正文支持眉题、Copy page 与页内目录；AI 侧栏与搜索弹窗与 Mint 一致。",
+      "style_two": {
+        "name": "Card文档布局",
+        "description": "Card 文档布局：左侧栏集成 Logo、搜索与全站分组导航；正文支持眉题、Copy page 与页内目录；AI 侧栏与搜索弹窗与其他布局一致。",
         "settings": {
           "left_sidebar_width": {
             "info": "建议 280px"
@@ -121,12 +121,12 @@
           }
         }
       },
-      "almond": {
-        "name": "Almond",
-        "description": "首页含主标题、快速指引卡片、推荐列表与底部反馈横幅; AI 侧栏与搜索弹窗与 Mint 一致。",
+      "style_three": {
+        "name": "Tree文档布局",
+        "description": "Tree 文档布局：首页含主标题、快速指引卡片、推荐列表与底部反馈横幅；AI 侧栏与搜索弹窗与其他布局一致。",
         "settings": {
           "left_sidebar_width": {
-            "info": "Almond 左栏建议 264px（16.5rem）"
+            "info": "Tree文档布局左栏建议 264px（16.5rem）"
           },
           "right_sidebar_width": {
             "info": "页内目录侧栏，建议 240px"
@@ -177,7 +177,7 @@
         },
         "show_on_home_guide": {
           "label": "显示在首页快速指引",
-          "info": "勾选后出现在默认首页的「快速指引 / 入门」"
+          "info": "勾选后出现在 Card文档布局 默认首页的「快速指引」卡片（最多 3 条，路径留空时生效）。若均未勾选，则按访问量自动选取。"
         },
         "title": {
           "label": "页面标题",

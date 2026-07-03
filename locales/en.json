@@ -27,7 +27,7 @@
       "prev_page": "Previous",
       "next_page": "Next"
     },
-    "mint": {
+    "style_one": {
       "search": {
         "ask_ai_section": "Ask AI assistant",
         "ask_ai_lead": "Can you tell me about ",
@@ -65,7 +65,7 @@
       "connect_to_vscode": "Connect to VS Code",
       "connect_to_vscode_description": "Install MCP Server in VS Code"
     },
-    "maple": {
+    "style_two": {
       "home": {
         "search_placeholder": "Searching...",
         "channel_card_fallback_desc": "Browse docs and guides in this topic.",
@@ -93,7 +93,7 @@
         "ask_ai_query_display": "%{query}"
       }
     },
-    "almond": {
+    "style_three": {
       "search": {
         "ask_ai_section": "Ask the AI assistant",
         "ask_ai_lead": "Tell me about ",
@@ -195,12 +195,12 @@
   "placeholders": {
     "search": ""
   },
-  "mint": {
+  "style_one": {
     "search": {
       "ask_ai_message": "Tell me about \"%{query}\""
     }
   },
-  "almond": {
+  "style_three": {
     "search": {
       "ask_ai_message": "Tell me about \"%{query}\""
     }

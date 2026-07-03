@@ -27,7 +27,7 @@
       "prev_page": "이전",
       "next_page": "다음"
     },
-    "mint": {
+    "style_one": {
       "search": {
         "ask_ai_section": "AI 어시스턴트에게 질문",
         "ask_ai_lead": "다음에 대해 알려 주세요: ",
@@ -65,7 +65,7 @@
       "connect_to_vscode": "VS Code에 연결",
       "connect_to_vscode_description": "VS Code에 MCP Server 설치"
     },
-    "maple": {
+    "style_two": {
       "home": {
         "search_placeholder": "키워드를 입력해 필요한 가이드나 문서를 검색하세요…",
         "channel_card_fallback_desc": "이 주제의 문서와 가이드를 둘러봅니다.",
@@ -115,7 +115,7 @@
     "home": {
       "feedback_btn": "온라인 피드백"
     },
-    "almond": {
+    "style_three": {
       "search": {
         "ask_ai_section": "AI 어시스턴트에게 질문",
         "ask_ai_lead": "다음에 대해 알려줘: ",
@@ -195,12 +195,12 @@
   "placeholders": {
     "search": ""
   },
-  "mint": {
+  "style_one": {
     "search": {
       "ask_ai_message": "「%{query}」에 대해 알려줘"
     }
   },
-  "almond": {
+  "style_three": {
     "search": {
       "ask_ai_message": "「%{query}」에 대해 알려줘"
     }

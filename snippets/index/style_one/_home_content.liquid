@@ -1,0 +1,284 @@
+{% assign hot_keywords = page.settings.search_hot_keywords | reg_split: "/\n/" %}
+{% assign hero_title = page.settings.home_hero_title | presence %}
+{% assign hero_desc = page.settings.home_hero_description | presence %}
+
+{% assign home_guide_limit = 3 %}
+{% assign show_guide_section = true %}
+{% if page.settings.home_show_guide_section == false %}
+  {% assign show_guide_section = false %}
+{% endif %}
+{% assign guide_section_title = page.settings.home_guide_section_title %}
+
+{% assign channel_cards = page.children_in_list %}
+{% assign guide_use_channels = false %}
+{% if channel_cards.size > 0 %}
+  {% assign guide_use_channels = true %}
+{% endif %}
+
+{% if show_guide_section and guide_use_channels == false %}
+  {% query home_guide_pages from site.pages %}
+    {
+      "where": {
+        "settings.show_on_home_guide_eq": true
+      },
+      "limit": {{ home_guide_limit }}
+    }
+  {% endquery %}
+  {% assign home_guide_use_fallback = true %}
+  {% for _guide_probe in home_guide_pages %}
+    {% assign home_guide_use_fallback = false %}
+    {% break %}
+  {% endfor %}
+  {% if home_guide_use_fallback %}
+    {% assign home_guide_pages = site.pages | order_by: '-visits_count' %}
+  {% endif %}
+{% endif %}
+
+{% assign show_recommended = page.settings.home_show_recommended %}
+{% assign recommended_title = page.settings.home_recommended_title %}
+{% assign recommended_limit = 6 %}
+{% assign first_channel = page.children_in_list | first %}
+{% if first_channel %}
+  {% assign recommended_pages = first_channel.pages | order_by: '-visits_count' | limit: recommended_limit %}
+{% else %}
+  {% assign recommended_pages = page.pages | order_by: '-visits_count' | limit: recommended_limit %}
+{% endif %}
+
+{% assign help_title = page.settings.home_help_title %}
+{% assign help_desc = page.settings.home_help_description %}
+
+<div class="w-full px-4 pb-12 pt-6 md:px-0 md:pt-8 lg:pb-16">
+{% comment %} Class经典布局 Hero：柔色渐变 + 居中搜索 / 问 AI {% endcomment %}
+  <section class="relative mb-10 overflow-hidden rounded-2xl border border-base-200/80 md:mb-14">
+    <div
+      class="pointer-events-none absolute inset-0 bg-gradient-to-br from-primary/15 via-base-100 to-secondary/10"
+      aria-hidden="true"
+    ></div>
+    <div
+      class="pointer-events-none absolute -right-16 -top-16 size-56 rounded-full bg-primary/10 blur-3xl"
+      aria-hidden="true"
+    ></div>
+    <div
+      class="pointer-events-none absolute -bottom-20 -left-10 size-48 rounded-full bg-secondary/10 blur-3xl"
+      aria-hidden="true"
+    ></div>
+
+    <div class="relative px-5 py-10 text-center sm:px-8 sm:py-12 lg:py-14">
+      {% if hero_title != blank %}
+        <h1 class="mb-3 text-2xl font-bold tracking-tight text-base-content sm:text-3xl lg:text-4xl">
+          {{ hero_title }}
+        </h1>
+      {% endif %}
+      {% if hero_desc != blank %}
+        <p class="mx-auto mb-8 max-w-2xl text-[0.95rem] leading-relaxed text-base-content/70 sm:text-base">
+          {{ hero_desc }}
+        </p>
+      {% endif %}
+
+      <div class="mx-auto flex w-full max-w-xl flex-col gap-2 sm:flex-row sm:items-stretch">
+        <button
+          type="button"
+          class="flex h-11 flex-1 cursor-pointer items-center rounded-xl border border-base-300/80 bg-base-100/90 px-3 text-left text-[0.85rem] text-base-content/60 shadow-sm backdrop-blur-sm transition hover:border-primary/40 hover:bg-base-100"
+          data-action="click->header-search#openModal"
+          aria-haspopup="dialog"
+        >
+          <i class="ri-search-line shrink-0 text-base text-primary" aria-hidden="true"></i>
+          <span class="ml-2.5 min-w-0 flex-1 truncate text-left">
+            {{ 'snippets.style_one.home.search_placeholder' | t: '搜索文档、指南与 API…' }}
+          </span>
+        </button>
+      </div>
+
+      {% if hot_keywords.size > 0 %}
+        <div class="mx-auto mt-4 flex max-w-xl flex-wrap items-center justify-center gap-2">
+          <span class="text-xs text-base-content/50">{{ 'layout.theme.search_keywords_label' | t: '热门搜索' }}：</span>
+          {% for kw in hot_keywords %}
+            {% assign kw_trim = kw | strip %}
+            {% if kw_trim != blank %}
+              <button
+                type="button"
+                class="badge badge-outline badge-sm cursor-pointer border-base-300/80 bg-base-100/80 font-normal text-base-content/70 hover:border-primary hover:bg-primary/10 hover:text-primary"
+                data-action="click->header-search#applyHotKeyword"
+                data-kw="{{ kw_trim | escape_once }}"
+              >
+                {{ kw_trim }}
+              </button>
+            {% endif %}
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+  </section>
+
+  {% if show_guide_section %}
+    <div class="mb-10 md:mb-12">
+      {% if guide_section_title != blank %}
+        <h2 class="mb-5 text-[0.75rem] font-bold tracking-widest text-base-content/50">
+          {{ guide_section_title }}
+        </h2>
+      {% endif %}
+
+      <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {% assign guide_cards_shown = 0 %}
+
+        {% if guide_use_channels %}
+          {% for channel in channel_cards %}
+            {% if guide_cards_shown >= home_guide_limit %}{% break %}{% endif %}
+            {% assign mod = guide_cards_shown | modulo: 3 %}
+            {% case mod %}
+              {% when 0 %}
+                {% assign accent_ring = 'ring-primary/25' %}
+                {% assign accent_icon = 'bg-primary/10 text-primary' %}
+                {% assign fallback_icon = 'ri-book-open-line' %}
+              {% when 1 %}
+                {% assign accent_ring = 'ring-secondary/25' %}
+                {% assign accent_icon = 'bg-secondary/10 text-secondary' %}
+                {% assign fallback_icon = 'ri-lightbulb-line' %}
+              {% else %}
+                {% assign accent_ring = 'ring-accent/25' %}
+                {% assign accent_icon = 'bg-accent/15 text-accent' %}
+                {% assign fallback_icon = 'ri-code-box-line' %}
+            {% endcase %}
+            {% assign card_desc = channel.settings.description | presence %}
+            {% assign icon_url = channel.settings.icon | presence %}
+            <a
+              href="{{ channel.path }}"
+              data-turbo-frame="main-content-frame"
+              data-turbo-action="advance"
+              class="group flex flex-col rounded-2xl border border-base-200 bg-base-100 p-5 shadow-sm ring-1 ring-transparent transition hover:border-primary/30 hover:shadow-md {{ accent_ring }}"
+            >
+              <div class="mb-4 flex items-start justify-between gap-2">
+                <div class="flex size-11 items-center justify-center rounded-xl {{ accent_icon }} transition group-hover:scale-105">
+                  {% if icon_url %}
+                    <img src="{{ icon_url | asset_url }}" alt="" class="size-6 rounded object-cover" width="24" height="24" loading="lazy" decoding="async" />
+                  {% else %}
+                    <i class="{{ fallback_icon }} text-xl" aria-hidden="true"></i>
+                  {% endif %}
+                </div>
+                <i class="ri-arrow-right-up-line text-lg text-base-content/30 transition group-hover:text-primary" aria-hidden="true"></i>
+              </div>
+              <h3 class="mb-1.5 text-base font-bold text-base-content">{{ channel.link_text }}</h3>
+              {% if card_desc %}
+                <p class="line-clamp-3 text-sm leading-relaxed text-base-content/60">{{ card_desc }}</p>
+              {% else %}
+                <p class="line-clamp-3 text-sm leading-relaxed text-base-content/60">
+                  {{ 'snippets.style_one.home.channel_card_fallback_desc' | t: '浏览该频道下的文档与说明。' }}
+                </p>
+              {% endif %}
+            </a>
+            {% assign guide_cards_shown = guide_cards_shown | plus: 1 %}
+          {% endfor %}
+        {% else %}
+          {% for card_page in home_guide_pages %}
+            {% if guide_cards_shown >= home_guide_limit %}{% break %}{% endif %}
+            {% if card_page.path == '/' %}{% continue %}{% endif %}
+            {% assign mod = guide_cards_shown | modulo: 3 %}
+            {% case mod %}
+              {% when 0 %}
+                {% assign accent_icon = 'bg-primary/10 text-primary' %}
+                {% assign fallback_icon = 'ri-flag-line' %}
+              {% when 1 %}
+                {% assign accent_icon = 'bg-secondary/10 text-secondary' %}
+                {% assign fallback_icon = 'ri-question-answer-line' %}
+              {% else %}
+                {% assign accent_icon = 'bg-accent/15 text-accent' %}
+                {% assign fallback_icon = 'ri-code-line' %}
+            {% endcase %}
+            {% assign card_desc = card_page.settings.description | presence %}
+            {% assign icon_url = card_page.settings.icon | presence %}
+            <a
+              href="{{ card_page.path }}"
+              data-turbo-frame="main-content-frame"
+              data-turbo-action="advance"
+              class="group flex flex-col rounded-2xl border border-base-200 bg-base-100 p-5 shadow-sm transition hover:border-primary/30 hover:shadow-md"
+            >
+              <div class="mb-4 flex size-11 items-center justify-center rounded-xl {{ accent_icon }}">
+                {% if icon_url %}
+                  <img src="{{ icon_url }}" alt="" class="size-5 rounded object-cover" width="20" height="20" loading="lazy" decoding="async" />
+                {% else %}
+                  <i class="{{ fallback_icon }} text-lg" aria-hidden="true"></i>
+                {% endif %}
+              </div>
+              <h3 class="mb-1.5 text-base font-bold text-base-content">{{ card_page.link_text }}</h3>
+              {% if card_desc %}
+                <p class="line-clamp-3 text-sm text-base-content/60">{{ card_desc }}</p>
+              {% else %}
+                <p class="line-clamp-3 text-sm text-base-content/60">
+                  {{ 'snippets.style_one.home.guide_card_fallback_desc' | t }}
+                </p>
+              {% endif %}
+            </a>
+            {% assign guide_cards_shown = guide_cards_shown | plus: 1 %}
+          {% endfor %}
+        {% endif %}
+      </div>
+    </div>
+  {% endif %}
+
+  {% if show_recommended %}
+    <div class="mb-10 md:mb-12">
+      <div class="overflow-hidden rounded-2xl border border-base-200 bg-base-100 shadow-sm">
+        <div class="flex items-center justify-between gap-3 border-b border-base-200 bg-base-200/30 px-5 py-3.5">
+          <h3 class="text-sm font-bold text-base-content">{{ recommended_title }}</h3>
+          {% if first_channel %}
+            <a
+              href="{{ first_channel.path }}"
+              data-turbo-frame="main-content-frame"
+              data-turbo-action="advance"
+              class="text-xs font-medium text-primary hover:underline"
+            >
+              {{ 'snippets.style_one.home.view_all' | t: '查看全部' }}
+            </a>
+          {% endif %}
+        </div>
+        <ul role="list" class="divide-y divide-base-200">
+          {% for doc in recommended_pages %}
+            <li>
+              <a
+                href="{{ doc.path }}"
+                data-turbo-frame="main-content-frame"
+                data-turbo-action="advance"
+                class="flex flex-wrap items-center justify-between gap-x-4 gap-y-1 px-5 py-3.5 transition-colors hover:bg-primary/5 sm:flex-nowrap"
+              >
+                <div class="flex min-w-0 items-center gap-3">
+                  <span class="flex size-8 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                    <i class="ri-file-text-line text-sm" aria-hidden="true"></i>
+                  </span>
+                  <span class="line-clamp-2 font-medium text-base-content">{{ doc.link_text }}</span>
+                </div>
+                <span class="shrink-0 text-[0.7rem] text-base-content/45">
+                  {% if doc.edited_at %}{{ doc.edited_at | time_ago }}{% else %}{{ 'snippets.style_one.home.tag_recent' | t: '最近更新' }}{% endif %}
+                </span>
+              </a>
+            </li>
+          {% else %}
+            {% render 'index/style_one/home_recommended_defaults' %}
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  {% endif %}
+
+  {% if site.settings.feedback_enabled %}
+    <section class="rounded-2xl border border-primary/20 bg-gradient-to-r from-primary/5 to-secondary/5 px-6 py-8 text-center">
+      {% if help_title != blank %}
+        <h3 class="mb-2 text-lg font-bold text-base-content">{{ help_title }}</h3>
+      {% endif %}
+      {% if help_desc != blank %}
+        <p class="mx-auto mb-5 max-w-lg text-sm leading-relaxed text-base-content/65">{{ help_desc }}</p>
+      {% endif %}
+      <button
+        type="button"
+        class="btn btn-primary btn-sm rounded-lg px-5"
+        onclick="document.getElementById('home-feedback-modal')?.showModal()"
+      >
+        <i class="ri-feedback-line text-base" aria-hidden="true"></i>
+        {{ 'snippets.home.feedback_btn' | t: '在线反馈' }}
+      </button>
+    </section>
+  {% endif %}
+</div>
+
+{% if site.settings.feedback_enabled %}
+  {% render 'index/home_feedback_modal', page: page %}
+{% endif %}

@@ -27,7 +27,7 @@
       "prev_page": "上一页",
       "next_page": "下一页"
     },
-    "mint": {
+    "style_one": {
       "search": {
         "ask_ai_section": "向 AI 助手提问",
         "ask_ai_lead": "帮我介绍一下",
@@ -65,7 +65,7 @@
       "connect_to_vscode": "连接到 VS Code",
       "connect_to_vscode_description": "在 VS Code 中安装 MCP Server"
     },
-    "maple": {
+    "style_two": {
       "home": {
         "search_placeholder": "搜索...",
         "channel_card_fallback_desc": "进入该专题浏览相关文档与说明。",
@@ -115,7 +115,7 @@
     "home": {
       "feedback_btn": "在线反馈"
     },
-    "almond": {
+    "style_three": {
       "search": {
         "ask_ai_section": "向 AI 助手提问",
         "ask_ai_lead": "帮我介绍一下",
@@ -195,12 +195,12 @@
   "placeholders": {
     "search": ""
   },
-  "mint": {
+  "style_one": {
     "search": {
       "ask_ai_message": "请介绍一下「%{query}」"
     }
   },
-  "almond": {
+  "style_three": {
     "search": {
       "ask_ai_message": "请介绍一下「%{query}」"
     }

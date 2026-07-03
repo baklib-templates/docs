@@ -14,19 +14,19 @@
       "shared": {
         "groups": {
           "home_config": "Startseiten-Konfiguration",
-          "home_config_info": "Entweder: ① „Site-Seite auf der Startseite“ setzen — Inhalt dieser Seite bei /; ② leer lassen — Maple-Standardstartseite aus den Feldern unten (Hero, Schnellstart usw.). Seiten können in den Seiteneinstellungen für den Schnellstart aktiviert werden.",
-          "home_config_info_mint": "Zeigt eine Site-Seite bei /. Mint hat kein Standard-Startseiten-Layout — Pfad angeben (z. B. Einstiegsseite). Leer = leerer Startseiten-Inhalt.",
+          "home_config_info": "Entweder: ① „Site-Seite auf der Startseite“ setzen — Inhalt dieser Seite bei /; ② leer lassen — Karten-Dokulayout-Standardstartseite aus den Feldern unten (Hero, Schnellstart usw.). Seiten können in den Seiteneinstellungen für den Schnellstart aktiviert werden.",
+          "home_config_info_style_one": "Wählen Sie: ① „Startseiten-Seite“ unter / setzen; ② leer lassen — Klassisches-Layout-Standardstartseite unten (Verlaufs-Hero, Kanal-Karten usw.).",
           "chrome": "Layout & Navigation",
-          "home_config_info_almond": "Wählen Sie: ① „Startseiten-Seite“ unter / setzen; ② leer lassen — Almond-Standardstartseite unten (Titel, Schnellführer, Empfehlungen, Hilfe-Banner)."
+          "home_config_info_style_three": "Wählen Sie: ① „Startseiten-Seite“ unter / setzen; ② leer lassen — Baum-Dokulayout-Standardstartseite unten (Titel, Schnellführer, Empfehlungen, Hilfe-Banner)."
         },
         "settings": {
           "home_page_path": {
             "label": "Site-Seite auf der Startseite",
-            "info": "z. B. /docs/getting-started, /guide/overview. Zeigt Titel und Inhalt dieser Seite bei /, URL bleibt /. Leer: Maple nutzt die Standard-Startseiten-Felder unten; Mint: Pfad angeben."
+            "info": "z. B. /docs/getting-started, /guide/overview. Zeigt Titel und Inhalt dieser Seite bei /, URL bleibt /. Leer: nutzt die Standard-Startseiten-Felder unten (Karten-Dokulayout / Klassisches Layout)."
           },
           "search_hot_keywords": {
             "label": "Beliebte Suchen",
-            "info": "Für Maple-Startseiten-Suche und globales Suchmodal. Mehrere Stichwörter mit Zeilenumbruch, Anzeige unter dem Suchfeld."
+            "info": "Für Karten-Dokulayout-Startseiten-Suche und globales Suchmodal. Mehrere Stichwörter mit Zeilenumbruch, Anzeige unter dem Suchfeld."
           },
           "links_html": {
             "label": "Benutzerdefinierte Linkliste HTML (linke Seitenleiste)",
@@ -34,12 +34,12 @@
           }
         }
       },
-      "mint": {
-        "name": "Mint (Klassisch)",
-        "description": "Klassisches Doku-Layout mit sanftem Hero-Verlauf und 3-spaltigem Einstiegsraster – die sicherste Voreinstellung.",
+      "style_one": {
+        "name": "Klassisches Layout",
+        "description": "Vertrautes Layout mit sanftem Verlaufs-Hero und 3-spaltigem Einstiegsraster – sicherer Standard für Produktdokumentation.",
         "settings": {
           "left_sidebar_width": {
-            "info": "Mint-Seitenleiste mit Kanalnavigation; empfohlen 400px"
+            "info": "Klassisches Layout: linke Leiste mit Kanalnavigation; empfohlen 400px"
           },
           "right_sidebar_width": {
             "info": "In-Seite-TOC; empfohlen 240px"
@@ -79,12 +79,12 @@
           }
         }
       },
-      "maple": {
-        "name": "Maple (Doku-Shell)",
-        "description": "Maple-Layout: linke Sidebar mit Logo, Suche und gruppiertem Navigationsbaum; Dokumentkörper mit Eyebrow, Copy page und Inhaltsverzeichnis; KI-Sidebar und Suchmodal wie bei Mint.",
+      "style_two": {
+        "name": "Karten-Dokulayout",
+        "description": "Karten-Dokulayout: linke Sidebar mit Logo, Suche und gruppiertem Navigationsbaum; Dokumentkörper mit Eyebrow, Copy page und Inhaltsverzeichnis; KI-Sidebar und Suchmodal wie bei anderen Layouts.",
         "settings": {
           "left_sidebar_width": {
-            "info": "Maple-Seitenleiste schmaler; empfohlen 280px"
+            "info": "Karten-Layout-Sidebar schmaler; empfohlen 280px"
           },
           "search_hot_keywords": {
             "default": "Schnellstart\nFAQ\nKonfiguration\nEinsteigerleitfaden"
@@ -121,12 +121,12 @@
           }
         }
       },
-      "almond": {
-        "name": "Almond",
-        "description": "Startseite mit Haupttitel, Schnellführer-Karten, Empfehlungsliste und Feedback-Banner unten; KI-Seitenleiste und Suchmodal wie bei Mint.",
+      "style_three": {
+        "name": "Baum-Dokulayout",
+        "description": "Baum-Dokulayout: Startseite mit Haupttitel, Schnellführer-Karten, Empfehlungsliste und Feedback-Banner unten; KI-Seitenleiste und Suchmodal wie bei anderen Layouts.",
         "settings": {
           "left_sidebar_width": {
-            "info": "Almond-Seitenleiste empfohlen 264px (16,5rem)"
+            "info": "Baum-Layout-Seitenleiste empfohlen 264px (16,5rem)"
           },
           "right_sidebar_width": {
             "info": "TOC-Seitenleiste, empfohlen 240px"
@@ -177,7 +177,7 @@
         },
         "show_on_home_guide": {
           "label": "Auf der Startseite im Schnellführer anzeigen",
-          "info": "Wenn aktiviert, erscheint die Seite in den Schnellführer-Karten der Maple-Standardstartseite (max. 3, wenn der Startpfad leer ist). Sonst Auswahl nach Besuchszahl."
+          "info": "Wenn aktiviert, erscheint die Seite in den Schnellführer-Karten der Karten-Dokulayout-Standardstartseite (max. 3, wenn der Startpfad leer ist). Sonst Auswahl nach Besuchszahl."
         },
         "title": {
           "label": "Seitentitel",

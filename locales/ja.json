@@ -27,7 +27,7 @@
       "prev_page": "前へ",
       "next_page": "次へ"
     },
-    "mint": {
+    "style_one": {
       "search": {
         "ask_ai_section": "AI アシスタントに質問",
         "ask_ai_lead": "次について教えてください：",
@@ -65,7 +65,7 @@
       "connect_to_vscode": "VS Code に接続",
       "connect_to_vscode_description": "VS Code に MCP Server をインストール"
     },
-    "maple": {
+    "style_two": {
       "home": {
         "search_placeholder": "キーワードを入力してガイドやドキュメントを検索…",
         "channel_card_fallback_desc": "このトピックのドキュメントとガイドを閲覧します。",
@@ -115,7 +115,7 @@
     "home": {
       "feedback_btn": "オンラインフィードバック"
     },
-    "almond": {
+    "style_three": {
       "search": {
         "ask_ai_section": "AI アシスタントに質問",
         "ask_ai_lead": "次について教えて：",
@@ -195,12 +195,12 @@
   "placeholders": {
     "search": ""
   },
-  "mint": {
+  "style_one": {
     "search": {
       "ask_ai_message": "「%{query}」について教えて"
     }
   },
-  "almond": {
+  "style_three": {
     "search": {
       "ask_ai_message": "「%{query}」について教えて"
     }

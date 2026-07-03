@@ -1,0 +1,81 @@
+{% comment %} Tree文档布局顶栏：Logo + 外链菜单；桌面端搜索在侧栏 {% endcomment %}
+<header class="js--header sticky top-0 z-40 h-[var(--header-height)] border-b border-base-200 bg-base-100/95 backdrop-blur-md">
+  <div class="mx-auto flex h-full max-w-[var(--max-content-width)] items-center justify-between gap-4 px-4 lg:px-6">
+    {% assign default_site_icon = 'images/default-site-icon.svg' | asset_url %}
+    <a href="{{ site.index_path }}" class="flex min-w-0 shrink-0 items-center gap-2 font-semibold tracking-tight text-base-content">
+      {% assign logo_url = site.settings.logo_url | presence %}
+      {% if logo_url %}
+        <img src="{{ logo_url }}" class="h-6 w-auto max-w-[8rem] object-contain" width="128" height="24" alt="{{ site.name | escape_once }}">
+      {% else %}
+        {% assign favicon_url = site.favicon_url | presence | default: default_site_icon %}
+        {% if favicon_url %}
+          <img src="{{ favicon_url }}" class="size-6 rounded object-contain" width="24" height="24" alt="">
+        {% endif %}
+        <span class="truncate text-lg font-bold">{{ site.name }}</span>
+      {% endif %}
+    </a>
+
+    <div class="flex items-center gap-2 sm:gap-3">
+      {% assign header_menu_html = site.settings.header_menu_html | presence %}
+      {% if header_menu_html %}
+        <nav class="hidden items-center gap-2 text-sm font-semibold lg:flex">
+          <div class="flex flex-wrap items-center justify-end gap-2 [&_a]:inline-flex [&_a]:items-center [&_a]:gap-1.5 [&_a]:whitespace-nowrap [&_a]:rounded-lg [&_a]:border [&_a]:border-base-300/80 [&_a]:bg-base-100 [&_a]:px-2.5 [&_a]:py-1.5 [&_a]:font-medium [&_a]:text-base-content/70 [&_a]:transition hover:[&_a]:border-base-content/30 hover:[&_a]:text-base-content">
+            {{ header_menu_html }}
+          </div>
+        </nav>
+      {% endif %}
+
+      {% if current_user %}
+        <div class="dropdown dropdown-end hidden lg:block">
+          <div tabindex="0" role="button" class="btn btn-ghost btn-sm btn-square" aria-label="{{ current_user.name | escape_once }}">
+            {% if current_user.image %}
+              <img src="{{ current_user.image }}" alt="" class="size-7 rounded-lg object-cover" width="28" height="28" />
+            {% else %}
+              <i class="ri-user-line text-base text-base-content/60" aria-hidden="true"></i>
+            {% endif %}
+          </div>
+          <div tabindex="0" class="dropdown-content rounded-box mt-2 w-44 space-y-3 bg-base-100 px-3 py-2 shadow">
+            <div class="line-clamp-1 border-b border-base-200 pb-2 font-medium text-primary">{{ current_user.name }}</div>
+            <div class="text-base-content/60">
+              {% form_tag 'sign_out' %}
+                <button type="submit" class="h-5 w-full text-left hover:link">{{ 'generic.buttons.signout' | t }}</button>
+              {% endform_tag %}
+            </div>
+          </div>
+        </div>
+      {% endif %}
+
+      <div class="flex items-center gap-1 lg:hidden">
+        <button
+          type="button"
+          class="btn btn-ghost btn-sm btn-square text-base-content/60"
+          id="search-bar-entry-mobile"
+          data-action="click->header-search#openModal"
+          aria-label="{{ 'search.placeholder' | t: '搜索...' }}"
+          aria-haspopup="dialog"
+        >
+          <i class="ri-search-line text-base leading-none" aria-hidden="true"></i>
+        </button>
+        <button
+          type="button"
+          class="btn btn-ghost btn-sm btn-square text-base-content/60"
+          id="assistant-entry-mobile"
+          @click="toggleAiAssistant()"
+          aria-label="{{ 'snippets.header.ask_ai' | t: '问 AI' }}"
+        >
+          <i class="ri-sparkling-2-line text-base leading-none text-primary" aria-hidden="true"></i>
+        </button>
+        {% if header_menu_html %}
+          <div class="dropdown dropdown-end">
+            <div tabindex="0" role="button" class="btn btn-ghost btn-sm btn-square h-7 w-7 min-h-0 p-0">
+              <i class="ri-more-2-line text-base leading-none" aria-hidden="true"></i>
+            </div>
+            <div tabindex="0" class="dropdown-content menu z-[60] mt-2 w-52 rounded-box bg-base-100 p-2 shadow-sm">
+              {{ header_menu_html }}
+            </div>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</header>

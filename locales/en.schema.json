@@ -14,19 +14,19 @@
       "shared": {
         "groups": {
           "home_config": "Home settings",
-          "home_config_info": "Choose one: ① Set “Site page shown on home” to display that page at /; ② Leave empty to use the Maple default home fields below (hero, hot keywords, quick guide, etc.). Pages can join Quick guide via page settings.",
-          "home_config_info_mint": "Choose one: ① Set “Site page shown on home” at /; ② Leave empty to use the Mint default home below (gradient hero, channel cards, etc.).",
-          "home_config_info_almond": "Choose one: ① Set “Site page shown on home” at /; ② Leave empty to use the Almond default home below (hero, quick guide cards, recommended list, help banner).",
+          "home_config_info": "Choose one: ① Set “Site page shown on home” to display that page at /; ② Leave empty to use the Card docs layout default home fields below (hero, hot keywords, quick guide, etc.). Pages can join Quick guide via page settings.",
+          "home_config_info_style_one": "Choose one: ① Set “Site page shown on home” at /; ② Leave empty to use the Classic layout default home below (gradient hero, channel cards, etc.).",
+          "home_config_info_style_three": "Choose one: ① Set “Site page shown on home” at /; ② Leave empty to use the Tree docs layout default home below (hero, quick guide cards, recommended list, help banner).",
           "chrome": "Layout & navigation"
         },
         "settings": {
           "home_page_path": {
             "label": "Site page shown on home",
-            "info": "Site page path, e.g. /docs/getting-started, /guide/overview. Shows that page’s title and body at / while the URL stays /. If empty, Maple uses the default home fields below; Mint should usually set a path."
+            "info": "Site page path, e.g. /docs/getting-started, /guide/overview. Shows that page’s title and body at / while the URL stays /. If empty, uses the default home fields below (Card docs layout / Classic layout)."
           },
           "search_hot_keywords": {
             "label": "Popular Searches",
-            "info": "For the Maple home search area and the site-wide search modal. Use line breaks for multiple keywords shown below the search box."
+            "info": "For the Card docs layout home search area and the site-wide search modal. Use line breaks for multiple keywords shown below the search box."
           },
           "links_html": {
             "label": "Custom link list HTML (left sidebar)",
@@ -34,12 +34,12 @@
           }
         }
       },
-      "mint": {
-        "name": "Mint (Classic)",
+      "style_one": {
+        "name": "Classic layout",
         "description": "Familiar layout with a gentle gradient hero and a 3-column getting-started grid—the safest default for product docs.",
         "settings": {
           "left_sidebar_width": {
-            "info": "Mint left rail includes channel nav; recommended 400px"
+            "info": "Classic layout left rail includes channel nav; recommended 400px"
           },
           "right_sidebar_width": {
             "info": "In-page TOC sidebar; recommended 240px"
@@ -79,12 +79,12 @@
           }
         }
       },
-      "maple": {
-        "name": "Maple (docs shell)",
-        "description": "Maple layout: left sidebar with logo, search, and grouped site navigation; document body with eyebrow, Copy page, and in-page TOC; AI sidebar and search modal match Mint.",
+      "style_two": {
+        "name": "Card docs layout",
+        "description": "Card docs layout: left sidebar with logo, search, and grouped site navigation; document body with eyebrow, Copy page, and in-page TOC; AI sidebar and search modal match other layouts.",
         "settings": {
           "left_sidebar_width": {
-            "info": "Maple sidebar is narrower; recommended 280px"
+            "info": "Card layout sidebar is narrower; recommended 280px"
           },
           "search_hot_keywords": {
             "default": "Getting started\nFAQ\nConfiguration\nBeginner guide"
@@ -121,12 +121,12 @@
           }
         }
       },
-      "almond": {
-        "name": "Almond",
-        "description": "Homepage includes hero title, quick-guide cards, recommended list, and bottom feedback banner; AI sidebar and search modal match Mint.",
+      "style_three": {
+        "name": "Tree docs layout",
+        "description": "Tree docs layout: homepage with hero title, quick-guide cards, recommended list, and bottom feedback banner; AI sidebar and search modal match other layouts.",
         "settings": {
           "left_sidebar_width": {
-            "info": "Almond sidebar recommended 264px (16.5rem)"
+            "info": "Tree layout sidebar recommended 264px (16.5rem)"
           },
           "right_sidebar_width": {
             "info": "In-page TOC sidebar; recommended 240px"
@@ -177,7 +177,7 @@
         },
         "show_on_home_guide": {
           "label": "Show on homepage quick guide",
-          "info": "When checked, appears in Maple default home Quick guide cards (up to 3, when home path is empty). If none are selected, pages are chosen by visit count."
+          "info": "When checked, appears in Card docs layout default home Quick guide cards (up to 3, when home path is empty). If none are selected, pages are chosen by visit count."
         },
         "title": {
           "label": "Page Title",

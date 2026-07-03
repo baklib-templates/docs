@@ -510,7 +510,7 @@ export default class extends Controller {
   }
 
   #toggleEmptyHint(show) {
-    this.element.querySelectorAll(".mint-ai-empty-hint").forEach((el) => {
+    this.element.querySelectorAll(".style-one-ai-empty-hint").forEach((el) => {
       el.classList.toggle("hidden", !show);
     });
     this.messagesScrollTargets
