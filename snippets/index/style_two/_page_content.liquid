@@ -1,0 +1,108 @@
+{% assign ai_input_placeholder = "ai.input_placeholder" | t: "输入你的问题…" | presence %}
+
+<article class="max-w-none flex flex-1 flex-col px-4 md:px-0 pt-4 md:pt-10 min-h-[calc(100vh-var(--header-height)-3.1rem)]">
+  <div class="min-h-0 w-full flex-1 flex flex-col">
+    <div class="flex-1">
+      <p class="mb-2 text-[0.8rem] font-bold tracking-wide text-primary uppercase">
+        {{ current_root_channel.link_text }}
+      </p>
+      {% # 标题 %}
+      {% assign title = page.link_text | presence %}
+      <div class="mb-4 py-1 flex items-start justify-between gap-3">
+        <h1 class="flex-1 mb-3 text-2xl sm:text-3xl font-bold tracking-tight text-base-content">
+          {{ title }}
+        </h1>
+        {% if site.settings.show_page_tools_dropdown %}
+          {% render 'page_tools_dropdown', page: page %}
+        {% endif %}
+      </div>
+
+      {% render 'page_meta', page: page %}
+
+      {% if page.settings.description %}
+      <p class="mb-8 text-[1.05rem] text-base-content/70">{{ page.settings.description }}</p>
+      {% endif %}
+
+      {% comment %} 正文 {% endcomment %}
+      {% assign page_content = page.settings.content | presence %}
+      {% assign show_list = false %}
+      {% if page.settings.show_list or page.full_slug == '/' %}
+        {% assign show_list = true %}
+      {% endif %}
+      <div class="max-w-none min-h-[40vh]">
+        <div class="prose ProseMirror max-w-none " data-toc-target="content" data-controller="link-target images-viewer">
+          {{ page_content }}
+        </div>
+
+        {% if show_list %}
+          <div class="">
+            {% paginate_tag page.children_in_list, as: 'pages', per: 10 %}
+              {% if pages.size > 0 %}
+                <ul role="list" class="divide-y divide-base-200">
+                  {% for child in pages %}
+                    <li>
+                      <a
+                        href="{{ child.path }}"
+                        data-turbo-frame="main-content-frame"
+                        data-turbo-action="advance"
+                        class="flex flex-wrap items-center justify-between gap-x-4 gap-y-2 px-1 py-3 transition-colors hover:bg-base-200/50 sm:flex-nowrap"
+                      >
+                        <div class="flex min-w-0 items-center gap-3">
+                          {% assign icon_url = child.settings.icon | presence %}
+                          {% if icon_url %}
+                            <img src="{{ icon_url }}" class="size-6 shrink-0 rounded object-cover" alt="" loading="lazy" decoding="async" />
+                          {% else %}
+                            <div class="size-6 shrink-0 rounded flex items-center justify-center">
+                              <i class="ri-file-text-line text-lg text-base-content/40" aria-hidden="true"></i>
+                            </div>
+                          {% endif %}
+                          <span class="font-medium text-base-content hover:underline">{{ child.link_text }}</span>
+                        </div>
+                        {% assign child_desc = child.settings.description | presence %}
+                        {% if child_desc %}
+                          <p class="line-clamp-2 text-sm text-base-content/60">{{ child_desc }}</p>
+                        {% endif %}
+                      </a>
+                    </li>
+                  {% endfor %}
+                </ul>
+              {% endif %}
+            {% endpaginate_tag %}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+
+    {% comment %} 是否有帮助的反馈区域 {% endcomment %}
+    {% if site.settings.feedback_enabled %}
+      {% render 'index/page_feedback', page: page %}
+    {% endif %}
+
+    {% comment %} 上一页、下一页 {% endcomment %}
+    {% render 'index/style_two/page_pager', page: page %}
+  </div>
+
+  {% comment %} AI 输入框：flex-1 在短页占满剩余高度，条在 article 底；长页仍在正文后 + sticky bottom 吸附视口 {% endcomment %}
+  <div class="sticky bottom-5 z-20 w-full shrink-0 pointer-events-none print:hidden transition-all duration-300"
+    :class="(isAtBottom || isAiOpen) ? 'translate-y-full opacity-0' : 'translate-y-0 opacity-100'">
+    <div
+      class="pointer-events-auto flex flex-col w-full rounded-2xl border border-base-200 bg-base-100/90 shadow-sm backdrop-blur-xl transition-colors focus-within:border-primary" x-data="{ inputValue: '' }">
+      <div class="relative flex items-end">
+        <textarea aria-label="{{ ai_input_placeholder }}" placeholder="{{ ai_input_placeholder }}"
+          class="w-full resize-none border-0 bg-transparent py-4 pl-4 pr-14 text-[0.95rem] text-base-content placeholder-base-content/40 focus:outline-none focus:ring-0"
+          style="height: 60px;"
+          @keydown.enter.prevent="if(inputValue.trim()) { window.dispatchEvent(new CustomEvent('ai-send', { detail: { message: inputValue.trim() } })); $el.value = ''; inputValue = ''; }"
+          x-model="inputValue"></textarea>
+        <span
+          class="absolute bottom-4 right-12 hidden text-[0.75rem] font-medium text-base-content/50 sm:inline">⌘I</span>
+        <button type="button"
+          class="absolute bottom-3 right-2.5 flex size-8 items-center justify-center rounded-lg bg-primary/10 text-primary transition-colors hover:bg-primary/90 disabled:opacity-50"
+          :disabled="!inputValue.trim()"
+          aria-label="{{ ai_send_label }}"
+          @click="if(inputValue.trim()) { window.dispatchEvent(new CustomEvent('ai-send', { detail: { message: inputValue.trim() } })); inputValue = ''; }">
+          <i class="ri-arrow-up-line leading-none" aria-hidden="true"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</article>

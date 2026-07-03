@@ -14,19 +14,19 @@
       "shared": {
         "groups": {
           "home_config": "Configuration de l’accueil",
-          "home_config_info": "Au choix : ① renseigner « Page du site affichée à l’accueil » — contenu de cette page sur / ; ② laisser vide — accueil Maple par défaut via les champs ci-dessous (hero, guide rapide, etc.). Les pages peuvent rejoindre le guide rapide dans leurs paramètres.",
-          "home_config_info_mint": "Affiche une page du site sur /. Mint n’a pas de mise en page d’accueil par défaut — indiquez un chemin (ex. page de démarrage). Vide = zone de contenu vide.",
+          "home_config_info": "Au choix : ① renseigner « Page du site affichée à l’accueil » — contenu de cette page sur / ; ② laisser vide — accueil par défaut disposition doc en cartes via les champs ci-dessous (hero, guide rapide, etc.). Les pages peuvent rejoindre le guide rapide dans leurs paramètres.",
+          "home_config_info_style_one": "Choisissez : ① définir la « page d’accueil du site » sur / ; ② laisser vide — accueil par défaut disposition classique ci-dessous (hero en dégradé, cartes de canaux, etc.).",
           "chrome": "Mise en page & navigation",
-          "home_config_info_almond": "Choisissez : ① définir la « page d’accueil du site » sur / ; ② laisser vide — page d’accueil Almond par défaut ci-dessous (titre, guides rapides, recommandations, bannière d’aide)."
+          "home_config_info_style_three": "Choisissez : ① définir la « page d’accueil du site » sur / ; ② laisser vide — accueil par défaut disposition doc en arborescence ci-dessous (titre, guides rapides, recommandations, bannière d’aide)."
         },
         "settings": {
           "home_page_path": {
             "label": "Page du site affichée à l’accueil",
-            "info": "ex. /docs/getting-started, /guide/overview. Affiche le titre et le contenu de cette page sur /, l’URL reste /. Vide : Maple utilise les champs d’accueil par défaut ci-dessous ; Mint : chemin recommandé."
+            "info": "ex. /docs/getting-started, /guide/overview. Affiche le titre et le contenu de cette page sur /, l’URL reste /. Vide : utilise les champs d’accueil par défaut ci-dessous (disposition doc en cartes / disposition classique)."
           },
           "search_hot_keywords": {
             "label": "Recherches populaires",
-            "info": "Pour la zone de recherche Maple à l’accueil et la modale de recherche globale. Mots-clés séparés par retour à la ligne, affichés sous le champ de recherche."
+            "info": "Pour la zone de recherche de la disposition doc en cartes à l’accueil et la modale de recherche globale. Mots-clés séparés par retour à la ligne, affichés sous le champ de recherche."
           },
           "links_html": {
             "label": "HTML de liste de liens personnalisée (barre latérale gauche)",
@@ -34,12 +34,12 @@
           }
         }
       },
-      "mint": {
-        "name": "Mint (Classique)",
-        "description": "Mise en page documentaire familière avec un hero en dégradé doux et une grille de démarrage à 3 colonnes — la valeur par défaut la plus sûre.",
+      "style_one": {
+        "name": "Disposition classique",
+        "description": "Disposition familière avec hero en dégradé doux et grille d’entrée en 3 colonnes — choix par défaut sûr pour la doc produit.",
         "settings": {
           "left_sidebar_width": {
-            "info": "Barre latérale Mint (navigation des canaux) ; 400px recommandé"
+            "info": "Disposition classique : barre latérale avec navigation des canaux ; 400px recommandé"
           },
           "right_sidebar_width": {
             "info": "Sommaire dans la page ; 240px recommandé"
@@ -79,12 +79,12 @@
           }
         }
       },
-      "maple": {
-        "name": "Maple (shell doc)",
-        "description": "Disposition Maple : barre latérale avec logo, recherche et navigation groupée ; corps avec eyebrow, Copy page et TOC ; panneau IA et modal de recherche identiques à Mint.",
+      "style_two": {
+        "name": "Disposition doc en cartes",
+        "description": "Disposition doc en cartes : barre latérale avec logo, recherche et navigation groupée ; corps avec eyebrow, Copy page et TOC ; panneau IA et modal de recherche identiques aux autres dispositions.",
         "settings": {
           "left_sidebar_width": {
-            "info": "Barre latérale Maple plus étroite ; 280px recommandé"
+            "info": "Barre latérale carte plus étroite ; 280px recommandé"
           },
           "search_hot_keywords": {
             "default": "Démarrage\nFAQ\nConfiguration\nGuide débutant"
@@ -121,12 +121,12 @@
           }
         }
       },
-      "almond": {
-        "name": "Almond",
-        "description": "Page d’accueil avec titre principal, cartes guide rapide, liste recommandée et bannière de retour en bas ; panneau IA et modal de recherche identiques à Mint.",
+      "style_three": {
+        "name": "Disposition doc en arborescence",
+        "description": "Disposition doc en arborescence : accueil avec titre principal, cartes guide rapide, liste recommandée et bannière de retour en bas ; panneau IA et modal de recherche identiques aux autres dispositions.",
         "settings": {
           "left_sidebar_width": {
-            "info": "Barre latérale Almond recommandée : 264px (16,5rem)"
+            "info": "Barre latérale arborescence recommandée : 264px (16,5rem)"
           },
           "right_sidebar_width": {
             "info": "TOC latéral, recommandé 240px"
@@ -177,7 +177,7 @@
         },
         "show_on_home_guide": {
           "label": "Afficher dans le guide rapide de l’accueil",
-          "info": "Si coché, la page apparaît dans les cartes « guide rapide » de l’accueil Maple par défaut (max. 3, chemin d’accueil vide). Sinon sélection par visites."
+          "info": "Si coché, la page apparaît dans les cartes « guide rapide » de l’accueil par défaut disposition doc en cartes (max. 3, chemin d’accueil vide). Sinon sélection par visites."
         },
         "title": {
           "label": "Titre de la page",

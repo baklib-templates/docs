@@ -10,7 +10,7 @@
 
 打造用户愿意阅读的文档体验：结构清晰、检索迅捷，并可接入 AI 问答。将知识库呈现为产品文档，无需从零自建文档站。
 
-本主题为 Baklib **Wiki** 纯文档型主题，围绕 `templates/` 下的首页变体与统一内容页模板构建：三套首页布局（Mint / Maple / Almond）共用一致的配置字段 ID，便于在后台切换样式时保留数据；`page.liquid` 根据站点首页所选变体自动复用同族侧栏、页内目录与 AI 侧栏等外壳。配套 `snippets/index/` 按变体组织首页与正文片段，并提供 AI 聊天、搜索弹窗、页面反馈等共用能力。全局设置涵盖品牌 Logo、页脚信息、页面元数据展示、微信分享与自定义 HTML 注入等。
+本主题为 Baklib **Wiki** 纯文档型主题，围绕 `templates/` 下的首页变体与统一内容页模板构建：三套首页布局（Class经典布局 / Card文档布局 / Tree文档布局，对应 `style_one` / `style_two` / `style_three`）共用一致的配置字段 ID，便于在后台切换样式时保留数据；`page.liquid` 根据站点首页所选变体自动复用同族侧栏、页内目录与 AI 侧栏等外壳。配套 `snippets/index/` 按变体组织首页与正文片段，并提供 AI 聊天、搜索弹窗、页面反馈等共用能力。全局设置涵盖品牌 Logo、页脚信息、页面元数据展示、微信分享与自定义 HTML 注入等。
 
 ### 适用场景
 
@@ -27,24 +27,24 @@
 
 ### 主要特性
 
-- **三套首页布局**：Mint（经典渐变 Hero + 入门卡片）、Maple（左侧栏集成 Logo / 搜索 / 全站导航）、Almond（Hero + 快速指引 + 推荐列表 + 底部反馈横幅）；后台配置字段 ID 一致，便于变体间迁移
+- **三套首页布局**：Class经典布局（渐变 Hero + 入门卡片）、Card文档布局（左侧栏集成 Logo / 搜索 / 全站导航）、Tree文档布局（Hero + 快速指引 + 推荐列表 + 底部反馈横幅）；后台配置字段 ID 一致，便于变体间迁移
 - **首页二选一逻辑**：可指定「首页展示的站内页面」在 `/` 渲染指定页面内容，或留空使用当前变体默认首页区块（主标题、热门搜索、快速指引、推荐阅读等）
-- **统一正文外壳**：内容页 `page.liquid` 随站点首页模板样式（`mint` | `maple` | `almond`）渲染对应布局，保证首页与内页体验一致
+- **统一正文外壳**：内容页 `page.liquid` 随站点首页模板样式（`style_one` | `style_two` | `style_three`）渲染对应布局，保证首页与内页体验一致
 - **AI 与搜索**：AI 侧栏、搜索模态框、热门搜索关键词、AI 回答结束语可配置
 - **页面工具与反馈**：页内工具下拉（含分享等）、页面级反馈（Turbo Stream 提交）、首页反馈横幅；反馈辅助提示语支持 JSON 配置
 - **栏目与首页联动**：页面可设为栏目页展示子页面列表；可勾选「显示在首页快速指引」出现在默认首页入门区块
 - **七种界面语言**：`zh-CN`、`zh-TW`、`en`、`ko`、`ja`、`de`、`fr`（前台 `*.json` + 编辑器 `*.schema.json`）
 - **品牌与扩展**：Logo、公司名称、版权/备案信息；`<head>`、顶栏、页脚自定义 HTML；微信公众号分享（AppID / Secret）
 - **现代前端栈**：Tailwind CSS 4、daisyUI、Stimulus、Alpine.js、Turbo；资源由 `src/` 构建至 `assets/`
-- **主题编辑器预览**：按语言提供 Mint / Maple / Almond 首页、正文页及 AI 侧栏截图
+- **主题编辑器预览**：按语言提供 Class经典布局 / Card文档布局 / Tree文档布局 首页、正文页及 AI 侧栏截图
 
 ### 模板类型一览
 
 | 模板文件 | 类型 | 说明 |
 | --- | --- | --- |
-| `index.mint.liquid` | 首页 | Mint（经典款）：柔色渐变 Hero、频道入门卡片、推荐阅读 |
-| `index.maple.liquid` | 首页 | Maple：左栏 Logo + 搜索 + 分组导航；眉题、Copy page、页内目录 |
-| `index.almond.liquid` | 首页 | Almond：主标题、快速指引卡片、推荐列表、底部求助/反馈 |
+| `index.style_one.liquid` | 首页 | Class经典布局：柔色渐变 Hero、频道入门卡片、推荐阅读 |
+| `index.style_two.liquid` | 首页 | Card文档布局：左栏 Logo + 搜索 + 分组导航；眉题、Copy page、页内目录 |
+| `index.style_three.liquid` | 首页 | Tree文档布局：主标题、快速指引卡片、推荐列表、底部求助/反馈 |
 | `page.liquid` | 内容页 | 文档正文；布局与首页变体一致；支持栏目页、标签、图标等 |
 | `search.liquid` | 搜索 | 预留 |
 | `feedback_*_turbo_stream.liquid` | 反馈流 | 页面反馈提交的 Turbo Stream 响应 |

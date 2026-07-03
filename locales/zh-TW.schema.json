@@ -6,19 +6,19 @@
       "shared": {
         "groups": {
           "home_config": "首頁配置",
-          "home_config_info": "二選一：① 填寫「首頁展示的站內頁面」— 訪問 / 時展示該頁內容；② 路徑留空 — 使用本組下方主標題、熱門搜尋、快速指引等項作為 Maple 預設首頁。子頁面可在頁面設置中勾選「顯示在首頁快速指引」。",
-          "home_config_info_mint": "二選一：① 填寫「首頁展示的站內頁面」— 訪問 / 時展示該頁內容；② 路徑留空 — 使用本組下方配置生成 Mint 預設首頁（漸層 Hero、頻道入門卡片等）。",
-          "home_config_info_almond": "二選一：① 填寫「首頁展示的站內頁面」— 訪問 / 時展示該頁內容；② 路徑留空 — 使用本組下方配置生成 Almond 預設首頁（主標題、快速指引卡片、推薦內容列表、反饋橫幅）。",
+          "home_config_info": "二選一：① 填寫「首頁展示的站內頁面」— 訪問 / 時展示該頁內容；② 路徑留空 — 使用本組下方主標題、熱門搜尋、快速指引等項作為 Card文件版面 預設首頁。子頁面可在頁面設置中勾選「顯示在首頁快速指引」。",
+          "home_config_info_style_one": "二選一：① 填寫「首頁展示的站內頁面」— 訪問 / 時展示該頁內容；② 路徑留空 — 使用本組下方配置生成 Class經典版面 預設首頁（漸層 Hero、頻道入門卡片等）。",
+          "home_config_info_style_three": "二選一：① 填寫「首頁展示的站內頁面」— 訪問 / 時展示該頁內容；② 路徑留空 — 使用本組下方配置生成 Tree文件版面 預設首頁（主標題、快速指引卡片、推薦內容列表、反饋橫幅）。",
           "chrome": "佈局與導覽"
         },
         "settings": {
           "home_page_path": {
             "label": "首頁展示的站內頁面",
-            "info": "站內頁面路徑，如 /docs/getting-started、/guide/overview。訪問 / 時展示該頁標題與正文，網址列仍為首頁。留空時 Maple 啟用本組下方預設首頁項；Mint 建議填寫路徑。"
+            "info": "站內頁面路徑，如 /docs/getting-started、/guide/overview。訪問 / 時展示該頁標題與正文，網址列仍為首頁。留空時啟用本組下方預設首頁（Card文件版面 / Class經典版面）。"
           },
           "search_hot_keywords": {
             "label": "熱門搜尋",
-            "info": "用於 Maple 首頁搜尋區與全站搜尋彈窗。換行填寫多個關鍵詞，顯示在搜尋框下方。"
+            "info": "用於 Card文件版面首頁搜尋區與全站搜尋彈窗。換行填寫多個關鍵詞，顯示在搜尋框下方。"
           },
           "links_html": {
             "label": "頁面左側自訂連結列表 HTML 程式碼",
@@ -26,12 +26,12 @@
           }
         }
       },
-      "mint": {
-        "name": "Mint（經典款）",
-        "description": "經典文件站佈局,柔色漸變 hero + 三欄入門卡片,是產品文件最穩的預設款。",
+      "style_one": {
+        "name": "Class經典版面",
+        "description": "經典文件站版面，柔色漸層 Hero + 三列入門卡片，是產品文件最穩的預設款。",
         "settings": {
           "left_sidebar_width": {
-            "info": "Mint 左欄含頻道導覽，建議 400px"
+            "info": "Class經典版面左欄含頻道導覽，建議 400px"
           },
           "right_sidebar_width": {
             "info": "頁內目錄側欄，建議 240px"
@@ -71,12 +71,12 @@
           }
         }
       },
-      "maple": {
-        "name": "Maple（文件殼）",
-        "description": "Maple 版面：左側欄整合 Logo、搜尋與全站分組導覽；正文支援眉題、Copy page 與頁內目錄；AI 側欄與搜尋彈窗與 Mint 一致。",
+      "style_two": {
+        "name": "Card文件版面",
+        "description": "Card 文件版面：左側欄整合 Logo、搜尋與全站分組導覽；正文支援眉題、Copy page 與頁內目錄；AI 側欄與搜尋彈窗與其他版面一致。",
         "settings": {
           "left_sidebar_width": {
-            "info": "Maple 側欄較窄，建議 280px"
+            "info": "Card 側欄較窄，建議 280px"
           },
           "search_hot_keywords": {
             "default": "快速開始\n常見問題\n配置指南\n新手指南"
@@ -113,12 +113,12 @@
           }
         }
       },
-      "almond": {
-        "name": "Almond",
-        "description": "首頁含主標題、快速指引卡片、推薦列表與底部回饋橫幅；AI 側欄與搜尋彈窗與 Mint 一致。",
+      "style_three": {
+        "name": "Tree文件版面",
+        "description": "Tree 文件版面：首頁含主標題、快速指引卡片、推薦列表與底部回饋橫幅；AI 側欄與搜尋彈窗與其他版面一致。",
         "settings": {
           "left_sidebar_width": {
-            "info": "Almond 左欄建議 264px（16.5rem）"
+            "info": "Tree 文件版面左欄建議 264px（16.5rem）"
           },
           "right_sidebar_width": {
             "info": "頁內目錄側欄，建議 240px"
@@ -169,7 +169,7 @@
         },
         "show_on_home_guide": {
           "label": "顯示在首頁快速指引",
-          "info": "勾選後出現在 Maple 預設首頁的「快速指引」卡片（最多 3 條，路徑留空時生效）。若均未勾選，則按訪問量自動選取。"
+          "info": "勾選後出現在 Card文件版面 預設首頁的「快速指引」卡片（最多 3 條，路徑留空時生效）。若均未勾選，則按訪問量自動選取。"
         },
         "title": {
           "label": "頁面標題",

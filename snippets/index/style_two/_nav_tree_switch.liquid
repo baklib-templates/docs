@@ -1,0 +1,31 @@
+{%# locals: (page:, current_path:, show_method_badges: false) %}
+{% assign current_path = current_path | default: page.path | default: '' %}
+{% assign show_method_badges = show_method_badges | default: false %}
+{% assign child_count = page.children_in_list | size %}
+
+{% if child_count > 0 %}
+  <div class="min-w-0 max-w-full">
+    {% if child_count > 100 %}
+      {% assign parent_path = page.path %}
+      <turbo-frame
+        class="w-full"
+        id="index_style_two_nav_tree_frame_{{ parent_path | replace: '/', '_' }}"
+        src="{{ statics['index/style_two/nav_tree'] }}?parent_path={{ parent_path }}"
+        loading="lazy"
+      >
+        <div class="flex h-12 items-center justify-center text-base-content/50">
+          <span class="loading loading-spinner loading-sm"></span>
+        </div>
+      </turbo-frame>
+    {% else %}
+      {% assign data = page | nav_tree: 2, include_settings: 'icon' %}
+      {% render 'index/style_two/nav_tree',
+        nav_tree: data,
+        current_path: current_path,
+        parent_path: page.path,
+        show_method_badges: show_method_badges,
+        expand: true
+      %}
+    {% endif %}
+  </div>
+{% endif %}

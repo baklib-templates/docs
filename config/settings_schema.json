@@ -13,8 +13,9 @@
     "theme_thumb_url": "images/theme/thumb-indigo.png",
     "theme_preview_images": [
       "images/theme/${lang}/cover.png",
-      "images/theme/${lang}/index-maple.png",
-      "images/theme/${lang}/index-almond.png",
+      "images/theme/${lang}/index-style-one.png",
+      "images/theme/${lang}/index-style-two.png",
+      "images/theme/${lang}/index-style-three.png",
       "images/theme/${lang}/page.png",
       "images/theme/${lang}/page-ai.png"
     ],

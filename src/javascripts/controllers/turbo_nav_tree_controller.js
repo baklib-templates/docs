@@ -117,7 +117,7 @@ export default class extends Controller {
 
         // 是否在「当前 URL」的路径上（祖先或自身，用于展开分支、li[active]）
         const isOnPath = this.isPathActive(node)
-        // 是否就是当前页（传给 Mustache 的 isActive，仅自定义模板使用；mint 高亮靠 [active] + CSS）
+        // 是否就是当前页（传给 Mustache 的 isActive，仅自定义模板使用；style_one 高亮靠 [active] + CSS）
         const isCurrent = this.isPathActive(node, false)
         // expand：可指定展开层数；路径上的分支始终展开
         const shouldOpen = this.#shouldExpandAtDepth(depth) || isOnPath || this.hasActiveChild(node)

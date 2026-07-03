@@ -27,7 +27,7 @@
       "prev_page": "Précédent",
       "next_page": "Suivant"
     },
-    "mint": {
+    "style_one": {
       "search": {
         "ask_ai_section": "Demander à l'assistant IA",
         "ask_ai_lead": "Peux-tu me parler de ",
@@ -69,7 +69,7 @@
       "connect_to_vscode": "Connecter à VS Code",
       "connect_to_vscode_description": "Installer le serveur MCP dans VS Code"
     },
-    "maple": {
+    "style_two": {
       "home": {
         "search_placeholder": "Saisissez un mot-clé pour chercher guides ou docs…",
         "channel_card_fallback_desc": "Parcourir la documentation de ce sujet.",
@@ -123,7 +123,7 @@
     "home": {
       "feedback_btn": "Commentaires"
     },
-    "almond": {
+    "style_three": {
       "search": {
         "ask_ai_section": "Demander à l’assistant IA",
         "ask_ai_lead": "Parle-moi de ",
@@ -211,12 +211,12 @@
   "placeholders": {
     "search": ""
   },
-  "mint": {
+  "style_one": {
     "search": {
       "ask_ai_message": "Parle-moi de « %{query} »"
     }
   },
-  "almond": {
+  "style_three": {
     "search": {
       "ask_ai_message": "Parle-moi de « %{query} »"
     }

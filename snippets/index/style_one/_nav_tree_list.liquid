@@ -1,0 +1,27 @@
+{%# locals: (page:, current_path:) %}
+
+<div class="space-y-4 custom-menu">
+  {% for child_page in page.children_in_list %}
+    <div class="min-w-0 max-w-full space-y-2">
+      <a
+        href="{{ child_page.path }}"
+        data-turbo-frame="main-content-frame"
+        data-turbo-action="advance"
+        class="flex min-w-0 items-center gap-2.5 pl-3 text-sm font-semibold line-clamp-1 rounded-lg py-1.5 transition-colors outline-offset-[-1px]"
+        :class="channelPathActive('{{ child_page.path }}', 0, true) ? 'text-primary' : 'text-base-content hover:bg-base-200/60'"
+      >{{ child_page.link_text }}</a>
+
+      {% render 'index/style_one/nav_tree_switch', page: child_page, current_path: current_path %}
+    </div>
+  {% else %}
+    <div>
+      <a
+        href="{{ page.path }}"
+        data-turbo-frame="main-content-frame"
+        data-turbo-action="advance"
+        class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm font-medium transition-colors"
+        :class="channelPathActive('{{ page.path }}', 0, true) ? 'bg-primary/10 text-primary' : 'text-base-content/80 hover:bg-base-200/60'"
+      >{{ page.link_text }}</a>
+    </div>
+  {% endfor %}
+</div>
