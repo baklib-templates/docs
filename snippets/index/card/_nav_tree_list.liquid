@@ -1,0 +1,36 @@
+{%# locals: (current_path:) %}
+
+{% assign root_nav_list = site | nav_tree: 1, include_settings: 'icon' %}
+<div class="space-y-6 custom-menu">
+  <div class="space-y-1">
+    {% for item in root_nav_list %}
+      {% if item.children_count > 0 %}
+        <div class="min-w-0 max-w-full space-y-0.5">
+          <a
+            href="{{ item.path }}"
+            data-turbo-frame="main-content-frame"
+            data-turbo-action="advance"
+            class="flex min-w-0 items-center gap-2.5 pl-3 text-sm font-semibold line-clamp-1 rounded-lg py-1.5 transition-colors outline-offset-[-1px]"
+            :class="channelPathActive('{{ item.path }}', 0, true) ? 'text-primary' : 'texs-base-content hover:bg-base-200/60'"
+          >{{ item.link_text }}</a>
+          {% assign child_page = site.pages[item.path] %}
+          {% render 'index/card/nav_tree_switch', page: child_page, current_path: current_path %}
+        </div>
+      {% else %}
+        <a
+          href="{{ item.path }}"
+          data-turbo-frame="main-content-frame"
+          data-turbo-action="advance"
+          class="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm font-medium transition-colors"
+          :class="channelPathActive('{{ item.path }}', 0, true) ? 'bg-primary/10 text-primary' : 'text-base-content/80 hover:bg-base-200/60'"
+        >
+          {% assign icon_url = item.settings.icon | presence %}
+          {% if icon_url %}
+            <img src="{{ icon_url }}" alt="" class="size-4 shrink-0 rounded object-cover" width="16" height="16" loading="lazy" decoding="async" />
+          {% endif %}
+          <span class="line-clamp-1">{{ item.link_text }}</span>
+        </a>
+      {% endif %}
+    {% endfor %}
+  </div>
+</div>

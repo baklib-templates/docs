@@ -14,10 +14,10 @@
       "shared": {
         "groups": {
           "home_config": "Startseiten-Konfiguration",
-          "home_config_info": "Entweder: ① „Site-Seite auf der Startseite“ setzen — Inhalt dieser Seite bei /; ② leer lassen — Karten-Dokulayout-Standardstartseite aus den Feldern unten (Hero, Schnellstart usw.). Seiten können in den Seiteneinstellungen für den Schnellstart aktiviert werden.",
-          "home_config_info_style_one": "Wählen Sie: ① „Startseiten-Seite“ unter / setzen; ② leer lassen — Klassisches-Layout-Standardstartseite unten (Verlaufs-Hero, Kanal-Karten usw.).",
+          "home_config_info_default": "Wählen Sie: ① „Startseiten-Seite“ unter / setzen; ② leer lassen — Klassisches-Layout-Standardstartseite unten (Verlaufs-Hero, Kanal-Karten usw.).",
           "chrome": "Layout & Navigation",
-          "home_config_info_style_three": "Wählen Sie: ① „Startseiten-Seite“ unter / setzen; ② leer lassen — Baum-Dokulayout-Standardstartseite unten (Titel, Schnellführer, Empfehlungen, Hilfe-Banner)."
+          "home_config_info_card": "Entweder: ① „Site-Seite auf der Startseite“ setzen — Inhalt dieser Seite bei /; ② leer lassen — Karten-Dokulayout-Standardstartseite aus den Feldern unten (Hero, Schnellstart usw.). Seiten können in den Seiteneinstellungen für den Schnellstart aktiviert werden.",
+          "home_config_info_tree": "Wählen Sie: ① „Startseiten-Seite“ unter / setzen; ② leer lassen — Baum-Dokulayout-Standardstartseite unten (Titel, Schnellführer, Empfehlungen, Hilfe-Banner)."
         },
         "settings": {
           "home_page_path": {
@@ -34,7 +34,7 @@
           }
         }
       },
-      "style_one": {
+      "default": {
         "name": "Klassisches Layout",
         "description": "Vertrautes Layout mit sanftem Verlaufs-Hero und 3-spaltigem Einstiegsraster – sicherer Standard für Produktdokumentation.",
         "settings": {
@@ -79,12 +79,12 @@
           }
         }
       },
-      "style_two": {
-        "name": "Karten-Dokulayout",
-        "description": "Karten-Dokulayout: linke Sidebar mit Logo, Suche und gruppiertem Navigationsbaum; Dokumentkörper mit Eyebrow, Copy page und Inhaltsverzeichnis; KI-Sidebar und Suchmodal wie bei anderen Layouts.",
+      "tree": {
+        "name": "Baum-Dokulayout",
+        "description": "Baum-Dokulayout: Startseite mit Haupttitel, Schnellführer-Karten, Empfehlungsliste und Feedback-Banner unten; KI-Seitenleiste und Suchmodal wie bei anderen Layouts.",
         "settings": {
           "left_sidebar_width": {
-            "info": "Karten-Layout-Sidebar schmaler; empfohlen 280px"
+            "info": "Baum-Layout-Seitenleiste empfohlen 264px (16,5rem)"
           },
           "search_hot_keywords": {
             "default": "Schnellstart\nFAQ\nKonfiguration\nEinsteigerleitfaden"
@@ -121,12 +121,12 @@
           }
         }
       },
-      "style_three": {
-        "name": "Baum-Dokulayout",
-        "description": "Baum-Dokulayout: Startseite mit Haupttitel, Schnellführer-Karten, Empfehlungsliste und Feedback-Banner unten; KI-Seitenleiste und Suchmodal wie bei anderen Layouts.",
+      "card": {
+        "name": "Karten-Dokulayout",
+        "description": "Karten-Dokulayout: linke Sidebar mit Logo, Suche und gruppiertem Navigationsbaum; Dokumentkörper mit Eyebrow, Copy page und Inhaltsverzeichnis; KI-Sidebar und Suchmodal wie bei anderen Layouts.",
         "settings": {
           "left_sidebar_width": {
-            "info": "Baum-Layout-Seitenleiste empfohlen 264px (16,5rem)"
+            "info": "Karten-Layout-Sidebar schmaler; empfohlen 280px"
           },
           "right_sidebar_width": {
             "info": "TOC-Seitenleiste, empfohlen 240px"

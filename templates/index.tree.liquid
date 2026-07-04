@@ -1,0 +1,114 @@
+{% render 'index/tree/container', page: page %}
+
+{% schema %}
+  {
+    "name": "t:schema.templates.index.tree.name",
+    "description": "t:schema.templates.index.tree.description",
+    "thumb_url": "images/theme/${lang}/index-tree.png",
+    "preview_image_urls": [
+      "images/theme/${lang}/index-tree.png"
+    ],
+    "sub_page_templates": ["page"],
+    "force_sub_page_template": true,
+    "settings": [
+      { "type": "header", "content": "t:schema.templates.index.shared.groups.home_config" },
+      { "type": "paragraph", "content": "t:schema.templates.index.shared.groups.home_config_info_tree" },
+      {
+        "id": "home_page_path",
+        "type": "text",
+        "label": "t:schema.templates.index.shared.settings.home_page_path.label",
+        "info": "t:schema.templates.index.shared.settings.home_page_path.info",
+        "placeholder": "/docs/getting-started"
+      },
+      {
+        "id": "home_hero_title",
+        "type": "text",
+        "label": "t:schema.templates.index.tree.settings.home_hero_title.label",
+        "default": "t:schema.templates.index.tree.settings.home_hero_title.default"
+      },
+      {
+        "id": "home_hero_description",
+        "type": "textarea",
+        "label": "t:schema.templates.index.tree.settings.home_hero_description.label",
+        "default": "t:schema.templates.index.tree.settings.home_hero_description.default",
+        "rows": 3
+      },
+      {
+        "id": "search_hot_keywords",
+        "type": "textarea",
+        "label": "t:schema.templates.index.shared.settings.search_hot_keywords.label",
+        "info": "t:schema.templates.index.shared.settings.search_hot_keywords.info",
+        "default": "t:schema.templates.index.tree.settings.search_hot_keywords.default",
+        "rows": 4
+      },
+      {
+        "id": "home_guide_section_title",
+        "type": "text",
+        "label": "t:schema.templates.index.tree.settings.home_guide_section_title.label",
+        "default": "t:schema.templates.index.tree.settings.home_guide_section_title.default"
+      },
+      {
+        "id": "home_show_guide_section",
+        "type": "checkbox",
+        "label": "t:schema.templates.index.tree.settings.home_show_guide_section.label",
+        "default": true
+      },
+      {
+        "id": "home_recommended_title",
+        "type": "text",
+        "label": "t:schema.templates.index.tree.settings.home_recommended_title.label",
+        "default": "t:schema.templates.index.tree.settings.home_recommended_title.default"
+      },
+      {
+        "id": "home_show_recommended",
+        "type": "checkbox",
+        "label": "t:schema.templates.index.tree.settings.home_show_recommended.label",
+        "default": true
+      },
+      {
+        "id": "home_help_title",
+        "type": "text",
+        "label": "t:schema.templates.index.tree.settings.home_help_title.label",
+        "default": "t:schema.templates.index.tree.settings.home_help_title.default"
+      },
+      {
+        "id": "home_help_description",
+        "type": "textarea",
+        "label": "t:schema.templates.index.tree.settings.home_help_description.label",
+        "default": "t:schema.templates.index.tree.settings.home_help_description.default",
+        "rows": 3
+      },
+
+      { "type": "header", "content": "t:schema.templates.index.shared.groups.chrome" },
+      {
+        "id": "screen_width",
+        "type": "radio",
+        "label": "t:schema.generic.settings.screen_width.label",
+        "choices": [
+          { "label": "t:schema.generic.settings.screen_width.choices.narrow", "value": "1024px" },
+          { "label": "t:schema.generic.settings.screen_width.choices.medium", "value": "1280px" },
+          { "label": "t:schema.generic.settings.screen_width.choices.wide", "value": "1536px" },
+          { "label": "t:schema.generic.settings.screen_width.choices.full", "value": "100%" }
+        ],
+        "default": "1536px"
+      },
+      {
+        "id": "left_sidebar_width",
+        "type": "range",
+        "label": "t:schema.generic.settings.left_sidebar_width.label",
+        "min": 200,
+        "max": 600,
+        "step": 1,
+        "default": 300,
+        "info": "t:schema.templates.index.tree.settings.left_sidebar_width.info"
+      },
+      {
+        "id": "links_html",
+        "type": "html",
+        "label": "t:schema.templates.index.shared.settings.links_html.label",
+        "info": "t:schema.templates.index.shared.settings.links_html.info",
+        "rows": 10
+      }
+    ]
+  }
+{% endschema %}

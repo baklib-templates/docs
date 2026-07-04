@@ -1,0 +1,40 @@
+{% comment %} 无推荐文章时的示例列表（父级 ul 内） {% endcomment %}
+<li>
+  <div class="flex items-center justify-between gap-3 px-5 py-3.5">
+    <div class="flex min-w-0 items-center gap-3">
+      <span class="flex size-8 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+        <i class="ri-file-text-line text-sm" aria-hidden="true"></i>
+      </span>
+      <span class="line-clamp-2 text-sm font-medium text-base-content/80">
+        {{ 'snippets.default.home.rec_default_1' | t: '快速开始：环境准备与首次部署' }}
+      </span>
+    </div>
+    <span class="shrink-0 text-[0.7rem] text-base-content/45">{{ 'snippets.default.home.tag_recent' | t: '最近更新' }}</span>
+  </div>
+</li>
+<li>
+  <div class="flex items-center justify-between gap-3 px-5 py-3.5">
+    <div class="flex min-w-0 items-center gap-3">
+      <span class="flex size-8 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+        <i class="ri-file-text-line text-sm" aria-hidden="true"></i>
+      </span>
+      <span class="line-clamp-2 text-sm font-medium text-base-content/80">
+        {{ 'snippets.default.home.rec_default_2' | t: 'API 认证与调用示例' }}
+      </span>
+    </div>
+    <span class="shrink-0 text-[0.7rem] text-base-content/45">{{ 'snippets.default.home.tag_recent' | t: '最近更新' }}</span>
+  </div>
+</li>
+<li>
+  <div class="flex items-center justify-between gap-3 px-5 py-3.5">
+    <div class="flex min-w-0 items-center gap-3">
+      <span class="flex size-8 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+        <i class="ri-file-text-line text-sm" aria-hidden="true"></i>
+      </span>
+      <span class="line-clamp-2 text-sm font-medium text-base-content/80">
+        {{ 'snippets.default.home.rec_default_3' | t: '常见问题与排错指引' }}
+      </span>
+    </div>
+    <span class="shrink-0 text-[0.7rem] text-base-content/45">{{ 'snippets.default.home.tag_recent' | t: '最近更新' }}</span>
+  </div>
+</li>

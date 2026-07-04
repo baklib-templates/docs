@@ -14,10 +14,10 @@
       "shared": {
         "groups": {
           "home_config": "Configuration de l’accueil",
-          "home_config_info": "Au choix : ① renseigner « Page du site affichée à l’accueil » — contenu de cette page sur / ; ② laisser vide — accueil par défaut disposition doc en cartes via les champs ci-dessous (hero, guide rapide, etc.). Les pages peuvent rejoindre le guide rapide dans leurs paramètres.",
-          "home_config_info_style_one": "Choisissez : ① définir la « page d’accueil du site » sur / ; ② laisser vide — accueil par défaut disposition classique ci-dessous (hero en dégradé, cartes de canaux, etc.).",
+          "home_config_info_default": "Choisissez : ① définir la « page d’accueil du site » sur / ; ② laisser vide — accueil par défaut disposition classique ci-dessous (hero en dégradé, cartes de canaux, etc.).",
           "chrome": "Mise en page & navigation",
-          "home_config_info_style_three": "Choisissez : ① définir la « page d’accueil du site » sur / ; ② laisser vide — accueil par défaut disposition doc en arborescence ci-dessous (titre, guides rapides, recommandations, bannière d’aide)."
+          "home_config_info_card": "Au choix : ① renseigner « Page du site affichée à l’accueil » — contenu de cette page sur / ; ② laisser vide — accueil par défaut disposition doc en cartes via les champs ci-dessous (hero, guide rapide, etc.). Les pages peuvent rejoindre le guide rapide dans leurs paramètres.",
+          "home_config_info_tree": "Choisissez : ① définir la « page d’accueil du site » sur / ; ② laisser vide — accueil par défaut disposition doc en arborescence ci-dessous (titre, guides rapides, recommandations, bannière d’aide)."
         },
         "settings": {
           "home_page_path": {
@@ -34,7 +34,7 @@
           }
         }
       },
-      "style_one": {
+      "default": {
         "name": "Disposition classique",
         "description": "Disposition familière avec hero en dégradé doux et grille d’entrée en 3 colonnes — choix par défaut sûr pour la doc produit.",
         "settings": {
@@ -79,12 +79,12 @@
           }
         }
       },
-      "style_two": {
-        "name": "Disposition doc en cartes",
-        "description": "Disposition doc en cartes : barre latérale avec logo, recherche et navigation groupée ; corps avec eyebrow, Copy page et TOC ; panneau IA et modal de recherche identiques aux autres dispositions.",
+      "tree": {
+        "name": "Disposition doc en arborescence",
+        "description": "Disposition doc en arborescence : accueil avec titre principal, cartes guide rapide, liste recommandée et bannière de retour en bas ; panneau IA et modal de recherche identiques aux autres dispositions.",
         "settings": {
           "left_sidebar_width": {
-            "info": "Barre latérale carte plus étroite ; 280px recommandé"
+            "info": "Barre latérale arborescence recommandée : 264px (16,5rem)"
           },
           "search_hot_keywords": {
             "default": "Démarrage\nFAQ\nConfiguration\nGuide débutant"
@@ -121,12 +121,12 @@
           }
         }
       },
-      "style_three": {
-        "name": "Disposition doc en arborescence",
-        "description": "Disposition doc en arborescence : accueil avec titre principal, cartes guide rapide, liste recommandée et bannière de retour en bas ; panneau IA et modal de recherche identiques aux autres dispositions.",
+      "card": {
+        "name": "Disposition doc en cartes",
+        "description": "Disposition doc en cartes : barre latérale avec logo, recherche et navigation groupée ; corps avec eyebrow, Copy page et TOC ; panneau IA et modal de recherche identiques aux autres dispositions.",
         "settings": {
           "left_sidebar_width": {
-            "info": "Barre latérale arborescence recommandée : 264px (16,5rem)"
+            "info": "Barre latérale carte plus étroite ; 280px recommandé"
           },
           "right_sidebar_width": {
             "info": "TOC latéral, recommandé 240px"

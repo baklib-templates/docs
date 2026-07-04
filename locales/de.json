@@ -27,7 +27,7 @@
       "prev_page": "Zurück",
       "next_page": "Weiter"
     },
-    "style_one": {
+    "default": {
       "search": {
         "ask_ai_section": "KI-Assistent fragen",
         "ask_ai_lead": "Kannst du mir etwas über ",
@@ -69,7 +69,7 @@
       "connect_to_vscode": "Mit VS Code verbinden",
       "connect_to_vscode_description": "MCP Server in VS Code installieren"
     },
-    "style_two": {
+    "tree": {
       "home": {
         "search_placeholder": "Stichwort…",
         "channel_card_fallback_desc": "Dokumentation und Anleitungen zu diesem Thema durchsuchen.",
@@ -123,7 +123,7 @@
     "home": {
       "feedback_btn": "Online-Feedback"
     },
-    "style_three": {
+    "card": {
       "search": {
         "ask_ai_section": "KI-Assistenten fragen",
         "ask_ai_lead": "Erzähle mir von ",
@@ -211,12 +211,12 @@
   "placeholders": {
     "search": ""
   },
-  "style_one": {
+  "default": {
     "search": {
       "ask_ai_message": "Erzähl mir von „%{query}“"
     }
   },
-  "style_three": {
+  "card": {
     "search": {
       "ask_ai_message": "Erzähle mir von \"%{query}\""
     }

@@ -1,0 +1,11 @@
+{% layout none %}
+
+{% assign parent_path = params.parent_path | default: '/' %}
+{% assign current_path = params.current_path | default: '' %}
+<turbo-frame id="index_default_nav_tree_frame_{{ parent_path | replace: '/', '_' }}" class='w-full'>
+  {% assign page1 = site.pages[parent_path] %}
+  {% assign nav_tree = page1 | nav_tree: 2, include_settings: 'icon' %}
+  {% assign depth = params.depth | presence | default: page1.depth %}
+
+  {% render 'index/default/nav_tree', nav_tree: nav_tree, depth: depth, current_path: current_path %}
+</turbo-frame>

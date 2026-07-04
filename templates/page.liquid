@@ -1,17 +1,11 @@
 {% assign index_page = site.pages['/'] %}
 
-{% if index_page.template_style == 'style_one' %}
-	{% render 'index/style_one/container', page: page %}
-{% elsif index_page.template_style == 'style_two' %}
-	{% render 'index/style_two/container', page: page %}
-{% elsif index_page.template_style == 'palm' %}
-	{% render 'index/palm/container', page: page %}
-{% elsif index_page.template_style == 'willow' %}
-	{% render 'index/willow/container', page: page %}
-{% elsif index_page.template_style == 'linden' %}
-	{% render 'index/linden/container', page: page %}
-{% elsif index_page.template_style == 'style_three' %}
-	{% render 'index/style_three/container', page: page %}
+{% if index_page.template_style == blank %}
+	{% render 'index/default/container', page: page %}
+{% elsif index_page.template_style == 'tree' %}
+	{% render 'index/tree/container', page: page %}
+{% elsif index_page.template_style == 'card' %}
+	{% render 'index/card/container', page: page %}
 {% endif %}
 
 {% schema %}

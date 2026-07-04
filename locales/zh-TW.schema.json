@@ -6,10 +6,10 @@
       "shared": {
         "groups": {
           "home_config": "首頁配置",
-          "home_config_info": "二選一：① 填寫「首頁展示的站內頁面」— 訪問 / 時展示該頁內容；② 路徑留空 — 使用本組下方主標題、熱門搜尋、快速指引等項作為 Card文件版面 預設首頁。子頁面可在頁面設置中勾選「顯示在首頁快速指引」。",
-          "home_config_info_style_one": "二選一：① 填寫「首頁展示的站內頁面」— 訪問 / 時展示該頁內容；② 路徑留空 — 使用本組下方配置生成 Class經典版面 預設首頁（漸層 Hero、頻道入門卡片等）。",
-          "home_config_info_style_three": "二選一：① 填寫「首頁展示的站內頁面」— 訪問 / 時展示該頁內容；② 路徑留空 — 使用本組下方配置生成 Tree文件版面 預設首頁（主標題、快速指引卡片、推薦內容列表、反饋橫幅）。",
-          "chrome": "佈局與導覽"
+          "home_config_info_default": "二選一：① 填寫「首頁展示的站內頁面」— 訪問 / 時展示該頁內容；② 路徑留空 — 使用本組下方配置生成 Class經典版面 預設首頁（漸層 Hero、頻道入門卡片等）。",
+          "home_config_info_card": "二選一：① 填寫「首頁展示的站內頁面」— 訪問 / 時展示該頁內容；② 路徑留空 — 使用本組下方主標題、熱門搜尋、快速指引等項作為 Card文件版面 預設首頁。子頁面可在頁面設置中勾選「顯示在首頁快速指引」。",
+          "chrome": "佈局與導覽",
+          "home_config_info_tree": "二選一：① 填寫「首頁展示的站內頁面」— 訪問 / 時展示該頁內容；② 路徑留空 — 使用本組下方配置生成 Tree文件版面 預設首頁（主標題、快速指引卡片、推薦內容列表、反饋橫幅）。"
         },
         "settings": {
           "home_page_path": {
@@ -26,7 +26,7 @@
           }
         }
       },
-      "style_one": {
+      "default": {
         "name": "Class經典版面",
         "description": "經典文件站版面，柔色漸層 Hero + 三列入門卡片，是產品文件最穩的預設款。",
         "settings": {
@@ -71,12 +71,12 @@
           }
         }
       },
-      "style_two": {
-        "name": "Card文件版面",
-        "description": "Card 文件版面：左側欄整合 Logo、搜尋與全站分組導覽；正文支援眉題、Copy page 與頁內目錄；AI 側欄與搜尋彈窗與其他版面一致。",
+      "tree": {
+        "name": "Tree文件版面",
+        "description": "Tree 文件版面：首頁含主標題、快速指引卡片、推薦列表與底部回饋橫幅；AI 側欄與搜尋彈窗與其他版面一致。",
         "settings": {
           "left_sidebar_width": {
-            "info": "Card 側欄較窄，建議 280px"
+            "info": "Tree 文件版面左欄建議 264px（16.5rem）"
           },
           "search_hot_keywords": {
             "default": "快速開始\n常見問題\n配置指南\n新手指南"
@@ -113,12 +113,12 @@
           }
         }
       },
-      "style_three": {
-        "name": "Tree文件版面",
-        "description": "Tree 文件版面：首頁含主標題、快速指引卡片、推薦列表與底部回饋橫幅；AI 側欄與搜尋彈窗與其他版面一致。",
+      "card": {
+        "name": "Card文件版面",
+        "description": "Card 文件版面：左側欄整合 Logo、搜尋與全站分組導覽；正文支援眉題、Copy page 與頁內目錄；AI 側欄與搜尋彈窗與其他版面一致。",
         "settings": {
           "left_sidebar_width": {
-            "info": "Tree 文件版面左欄建議 264px（16.5rem）"
+            "info": "Card 側欄較窄，建議 280px"
           },
           "right_sidebar_width": {
             "info": "頁內目錄側欄，建議 240px"

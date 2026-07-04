@@ -1,0 +1,18 @@
+{%# locals: (page:, current_path:) %}
+
+{% assign count = page.children_in_list | size %}
+{% if count > 0 %}
+  <div class="space-y-[0.15rem] text-[0.85rem] min-w-0 max-w-full">
+    {% if count > 100 %}
+      {% assign parent_path = page.path %}
+      <turbo-frame class='w-full' id="index_card_nav_tree_frame_{{ parent_path | replace: '/', '_' }}" src="{{ statics['index/card/nav_tree'] }}?parent_path={{ parent_path }}" loading="lazy">
+        <div class="flex items-center justify-center h-20 text-base-content/60 bg-none">
+          <span class="loading loading-spinner loading-md"></span>
+        </div>
+      </turbo-frame>
+    {% else %}
+      {% assign data = page | nav_tree: 2 %}
+      {% render 'index/card/nav_tree', nav_tree: data, current_path: current_path %}
+    {% endif %}
+  </div>
+{% endif %}

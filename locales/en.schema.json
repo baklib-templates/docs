@@ -14,10 +14,10 @@
       "shared": {
         "groups": {
           "home_config": "Home settings",
-          "home_config_info": "Choose one: ① Set “Site page shown on home” to display that page at /; ② Leave empty to use the Card docs layout default home fields below (hero, hot keywords, quick guide, etc.). Pages can join Quick guide via page settings.",
-          "home_config_info_style_one": "Choose one: ① Set “Site page shown on home” at /; ② Leave empty to use the Classic layout default home below (gradient hero, channel cards, etc.).",
-          "home_config_info_style_three": "Choose one: ① Set “Site page shown on home” at /; ② Leave empty to use the Tree docs layout default home below (hero, quick guide cards, recommended list, help banner).",
-          "chrome": "Layout & navigation"
+          "home_config_info_default": "Choose one: ① Set “Site page shown on home” at /; ② Leave empty to use the Classic layout default home below (gradient hero, channel cards, etc.).",
+          "home_config_info_card": "Choose one: ① Set “Site page shown on home” to display that page at /; ② Leave empty to use the Card docs layout default home fields below (hero, hot keywords, quick guide, etc.). Pages can join Quick guide via page settings.",
+          "chrome": "Layout & navigation",
+          "home_config_info_tree": "Choose one: ① Set “Site page shown on home” at /; ② Leave empty to use the Tree docs layout default home below (hero, quick guide cards, recommended list, help banner)."
         },
         "settings": {
           "home_page_path": {
@@ -34,7 +34,7 @@
           }
         }
       },
-      "style_one": {
+      "default": {
         "name": "Classic layout",
         "description": "Familiar layout with a gentle gradient hero and a 3-column getting-started grid—the safest default for product docs.",
         "settings": {
@@ -79,12 +79,12 @@
           }
         }
       },
-      "style_two": {
-        "name": "Card docs layout",
-        "description": "Card docs layout: left sidebar with logo, search, and grouped site navigation; document body with eyebrow, Copy page, and in-page TOC; AI sidebar and search modal match other layouts.",
+      "tree": {
+        "name": "Tree docs layout",
+        "description": "Tree docs layout: homepage with hero title, quick-guide cards, recommended list, and bottom feedback banner; AI sidebar and search modal match other layouts.",
         "settings": {
           "left_sidebar_width": {
-            "info": "Card layout sidebar is narrower; recommended 280px"
+            "info": "Tree layout sidebar recommended 264px (16.5rem)"
           },
           "search_hot_keywords": {
             "default": "Getting started\nFAQ\nConfiguration\nBeginner guide"
@@ -121,12 +121,12 @@
           }
         }
       },
-      "style_three": {
-        "name": "Tree docs layout",
-        "description": "Tree docs layout: homepage with hero title, quick-guide cards, recommended list, and bottom feedback banner; AI sidebar and search modal match other layouts.",
+      "card": {
+        "name": "Card docs layout",
+        "description": "Card docs layout: left sidebar with logo, search, and grouped site navigation; document body with eyebrow, Copy page, and in-page TOC; AI sidebar and search modal match other layouts.",
         "settings": {
           "left_sidebar_width": {
-            "info": "Tree layout sidebar recommended 264px (16.5rem)"
+            "info": "Card layout sidebar is narrower; recommended 280px"
           },
           "right_sidebar_width": {
             "info": "In-page TOC sidebar; recommended 240px"

@@ -14,10 +14,10 @@
       "shared": {
         "groups": {
           "home_config": "首页配置",
-          "home_config_info": "二选一：① 填写「首页展示的站内页面」— 访问首页时展示该页内容；② 路径留空 — 使用本组下方主标题、热门搜索、快速指引等项作为 Card文档布局 默认首页。子页面可在页面设置中勾选「显示在首页快速指引」。",
-          "home_config_info_style_one": "二选一：① 填写「首页展示的站内页面」— 访问 / 时展示该页内容；② 路径留空 — 使用本组下方配置生成 Class经典布局 默认首页（渐变 Hero、频道入门卡片等）。",
+          "home_config_info_default": "二选一：① 填写「首页展示的站内页面」— 访问 / 时展示该页内容；② 路径留空 — 使用本组下方配置生成 Class经典布局 默认首页（渐变 Hero、频道入门卡片等）。",
           "chrome": "布局与导航",
-          "home_config_info_style_three": "二选一：① 填写「首页展示的站内页面」— 访问 / 时展示该页内容；② 路径留空 — 使用本组下方配置生成 Tree文档布局 默认首页（主标题、快速指引卡片、推荐内容列表、反馈横幅）。"
+          "home_config_info_card": "二选一：① 填写「首页展示的站内页面」— 访问首页时展示该页内容；② 路径留空 — 使用本组下方主标题、热门搜索、快速指引等项作为 Card文档布局 默认首页。子页面可在页面设置中勾选「显示在首页快速指引」。",
+          "home_config_info_tree": "二选一：① 填写「首页展示的站内页面」— 访问 / 时展示该页内容；② 路径留空 — 使用本组下方配置生成 Tree文档布局 默认首页（主标题、快速指引卡片、推荐内容列表、反馈横幅）。"
         },
         "settings": {
           "home_page_path": {
@@ -34,7 +34,7 @@
           }
         }
       },
-      "style_one": {
+      "default": {
         "name": "Class经典布局",
         "description": "经典文档站布局，柔色渐变 Hero + 三列入门卡片，是产品文档最稳的默认款。",
         "settings": {
@@ -79,12 +79,12 @@
           }
         }
       },
-      "style_two": {
-        "name": "Card文档布局",
-        "description": "Card 文档布局：左侧栏集成 Logo、搜索与全站分组导航；正文支持眉题、Copy page 与页内目录；AI 侧栏与搜索弹窗与其他布局一致。",
+      "tree": {
+        "name": "Tree文档布局",
+        "description": "Tree 文档布局：首页含主标题、快速指引卡片、推荐列表与底部反馈横幅；AI 侧栏与搜索弹窗与其他布局一致。",
         "settings": {
           "left_sidebar_width": {
-            "info": "建议 280px"
+            "info": "Tree文档布局左栏建议 264px（16.5rem）"
           },
           "search_hot_keywords": {
             "default": "快速开始\n常见问题\n配置指南\n新手指南"
@@ -121,12 +121,12 @@
           }
         }
       },
-      "style_three": {
-        "name": "Tree文档布局",
-        "description": "Tree 文档布局：首页含主标题、快速指引卡片、推荐列表与底部反馈横幅；AI 侧栏与搜索弹窗与其他布局一致。",
+      "card": {
+        "name": "Card文档布局",
+        "description": "Card 文档布局：左侧栏集成 Logo、搜索与全站分组导航；正文支持眉题、Copy page 与页内目录；AI 侧栏与搜索弹窗与其他布局一致。",
         "settings": {
           "left_sidebar_width": {
-            "info": "Tree文档布局左栏建议 264px（16.5rem）"
+            "info": "建议 280px"
           },
           "right_sidebar_width": {
             "info": "页内目录侧栏，建议 240px"

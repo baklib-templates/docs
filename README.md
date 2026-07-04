@@ -6,8 +6,8 @@ Baklib **Wiki** documentation theme (`theme_scope`: `wiki`, version **1.2.1**): 
 
 ## Features
 
-- **Three home layouts** — Classic, Card docs, and Tree docs (`style_one` / `style_two` / `style_three`); shared setting field IDs so admin data carries across variants
-- **Unified article chrome** — `page.liquid` reuses the same layout family as the site home (`style_one` | `style_two` | `style_three`)
+- **Three home layouts** — Classic, Tree docs, and Card docs (`index.liquid` / `index.tree.liquid` / `index.card.liquid`, `template_style` blank / `tree` / `card`); shared setting field IDs so admin data carries across variants
+- **Unified article chrome** — `page.liquid` reuses the same layout family as the site home (blank / `tree` / `card`)
 - **AI & search** — AI sidebar, search modal, configurable hot keywords and post-AI completion text
 - **Seven locales** — Runtime UI (`*.json`) and theme-editor copy (`*.schema.json`)
 - **Frontend stack** — Tailwind CSS 4, daisyUI, Stimulus, Alpine.js, Turbo (built from `src/` into `assets/`)
@@ -38,9 +38,9 @@ Baklib **Wiki** documentation theme (`theme_scope`: `wiki`, version **1.2.1**): 
 
 | Template | Variant | At a glance |
 | --- | --- | --- |
-| `index.style_one.liquid` | Classic layout | Gradient hero, channel entry cards, recommended list; the safest default for product docs |
-| `index.style_two.liquid` | Card docs layout | Left sidebar with logo, search, and site nav; outline cards and pill-style search |
-| `index.style_three.liquid` | Tree docs layout | Hero, quick-guide cards, recommended list, and bottom help / feedback banner |
+| `index.liquid` | Classic layout | Gradient hero, channel entry cards, recommended list; the safest default for product docs |
+| `index.tree.liquid` | Tree docs layout | Hero, quick-guide cards, recommended list, and bottom help / feedback banner |
+| `index.card.liquid` | Card docs layout | Left sidebar with logo, search, and site nav; outline cards and pill-style search |
 
 **Home behavior:** set `home_page_path` to a site page path (e.g. `/docs/getting-started`) to show that page at `/`, or leave it empty to render the variant’s default home sections (hero, hot keywords, quick guide, etc.). Pages can join the home quick guide via **Show on home quick guide** in page settings.
 
@@ -48,7 +48,7 @@ Variant-specific markup lives under `snippets/index/<variant>/`. Shared pieces i
 
 ### Article
 
-`templates/page.liquid` — documentation content pages; layout follows `site.pages['/'].template_style` (`style_one`, `style_two`, or `style_three`).
+`templates/page.liquid` — documentation content pages; layout follows `site.pages['/'].template_style` (blank, `tree`, or `card`).
 
 ### Other
 
@@ -99,9 +99,9 @@ assets/images/theme/thumb-indigo.png
 
 ```text
 assets/images/theme/<lang>/
-├── index-style-one.png
-├── index-style-two.png
-├── index-style-three.png
+├── index.png
+├── index-tree.png
+├── index-card.png
 ├── page.png
 └── page-ai.png
 ```

@@ -27,7 +27,7 @@
       "prev_page": "上一頁",
       "next_page": "下一頁"
     },
-    "style_one": {
+    "default": {
       "search": {
         "ask_ai_section": "向 AI 助手提問",
         "ask_ai_lead": "幫我介紹一下",
@@ -69,7 +69,7 @@
       "connect_to_vscode": "連接到 VS Code",
       "connect_to_vscode_description": "在 VS Code 中安裝 MCP Server"
     },
-    "style_two": {
+    "tree": {
       "home": {
         "search_placeholder": "搜尋...",
         "channel_card_fallback_desc": "進入該專題瀏覽相關文件與說明。",
@@ -98,7 +98,7 @@
         "ask_ai_query_display": "「%{query}」"
       }
     },
-    "style_three": {
+    "card": {
       "search": {
         "ask_ai_section": "向 AI 助手提問",
         "ask_ai_lead": "幫我介紹一下",
@@ -210,12 +210,12 @@
   "placeholders": {
     "search": ""
   },
-  "style_one": {
+  "default": {
     "search": {
       "ask_ai_message": "請介紹一下「%{query}」"
     }
   },
-  "style_three": {
+  "card": {
     "search": {
       "ask_ai_message": "請介紹一下「%{query}」"
     }
