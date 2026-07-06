@@ -244,6 +244,16 @@
             </div>
           </div>
         </template>
+        <template data-ai-search-target="statusMessageTemplate">
+          <div
+            class="ai-chat-status flex items-center gap-2 text-[0.875rem] leading-[1.65] text-base-content/60"
+            role="status"
+            aria-live="polite"
+          >
+            <span class="loading loading-spinner loading-xs shrink-0 text-primary" aria-hidden="true"></span>
+            <span class="ai-chat-status-text"></span>
+          </div>
+        </template>
         <template data-ai-search-target="assistantMessageTemplate">
           <div class="ai-chat-assistant-round flex flex-col gap-1">
             <div
@@ -293,6 +303,17 @@
     <div class="max-w-[88%] rounded-2xl bg-base-200 px-3 py-2">
       <p class="ai-user-message break-words text-[0.875rem] leading-[1.65] text-base-content"></p>
     </div>
+  </div>
+</template>
+
+<template data-ai-search-target="statusMessageTemplate">
+  <div
+    class="ai-chat-status flex items-center gap-2 text-[0.875rem] leading-[1.65] text-base-content/60"
+    role="status"
+    aria-live="polite"
+  >
+    <span class="loading loading-spinner loading-xs shrink-0 text-primary" aria-hidden="true"></span>
+    <span class="ai-chat-status-text"></span>
   </div>
 </template>
 

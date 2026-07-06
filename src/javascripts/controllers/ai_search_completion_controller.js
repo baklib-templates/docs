@@ -12,6 +12,7 @@ export default class extends Controller {
     "clearButton",
     "userMessageTemplate",
     "assistantMessageTemplate",
+    "statusMessageTemplate",
     "retryButton",
   ];
   static classes = ["hidden"];
@@ -455,6 +456,8 @@ export default class extends Controller {
     const disableMarkdownStyle = () => renderedEl?.classList.remove("chat-message");
 
     if (status === "error") {
+      roundEl?.classList.remove("ai-chat-assistant-round--loading");
+      roundEl?.setAttribute("aria-busy", "false");
       const button = this.retryButton.cloneNode(true);
       button.dataset.idx = String(idx);
       button.classList.remove("hidden");
@@ -473,11 +476,15 @@ export default class extends Controller {
       return;
     }
 
+    const isLoading = status === "status" || (status === "streaming" && !content);
+    roundEl?.classList.toggle("ai-chat-assistant-round--loading", isLoading);
+    roundEl?.setAttribute("aria-busy", isLoading ? "true" : "false");
+
     if (status === "canceled" || status === "status") {
       if (contentEl) contentEl.textContent = "";
       if (renderedEl) {
         disableMarkdownStyle();
-        renderedEl.innerHTML = `<span class="text-base-content/50">${this.escapeHTML(content)}</span>`;
+        renderedEl.innerHTML = this.#renderStatusHtml(content);
       }
       return;
     }
@@ -488,8 +495,26 @@ export default class extends Controller {
       this.#triggerMarkdown(markdownRoot);
     } else if (renderedEl) {
       disableMarkdownStyle();
-      renderedEl.innerHTML = `<span class="text-base-content/50">${this.messagesValue.thinking}</span>`;
+      renderedEl.innerHTML = this.#renderStatusHtml(this.#defaultThinkingLabel());
     }
+  }
+
+  #defaultThinkingLabel() {
+    return this.messagesValue?.thinking_status || this.messagesValue?.thinking || "";
+  }
+
+  #renderStatusHtml(text) {
+    const label = (text || this.#defaultThinkingLabel()).trim();
+    if (this.hasStatusMessageTemplateTarget) {
+      const tpl = this.statusMessageTemplateTarget.content.cloneNode(true);
+      const textEl = tpl.querySelector(".ai-chat-status-text");
+      if (textEl) textEl.textContent = label;
+      const mount = document.createElement("div");
+      mount.appendChild(tpl);
+      return mount.innerHTML;
+    }
+
+    return `<div class="ai-chat-status flex items-center gap-2 text-[0.875rem] leading-[1.65] text-base-content/60" role="status" aria-live="polite"><span class="loading loading-spinner loading-xs shrink-0 text-primary" aria-hidden="true"></span><span class="ai-chat-status-text">${this.escapeHTML(label)}</span></div>`;
   }
 
   #triggerMarkdown(markdownRoot) {
