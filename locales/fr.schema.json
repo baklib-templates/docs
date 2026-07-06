@@ -123,7 +123,7 @@
       },
       "card": {
         "name": "Disposition doc en cartes",
-        "description": "Disposition doc en cartes : barre latérale avec logo, recherche et navigation groupée ; corps avec eyebrow, Copy page et TOC ; panneau IA et modal de recherche identiques aux autres dispositions.",
+        "description": "Disposition doc en cartes : barre latérale avec logo, recherche et navigation groupée ; corps avec eyebrow, Copy et TOC ; panneau IA et modal de recherche identiques aux autres dispositions.",
         "settings": {
           "left_sidebar_width": {
             "info": "Barre latérale carte plus étroite ; 280px recommandé"

@@ -123,7 +123,7 @@
       },
       "card": {
         "name": "Karten-Dokulayout",
-        "description": "Karten-Dokulayout: linke Sidebar mit Logo, Suche und gruppiertem Navigationsbaum; Dokumentkörper mit Eyebrow, Copy page und Inhaltsverzeichnis; KI-Sidebar und Suchmodal wie bei anderen Layouts.",
+        "description": "Karten-Dokulayout: linke Sidebar mit Logo, Suche und gruppiertem Navigationsbaum; Dokumentkörper mit Eyebrow, Copy und Inhaltsverzeichnis; KI-Sidebar und Suchmodal wie bei anderen Layouts.",
         "settings": {
           "left_sidebar_width": {
             "info": "Karten-Layout-Sidebar schmaler; empfohlen 280px"

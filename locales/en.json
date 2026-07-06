@@ -57,7 +57,7 @@
       }
     },
     "page_tools": {
-      "copy_page_label": "Copy page",
+      "copy_page_label": "Copy",
       "copy_page_description": "Copy this page as Markdown for LLMs",
       "open_in_chatgpt": "Open in ChatGPT",
       "open_in_claude": "Open in Claude",

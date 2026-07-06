@@ -115,7 +115,7 @@
       },
       "card": {
         "name": "Card文件版面",
-        "description": "Card 文件版面：左側欄整合 Logo、搜尋與全站分組導覽；正文支援眉題、Copy page 與頁內目錄；AI 側欄與搜尋彈窗與其他版面一致。",
+        "description": "Card 文件版面：左側欄整合 Logo、搜尋與全站分組導覽；正文支援眉題、Copy 與頁內目錄；AI 側欄與搜尋彈窗與其他版面一致。",
         "settings": {
           "left_sidebar_width": {
             "info": "Card 側欄較窄，建議 280px"

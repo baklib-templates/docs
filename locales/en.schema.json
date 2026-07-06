@@ -123,7 +123,7 @@
       },
       "card": {
         "name": "Card docs layout",
-        "description": "Card docs layout: left sidebar with logo, search, and grouped site navigation; document body with eyebrow, Copy page, and in-page TOC; AI sidebar and search modal match other layouts.",
+        "description": "Card docs layout: left sidebar with logo, search, and grouped site navigation; document body with eyebrow, Copy, and in-page TOC; AI sidebar and search modal match other layouts.",
         "settings": {
           "left_sidebar_width": {
             "info": "Card layout sidebar is narrower; recommended 280px"

@@ -123,7 +123,7 @@
       },
       "card": {
         "name": "Card文档布局",
-        "description": "Card 文档布局：左侧栏集成 Logo、搜索与全站分组导航；正文支持眉题、Copy page 与页内目录；AI 侧栏与搜索弹窗与其他布局一致。",
+        "description": "Card 文档布局：左侧栏集成 Logo、搜索与全站分组导航；正文支持眉题、Copy 与页内目录；AI 侧栏与搜索弹窗与其他布局一致。",
         "settings": {
           "left_sidebar_width": {
             "info": "建议 280px"

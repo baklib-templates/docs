@@ -1,6 +1,6 @@
 {% if page.path != site.index_path %}
 <div
-  class="join shrink-0 rounded-md border border-base-300 bg-base-100"
+  class="join shrink-0 rounded-md border border-gray-100 bg-gray-100"
   data-controller="copy-page page-tools"
   data-copy-page-copying-text-value="{{ "templates.page.llm_copying"  | t: '复制中...'  }}"
   data-copy-page-success-text-value="{{ 'templates.page.llm_copied' | t: '已复制' }}"
@@ -10,7 +10,7 @@
   data-page-tools-llm-prompt-value="{{ 'templates.page.llm_prompt_template' | t, url: page.markdown_url }}"
   data-page-tools-mcp-url-value="{{ site.mcp_url }}"
 >
-  <button type="button" class="btn btn-ghost btn-sm join-item border-0 bg-transparent hover:bg-base-200 px-4"
+  <button type="button" class="btn btn-ghost btn-sm bg-gray-100 hover:bg-gray-200 px-4"
     data-action="copy-page#copyPage">
     <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor"
       stroke-width="2">
@@ -19,16 +19,16 @@
     </svg>
     <span data-copy-page-target="buttonLabel">{{ 'snippets.page_tools.copy_page_label' | t }}</span>
   </button>
-  <div class="dropdown dropdown-end join-item">
+  <div class="dropdown dropdown-end bg-gray-100 rounded-r-md">
     <div tabindex="0" role="button"
-      class="btn btn-ghost btn-sm rounded-none border-0 border-l border-base-300 bg-transparent px-3 hover:bg-base-200">
+      class="btn btn-ghost btn-sm rounded-none bg-transparent px-3 hover:bg-base-300">
       <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor"
         stroke-width="2">
         <path stroke-linecap="round" stroke-linejoin="round" d="m6 9 6 6 6-6"></path>
       </svg>
     </div>
     <ul tabindex="-1"
-      class="dropdown-content menu bg-base-100 rounded-box z-10 mt-2 min-w-80 p-2 shadow-sm border border-base-300">
+      class="dropdown-content menu bg-base-100 rounded-box z-10 mt-2 min-w-80 p-2 shadow-sm border border-base-200">
       <li>
         <button type="button" class="group flex items-start gap-2.5 rounded-xl p-2 text-left"
           data-action="copy-page#copyPage">
