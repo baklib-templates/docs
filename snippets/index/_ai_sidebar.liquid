@@ -6,7 +6,7 @@
   <div class="absolute inset-0 bg-black/40 touch-none" @click="isAiOpen = false" @touchmove.prevent></div>
   <div
     class="absolute inset-x-0 bottom-0 h-[86vh] rounded-t-2xl bg-base-100 shadow-2xl flex flex-col overflow-hidden touch-pan-y">
-    <div x-data="{ touchStartY: 0, dragY: 0, dragging: false }" class="touch-none shrink-0"
+    <div x-data="{ touchStartY: 0, dragY: 0, dragging: false }" class="touch-none shrink-0 bg-base-200"
       @touchstart.passive="touchStartY = $event.touches[0].clientY; dragging = true"
       @touchmove="if (!dragging) return; let moved = $event.touches[0].clientY - touchStartY; dragY = moved > 0 ? moved : 0; $event.preventDefault(); $el.parentElement.style.transform = `translateY(${dragY}px)`; $el.parentElement.style.transition = 'none';"
       @touchend="if (dragY > 120) { isAiOpen = false }; dragging = false; dragY = 0; $el.parentElement.style.transform = ''; $el.parentElement.style.transition = 'transform 0.2s ease-out';"
@@ -32,25 +32,28 @@
     %}
     <div class="px-4 pb-4 shrink-0">
       <div
-        class="flex flex-col w-full rounded-2xl bg-base-100 border border-base-200 focus-within:border-primary transition-colors">
-        <div class="relative flex items-end">
-          <textarea
-            data-ai-search-target="input"
-            data-action="input->ai-search#syncSendButton keydown->ai-search#onInputKeydown"
-            class="w-full bg-transparent border-0 text-base-content placeholder-base-content/50 focus:outline-none focus:ring-0 py-2.5 pl-3.5 pr-10 text-[0.85rem] !pb-0 resize-none"
-            placeholder="{{ ai_input_placeholder }}" style="height: 50px;"></textarea>
-        </div>
-        <div class="flex items-center justify-between px-2 pb-2">
-          <button type="button" class="btn btn-ghost btn-sm btn-square text-base-content/60"
-            aria-label="{{ 'snippets.ai.add_attachment' | t: '添加附件' }}">
-            <i class="ri-attachment-line leading-none" aria-hidden="true"></i>
-          </button>
-          <button class="btn btn-circle btn-ghost btn-sm bg-primary/10 text-primary"
-            data-ai-search-target="send"
-            data-action="click->ai-search#send"
-            aria-label="{{ "snippets.ai.send" | t: "发送" }}" disabled>
-            <i class="ri-arrow-up-line leading-none" aria-hidden="true"></i>
-          </button>
+        class="w-full rounded-2xl bg-gradient-to-r from-primary/20 via-accent/15 to-primary/20 p-px shadow-[0_0_40px_-8px] shadow-primary/20 transition-shadow duration-300 focus-within:from-primary/30 focus-within:via-accent/25 focus-within:to-primary/30 focus-within:shadow-[0_0_48px_-4px] focus-within:shadow-primary/30">
+        <div
+          class="flex flex-col w-full rounded-[calc(1rem-1px)] border border-base-200/80 bg-base-100/90 backdrop-blur-xl transition-colors focus-within:border-primary">
+          <div class="relative flex items-end">
+            <textarea
+              data-ai-search-target="input"
+              data-action="input->ai-search#syncSendButton keydown->ai-search#onInputKeydown"
+              class="w-full bg-transparent border-0 text-base-content placeholder-base-content/50 focus:outline-none focus:ring-0 py-2.5 pl-3.5 pr-10 text-[0.85rem] !pb-0 resize-none"
+              placeholder="{{ ai_input_placeholder }}" style="height: 50px;"></textarea>
+          </div>
+          <div class="flex items-center justify-between px-2 pb-2">
+            <button type="button" class="btn btn-ghost btn-sm btn-square text-base-content/60"
+              aria-label="{{ 'snippets.ai.add_attachment' | t: '添加附件' }}">
+              <i class="ri-attachment-line leading-none" aria-hidden="true"></i>
+            </button>
+            <button class="btn btn-circle btn-ghost btn-sm bg-primary/10 text-primary"
+              data-ai-search-target="send"
+              data-action="click->ai-search#send"
+              aria-label="{{ "snippets.ai.send" | t: "发送" }}" disabled>
+              <i class="ri-arrow-up-line leading-none" aria-hidden="true"></i>
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -59,7 +62,7 @@
 
 {% comment %} AI Assistant 侧边栏（桌面） {% endcomment %}
 <div
-  class="hidden lg:flex bg-base-200 overflow-hidden z-50 w-[var(--ai-sidebar-width,340px)] sticky top-0 max-h-screen overflow-y-auto transition-[width] duration-300 [.resize-bar-dragging_&]:transition-none"
+  class="hidden lg:flex bg-base-200 rounded-l-2xl overflow-hidden z-50 w-[var(--ai-sidebar-width,340px)] sticky top-0 max-h-screen overflow-y-auto transition-[width] duration-300 [.resize-bar-dragging_&]:transition-none"
   x-show="isAiOpen"
   x-transition:enter="transition ease-out duration-300"
   x-transition:enter-start="opacity-0 translate-x-full"
@@ -83,7 +86,7 @@
     data-resize-bar-target="bar">
   </div>
   <div
-    class="relative flex flex-col flex-1 bg-base-100 min-w-0 min-h-0"
+    class="relative flex flex-col flex-1 bg-base-200 min-w-0 min-h-0"
     data-controller="ai-pip"
     data-ai-pip-unsupported-message-value="{{ 'snippets.ai.pop_out_unsupported' | t: '当前浏览器不支持独立窗口' | escape }}"
     data-ai-pip-pop-out-label-value="{{ 'snippets.ai.pop_out_window' | t: '独立窗口' | escape }}"
@@ -106,7 +109,7 @@
 
     <div data-ai-pip-target="panel" class="flex min-h-0 flex-1 flex-col">
       <!-- AI Header -->
-      <div class="flex items-center justify-between px-4 py-3 border-b border-base-200 shrink-0">
+      <div class="flex items-center justify-between px-4 py-3 border-b border-base-300 shrink-0">
         <div class="flex items-center gap-2 font-bold text-base-content text-[0.95rem]">
           <i class="ri-sparkling-2-line size-4 text-primary leading-none" aria-hidden="true"></i>
           {{ "snippets.ai.assistant_title" | t: "AI 助手" }}
@@ -152,31 +155,34 @@
       <!-- AI Input Area -->
       <div class="px-4 pb-4 shrink-0 mt-2">
         <div
-          class="flex flex-col w-full rounded-2xl pointer-events-auto bg-base-100 border border-base-200 focus-within:border-primary transition-colors">
-          <div class="relative flex items-end">
-            <textarea
-              data-ai-search-target="input"
-              data-action="input->ai-search#syncSendButton keydown->ai-search#onInputKeydown"
-              class="w-full bg-transparent border-0 text-base-content placeholder-base-content/50 focus:outline-none focus:ring-0 py-2.5 pl-3.5 pr-10 text-[0.85rem] !pb-0 resize-none"
-              placeholder="{{ "snippets.ai.input_placeholder" | t: "输入你的问题…" }}" style="height: 50px;"></textarea>
-          </div>
-          <div class="flex items-center justify-between px-2 pb-2">
-            {% if false %}
-              <input type="file" class="hidden">
-              <button type="button"
-                class="btn btn-ghost btn-sm btn-square text-base-content/60 hover:text-base-content"
-                aria-label="{{ 'snippets.ai.add_attachment' | t: '添加附件' }}">
-                <i class="ri-attachment-line leading-none" aria-hidden="true"></i>
+          class="pointer-events-auto w-full rounded-2xl bg-gradient-to-r from-primary/20 via-accent/15 to-primary/20 p-px shadow-[0_0_40px_-8px] shadow-primary/20 transition-shadow duration-300 focus-within:from-primary/30 focus-within:via-accent/25 focus-within:to-primary/30 focus-within:shadow-[0_0_48px_-4px] focus-within:shadow-primary/30">
+          <div
+            class="flex flex-col w-full rounded-[calc(1rem-1px)] border border-base-200/80 bg-base-100/90 backdrop-blur-xl transition-colors focus-within:border-primary">
+            <div class="relative flex items-end">
+              <textarea
+                data-ai-search-target="input"
+                data-action="input->ai-search#syncSendButton keydown->ai-search#onInputKeydown"
+                class="w-full bg-transparent border-0 text-base-content placeholder-base-content/50 focus:outline-none focus:ring-0 py-2.5 pl-3.5 pr-10 text-[0.85rem] !pb-0 resize-none"
+                placeholder="{{ "snippets.ai.input_placeholder" | t: "输入你的问题…" }}" style="height: 50px;"></textarea>
+            </div>
+            <div class="flex items-center justify-between px-2 pb-2">
+              {% if false %}
+                <input type="file" class="hidden">
+                <button type="button"
+                  class="btn btn-ghost btn-sm btn-square text-base-content/60 hover:text-base-content"
+                  aria-label="{{ 'snippets.ai.add_attachment' | t: '添加附件' }}">
+                  <i class="ri-attachment-line leading-none" aria-hidden="true"></i>
+                </button>
+              {% endif %}
+              <span class="flex-1"></span>
+              <button
+                class="btn btn-circle btn-ghost btn-sm bg-primary/10 text-primary"
+                data-ai-search-target="send"
+                data-action="click->ai-search#send"
+                aria-label="{{ "snippets.ai.send" | t: "发送" }}" disabled>
+                <i class="ri-arrow-up-line leading-none" aria-hidden="true"></i>
               </button>
-            {% endif %}
-            <span class="flex-1"></span>
-            <button
-              class="btn btn-circle btn-ghost btn-sm bg-primary/10 text-primary"
-              data-ai-search-target="send"
-              data-action="click->ai-search#send"
-              aria-label="{{ "snippets.ai.send" | t: "发送" }}" disabled>
-              <i class="ri-arrow-up-line leading-none" aria-hidden="true"></i>
-            </button>
+            </div>
           </div>
         </div>
       </div>
@@ -204,26 +210,30 @@
           messages_class: 'flex flex-col gap-3 py-4'
         %}
         <div class="shrink-0 px-4 pb-4">
-          <div class="flex flex-col w-full rounded-2xl bg-base-100 border border-base-200 focus-within:border-primary transition-colors">
-            <div class="relative flex items-end">
-              <textarea
-                data-ai-search-target="input"
-                data-action="input->ai-search#syncSendButton keydown->ai-search#onInputKeydown"
-                class="w-full bg-transparent border-0 text-base-content placeholder-base-content/50 focus:outline-none focus:ring-0 py-2.5 pl-3.5 pr-10 text-[0.85rem] !pb-0 resize-none"
-                placeholder="{{ "snippets.ai.input_placeholder" | t: "输入你的问题…" }}"
-                style="height: 50px;"
-              ></textarea>
-            </div>
-            <div class="flex items-center justify-between px-2 pb-2">
-              <button
-                class="btn btn-circle btn-ghost btn-sm bg-primary/10 text-primary"
-                data-ai-search-target="send"
-                data-action="click->ai-search#send"
-                aria-label="{{ "snippets.ai.send" | t: "发送" }}"
-                disabled
-              >
-                <i class="ri-arrow-up-line leading-none" aria-hidden="true"></i>
-              </button>
+          <div
+            class="w-full rounded-2xl bg-gradient-to-r from-primary/20 via-accent/15 to-primary/20 p-px shadow-[0_0_40px_-8px] shadow-primary/20 transition-shadow duration-300 focus-within:from-primary/30 focus-within:via-accent/25 focus-within:to-primary/30 focus-within:shadow-[0_0_48px_-4px] focus-within:shadow-primary/30">
+            <div
+              class="flex flex-col w-full rounded-[calc(1rem-1px)] border border-base-200/80 bg-base-100/90 backdrop-blur-xl transition-colors focus-within:border-primary">
+              <div class="relative flex items-end">
+                <textarea
+                  data-ai-search-target="input"
+                  data-action="input->ai-search#syncSendButton keydown->ai-search#onInputKeydown"
+                  class="w-full bg-transparent border-0 text-base-content placeholder-base-content/50 focus:outline-none focus:ring-0 py-2.5 pl-3.5 pr-10 text-[0.85rem] !pb-0 resize-none"
+                  placeholder="{{ "snippets.ai.input_placeholder" | t: "输入你的问题…" }}"
+                  style="height: 50px;"
+                ></textarea>
+              </div>
+              <div class="flex items-center justify-between px-2 pb-2">
+                <button
+                  class="btn btn-circle btn-ghost btn-sm bg-primary/10 text-primary"
+                  data-ai-search-target="send"
+                  data-action="click->ai-search#send"
+                  aria-label="{{ "snippets.ai.send" | t: "发送" }}"
+                  disabled
+                >
+                  <i class="ri-arrow-up-line leading-none" aria-hidden="true"></i>
+                </button>
+              </div>
             </div>
           </div>
         </div>

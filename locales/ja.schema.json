@@ -273,11 +273,6 @@
         "info": "HTMLタグと限られたTailwindCSSスタイルコードをサポート",
         "placeholder": "通常、会社の他のウェブサイトへのナビゲーションリンクを挿入するために使用"
       },
-      "footer_html": {
-        "label": "フッター領域にHTMLコードを挿入",
-        "info": "HTMLタグと限られたTailwindCSSスタイルコードをサポート; デフォルトのフッターコンテンツを完全に置き換えます",
-        "placeholder": "デフォルトのフッターコンテンツを保持したい場合は、footer_menu_htmlにHTMLコードを挿入してください"
-      },
       "footer_menu_html": {
         "label": "フッター領域内にHTMLコードを挿入(footer内、footer_menu_html)",
         "info": "HTMLタグと限られたTailwindCSSスタイルコードをサポート",

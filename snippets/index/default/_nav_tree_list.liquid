@@ -1,18 +1,19 @@
 {%# locals: (page:, current_path:) %}
 
-<div class="space-y-4 custom-menu">
-  {% for child_page in page.children_in_list %}
-    <div class="min-w-0 max-w-full space-y-2">
-      <a
-        href="{{ child_page.path }}"
-        data-turbo-frame="main-content-frame"
-        data-turbo-action="advance"
-        class="flex min-w-0 items-center gap-2.5 pl-3 text-sm font-semibold line-clamp-1 rounded-lg py-1.5 transition-colors outline-offset-[-1px]"
-        :class="channelPathActive('{{ child_page.path }}', 0, true) ? 'text-primary' : 'text-base-content hover:bg-base-200/60'"
-      >{{ child_page.link_text }}</a>
-
-      {% render 'index/default/nav_tree_switch', page: child_page, current_path: current_path %}
-    </div>
+{% assign count = page.children_in_list | size %}
+<div class="space-y-1 custom-menu">
+  {% if count > 0 %}
+    {% if count > 100 %}
+      {% assign parent_path = page.path %}
+      <turbo-frame class='w-full' id="index_default_nav_tree_frame_{{ parent_path | replace: '/', '_' }}" src="{{ statics['index/default/nav_tree'] }}?parent_path={{ parent_path }}&depth=1" loading="lazy">
+        <div class="flex items-center justify-center h-20 text-base-content/60 bg-none">
+          <span class="loading loading-spinner loading-md"></span>
+        </div>
+      </turbo-frame>
+    {% else %}
+      {% assign data = page | nav_tree: 2, include_settings: 'icon' %}
+      {% render 'index/default/nav_tree', nav_tree: data, depth: 1, current_path: current_path %}
+    {% endif %}
   {% else %}
     <div>
       <a
@@ -23,5 +24,5 @@
         :class="channelPathActive('{{ page.path }}', 0, true) ? 'bg-primary/10 text-primary' : 'text-base-content/80 hover:bg-base-200/60'"
       >{{ page.link_text }}</a>
     </div>
-  {% endfor %}
+  {% endif %}
 </div>

@@ -273,11 +273,6 @@
         "info": "Unterstützt HTML-Tags und eingeschränkte TailwindCSS-Klassen",
         "placeholder": "Üblich für Navigationslinks zu anderen Firmenwebsites"
       },
-      "footer_html": {
-        "label": "HTML im Footer-Bereich einfügen",
-        "info": "Unterstützt HTML-Tags und eingeschränkte TailwindCSS-Klassen; ersetzt den Standard-Footer komplett",
-        "placeholder": "Wenn der Standard-Footer erhalten bleiben soll, bitte HTML in footer_menu_html einfügen"
-      },
       "footer_menu_html": {
         "label": "HTML im unteren Bereich einfügen (innerhalb des Footers)",
         "info": "Unterstützt HTML-Tags und eingeschränkte TailwindCSS-Klassen",

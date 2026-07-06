@@ -133,7 +133,7 @@
       "dock_to_sidebar": "Dock to sidebar",
       "pip_active": "AI assistant is open in a separate window",
       "clear_chat": "Clear chat",
-      "input_placeholder": "Ask your question…",
+      "input_placeholder": "Chat with AI…",
       "copy_response": "Copy answer",
       "retry_response": "Regenerate",
       "add_attachment": "Add attachment",
@@ -192,7 +192,7 @@
     "copy_success": "Copied",
     "copy_error": "Copy failed",
     "ask_ai_message": "Tell me about \"%{query}\"",
-    "input_placeholder": "Ask your question…",
+    "input_placeholder": "Chat with AI…",
     "disclaimer": "Content is AI-generated and may contain errors. Please verify."
   },
   "generic": {

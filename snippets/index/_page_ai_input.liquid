@@ -1,0 +1,29 @@
+{% assign ai_input_placeholder = "ai.input_placeholder" | t: "跟 AI 聊聊…" | presence %}
+{% assign ai_send_label = "snippets.ai.send" | t: "发送" | presence %}
+
+{% comment %} AI 输入框：flex-1 在短页占满剩余高度，条在 article 底；长页仍在正文后 + sticky bottom 吸附视口 {% endcomment %}
+<div class="sticky bottom-5 z-20 w-full max-w-2xl mx-auto shrink-0 pointer-events-none print:hidden transition-all duration-300"
+  :class="(isAtBottom || isAiOpen) ? 'translate-y-full opacity-0' : 'translate-y-0 opacity-100'">
+  <div
+    class="pointer-events-auto w-full rounded-full bg-gradient-to-r from-primary/20 via-accent/15 to-primary/20 p-px shadow-[0_0_40px_-8px] shadow-primary/20 transition-shadow duration-300 focus-within:from-primary/30 focus-within:via-accent/25 focus-within:to-primary/30 focus-within:shadow-[0_0_48px_-4px] focus-within:shadow-primary/30">
+    <div
+      class="flex flex-col w-full rounded-full border border-base-200/80 bg-base-100/90 backdrop-blur-xl transition-colors focus-within:border-primary"
+      x-data="{ inputValue: '' }">
+      <div class="relative flex items-end">
+        <textarea aria-label="{{ ai_input_placeholder }}" placeholder="{{ ai_input_placeholder }}"
+          class="w-full resize-none border-0 bg-transparent py-4 pl-4 pr-14 text-[0.95rem] text-base-content placeholder-base-content/40 focus:outline-none focus:ring-0"
+          style="height: 60px;"
+          @keydown.enter.prevent="if(inputValue.trim()) { window.dispatchEvent(new CustomEvent('ai-send', { detail: { message: inputValue.trim() } })); $el.value = ''; inputValue = ''; }"
+          x-model="inputValue"></textarea>
+
+        <button type="button"
+          class="absolute bottom-3 right-2.5 flex size-8 items-center justify-center rounded-full bg-primary/10 text-primary transition-colors hover:bg-primary/90 disabled:opacity-50"
+          :disabled="!inputValue.trim()"
+          aria-label="{{ ai_send_label }}"
+          @click="if(inputValue.trim()) { window.dispatchEvent(new CustomEvent('ai-send', { detail: { message: inputValue.trim() } })); inputValue = ''; }">
+          <i class="ri-arrow-up-line leading-none" aria-hidden="true"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

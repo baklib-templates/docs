@@ -137,11 +137,11 @@
         </div>
 
         {% comment %} channels {% endcomment %}
-        <div class="hidden lg:flex h-full gap-4 text-[0.85rem] font-bold overflow-x-auto overflow-y-hidden" x-cloak>
+        <div class="hidden lg:flex h-full gap-6 overflow-x-auto overflow-y-hidden" x-cloak>
           {% assign channels = index_page.children_in_nav_menu %}
           {% for channel in channels %}
             <a href="{{ channel.path }}"
-              class="flex items-center whitespace-nowrap transition-all duration-300 border-b-[3px] space-x-1"
+              class="flex items-center whitespace-nowrap transition-all duration-300 border-b-[3px] space-x-1 text-base"
               :class="channelPathActive('{{ channel.path }}', {{ forloop.index }}) ? ' border-primary text-primary ' : 'border-transparent text-base-content/60 hover:text-base-content'"
               data-turbo-frame="left-base-content-frame"
               data-turbo-action="advance"
@@ -162,11 +162,11 @@
       <div class="drawer lg:drawer-open mx-auto max-w-[var(--max-content-width)] px-4 md:px-3">
         <input id="my-drawer-3" type="checkbox" class="drawer-toggle" />
         <div
-          class="drawer-side lg:sticky lg:top-[calc(var(--header-height)+3.2rem)] lg:max-h-[calc(100vh-var(--header-height)-4.1rem)] lg:overflow-y-auto z-99"
+          class="drawer-side lg:sticky lg:top-[calc(var(--header-height)+3.2rem)] lg:max-h-[calc(100vh-var(--header-height)-4.1rem)] lg:overflow-y-auto z-99 border-r border-base-200"
         >
           <label for="my-drawer-3" aria-label="close sidebar" class="drawer-overlay"></label>
           <aside
-            class="px-4 p-4 md:pt-10 pb-12 md:p-0 w-[var(--left-sidebar-width)] bg-base-100 h-full space-y-3"
+            class="px-4 p-4 md:pt-10 pb-12 md:p-0 w-[var(--left-sidebar-width)] h-full space-y-3"
             @click="
               const a = $event.target.closest('a[href]');
               const href = a?.getAttribute('href');

@@ -273,11 +273,6 @@
         "info": "Prend en charge les balises HTML et certaines classes TailwindCSS",
         "placeholder": "Souvent utilisé pour insérer des liens vers d’autres sites de l’entreprise"
       },
-      "footer_html": {
-        "label": "Insérer du HTML dans la zone de pied de page",
-        "info": "Prend en charge les balises HTML et certaines classes TailwindCSS ; remplace complètement le pied de page par défaut",
-        "placeholder": "Si vous souhaitez conserver le pied de page par défaut, insérez le HTML dans footer_menu_html"
-      },
       "footer_menu_html": {
         "label": "Insérer du HTML en bas (à l’intérieur du footer)",
         "info": "Prend en charge les balises HTML et certaines classes TailwindCSS",

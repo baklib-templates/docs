@@ -6,8 +6,8 @@ Baklib **Wiki** 纯文档主题（`theme_scope`: `wiki`，版本 **1.2.1**）：
 
 ## 特性
 
-- **三套首页布局** — Class经典布局、Tree文档布局、Card文档布局（`index.liquid` / `index.tree.liquid` / `index.card.liquid`，对应 `template_style` 为空 / `tree` / `card`）；字段 ID 一致，后台配置可在变体间迁移
-- **正文与首页同族** — `page.liquid` 按站点首页 `template_style`（空 / `tree` / `card`）复用对应片段
+- **三套首页布局** — Class经典布局、Tree文档布局、Card文档布局（`index.classic.liquid` / `index.tree.liquid` / `index.card.liquid`，对应 `template_style` 为 `classic` / `tree` / `card`）；字段 ID 一致，后台配置可在变体间迁移
+- **正文与首页同族** — `page.liquid` 按站点首页 `template_style`（`classic` / `tree` / `card`）复用对应片段
 - **AI 与搜索** — AI 侧栏、搜索弹窗、可配置热门关键词与 AI 回答结束语
 - **七种语言** — 前台文案（`*.json`）与主题编辑器文案（`*.schema.json`）
 - **前端技术栈** — Tailwind CSS 4、daisyUI、Stimulus、Alpine.js、Turbo（由 `src/` 构建至 `assets/`）
@@ -38,7 +38,7 @@ Baklib **Wiki** 纯文档主题（`theme_scope`: `wiki`，版本 **1.2.1**）：
 
 | 模板 | 变体 | 说明 |
 | --- | --- | --- |
-| `index.liquid` | Class经典布局 | 渐变 Hero、频道入门卡片、推荐阅读；产品文档默认推荐 |
+| `index.classic.liquid` | Class经典布局 | 渐变 Hero、频道入门卡片、推荐阅读；产品文档默认推荐 |
 | `index.tree.liquid` | Tree文档布局 | Hero、快速指引卡片、推荐列表与底部求助/反馈横幅 |
 | `index.card.liquid` | Card文档布局 | 左侧栏集成 Logo、搜索与全站导航；描边卡片与 Pill 搜索 |
 
@@ -48,7 +48,7 @@ Baklib **Wiki** 纯文档主题（`theme_scope`: `wiki`，版本 **1.2.1**）：
 
 ### 内容页
 
-`templates/page.liquid` — 文档正文页；布局随 `site.pages['/'].template_style` 与首页一致（空、`tree` 或 `card`）。
+`templates/page.liquid` — 文档正文页；布局随 `site.pages['/'].template_style` 与首页一致（`classic`、`tree` 或 `card`）。
 
 ### 其他
 

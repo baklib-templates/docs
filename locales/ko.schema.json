@@ -265,11 +265,6 @@
         "info": "HTML 태그와 제한된 TailwindCSS 스타일 코드 지원",
         "placeholder": "일반적으로 회사의 다른 웹사이트로의 네비게이션 링크를 삽입하는 데 사용"
       },
-      "footer_html": {
-        "label": "푸터 영역에 HTML 코드 삽입",
-        "info": "HTML 태그와 제한된 TailwindCSS 스타일 코드 지원; 기본 푸터 내용을 완전히 대체합니다",
-        "placeholder": "기본 푸터 내용을 유지하려면 footer_menu_html에 HTML 코드를 삽입하세요"
-      },
       "footer_menu_html": {
         "label": "하단 영역에 HTML 코드 삽입(footer 내, footer_menu_html)",
         "info": "HTML 태그와 제한된 TailwindCSS 스타일 코드 지원",

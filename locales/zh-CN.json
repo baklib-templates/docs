@@ -111,7 +111,7 @@
       "dock_to_sidebar": "收回侧边栏",
       "pip_active": "AI 助手已在独立窗口中打开",
       "clear_chat": "清空对话",
-      "input_placeholder": "输入你的问题…",
+      "input_placeholder": "跟 AI 聊聊…",
       "copy_response": "复制回答",
       "retry_response": "重新生成",
       "add_attachment": "添加附件",
@@ -192,7 +192,7 @@
     "copy_success": "已复制",
     "copy_error": "复制失败",
     "ask_ai_message": "请介绍一下「%{query}」",
-    "input_placeholder": "输入你的问题…",
+    "input_placeholder": "跟 AI 聊聊…",
     "disclaimer": "内容由 AI 生成，可能存在错误，请自行核实。"
   },
   "generic": {

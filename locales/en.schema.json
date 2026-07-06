@@ -273,11 +273,6 @@
         "info": "Supports HTML tags and limited TailwindCSS style code",
         "placeholder": "Usually used to insert navigation links to company's other websites"
       },
-      "footer_html": {
-        "label": "Insert HTML code in footer area",
-        "info": "Supports HTML tags and limited TailwindCSS style code; will completely replace the default footer content",
-        "placeholder": "If you need to keep the default footer content, please insert HTML code in footer_menu_html"
-      },
       "footer_menu_html": {
         "label": "Insert HTML code in bottom area (inside footer, footer_menu_html)",
         "info": "Supports HTML tags and limited TailwindCSS style code",

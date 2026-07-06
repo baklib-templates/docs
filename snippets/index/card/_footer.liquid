@@ -1,13 +1,12 @@
-{% assign footer_html = site.settings.footer_html | presence %}
 {% assign footer_menu_html = site.settings.footer_menu_html | presence %}
 {% assign company_name = site.settings.company_name | presence | default: site.name %}
 {% assign copyright_info = site.settings.copyright_info | presence %}
 {% assign year = 'now' | date: '%Y' %}
 
-{% if footer_html %}
-  <footer class="border-t border-base-200 py-8 text-[0.85rem] text-base-content/60 print:hidden">
-    {{ footer_html }}
-  </footer>
+{% if footer_menu_html %}
+  <div class="flex flex-wrap items-center justify-center gap-4 sm:justify-end">
+    {{ footer_menu_html }}
+  </div>
 {% else %}
   <footer class="border-t border-base-200 py-8 text-[0.85rem] text-base-content/60 print:hidden">
     <div class="flex flex-col items-center justify-between gap-4 sm:flex-row">
@@ -27,11 +26,6 @@
           </a>
         {% endif %}
       </div>
-      {% if footer_menu_html %}
-        <div class="flex flex-wrap items-center justify-center gap-4 sm:justify-end">
-          {{ footer_menu_html }}
-        </div>
-      {% endif %}
     </div>
   </footer>
 {% endif %}

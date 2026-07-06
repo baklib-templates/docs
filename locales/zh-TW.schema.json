@@ -265,11 +265,6 @@
         "info": "支持HTML標籤和有限的TailwindCSS樣式代碼",
         "placeholder": "通常在這裡插入公司其他網站的導航連結"
       },
-      "footer_html": {
-        "label": "頁腳區域插入 HTML 代碼",
-        "info": "支持HTML標籤和有限的TailwindCSS樣式代碼; 將完全替換默認頁腳內容",
-        "placeholder": "若需要保留默認頁腳內容，請在 footer_menu_html 中插入 HTML 代碼"
-      },
       "footer_menu_html": {
         "label": "底部區域插入 HTML 代碼(footer 內，footer_menu_html)",
         "info": "支持HTML標籤和有限的TailwindCSS樣式代碼",

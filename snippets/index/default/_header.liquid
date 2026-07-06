@@ -2,7 +2,7 @@
   class="js--header sticky top-0 z-40 h-[var(--header-height)] bg-base-100/90 backdrop-blur-md supports-[backdrop-filter]:bg-base-100/80"
 >
   <div
-    class="mx-auto grid h-full max-w-[var(--max-content-width)] grid-cols-[minmax(0,1fr)_auto] lg:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-3 border-b border-base-200 px-4 lg:px-6">
+    class="mx-auto grid h-full max-w-[var(--max-content-width)] grid-cols-[minmax(0,1fr)_auto] lg:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-3 px-4 lg:px-6">
     {% assign default_site_icon = 'images/default-site-icon.svg' | asset_url %}
     <a href="{{ site.index_path }}"
       class="flex min-w-0 items-center gap-2 justify-self-start font-semibold tracking-tight text-base-content">
@@ -18,14 +18,14 @@
             <img src="{{ favicon_url }}" class="size-6 object-contain" width="24" height="24" alt="">
           </span>
         {% endif %}
-        <span class="truncate text-2xl md:text-3xl font-extrabold tracking-tight">{{ site.name }}</span>
+        <span class="truncate text-xl md:text-2xl font-bold tracking-tight">{{ site.name }}</span>
       {% endif %}
     </a>
 
     <div class="hidden min-w-0 flex-1 items-center justify-center gap-2.5 lg:flex">
       <button
         type="button"
-        class="flex h-9 w-full min-w-[20rem] max-w-[24rem] cursor-pointer items-center rounded-lg border border-base-300/80 bg-white px-2.5 text-left text-[0.85rem] text-base-content/60 transition-colors hover:border-base-content/400"
+        class="flex h-9 w-full min-w-[20rem] max-w-[24rem] cursor-pointer items-center rounded-full bg-base-200 px-2.5 text-left text-[0.85rem] text-base-content/60 transition-colors hover:border-base-content/400"
         data-action="click->header-search#openModal"
         aria-haspopup="dialog"
       >
@@ -33,7 +33,7 @@
         <span class="ml-2.5 min-w-0 flex-1 truncate">{{ 'search.placeholder' | t: '搜索...' }}</span>
       </button>
       <button type="button" @click="toggleAiAssistant()"
-        class="btn btn-ghost btn-sm h-[2.125rem] shrink-0 gap-1.5 rounded-lg border border-base-300 px-3.5 text-base-content/60 hover:bg-white hover:border-base-content/400">
+        class="btn btn-ghost btn-sm h-[2.125rem] shrink-0 gap-1.5 rounded-full bg-base-200  px-3.5 text-base-content/60 hover:bg-white hover:border-base-content/400">
         <i class="ri-sparkling-2-line shrink-0 text-[0.95rem] leading-none text-primary" aria-hidden="true"></i>
         {{ 'snippets.header.ask_ai' | t: '问 AI' }}
       </button>
@@ -43,7 +43,6 @@
       {% assign header_menu_html = site.settings.header_menu_html | presence %}
       {% if header_menu_html %}
         {% comment %} 分割线 {% endcomment %}
-        <div class="hidden lg:block w-px h-4 bg-base-300"></div>
         <div class="hidden lg:flex flex-1 justify-end min-w-0">
           <div class="flex items-center gap-6">{{ header_menu_html }}</div>
         </div>

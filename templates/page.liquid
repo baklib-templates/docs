@@ -1,10 +1,10 @@
 {% assign index_page = site.pages['/'] %}
 
-{% if index_page.template_style == blank %}
+{% if index_page.template_style == 'classic' or index_page.template_style == blank or index_page.template_style == 'default' or index_page.template_style == 'style_one' %}
 	{% render 'index/default/container', page: page %}
-{% elsif index_page.template_style == 'tree' %}
+{% elsif index_page.template_style == 'tree' or index_page.template_style == 'style_two' %}
 	{% render 'index/tree/container', page: page %}
-{% elsif index_page.template_style == 'card' %}
+{% elsif index_page.template_style == 'card' or index_page.template_style == 'style_three' %}
 	{% render 'index/card/container', page: page %}
 {% endif %}
 
