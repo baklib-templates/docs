@@ -269,12 +269,12 @@
         "placeholder": "通常在这里插入访问统计、客服机器人等嵌入代码"
       },
       "header_menu_html": {
-        "label": "侧边栏导航区域插入 HTML 代码",
+        "label": "导航区域 HTML 代码",
         "info": "支持HTML标签和有限的TailwindCSS样式代码, 见<a href='https://www.uibak.com/sections/navigations'>代码示例</a>",
         "placeholder": "跟导航树平级，通常在这里插入公司其他网站的外部导航链接、多语言、版本切换等。"
       },
       "footer_menu_html": {
-        "label": "底部<footer>区域 HTML 代码",
+        "label": "页脚区域 HTML 代码",
         "info": "支持HTML标签和有限的TailwindCSS样式代码, 见<a href='https://www.uibak.com/sections/footers'>代码示例</a>",
         "placeholder": "通常在这里插入公司其他网站的外部导航链接、友情链接、SEO 优化链接等"
       }
