@@ -4,51 +4,31 @@ export default class extends Controller {
   static targets = ["autoIcon", "lightIcon", "darkIcon", "currentIcon"];
 
   connect() {
-    // 添加系统主题变化监听
-    this.systemThemeMediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
-    this.systemThemeMediaQuery.addEventListener("change", this.handleSystemThemeChange.bind(this));
-    this.#updateTheme(this.theme);
-
-    document.addEventListener("turbo:load", () => {
-      this.#updateTheme(this.theme);
-    });
+    // Docs wiki 主题：强制浅色模式（禁用暗黑/自动模式）
+    this.#updateTheme("light");
   }
 
   disconnect() {
-    // 清理监听器
-    this.systemThemeMediaQuery.removeEventListener("change", this.handleSystemThemeChange.bind(this));
   }
 
   handleSystemThemeChange() {
-    if (this.theme == "auto") {
-      this.#updateTheme(this.systemDark ? "dark" : "light");
-    }
   }
 
   toggle(event) {
-    const { mode } = event.params
-    this.theme = mode;
-    this.#updateTheme(mode);
+    event?.preventDefault?.();
+    this.#updateTheme("light");
   }
 
   get theme() {
-    const savedTheme = localStorage.getItem("theme");
-    if (savedTheme == "light" || savedTheme == "dark") {
-      return savedTheme;
-    }
-    return "auto";
+    return "light";
   }
 
   set theme(name) {
-    if(name == "light" || name == "dark") {
-      localStorage.setItem("theme", name);
-    } else {
-      localStorage.removeItem("theme");
-    }
+    localStorage.removeItem("theme");
   }
 
   get systemDark() {
-    return this.systemThemeMediaQuery.matches;
+    return false;
   }
 
   #updateTheme(name) {
@@ -59,13 +39,9 @@ export default class extends Controller {
         this.element.classList.add("dark");
         break;
       case "light":
+      default:
         this.element.dataset.theme = "light";
         this.element.classList.remove("dark");
-        break;
-      default:
-        const isDarkMode = this.systemDark;
-        this.element.dataset.theme = isDarkMode ? "dark" : "light";
-        this.element.classList.toggle("dark", isDarkMode);
         break;
     }
     this.#updateIcons(name);
