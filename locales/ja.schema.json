@@ -5,8 +5,14 @@
     "fashion": {
       "name": "ファッション"
     },
-    "old_school": {
-      "name": "レトロ"
+    "cohere": {
+      "name": "Cohere"
+    },
+    "mintlify": {
+      "name": "Mintlify"
+    },
+    "notion": {
+      "name": "Notion"
     }
   },
   "templates": {

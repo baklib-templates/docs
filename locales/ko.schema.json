@@ -297,8 +297,14 @@
     "fashion": {
       "name": "패션"
     },
-    "old_school": {
-      "name": "레트로"
+    "cohere": {
+      "name": "Cohere"
+    },
+    "mintlify": {
+      "name": "Mintlify"
+    },
+    "notion": {
+      "name": "Notion"
     }
   }
 }

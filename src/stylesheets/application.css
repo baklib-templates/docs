@@ -8,13 +8,21 @@
   --color-base-300: hsl(var(--theme-color-base-300));
   --color-base-content: hsl(var(--theme-color-base-content));
   --color-primary: hsl(var(--theme-color-primary));
+  --color-primary-content: hsl(var(--theme-color-primary-content));
   --color-secondary: hsl(var(--theme-color-secondary));
+  --color-secondary-content: hsl(var(--theme-color-secondary-content));
   --color-accent: hsl(var(--theme-color-accent));
+  --color-accent-content: hsl(var(--theme-color-accent-content));
   --color-neutral: hsl(var(--theme-color-neutral));
+  --color-neutral-content: hsl(var(--theme-color-neutral-content));
   --color-info: hsl(var(--theme-color-info));
+  --color-info-content: hsl(var(--theme-color-info-content));
   --color-success: hsl(var(--theme-color-success));
+  --color-success-content: hsl(var(--theme-color-success-content));
   --color-warning: hsl(var(--theme-color-warning));
+  --color-warning-content: hsl(var(--theme-color-warning-content));
   --color-error: hsl(var(--theme-color-error));
+  --color-error-content: hsl(var(--theme-color-error-content));
 }
 
 :root:has(input.theme-controller[value=dark]:checked),
@@ -24,13 +32,21 @@
   --color-base-300: hsl(var(--theme-color-base-300-dark));
   --color-base-content: hsl(var(--theme-color-base-content-dark));
   --color-primary: hsl(var(--theme-color-primary-dark));
+  --color-primary-content: hsl(var(--theme-color-primary-content-dark));
   --color-secondary: hsl(var(--theme-color-secondary-dark));
+  --color-secondary-content: hsl(var(--theme-color-secondary-content-dark));
   --color-accent: hsl(var(--theme-color-accent-dark));
+  --color-accent-content: hsl(var(--theme-color-accent-content-dark));
   --color-neutral: hsl(var(--theme-color-neutral-dark));
+  --color-neutral-content: hsl(var(--theme-color-neutral-content-dark));
   --color-info: hsl(var(--theme-color-info-dark));
+  --color-info-content: hsl(var(--theme-color-info-content-dark));
   --color-success: hsl(var(--theme-color-success-dark));
+  --color-success-content: hsl(var(--theme-color-success-content-dark));
   --color-warning: hsl(var(--theme-color-warning-dark));
+  --color-warning-content: hsl(var(--theme-color-warning-content-dark));
   --color-error: hsl(var(--theme-color-error-dark));
+  --color-error-content: hsl(var(--theme-color-error-content-dark));
 }
 
 @plugin "daisyui";
