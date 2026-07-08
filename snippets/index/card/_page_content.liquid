@@ -38,8 +38,8 @@
       </div>
 
       {% if show_list %}
-        {% paginate_tag page.children_in_list, as: 'pages', per: 10 %}
-          {% if pages.size > 0 %}
+        <div class="mt-4">
+          {% paginate_tag page.children_in_list, as: 'pages', per: 12 %}
             <ul role="list" class="mt-6 divide-y divide-base-200">
               {% for child in pages %}
                 <li>
@@ -66,8 +66,14 @@
                 </li>
               {% endfor %}
             </ul>
-          {% endif %}
-        {% endpaginate_tag %}
+            <!-- Pagination -->
+            <div class="mt-4">
+              <div class="flex justify-start">
+                {% render 'paginate', paginate: paginate %}
+              </div>
+            </div>
+          {% endpaginate_tag %}
+        </div>
       {% endif %}
     </div>
   </div>

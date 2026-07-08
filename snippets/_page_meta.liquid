@@ -1,18 +1,24 @@
 {% comment %} 作者与发布时间（受 site.settings.show_author / show_published_at 控制）{% endcomment %}
 {% if site.settings.show_author or site.settings.show_published_at %}
   <div class="mb-6 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-base-content/60">
-    {% if site.settings.show_author and site.settings.show_published_at %}
-      <div class="flex items-center gap-2">
-        {% render 'avatar', url: page.author.avatar_url, name: page.author.name %}
-        <div class="flex flex-col gap-0.5">
-          <span class="text-base-content/80">{{ page.author.name }}</span>
-          <time datetime="{{ page.published_at | date: '%Y-%m-%d' }}" class="text-base-content/50">
-            {{ 'generic.published_at' | t }}: {{ page.published_at | date: "%Y-%m-%d" }}
-          </time>
+    {% if site.settings.show_author %}
+      {% assign author_name = page.author.name %}
+      {% if site.settings.show_published_at %}
+        <div class="flex items-center gap-2">
+          {% render 'avatar', url: page.author.avatar_url, name: author_name %}
+          <div class="flex flex-col gap-0.5">
+            <span class="text-base-content/80">{{ author_name }}</span>
+            <time datetime="{{ page.published_at | date: '%Y-%m-%d' }}" class="text-base-content/50">
+              {{ 'generic.published_at' | t }}: {{ page.published_at | date: "%Y-%m-%d" }}
+            </time>
+          </div>
         </div>
-      </div>
-    {% elsif site.settings.show_author %}
-      {% render 'avatar_with_name', url: page.author.avatar_url, name: page.author.name %}
+      {% else %}
+        <div class="flex items-center gap-1">
+          {% render 'avatar', url: page.author.avatar_url, name: author_name %}
+          <span class="text-sm">{{ author_name | escape_once }}</span>
+        </div>
+      {% endif %}
     {% elsif site.settings.show_published_at %}
       <time datetime="{{ page.published_at | date: '%Y-%m-%d' }}">
         {{ 'generic.published_at' | t }}: {{ page.published_at | date: "%Y-%m-%d" }}

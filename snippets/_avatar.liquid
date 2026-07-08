@@ -2,8 +2,18 @@
 
 {% assign default_avatar_url = 'images/avatar.svg' | asset_url %}
 
+{% comment %}
+  平台头像为根绝对路径 /-/avatars/...（重定向后为 /-/dam/assets/...），
+  站点聚合时 avatar_url 会带上 script_name，浏览器请求会 404，须剥离挂载前缀。
+{% endcomment %}
+{% assign avatar_src = url | presence %}
+{% if avatar_src and script_name != blank %}
+  {% assign avatar_src = avatar_src | remove: script_name %}
+{% endif %}
+{% assign avatar_src = avatar_src | default: default_avatar_url %}
+
 <div class="avatar">
   <div class="w-8 rounded-xl">
-    <img src="{{ url | default: default_avatar_url }}" title="{{ name | escape_once }}" />
+    <img src="{{ avatar_src }}" title="{{ name | escape_once }}" alt="" />
   </div>
 </div>

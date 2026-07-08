@@ -33,38 +33,42 @@
         </div>
 
         {% if show_list %}
-          <div class="">
-            {% paginate_tag page.children_in_list, as: 'pages', per: 10 %}
-              {% if pages.size > 0 %}
-                <ul role="list" class="divide-y divide-base-200">
-                  {% for child in pages %}
-                    <li>
-                      <a
-                        href="{{ child.path }}"
-                        data-turbo-frame="main-content-frame"
-                        data-turbo-action="advance"
-                        class="flex flex-wrap items-center justify-between gap-x-4 gap-y-2 px-1 py-3 transition-colors hover:bg-base-200/50 sm:flex-nowrap"
-                      >
-                        <div class="flex min-w-0 items-center gap-3">
-                          {% assign icon_url = child.settings.icon | presence %}
-                          {% if icon_url %}
-                            <img src="{{ icon_url }}" class="size-6 shrink-0 rounded object-cover" alt="" loading="lazy" decoding="async" />
-                          {% else %}
-                            <div class="size-6 shrink-0 rounded flex items-center justify-center">
-                              <i class="ri-file-text-line text-lg text-base-content/40" aria-hidden="true"></i>
-                            </div>
-                          {% endif %}
-                          <span class="font-medium text-base-content hover:underline">{{ child.link_text }}</span>
-                        </div>
-                        {% assign child_desc = child.settings.description | presence %}
-                        {% if child_desc %}
-                          <p class="line-clamp-2 text-sm text-base-content/60">{{ child_desc }}</p>
+          <div class="mt-4">
+            {% paginate_tag page.children_in_list, as: 'pages', per: 12 %}
+              <ul role="list" class="divide-y divide-base-200">
+                {% for child in pages %}
+                  <li>
+                    <a
+                      href="{{ child.path }}"
+                      data-turbo-frame="main-content-frame"
+                      data-turbo-action="advance"
+                      class="flex flex-wrap items-center justify-between gap-x-4 gap-y-2 px-1 py-3 transition-colors hover:bg-base-200/50 sm:flex-nowrap"
+                    >
+                      <div class="flex min-w-0 items-center gap-3">
+                        {% assign icon_url = child.settings.icon | presence %}
+                        {% if icon_url %}
+                          <img src="{{ icon_url }}" class="size-6 shrink-0 rounded object-cover" alt="" loading="lazy" decoding="async" />
+                        {% else %}
+                          <div class="size-6 shrink-0 rounded flex items-center justify-center">
+                            <i class="ri-file-text-line text-lg text-base-content/40" aria-hidden="true"></i>
+                          </div>
                         {% endif %}
-                      </a>
-                    </li>
-                  {% endfor %}
-                </ul>
-              {% endif %}
+                        <span class="font-medium text-base-content hover:underline">{{ child.link_text }}</span>
+                      </div>
+                      {% assign child_desc = child.settings.description | presence %}
+                      {% if child_desc %}
+                        <p class="line-clamp-2 text-sm text-base-content/60">{{ child_desc }}</p>
+                      {% endif %}
+                    </a>
+                  </li>
+                {% endfor %}
+              </ul>
+              <!-- Pagination -->
+              <div class="mt-4">
+                <div class="flex justify-start">
+                  {% render 'paginate', paginate: paginate %}
+                </div>
+              </div>
             {% endpaginate_tag %}
           </div>
         {% endif %}
