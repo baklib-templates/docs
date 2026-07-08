@@ -217,6 +217,19 @@
         "rows": 3,
         "info": "t:schema.generic.settings.feedback_helper_text.info",
         "default": "t:schema.generic.settings.feedback_helper_text.default"
+      },
+      {
+        "id": "site_font_preset",
+        "type": "select",
+        "label": "t:schema.generic.settings.site_font_preset.label",
+        "info": "t:schema.generic.settings.site_font_preset.info",
+        "default": "sans",
+        "choices": [
+          { "label": "t:schema.generic.settings.site_font_preset.choices.sans", "value": "sans" },
+          { "label": "t:schema.generic.settings.site_font_preset.choices.zh_song", "value": "zh_song" },
+          { "label": "t:schema.generic.settings.site_font_preset.choices.latin_serif", "value": "latin_serif" },
+          { "label": "t:schema.generic.settings.site_font_preset.choices.latin_sans", "value": "latin_sans" }
+        ]
       }
     ]
   },

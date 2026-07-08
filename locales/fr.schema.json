@@ -246,6 +246,16 @@
         "label": "Textes d’aide pour le retour sur la page",
         "info": "JSON : yes / no avec label, title, items",
         "default": "{\"yes\":{\"label\":\"Oui\",\"title\":\"Super ! Qu’est-ce qui a le mieux fonctionné ?\",\"items\":[\"Le guide a fonctionné comme prévu.\",\"J’ai facilement trouvé les informations dont j’avais besoin.\",\"Le produit et ses fonctionnalités étaient faciles à comprendre.\",\"La documentation est à jour.\"]},\"no\":{\"label\":\"Non\",\"title\":\"Comment pouvons-nous nous améliorer ?\",\"items\":[\"M’aider à démarrer plus vite.\",\"Faciliter la recherche de ce dont j’ai besoin.\",\"Aider les utilisateurs à comprendre le produit et ses fonctionnalités.\",\"Mettre à jour cette documentation.\"]}}"
+      },
+      "site_font_preset": {
+        "label": "Police du site",
+        "info": "Choisissez un préréglage pour le texte courant et le contenu des articles. Les blocs de code conservent une police à chasse fixe.",
+        "choices": {
+          "sans": "Sans-serif (par défaut)",
+          "zh_song": "Songti chinois",
+          "latin_serif": "Sérif latin + repli Songti",
+          "latin_sans": "Sans latin + sans chinois"
+        }
       }
     }
   },

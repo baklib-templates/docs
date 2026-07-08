@@ -246,6 +246,16 @@
         "label": "Hilfetexte für Seitenfeedback",
         "info": "JSON: yes / no jeweils mit label, title, items",
         "default": "{\"yes\":{\"label\":\"Ja\",\"title\":\"Super! Was hat am besten funktioniert?\",\"items\":[\"Die Anleitung hat wie erwartet funktioniert.\",\"Ich habe die benötigten Informationen leicht gefunden.\",\"Das Produkt und seine Funktionen waren leicht verständlich.\",\"Die Dokumentation ist auf dem neuesten Stand.\"]},\"no\":{\"label\":\"Nein\",\"title\":\"Wie können wir uns verbessern?\",\"items\":[\"Helfen Sie mir, schneller loszulegen.\",\"Machen Sie es einfacher, das Richtige zu finden.\",\"Helfen Sie Nutzern, Produkt und Funktionen zu verstehen.\",\"Diese Dokumentation aktualisieren.\"]}}"
+      },
+      "site_font_preset": {
+        "label": "Website-Schrift",
+        "info": "Schriftvorgabe für Fließtext und Artikelinhalt. Codeblöcke behalten Monospace-Schriften.",
+        "choices": {
+          "sans": "Sans-Serif (Standard)",
+          "zh_song": "Chinesisch Songti",
+          "latin_serif": "Lateinisch Serif + Songti-Fallback",
+          "latin_sans": "Lateinisch Sans + chinesisch Sans"
+        }
       }
     }
   },

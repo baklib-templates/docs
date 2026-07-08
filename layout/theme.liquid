@@ -9,6 +9,7 @@
     {{ 'baklib/shared/main.css' | asset_url | stylesheet_tag: data-turbo-track: 'reload' }}
     {{ 'baklib/shared/main.js' | asset_url | script_tag: data-turbo-track: 'reload' }}
     {{ 'javascripts/application.js' | asset_url | script_tag: defer: true, data-turbo-track: 'reload' }}
+    {% render 'site_fonts' %}
 
     <style>
       {%- assign index_page = site.pages['/'] -%}

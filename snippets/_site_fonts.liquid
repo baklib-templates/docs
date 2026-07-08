@@ -1,0 +1,23 @@
+{%- assign font_preset = site.settings.site_font_preset.value | default: site.settings.site_font_preset | default: 'sans' -%}
+<style>
+  {%- case font_preset -%}
+  {%- when 'zh_song' -%}
+    {%- assign site_font_family = '"Songti SC", "Noto Serif SC", SimSun, serif' -%}
+  {%- when 'latin_serif' -%}
+    {%- assign site_font_family = 'Georgia, "Times New Roman", Times, "Songti SC", "Noto Serif SC", serif' -%}
+  {%- when 'latin_sans' -%}
+    {%- assign site_font_family = 'system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif' -%}
+  {%- else -%}
+    {%- assign site_font_family = '"PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif' -%}
+  {%- endcase -%}
+
+  :root {
+    --site-font-family: {{ site_font_family }};
+  }
+
+  body,
+  .ProseMirror,
+  #page-content.ProseMirror {
+    font-family: var(--site-font-family);
+  }
+</style>

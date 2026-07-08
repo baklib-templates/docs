@@ -246,6 +246,16 @@
         "label": "Page feedback helper prompts",
         "info": "JSON: yes / no each with label (button text), title, items",
         "default": "{\"yes\":{\"label\":\"Yes\",\"title\":\"Great! What worked best for you?\",\"items\":[\"The guide worked as expected.\",\"I easily found the information I needed.\",\"The product and its features were easy to understand.\",\"The documentation is up to date.\"]},\"no\":{\"label\":\"No\",\"title\":\"How can we improve?\",\"items\":[\"Help me get started faster.\",\"Make it easier to find what I need.\",\"Help users understand the product and its features.\",\"Update this documentation.\"]}}"
+      },
+      "site_font_preset": {
+        "label": "Site font",
+        "info": "Choose a font preset for body text and article content. Code blocks keep monospace fonts.",
+        "choices": {
+          "sans": "Sans-serif (default)",
+          "zh_song": "Chinese Songti",
+          "latin_serif": "Latin serif + Songti fallback",
+          "latin_sans": "Latin sans + Chinese sans"
+        }
       }
     }
   },
