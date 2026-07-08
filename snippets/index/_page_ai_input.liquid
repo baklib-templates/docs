@@ -17,7 +17,7 @@
           x-model="inputValue"></textarea>
 
         <button type="button"
-          class="absolute bottom-3 right-2.5 flex size-8 items-center justify-center rounded-full bg-primary/10 text-primary transition-colors hover:bg-primary/90 disabled:opacity-50"
+          class="absolute bottom-3 right-2.5 flex size-8 items-center justify-center rounded-full bg-base-300/80 text-primary transition-colors hover:bg-primary/90 disabled:opacity-50"
           :disabled="!inputValue.trim()"
           aria-label="{{ ai_send_label }}"
           @click="if(inputValue.trim()) { window.dispatchEvent(new CustomEvent('ai-send', { detail: { message: inputValue.trim() } })); inputValue = ''; }">
