@@ -1,18 +1,18 @@
-{% render 'index/default/container', page: page %}
+{% render 'index/card/container', page: page %}
 
 {% schema %}
   {
-    "name": "t:schema.templates.index.default.name",
-    "description": "t:schema.templates.index.default.description",
-    "thumb_url": "images/theme/${lang}/index.png",
+    "name": "t:schema.templates.index.card.name",
+    "description": "t:schema.templates.index.card.description",
+    "thumb_url": "images/theme/${lang}/index-card.png",
     "preview_image_urls": [
-      "images/theme/${lang}/index.png"
+      "images/theme/${lang}/index-card.png"
     ],
     "sub_page_templates": ["page"],
     "force_sub_page_template": true,
     "settings": [
       { "type": "header", "content": "t:schema.templates.index.shared.groups.home_config" },
-      { "type": "paragraph", "content": "t:schema.templates.index.shared.groups.home_config_info_default" },
+      { "type": "paragraph", "content": "t:schema.templates.index.shared.groups.home_config_info_card" },
       {
         "id": "home_page_path",
         "type": "text",
@@ -23,14 +23,14 @@
       {
         "id": "home_hero_title",
         "type": "text",
-        "label": "t:schema.templates.index.default.settings.home_hero_title.label",
-        "default": "t:schema.templates.index.default.settings.home_hero_title.default"
+        "label": "t:schema.templates.index.card.settings.home_hero_title.label",
+        "default": "t:schema.templates.index.card.settings.home_hero_title.default"
       },
       {
         "id": "home_hero_description",
         "type": "textarea",
-        "label": "t:schema.templates.index.default.settings.home_hero_description.label",
-        "default": "t:schema.templates.index.default.settings.home_hero_description.default",
+        "label": "t:schema.templates.index.card.settings.home_hero_description.label",
+        "default": "t:schema.templates.index.card.settings.home_hero_description.default",
         "rows": 3
       },
       {
@@ -38,47 +38,47 @@
         "type": "textarea",
         "label": "t:schema.templates.index.shared.settings.search_hot_keywords.label",
         "info": "t:schema.templates.index.shared.settings.search_hot_keywords.info",
-        "default": "t:schema.templates.index.default.settings.search_hot_keywords.default",
+        "default": "t:schema.templates.index.card.settings.search_hot_keywords.default",
         "rows": 4
       },
       {
         "id": "home_guide_section_title",
         "type": "text",
-        "label": "t:schema.templates.index.default.settings.home_guide_section_title.label",
-        "default": "t:schema.templates.index.default.settings.home_guide_section_title.default"
+        "label": "t:schema.templates.index.card.settings.home_guide_section_title.label",
+        "default": "t:schema.templates.index.card.settings.home_guide_section_title.default",
+        "placeholder": "t:schema.templates.index.card.settings.home_guide_section_title.placeholder"
       },
       {
         "id": "home_show_guide_section",
         "type": "checkbox",
-        "label": "t:schema.templates.index.default.settings.home_show_guide_section.label",
+        "label": "t:schema.templates.index.card.settings.home_show_guide_section.label",
         "default": true
       },
       {
         "id": "home_recommended_title",
         "type": "text",
-        "label": "t:schema.templates.index.default.settings.home_recommended_title.label",
-        "default": "t:schema.templates.index.default.settings.home_recommended_title.default"
+        "label": "t:schema.templates.index.card.settings.home_recommended_title.label",
+        "default": "t:schema.templates.index.card.settings.home_recommended_title.default"
       },
       {
         "id": "home_show_recommended",
         "type": "checkbox",
-        "label": "t:schema.templates.index.default.settings.home_show_recommended.label",
+        "label": "t:schema.templates.index.card.settings.home_show_recommended.label",
         "default": true
       },
       {
         "id": "home_help_title",
         "type": "text",
-        "label": "t:schema.templates.index.default.settings.home_help_title.label",
-        "default": "t:schema.templates.index.default.settings.home_help_title.default"
+        "label": "t:schema.templates.index.card.settings.home_help_title.label",
+        "default": "t:schema.templates.index.card.settings.home_help_title.default"
       },
       {
         "id": "home_help_description",
         "type": "textarea",
-        "label": "t:schema.templates.index.default.settings.home_help_description.label",
-        "default": "t:schema.templates.index.default.settings.home_help_description.default",
+        "label": "t:schema.templates.index.card.settings.home_help_description.label",
+        "default": "t:schema.templates.index.card.settings.home_help_description.default",
         "rows": 3
       },
-
       { "type": "header", "content": "t:schema.templates.index.shared.groups.chrome" },
       {
         "id": "screen_width",
@@ -90,7 +90,7 @@
           { "label": "t:schema.generic.settings.screen_width.choices.wide", "value": "1536px" },
           { "label": "t:schema.generic.settings.screen_width.choices.full", "value": "100%" }
         ],
-        "default": "1536px"
+        "default": "1280px"
       },
       {
         "id": "left_sidebar_width",
@@ -99,8 +99,8 @@
         "min": 200,
         "max": 600,
         "step": 1,
-        "default": 240,
-        "info": "t:schema.templates.index.default.settings.left_sidebar_width.info"
+        "default": 264,
+        "info": "t:schema.templates.index.card.settings.left_sidebar_width.info"
       },
       {
         "id": "right_sidebar_width",
@@ -110,7 +110,7 @@
         "max": 1200,
         "step": 1,
         "default": 240,
-        "info": "t:schema.templates.index.default.settings.right_sidebar_width.info"
+        "info": "t:schema.templates.index.card.settings.right_sidebar_width.info"
       },
       {
         "id": "links_html",
