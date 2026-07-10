@@ -186,6 +186,7 @@
   "ai": {
     "completed": "AI response completed.",
     "reading": "Reading documentation…",
+    "thinking": "AI is thinking...",
     "thinking_status": "Thinking…",
     "network_error": "Network error. Please try again.",
     "timeout_error": "Request timed out. Please try again.",

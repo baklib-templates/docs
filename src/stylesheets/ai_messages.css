@@ -9,6 +9,15 @@
   @apply text-primary underline cursor-pointer;
 }
 
+/* AI chat thinking / reading status row (spinner + label) */
+.ai-chat-status {
+  @apply min-h-[1.65em];
+}
+
+.ai-chat-assistant-round--loading [data-markdown-target="renderedContent"]:not(.chat-message) {
+  @apply py-0.5;
+}
+
 /* AI 侧栏/弹层：与输入框 text-[0.85rem] 同档，略放大正文以利阅读 */
 .chat-message {
   @apply text-[0.85rem] leading-[1.65] text-base-content;

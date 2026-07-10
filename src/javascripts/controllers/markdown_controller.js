@@ -129,7 +129,14 @@ export default class extends Controller {
   static targets = ["content", "renderedContent"];
 
   connect() {
-    this.renderContent();
+    // Skip empty sources: AI assistant bubbles pre-fill renderedContent with a
+    // thinking/reading status before markdown source is available.
+    const source = this.hasContentTarget
+      ? this.contentTarget.textContent
+      : this.element.textContent;
+    if ((source || "").trim()) {
+      this.renderContent();
+    }
   }
 
   contentTargetConnected(element) {

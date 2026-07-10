@@ -186,6 +186,7 @@
   "ai": {
     "completed": "AI 回答完畢.",
     "reading": "正在閱讀文件…",
+    "thinking": "AI 正在思考...",
     "thinking_status": "正在思考…",
     "network_error": "網路錯誤，請重試",
     "timeout_error": "回應逾時，請重試",

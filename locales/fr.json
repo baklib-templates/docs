@@ -186,6 +186,7 @@
   "ai": {
     "completed": "Réponse de l’IA terminée.",
     "reading": "Lecture de la documentation…",
+    "thinking": "L'IA réfléchit...",
     "thinking_status": "Réflexion…",
     "network_error": "Erreur réseau. Veuillez réessayer.",
     "timeout_error": "Délai dépassé. Veuillez réessayer.",

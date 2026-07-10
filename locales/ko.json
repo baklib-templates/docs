@@ -186,6 +186,7 @@
   "ai": {
     "completed": "AI 응답 완료.",
     "reading": "문서를 읽는 중…",
+    "thinking": "AI가 생각하는 중...",
     "thinking_status": "생각하는 중…",
     "network_error": "네트워크 오류입니다. 다시 시도해 주세요.",
     "timeout_error": "응답 시간이 초과되었습니다. 다시 시도해 주세요.",

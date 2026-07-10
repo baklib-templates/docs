@@ -186,6 +186,7 @@
   "ai": {
     "completed": "AI 応答完了.",
     "reading": "ドキュメントを読み込み中…",
+    "thinking": "AI が考えています...",
     "thinking_status": "考え中…",
     "network_error": "ネットワークエラーです。もう一度お試しください。",
     "timeout_error": "タイムアウトしました。もう一度お試しください。",

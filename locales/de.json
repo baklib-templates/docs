@@ -186,6 +186,7 @@
   "ai": {
     "completed": "KI-Antwort abgeschlossen.",
     "reading": "Dokumentation wird gelesen…",
+    "thinking": "KI denkt nach...",
     "thinking_status": "Denke nach…",
     "network_error": "Netzwerkfehler. Bitte erneut versuchen.",
     "timeout_error": "Zeitüberschreitung. Bitte erneut versuchen.",

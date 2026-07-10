@@ -5,7 +5,8 @@
   {% assign current_root_channel = index_page.children_in_list | first %}
 {% endunless %}
 {% assign ai_reading_text = "ai.reading" | t: "正在阅读文档…" | presence %}
-{% assign ai_thinking_status = "ai.thinking_status" | t: "正在思考…" | presence %}
+{% assign ai_thinking_text = "ai.thinking" | t: "" | presence %}
+{% unless ai_thinking_text %}{% assign ai_thinking_text = "ai.thinking_status" | t: "AI 正在思考..." %}{% endunless %}
 {% assign ai_network_error = "ai.network_error" | t: "网络错误，请重试" | presence %}
 {% assign ai_timeout_error = "ai.timeout_error" | t: "响应超时，请重试" | presence %}
 {% assign ai_copy_success = "ai.copy_success" | t: "已复制" | presence %}
@@ -35,7 +36,7 @@
   data-ai-search-url-value="{{ site.index_path }}-/ai-search-completion"
   data-ai-search-chats-url-value="{{ site.index_path }}-/ai_chats"
   data-ai-search-timeout-value="60"
-  data-ai-search-messages-value='{"thinking":"{{ ai_thinking_status | escape }}","reading":"{{ ai_reading_text | escape }}","thinking_status":"{{ ai_thinking_status | escape }}","completed":"{{ ai_completed_text | escape }}","network_error":"{{ ai_network_error | escape }}","timeout_error":"{{ ai_timeout_error | escape }}","copy_success":"{{ ai_copy_success | escape }}","copy_error":"{{ ai_copy_error | escape }}"}'
+  data-ai-search-messages-value='{"thinking":"{{ ai_thinking_text | escape }}","reading":"{{ ai_reading_text | escape }}","thinking_status":"{{ ai_thinking_text | escape }}","completed":"{{ ai_completed_text | escape }}","network_error":"{{ ai_network_error | escape }}","timeout_error":"{{ ai_timeout_error | escape }}","copy_success":"{{ ai_copy_success | escape }}","copy_error":"{{ ai_copy_error | escape }}"}'
   data-ai-search-query-value='{"path":"{{ page.path | escape }}"}'
   class="flex flex-grow relative bg-base-100 text-base-content"
   x-data="{
