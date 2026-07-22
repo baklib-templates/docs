@@ -12,7 +12,8 @@
         {% else %}
           <a
             href="{{ crumb.path }}"
-            data-turbo-frame="_top"
+            data-turbo-frame="main-content-frame"
+            data-turbo-action="advance"
             class="line-clamp-1 text-base-content/60 transition-colors hover:text-base-content"
           >
             {{- crumb.link_text -}}

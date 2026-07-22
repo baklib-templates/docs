@@ -54,6 +54,13 @@
           "home_show_guide_section": {
             "label": "顯示入門卡片（優先展示首頁子頻道，最多 3 個）"
           },
+          "home_latest_title": {
+            "label": "最新內容區塊標題",
+            "default": "最新內容"
+          },
+          "home_show_latest": {
+            "label": "顯示最新內容區塊"
+          },
           "home_recommended_title": {
             "label": "推薦閱讀標題",
             "default": "推薦閱讀"
@@ -95,6 +102,13 @@
           },
           "home_show_guide_section": {
             "label": "顯示快速指引板塊"
+          },
+          "home_latest_title": {
+            "label": "最新內容區塊標題",
+            "default": "最新內容"
+          },
+          "home_show_latest": {
+            "label": "顯示最新內容區塊"
           },
           "home_recommended_title": {
             "label": "推薦內容標題",
@@ -141,6 +155,13 @@
           },
           "home_show_guide_section": {
             "label": "顯示快速指引區塊"
+          },
+          "home_latest_title": {
+            "label": "最新內容區塊標題",
+            "default": "最新內容"
+          },
+          "home_show_latest": {
+            "label": "顯示最新內容區塊"
           },
           "home_recommended_title": {
             "label": "推薦內容區塊標題",

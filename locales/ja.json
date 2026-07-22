@@ -53,7 +53,8 @@
       },
       "nav": {
         "open_sidebar": "ナビゲーションメニューを開く",
-        "close_sidebar": "ナビゲーションメニューを閉じる"
+        "close_sidebar": "ナビゲーションメニューを閉じる",
+        "channels": "チャンネル"
       }
     },
     "page_tools": {

@@ -5,12 +5,16 @@
 {% assign home_guide_limit = 4 %}
 {% assign recommended_limit = 8 %}
 {% assign list_display_limit = 6 %}
+{% assign latest_display_limit = 5 %}
 
 {% assign show_guide_section = true %}
 {% if page.settings.home_show_guide_section == false %}
   {% assign show_guide_section = false %}
 {% endif %}
 {% assign guide_section_title = page.settings.home_guide_section_title %}
+
+{% assign show_latest_section = page.settings.home_show_latest %}
+{% assign latest_section_title = page.settings.home_latest_title %}
 
 {% assign show_recommended_section = page.settings.home_show_recommended %}
 {% assign recommended_section_title = page.settings.home_recommended_title %}
@@ -61,6 +65,17 @@
     {% assign recommended_view_all_path = first_channel.path %}
   {% endif %}
 {% endunless %}
+
+{% comment %} 最新内容：全站按编辑时间倒序 {% endcomment %}
+{% if show_latest_section %}
+  {% assign latest_pages = site.pages | order_by: '-edited_at' | limit: 12 %}
+  {% assign latest_has_pages = false %}
+  {% for _doc in latest_pages %}
+    {% if _doc.full_slug == '/' %}{% continue %}{% endif %}
+    {% assign latest_has_pages = true %}
+    {% break %}
+  {% endfor %}
+{% endif %}
 
 {% assign help_title = page.settings.home_help_title %}
 {% assign help_desc = page.settings.home_help_description %}
@@ -161,6 +176,42 @@
         {{ guide_cards_markup }}
       </section>
     {% endif %}
+  {% endif %}
+
+  {% if show_latest_section %}
+    <section>
+      <div class="mb-4 flex flex-wrap items-center justify-between gap-3">
+        <h2 class="flex items-center text-lg font-bold text-base-content">
+          <i class="ri-time-line mr-2 text-xl text-primary" aria-hidden="true"></i>
+          {{ latest_section_title }}
+        </h2>
+      </div>
+
+      <div class="space-y-2.5">
+        {% if latest_has_pages %}
+          {% assign latest_shown = 0 %}
+          {% for doc in latest_pages %}
+            {% if latest_shown >= latest_display_limit %}{% break %}{% endif %}
+            {% if doc.full_slug == '/' %}{% continue %}{% endif %}
+            <a
+              href="{{ doc.path }}"
+              data-turbo-frame="main-content-frame"
+              data-turbo-action="advance"
+              class="group flex items-center justify-between gap-3 rounded-lg border border-base-200 bg-base-100 p-3 transition-all hover:border-primary hover:shadow-sm"
+            >
+              <div class="flex min-w-0 items-center gap-3 overflow-hidden">
+                <i class="ri-file-text-line shrink-0 text-base-content/40" aria-hidden="true"></i>
+                <span class="truncate text-sm font-medium text-base-content/80 group-hover:text-base-content">
+                  {{ doc.link_text }}
+                </span>
+              </div>
+              <i class="ri-arrow-right-line shrink-0 text-base-content/40 transition-transform group-hover:translate-x-0.5 group-hover:text-primary" aria-hidden="true"></i>
+            </a>
+            {% assign latest_shown = latest_shown | plus: 1 %}
+          {% endfor %}
+        {% endif %}
+      </div>
+    </section>
   {% endif %}
 
   {% if show_recommended_section %}

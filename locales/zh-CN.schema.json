@@ -68,6 +68,13 @@
           "home_show_guide_section": {
             "label": "显示入门卡片（优先展示首页子频道，最多 3 个）"
           },
+          "home_latest_title": {
+            "label": "最新内容区块标题",
+            "default": "最新内容"
+          },
+          "home_show_latest": {
+            "label": "显示最新内容区块"
+          },
           "home_recommended_title": {
             "label": "推荐阅读标题",
             "default": "推荐阅读"
@@ -109,6 +116,13 @@
           },
           "home_show_guide_section": {
             "label": "显示快速指引板块"
+          },
+          "home_latest_title": {
+            "label": "最新内容区块标题",
+            "default": "最新内容"
+          },
+          "home_show_latest": {
+            "label": "显示最新内容区块"
           },
           "home_recommended_title": {
             "label": "推荐内容标题",
@@ -155,6 +169,13 @@
           },
           "home_show_guide_section": {
             "label": "显示快速指引区块"
+          },
+          "home_latest_title": {
+            "label": "最新内容区块标题",
+            "default": "最新内容"
+          },
+          "home_show_latest": {
+            "label": "显示最新内容区块"
           },
           "home_recommended_title": {
             "label": "推荐内容区块标题",

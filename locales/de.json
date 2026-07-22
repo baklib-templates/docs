@@ -53,7 +53,8 @@
       },
       "nav": {
         "open_sidebar": "Navigationsmenü öffnen",
-        "close_sidebar": "Navigationsmenü schließen"
+        "close_sidebar": "Navigationsmenü schließen",
+        "channels": "Kanäle"
       }
     },
     "page_tools": {

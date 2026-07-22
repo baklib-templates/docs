@@ -68,6 +68,13 @@
           "home_show_guide_section": {
             "label": "Show getting-started cards (up to 3 home sub-channels)"
           },
+          "home_latest_title": {
+            "label": "Latest content section title",
+            "default": "Latest"
+          },
+          "home_show_latest": {
+            "label": "Show latest content section"
+          },
           "home_recommended_title": {
             "label": "Recommended reading title",
             "default": "Recommended reading"
@@ -109,6 +116,13 @@
           },
           "home_show_guide_section": {
             "label": "Show quick guide section"
+          },
+          "home_latest_title": {
+            "label": "Latest content section title",
+            "default": "Latest"
+          },
+          "home_show_latest": {
+            "label": "Show latest content section"
           },
           "home_recommended_title": {
             "label": "Recommended section title",
@@ -155,6 +169,13 @@
           },
           "home_show_guide_section": {
             "label": "Show quick guide section"
+          },
+          "home_latest_title": {
+            "label": "Latest content section title",
+            "default": "Latest"
+          },
+          "home_show_latest": {
+            "label": "Show latest content section"
           },
           "home_recommended_title": {
             "label": "Recommended section title",

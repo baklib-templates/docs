@@ -44,6 +44,19 @@
   {% assign recommended_pages = page.pages | order_by: '-visits_count' | limit: recommended_limit %}
 {% endif %}
 
+{% assign latest_display_limit = 5 %}
+{% assign show_latest_section = page.settings.home_show_latest %}
+{% assign latest_section_title = page.settings.home_latest_title %}
+{% if show_latest_section %}
+  {% assign latest_pages = site.pages | order_by: '-edited_at' | limit: 12 %}
+  {% assign latest_has_pages = false %}
+  {% for _doc in latest_pages %}
+    {% if _doc.full_slug == '/' %}{% continue %}{% endif %}
+    {% assign latest_has_pages = true %}
+    {% break %}
+  {% endfor %}
+{% endif %}
+
 {% assign help_title = page.settings.home_help_title %}
 {% assign help_desc = page.settings.home_help_description %}
 
@@ -211,6 +224,47 @@
             {% assign guide_cards_shown = guide_cards_shown | plus: 1 %}
           {% endfor %}
         {% endif %}
+      </div>
+    </div>
+  {% endif %}
+
+  {% if show_latest_section %}
+    <div class="mb-10 md:mb-12">
+      <div class="overflow-hidden rounded-2xl border border-base-200 bg-base-100">
+        <div class="flex items-center justify-between gap-3 border-b border-base-200 bg-base-200/30 px-5 py-3.5">
+          <h3 class="flex items-center gap-2 text-sm font-bold text-base-content">
+            <i class="ri-time-line text-base text-primary" aria-hidden="true"></i>
+            {{ latest_section_title }}
+          </h3>
+        </div>
+        <ul role="list" class="divide-y divide-base-200">
+          {% if latest_has_pages %}
+            {% assign latest_shown = 0 %}
+            {% for doc in latest_pages %}
+              {% if latest_shown >= latest_display_limit %}{% break %}{% endif %}
+              {% if doc.full_slug == '/' %}{% continue %}{% endif %}
+              <li>
+                <a
+                  href="{{ doc.path }}"
+                  data-turbo-frame="main-content-frame"
+                  data-turbo-action="advance"
+                  class="flex flex-wrap items-center justify-between gap-x-4 gap-y-1 px-5 py-3.5 transition-colors hover:bg-primary/5 sm:flex-nowrap"
+                >
+                  <div class="flex min-w-0 items-center gap-3">
+                    <span class="flex size-8 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                      <i class="ri-file-text-line text-sm" aria-hidden="true"></i>
+                    </span>
+                    <span class="line-clamp-2 font-medium text-base-content">{{ doc.link_text }}</span>
+                  </div>
+                  <span class="shrink-0 text-[0.7rem] text-base-content/45">
+                    {% if doc.edited_at %}{{ doc.edited_at | time_ago }}{% else %}{{ 'snippets.default.home.tag_recent' | t: '最近更新' }}{% endif %}
+                  </span>
+                </a>
+              </li>
+              {% assign latest_shown = latest_shown | plus: 1 %}
+            {% endfor %}
+          {% endif %}
+        </ul>
       </div>
     </div>
   {% endif %}

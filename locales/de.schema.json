@@ -68,6 +68,13 @@
           "home_show_guide_section": {
             "label": "Einstiegskarten anzeigen (bis zu 3 Unterkanäle der Startseite)"
           },
+          "home_latest_title": {
+            "label": "Titel Neueste Inhalte",
+            "default": "Neueste Inhalte"
+          },
+          "home_show_latest": {
+            "label": "Neueste Inhalte anzeigen"
+          },
           "home_recommended_title": {
             "label": "Empfohlene Lektüre",
             "default": "Empfohlene Lektüre"
@@ -109,6 +116,13 @@
           },
           "home_show_guide_section": {
             "label": "Schnellführer-Bereich anzeigen"
+          },
+          "home_latest_title": {
+            "label": "Titel Neueste Inhalte",
+            "default": "Neueste Inhalte"
+          },
+          "home_show_latest": {
+            "label": "Neueste Inhalte anzeigen"
           },
           "home_recommended_title": {
             "label": "Empfehlungen-Titel",
@@ -155,6 +169,13 @@
           },
           "home_show_guide_section": {
             "label": "Schnellführer anzeigen"
+          },
+          "home_latest_title": {
+            "label": "Titel Neueste Inhalte",
+            "default": "Neueste Inhalte"
+          },
+          "home_show_latest": {
+            "label": "Neueste Inhalte anzeigen"
           },
           "home_recommended_title": {
             "label": "Titel Empfehlungen",

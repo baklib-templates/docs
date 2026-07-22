@@ -68,6 +68,13 @@
           "home_show_guide_section": {
             "label": "入門カードを表示（ホーム子チャンネル最大 3 件）"
           },
+          "home_latest_title": {
+            "label": "最新コンテンツ見出し",
+            "default": "最新コンテンツ"
+          },
+          "home_show_latest": {
+            "label": "最新コンテンツを表示"
+          },
           "home_recommended_title": {
             "label": "おすすめ読書見出し",
             "default": "おすすめ"
@@ -109,6 +116,13 @@
           },
           "home_show_guide_section": {
             "label": "クイックガイドセクションを表示"
+          },
+          "home_latest_title": {
+            "label": "最新コンテンツ見出し",
+            "default": "最新コンテンツ"
+          },
+          "home_show_latest": {
+            "label": "最新コンテンツを表示"
           },
           "home_recommended_title": {
             "label": "おすすめ見出し",
@@ -155,6 +169,13 @@
           },
           "home_show_guide_section": {
             "label": "クイックガイドを表示"
+          },
+          "home_latest_title": {
+            "label": "最新コンテンツ見出し",
+            "default": "最新コンテンツ"
+          },
+          "home_show_latest": {
+            "label": "最新コンテンツを表示"
           },
           "home_recommended_title": {
             "label": "おすすめ見出し",

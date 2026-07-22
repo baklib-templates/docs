@@ -53,7 +53,8 @@
       },
       "nav": {
         "open_sidebar": "開啟導覽選單",
-        "close_sidebar": "關閉導覽選單"
+        "close_sidebar": "關閉導覽選單",
+        "channels": "頻道"
       }
     },
     "page_tools": {

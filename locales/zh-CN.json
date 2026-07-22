@@ -48,7 +48,8 @@
       },
       "nav": {
         "open_sidebar": "打开导航菜单",
-        "close_sidebar": "关闭导航菜单"
+        "close_sidebar": "关闭导航菜单",
+        "channels": "频道"
       },
       "home": {
         "search_placeholder": "搜索...",

@@ -68,6 +68,13 @@
           "home_show_guide_section": {
             "label": "Afficher les cartes de démarrage (jusqu’à 3 sous-canaux)"
           },
+          "home_latest_title": {
+            "label": "Titre contenus récents",
+            "default": "Derniers contenus"
+          },
+          "home_show_latest": {
+            "label": "Afficher les contenus récents"
+          },
           "home_recommended_title": {
             "label": "Titre lecture recommandée",
             "default": "Lecture recommandée"
@@ -109,6 +116,13 @@
           },
           "home_show_guide_section": {
             "label": "Afficher la section guide rapide"
+          },
+          "home_latest_title": {
+            "label": "Titre contenus récents",
+            "default": "Derniers contenus"
+          },
+          "home_show_latest": {
+            "label": "Afficher les contenus récents"
           },
           "home_recommended_title": {
             "label": "Titre recommandations",
@@ -155,6 +169,13 @@
           },
           "home_show_guide_section": {
             "label": "Afficher le guide rapide"
+          },
+          "home_latest_title": {
+            "label": "Titre contenus récents",
+            "default": "Derniers contenus"
+          },
+          "home_show_latest": {
+            "label": "Afficher les contenus récents"
           },
           "home_recommended_title": {
             "label": "Titre recommandations",

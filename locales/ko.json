@@ -53,7 +53,8 @@
       },
       "nav": {
         "open_sidebar": "내비게이션 메뉴 열기",
-        "close_sidebar": "내비게이션 메뉴 닫기"
+        "close_sidebar": "내비게이션 메뉴 닫기",
+        "channels": "채널"
       }
     },
     "page_tools": {
